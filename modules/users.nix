@@ -1,5 +1,5 @@
 { config, user, ... }: {
-  users.users.x = {
+  users.users.${user} = {
     isNormalUser = true;
     initialPassword = "nixos";
     extraGroups = [ "wheel" ];

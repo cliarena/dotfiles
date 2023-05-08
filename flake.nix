@@ -29,14 +29,8 @@
   };
 
   outputs = inputs@{ ... }:
-    # let inherit (nixpkgs.lib) nixosSystem;
 
     {
-      nixosConfigurations = {
-
-        x = import ./hosts/x { inherit inputs; };
-        system.stateVersion = "22.11";
-
-      };
+      nixosConfigurations = { x = import ./hosts/x { inherit inputs; }; };
     };
 }
