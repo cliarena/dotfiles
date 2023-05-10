@@ -6,6 +6,6 @@
     homeDirectory = "/home/x";
   };
 
-  imports = [ ];
+  imports = [ ../../modules/home/lazygit.nix ];
   programs.home-manager.enable = true;
 }
