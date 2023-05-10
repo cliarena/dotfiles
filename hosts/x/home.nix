@@ -1,8 +1,11 @@
-{ ... }: {
+{ pkgs, ... }: {
 
   home = {
+    stateVersion = "22.11";
     username = "x";
     homeDirectory = "/home/x";
   };
-  home.stateVersion = "22.11";
+
+  imports = [ ];
+  programs.home-manager.enable = true;
 }
