@@ -10,6 +10,7 @@
     ../../modules/home/lazygit.nix
     ../../modules/home/shell.nix
     ../../modules/home/pkgs.nix
+    ../../modules/home/bottom.nix
   ];
   programs.home-manager.enable = true;
 }

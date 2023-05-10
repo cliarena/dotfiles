@@ -1,7 +1,6 @@
 { pkgs, ... }: {
 
   programs = {
-    bottom.enable = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
