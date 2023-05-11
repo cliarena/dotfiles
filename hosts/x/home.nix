@@ -12,7 +12,6 @@
     ../../modules/home/shell.nix
     ../../modules/home/pkgs.nix
     ../../modules/home/bottom.nix
-    ../../modules/home/nixvim
   ];
   programs.home-manager.enable = true;
 }
