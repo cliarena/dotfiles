@@ -2,10 +2,10 @@
   programs.nixvim = {
     enable = true;
     extraPackages = with pkgs; [ ];
-    extraPlugins = with pkgs.vimPlugins;
-      [
-        catppuccin-nvim # # Theme
-      ];
+    extraPlugins = with pkgs.vimPlugins; [
+      alpha-nvim
+      catppuccin-nvim # # Theme
+    ];
     options = import ./options.nix { };
     colorscheme = "catppuccin";
     plugins.comment-nvim.enable = true;
@@ -27,6 +27,6 @@
       cmp_luasnip.enable = true;
     };
     plugins.conjure.enable = true;
-
+    extraConfigLua = import ./config_lua { };
   };
 }
