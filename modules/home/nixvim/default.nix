@@ -6,5 +6,6 @@
         catppuccin-nvim # # Theme
       ];
     colorscheme = "catppuccin";
+    plugins.lualine = import ./lualine.nix { };
   };
 }
