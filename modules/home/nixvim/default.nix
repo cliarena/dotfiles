@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.nixvim = {
     enable = true;
+    extraPackages = with pkgs; [ ];
     extraPlugins = with pkgs.vimPlugins;
       [
         catppuccin-nvim # # Theme
@@ -24,6 +25,7 @@
       # cmp-tmux.enable = true;
       cmp_luasnip.enable = true;
     };
+    plugins.conjure.enable = true;
 
   };
 }
