@@ -5,6 +5,7 @@
     extraPlugins = with pkgs.vimPlugins; [
       alpha-nvim
       catppuccin-nvim # # Theme
+      better-escape-nvim # escape with ii
     ];
     options = import ./options.nix { };
     colorscheme = "catppuccin";
