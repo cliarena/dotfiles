@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  inherit (inputs) home-manager kmonad hyprland;
+  inherit (inputs) home-manager nixvim kmonad hyprland;
   inherit (inputs.nixpkgs.lib) nixosSystem;
   user = "x";
   system = "x86_64-linux";
@@ -24,7 +24,9 @@ in nixosSystem {
 
       # Optionally, use home-manager.extraSpecialArgs to pass
       # arguments to home.nix
-      home-manager.extraSpecialArgs = { inherit inputs nixpkgs home-manager; };
+      home-manager.extraSpecialArgs = {
+        inherit inputs nixpkgs home-manager nixvim;
+      };
     }
   ];
 }
