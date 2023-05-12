@@ -29,9 +29,8 @@ pkgs: {
     ./trouble.lua
     ./telescope.lua
     ./highlight-colors.lua
-    #    ./inc-rename.lua
-    #    ./noice.lua
     ./inc-rename.lua
+    ./noice.lua
     ./vim-illuminate.lua
     ./cmp.lua
     ./treesitter.lua
@@ -143,7 +142,7 @@ pkgs: {
     ## Session Management
     nvim-lastplace # # Reopen files at last edited place
     Navigator-nvim # # Easy Navigate between neovim and tmux
-    # auto-session-nvim     ## Session manager ## TODO: add to nix 
+    # auto-session   ## Session manager 
     # session-lens-nvim     ## Integrate Session manager with Telescope ## TODO: add to nix 
 
     ## Utilities
@@ -153,14 +152,14 @@ pkgs: {
     surround-nvim # # Surround with brackets, quotes...
     # nvim-rename-state # # Rename Setter & Getter of React State Hook
     vim-repeat # # . to repeat command Functionality
-    # inc-rename-nvim     ## Live view LSP renaming TODO: add to nixpkgs
+    inc-rename-nvim # # Live view LSP renaming
     live-command-nvim # # Live Preview Commands effects
     auto-save-nvim # # Auto save
     ## wilder-nvim
     hydra-nvim # # Easier Sequential commands
     urlview-nvim # # Find & Display urls
     hologram-nvim # # Preview images
-    ## grammar-guard-nvim    ## fix misspells TODO: add to nixpkgs
+    ## grammar-guard-nvim    ## fix misspells. unmaintened
     dial-nvim # # Easy edit dates, versions...
     ## fm-nvim            ## Use Terminal file manager in neovim TODO: add to nixpkgs
 
