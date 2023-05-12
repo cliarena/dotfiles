@@ -267,6 +267,13 @@ local mappings = {
 		h = { "<cmd>split<cr>", "Bottom" },
 	},
 
+	T = {
+		name = "Tab",
+		T = { "<cmd>tabnext<cr>", "Next" },
+		t = { "<cmd>tabnew<cr>", "New" },
+		c = { "<cmd>tabclose<cr>", "Close" },
+	},
+
 	t = {
 		name = "Toggle",
 		a = { "<cmd>Alpha<cr>", "Alpha" },
