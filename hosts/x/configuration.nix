@@ -8,6 +8,7 @@
     ../../modules/i18n.nix
     ../../modules/pipewire.nix
     ../../modules/network.nix
+    ../../modules/kmonad
   ];
   system.stateVersion = "22.11";
 }
