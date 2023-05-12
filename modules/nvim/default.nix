@@ -30,7 +30,7 @@ pkgs: {
     ./telescope.lua
     ./highlight-colors.lua
     ./inc-rename.lua
-    ./noice.lua
+    # ./noice.lua
     ./vim-illuminate.lua
     ./cmp.lua
     ./treesitter.lua
@@ -79,7 +79,7 @@ pkgs: {
     nvim-highlight-colors # # Highlight colors
     nui-nvim # # UI Component Library
     nvim-notify # # Fancy, configurable notification manager
-    noice-nvim # # Better inputs
+    # noice-nvim # # Better inputs
     vim-illuminate # # Highlight words similar to on-cursor
     which-key-nvim # # Show Keybindings in popup
 
