@@ -262,6 +262,7 @@ local mappings = {
 
 	S = {
 		name = "Split",
+		S = { "<cmd>wincmd=<cr>", "Evenly" },
 		s = { "<cmd>vsplit<cr>", "Right" },
 		h = { "<cmd>split<cr>", "Bottom" },
 	},
