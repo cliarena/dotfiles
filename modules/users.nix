@@ -8,4 +8,6 @@
     #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN1NKQdwVosRxqoSOfBcjIuTNidrd1Ob4Cw6z6IbZ5KA PI"
     # ];
   };
+  # Use sudo with no password
+  security = { sudo.wheelNeedsPassword = false; };
 }
