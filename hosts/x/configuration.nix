@@ -3,6 +3,7 @@
     ../../modules/nix_config.nix
     ../../modules/boot.nix
     ../../modules/users.nix
+    ../../modules/fonts
     ../../modules/display_manager.nix
     ../../modules/pkgs.nix
     ../../modules/i18n.nix
