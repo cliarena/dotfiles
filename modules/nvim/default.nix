@@ -31,6 +31,7 @@ pkgs: {
     ./highlight-colors.lua
     #    ./inc-rename.lua
     #    ./noice.lua
+    ./inc-rename.lua
     ./vim-illuminate.lua
     ./cmp.lua
     ./treesitter.lua
