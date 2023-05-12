@@ -23,8 +23,6 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     lanzaboote.inputs.flake-compat.follows = "";
 
-    nixvim.url = "github:pta2002/nixvim";
-
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
