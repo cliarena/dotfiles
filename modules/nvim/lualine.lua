@@ -7,6 +7,17 @@ local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
 
+local filename = {
+	"filename",
+	file_status = false,   -- Displays file status (readonly status, modified status)
+	newfile_status = false, -- Display new file status (new file means no write after created)
+	path = 4,              -- 0: Just the filename
+	-- 1: Relative path
+	-- 2: Absolute path
+	-- 3: Absolute path, with tilde as the home directory
+	-- 4: Filename and parent dir, with tilde as the home directory
+}
+
 local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
@@ -21,7 +32,7 @@ local diff = {
 	"diff",
 	colored = false,
 	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
-  cond = hide_in_width
+	cond = hide_in_width,
 }
 
 local mode = {
@@ -65,25 +76,25 @@ end
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		theme = "auto",
+		theme = "catppuccin",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
-		disabled_filetypes = { "dashboard", "NvimTree", "Outline" },
+		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		always_divide_middle = true,
 	},
 	sections = {
 		lualine_a = { branch, diagnostics },
 		lualine_b = { mode },
-		lualine_c = {},
+		lualine_c = { filename },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },
+		lualine_x = { diff, "encoding" },
 		lualine_y = { location },
-		lualine_z = { progress },
+		lualine_z = { "progress" },
 	},
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
-		lualine_c = { "filename" },
+		lualine_c = {},
 		lualine_x = { "location" },
 		lualine_y = {},
 		lualine_z = {},
