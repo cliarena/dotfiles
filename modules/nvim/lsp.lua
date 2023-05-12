@@ -1,25 +1,27 @@
-require("lspconfig").bashls.setup({})
-require("lspconfig").dockerls.setup({})
-require("lspconfig").yamlls.setup({})
-require("lspconfig").nil_ls.setup({})
-require("lspconfig").denols.setup({})
-require("lspconfig").grammarly.setup({})
-require("lspconfig").jsonls.setup({})
+local lspconfig = require("lspconfig")
+lspconfig.bashls.setup({})
+lspconfig.dockerls.setup({})
+lspconfig.yamlls.setup({})
+lspconfig.nil_ls.setup({})
+lspconfig.denols.setup({})
+lspconfig.grammarly.setup({})
+lspconfig.jsonls.setup({})
+lspconfig.rust_analyzer.setup({})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-require("lspconfig").html.setup({
+lspconfig.html.setup({
 	capabilities = capabilities,
 })
-require("lspconfig").cssls.setup({
-	capabilities = capabilities,
-})
-
-require("lspconfig").jsonls.setup({
+lspconfig.cssls.setup({
 	capabilities = capabilities,
 })
 
-require("lspconfig").lua_ls.setup({
+lspconfig.jsonls.setup({
+	capabilities = capabilities,
+})
+
+lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
 			runtime = {
@@ -49,7 +51,7 @@ if cmp_nvim_lsp_ok then
 	capabilities.textDocument.colorProvider = { dynamicRegistration = false }
 end
 
-require("lspconfig").tailwindcss.setup({
+lspconfig.tailwindcss.setup({
 	filetypes = {
 		"aspnetcorerazor",
 		"astro",
