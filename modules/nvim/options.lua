@@ -4,10 +4,10 @@ local options = {
 	laststatus = 3, -- one status bar for all splits
 	conceallevel = 0, -- so that `` is visible in markdown files
 	fileencoding = "utf-8", -- the encoding written to a file
-	foldmethod = "manual", -- folding set to "expr" for treesitter based folding
+	foldmethod = "expr", -- folding set to "expr" for treesitter based folding
 	foldexpr = "nvim_treesitter#foldexpr()", -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
 	hidden = true, -- required to keep multiple buffers and open multiple buffers
-	hlsearch = true, -- highlight all matches on previous search pattern
+	hlsearch = false, -- keep highlighting matches of the previous search
 	ignorecase = true, -- ignore case in search patterns
 	pumheight = 10, -- pop up menu height
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
@@ -30,7 +30,7 @@ local options = {
 	tabstop = 2, -- insert 2 spaces for a tab
 	cursorline = true, -- highlight the current line
 	number = true, -- set numbered lines
-	relativenumber = false, -- set relative numbered lines
+	relativenumber = true, -- set relative numbered lines
 	numberwidth = 4, -- set number column width to 2 {default 4}
 	signcolumn = "yes", -- always show the sign column otherwise it would shift the text each time
 	wrap = false, -- display lines as one long line
@@ -39,7 +39,7 @@ local options = {
 	spell = false,
 	spelllang = "en",
 	scrolloff = 8, -- is one of my fav
-	-- vim.opt.sidescrolloff = 8
+	sidescrolloff = 8,
 }
 
 for k, v in pairs(options) do
