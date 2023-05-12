@@ -19,7 +19,8 @@ pkgs: {
     ./guess-indent.lua
     ./theme.lua
     ./dashboard.lua
-    ./bufferline.lua
+    # it should be disabled so showtabline=0 works
+    # ./bufferline.lua
     ./lualine.lua
     ./keymaps.lua
     ./which-key.lua
@@ -67,7 +68,7 @@ pkgs: {
     catppuccin-nvim # # Theme
     alpha-nvim # # Dashboard in lua
     nvim-web-devicons # # Icons
-    bufferline-nvim # # Tabs Functionality
+    # bufferline-nvim # # Tabs Functionality
     lualine-nvim # # Fancier Statusline
     indent-blankline-nvim # # add indentation guides even on blank lines
     true-zen-nvim # # Distraction Free Coding
