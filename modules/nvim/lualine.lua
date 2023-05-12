@@ -44,8 +44,10 @@ local mode = {
 
 local filetype = {
 	"filetype",
-	icons_enabled = false,
-	icon = nil,
+	colored = false, -- Displays filetype icon in color if set to true
+	icon_only = true, -- Display only an icon for filetype
+	--[[ icons_enabled = true, ]]
+	--[[ icon = nil, ]]
 }
 
 local branch = {
@@ -87,7 +89,7 @@ lualine.setup({
 		lualine_b = { mode },
 		lualine_c = { filename },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, "encoding" },
+		lualine_x = { diff, filetype },
 		lualine_y = { location },
 		lualine_z = { "progress" },
 	},
