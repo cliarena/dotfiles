@@ -13,6 +13,7 @@
 
     ### Programing ###
     wget
+    dig # Networking tools
     jq # # CLI JSON processor
     jqp # # jq playground
     htmlq # # jq fo html

@@ -7,6 +7,7 @@
     ../../modules/pkgs.nix
     ../../modules/i18n.nix
     ../../modules/pipewire.nix
+    ../../modules/network.nix
   ];
   system.stateVersion = "22.11";
 }

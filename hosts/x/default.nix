@@ -8,9 +8,16 @@ let
     inherit system;
     config.allowUnfree = true;
   };
+  wan_ips = [ "10.0.2.222" ];
+  wan_gateway = [ "10.0.2.1" ];
+  tcp_ports = [ 443 53 ];
+  udp_ports = [ 53 ];
 in nixosSystem {
   inherit system;
-  specialArgs = { inherit inputs nixpkgs home-manager user; };
+  specialArgs = {
+    inherit inputs nixpkgs home-manager user wan_ips wan_gateway tcp_ports
+      udp_ports;
+  };
   modules = [
     ./configuration.nix
 
