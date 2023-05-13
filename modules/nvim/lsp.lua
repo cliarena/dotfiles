@@ -7,19 +7,7 @@ lspconfig.denols.setup({})
 lspconfig.grammarly.setup({})
 lspconfig.jsonls.setup({})
 lspconfig.rust_analyzer.setup({})
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-lspconfig.html.setup({
-	capabilities = capabilities,
-})
-lspconfig.cssls.setup({
-	capabilities = capabilities,
-})
-
-lspconfig.jsonls.setup({
-	capabilities = capabilities,
-})
+lspconfig.jsonls.setup({})
 
 lspconfig.lua_ls.setup({
 	settings = {
@@ -43,13 +31,6 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
-
-local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if cmp_nvim_lsp_ok then
-	local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
-	capabilities.textDocument.colorProvider = { dynamicRegistration = false }
-end
 
 lspconfig.tailwindcss.setup({
 	filetypes = {
