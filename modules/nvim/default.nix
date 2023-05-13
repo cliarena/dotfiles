@@ -36,6 +36,7 @@ pkgs: {
     ./cmp.lua
     ./treesitter.lua
     ./lsp.lua
+    ./lsp_signs.lua
     ./lsp_signature.lua
     ./null-ls.lua
     ./lsp_lines.lua
