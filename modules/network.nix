@@ -1,9 +1,10 @@
-{ pkgs, user, tcp_ports, udp_ports, wan_ips, wan_gateway, ... }: {
+{ pkgs, user, tcp_ports, udp_ports, wan_ips, wan_gateway, dns, ... }: {
   # Rename network interface to wan
   services.udev.extraRules = ''
     KERNEL=="e*", NAME="wan"
   '';
-  services.resolved.enable = false;
+  # Disable if this server is a dns server
+  services.resolved.enable = true;
 
   networking = {
     hostName = user;
@@ -32,7 +33,9 @@
           name = "wan";
           address = wan_ips;
           gateway = wan_gateway;
-          # dns = [ "1.1.1.1" ];
+          inherit dns;
+          # if you want dhcp uncomment this and comment address,gateway and dns
+          # DHCP = "ipv4";
         };
       };
     };
