@@ -51,6 +51,7 @@ pkgs: {
     #    ./rename-state.lua
     ./urlview.lua
     #  ./hologram.lua
+    ./lspsaga.lua
   ];
   plugins = with pkgs.vimPlugins; [
     popup-nvim # # Needed by some plugins
@@ -105,7 +106,7 @@ pkgs: {
     null-ls-nvim # # Formatting, Diagnostics, Code Action...
     lsp_signature-nvim # # Show Function Signature
     lsp_lines-nvim # # Show Diagnostics using virtual line
-    ## lspsaga-nvim
+    lspsaga-nvim-original # LSP++
 
     ## Telescope
     telescope-nvim # # Highly extandable Fuzzy Finder
