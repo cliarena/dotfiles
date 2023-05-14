@@ -33,13 +33,14 @@ pkgs: {
     ./inc-rename.lua
     # ./noice.lua
     ./vim-illuminate.lua
+    ./diagnostics.lua
     ./cmp.lua
     ./treesitter.lua
     ./lsp.lua
     ./lsp_signs.lua
     ./lsp_signature.lua
     ./null-ls.lua
-    ./lsp_lines.lua
+    # ./lsp_lines.lua
     ./aerial.lua
     ./leap.lua
     ./flit.lua
@@ -106,7 +107,7 @@ pkgs: {
     nvim-lspconfig # # Configs for LSP
     null-ls-nvim # # Formatting, Diagnostics, Code Action...
     lsp_signature-nvim # # Show Function Signature
-    lsp_lines-nvim # # Show Diagnostics using virtual line
+    # lsp_lines-nvim # # Show Diagnostics using virtual line
     lspsaga-nvim-original # LSP++
 
     ## Telescope
