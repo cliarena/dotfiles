@@ -1,11 +1,10 @@
 local status_ok, Theme = pcall(require, "catppuccin")
 if not status_ok then
-  return
+	return
 end
 
 Theme.setup(Theme_config)
 Theme.load()
-
 
 local Theme_config = {
 	flavour = "mocha", -- Can be one of: latte, frappe, macchiato, mocha
@@ -60,6 +59,7 @@ local Theme_config = {
 		which_key = true,
 		indent_blankline = { enabled = true, colored_indent_levels = false },
 		dashboard = true,
+		alpha = true,
 		neogit = false,
 		vim_sneak = false,
 		fern = false,
@@ -68,16 +68,17 @@ local Theme_config = {
 		lightspeed = false,
 		ts_rainbow = true,
 		mason = true,
-		neotest = false,
+		neotest = true,
 		noice = false,
 		hop = true,
+		harpoon = true,
 		illuminate = true,
 		cmp = true,
 		dap = { enabled = true, enable_ui = true },
 		notify = true,
 		symbols_outline = false,
 		coc_nvim = false,
-		leap = false,
+		leap = true,
 		neotree = { enabled = false, show_root = true, transparent_panel = false },
 		telekasten = false,
 		mini = false,
