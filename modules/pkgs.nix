@@ -32,6 +32,7 @@
     unzip
     speedtest-cli
     nmap
+    sops
     musikcube
     ventoy-bin # multiple Bootable usb drives in one
   ];

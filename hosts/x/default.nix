@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  inherit (inputs) home-manager nixvim kmonad hyprland;
+  inherit (inputs) home-manager sops-nix kmonad hyprland;
   inherit (inputs.nixpkgs.lib) nixosSystem;
   user = "x";
   system = "x86_64-linux";
@@ -21,8 +21,10 @@ in nixosSystem {
       udp_ports;
   };
   modules = [
+    ./sops.nix
     ./configuration.nix
 
+    sops-nix.nixosModules.sops
     kmonad.nixosModules.default
     home-manager.nixosModules.home-manager
     {
@@ -33,9 +35,7 @@ in nixosSystem {
 
       # Optionally, use home-manager.extraSpecialArgs to pass
       # arguments to home.nix
-      home-manager.extraSpecialArgs = {
-        inherit inputs nixpkgs home-manager nixvim;
-      };
+      home-manager.extraSpecialArgs = { inherit inputs nixpkgs home-manager; };
     }
   ];
 }
