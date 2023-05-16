@@ -14,6 +14,7 @@ let
   # open the least amount possible
   tcp_ports = [ ];
   udp_ports = [ ];
+
 in nixosSystem {
   inherit system;
   specialArgs = {
@@ -21,10 +22,10 @@ in nixosSystem {
       udp_ports;
   };
   modules = [
-    ./sops.nix
     ./configuration.nix
 
-    sops-nix.nixosModules.sops
+    # ./sops.nix
+    # sops-nix.nixosModules.sops
     kmonad.nixosModules.default
     home-manager.nixosModules.home-manager
     {
@@ -35,7 +36,9 @@ in nixosSystem {
 
       # Optionally, use home-manager.extraSpecialArgs to pass
       # arguments to home.nix
-      home-manager.extraSpecialArgs = { inherit inputs nixpkgs home-manager; };
+      home-manager.extraSpecialArgs = {
+        inherit inputs nixpkgs home-manager sops-nix;
+      };
     }
   ];
 }

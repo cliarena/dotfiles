@@ -146,6 +146,7 @@ pkgs: {
     ## Session Management
     nvim-lastplace # # Reopen files at last edited place
     Navigator-nvim # # Easy Navigate between neovim and tmux
+    # harpoon # Faster buffer navigation
     # auto-session   ## Session manager 
     # session-lens-nvim     ## Integrate Session manager with Telescope ## TODO: add to nix 
 

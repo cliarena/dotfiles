@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, sops-nix, ... }: {
 
   home = {
     stateVersion = "22.11";
@@ -7,6 +7,8 @@
   };
 
   imports = [
+    sops-nix.homeManagerModules.sops
+    ./sops.nix
     ../../modules/home/lazygit.nix
     ../../modules/home/shell.nix
     ../../modules/home/pkgs.nix
