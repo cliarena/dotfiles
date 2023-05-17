@@ -27,6 +27,9 @@
     ripgrep # # Fastest Sercher
     ripgrep-all # # Better rg
 
+    ### Session management ###
+    zellij
+
     ### Tools ###
     bat
     unzip
