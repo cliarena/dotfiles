@@ -12,6 +12,7 @@
       gitlab = {
         host = "gitlab.com";
         identityFile = config.sops.secrets.GL_SSH_KEY.path;
+        extraOptions = { PreferredAuthentications = "publickey"; };
       };
     };
   };
