@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  inherit (inputs) home-manager sops-nix kmonad hyprland;
+  inherit (inputs) home-manager sops-nix disko kmonad hyprland;
   inherit (inputs.nixpkgs.lib) nixosSystem;
   user = "x";
   system = "x86_64-linux";
@@ -26,6 +26,7 @@ in nixosSystem {
 
     # ./sops.nix
     # sops-nix.nixosModules.sops
+    disko.nixosModules.disko
     kmonad.nixosModules.default
     home-manager.nixosModules.home-manager
     {
