@@ -2,6 +2,7 @@
   imports = [
     ../../modules/nix_config.nix
     ../../modules/disko.nix # doesn't support btrfs swapfile
+    ../../modules/fileSystem.nix
     ../../modules/boot.nix
     ../../modules/users.nix
     ../../modules/fonts
