@@ -8,8 +8,8 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-  wan_ips = [ "10.0.2.222/24" ];
-  wan_gateway = [ "10.0.2.2" ];
+  wan_ips = [ "10.10.1.222/24" ];
+  wan_gateway = [ "10.10.1.1" ];
   dns = wan_gateway;
   # open the least amount possible
   tcp_ports = [ ];
