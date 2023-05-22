@@ -5,6 +5,7 @@
     # only firacode and hack fonts work 
     extraConfig = ''
       font-name=FiraCode Nerd Font Mono
+      font-size=10
     '';
     # font-size=8
     #font-name=Hack Nerd Font Mono
