@@ -1,4 +1,4 @@
-{ disks ? [ "/dev/vdb" ], ... }: {
+{ disks ? [ "/dev/sda" ], ... }: {
   disko.devices = {
     disk = {
       main = {
@@ -17,7 +17,8 @@
               content = {
                 type = "filesystem";
                 format = "vfat";
-                mountpoint = "/boot";
+                mountpoint = "/boot/efi";
+                extraArgs = [ "-n boot" ];
               };
             }
             {
@@ -26,11 +27,12 @@
               end = "100%";
               content = {
                 type = "btrfs";
-                # extraArgs = [ "-f" ]; # Override existing partition
+                extraArgs = [ "--label nixos" ]; # Override existing partition
                 subvolumes = {
                   # Mountpoints inferred from subvolume name
                   "/nix" = { mountOptions = [ "compress=zstd" "noatime" ]; };
-                  "/var/log" = {
+                  "/log" = {
+                    mountpoint = "/var/log";
                     mountOptions = [ "compress=zstd" "noatime" ];
                   };
                   "/srv" = { mountOptions = [ "compress=zstd" "noatime" ]; };
@@ -46,7 +48,7 @@
       fsType = "tmpfs";
       mountOptions = [
         "defaults"
-        "size=2GiB" # limit tmpfs size to 2GiB
+        "size=4G" # limit tmpfs size to 2GiB
         "noatime"
         "mode=755"
       ];
