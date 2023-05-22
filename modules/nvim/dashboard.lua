@@ -48,10 +48,9 @@ local function footer()
   -- local fortune = handle:read("*a")
   -- handle:close()
   -- return fortune
-  return "chrisatmachine.com"
 end
 
-dashboard.section.footer.val = footer()
+-- dashboard.section.footer.val = footer()
 
 dashboard.section.footer.opts.hl = "Type"
 dashboard.section.header.opts.hl = "Include"
