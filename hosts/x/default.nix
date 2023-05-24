@@ -12,7 +12,7 @@ let
   wan_gateway = [ "10.10.1.1" ];
   dns = wan_gateway;
   # open the least amount possible
-  tcp_ports = [ ];
+  tcp_ports = [ 8080 ];
   udp_ports = [ ];
 
 in nixosSystem {
