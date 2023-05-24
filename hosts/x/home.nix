@@ -10,6 +10,7 @@
     sops-nix.homeManagerModules.sops
     ./sops.nix
     ../../modules/home/ssh.nix
+    ../../modules/home/git.nix
     ../../modules/home/lazygit.nix
     ../../modules/home/shell.nix
     ../../modules/home/pkgs.nix
