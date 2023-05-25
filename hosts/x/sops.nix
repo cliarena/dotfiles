@@ -3,7 +3,7 @@ let inherit (config.home) homeDirectory;
 in {
   sops = {
     defaultSopsFile = ../../secrets/${user}.yaml;
-    age.keyFile = ../../secrets/age-key.txt;
+    age.keyFile = ../../secrets/age.key;
 
     # must set when used with home-manager 
     defaultSymlinkPath = "${homeDirectory}/.sops/secrets";
