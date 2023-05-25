@@ -48,7 +48,7 @@
       fsType = "tmpfs";
       mountOptions = [
         "defaults"
-        "size=4G" # limit tmpfs size to 4GiB
+        # "size=4G" # limit tmpfs size to 4GiB
         "noatime"
         "mode=755"
       ];
