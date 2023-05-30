@@ -20,13 +20,13 @@
     httpie
     pgcli
     manix # # CLI Searcher for Nix, HM documentation
-    kitty
 
     ### Search ###
     fd # # Search file names
     fzy # # fzf but better
     ripgrep # # Fastest Sercher
     ripgrep-all # # Better rg
+    chromium
 
     ### Session management ###
     zellij
