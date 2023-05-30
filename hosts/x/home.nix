@@ -15,6 +15,7 @@
     ../../modules/home/git.nix
     ../../modules/home/lazygit.nix
     ../../modules/home/shell.nix
+    ../../modules/home/kitty.nix
     ../../modules/home/pkgs.nix
     ../../modules/home/bottom.nix
   ];

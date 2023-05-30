@@ -4,7 +4,7 @@
   fonts.fonts = with pkgs; [
     ./techy
     google-fonts
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
   ];
 
 }
