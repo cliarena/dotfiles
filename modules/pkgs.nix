@@ -20,6 +20,7 @@
     httpie
     pgcli
     manix # # CLI Searcher for Nix, HM documentation
+    kitty
 
     ### Search ###
     fd # # Search file names
@@ -29,6 +30,12 @@
 
     ### Session management ###
     zellij
+
+
+
+    ### Session management ###
+    dunst # # notification manager must for discord ...
+
 
     ### Tools ###
     bat
