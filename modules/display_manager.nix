@@ -15,4 +15,8 @@
     #  package = pkgs.nerdfonts;
     #}];
   };
+  services.xserver = {
+      enable = true;
+      displayManager.sddm.enable = true;
+    };
 }
