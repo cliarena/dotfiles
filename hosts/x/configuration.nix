@@ -7,6 +7,7 @@
     ../../modules/users.nix
     ../../modules/fonts
     ../../modules/display_manager.nix
+    ../../modules/hyprland.nix
     ../../modules/pkgs.nix
     ../../modules/i18n.nix
     ../../modules/pipewire.nix

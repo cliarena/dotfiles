@@ -5,11 +5,11 @@
             enable = true;
             hidpi = true;
           };
-  extraConfig = builtins.foldl' (x: y: builtins.readFile y + x) "" [
-    ./binds.conf
-    ./rules.conf
-    ./theme.conf
-    ./settings.conf
-    ];
+      extraConfig = builtins.foldl' (x: y: builtins.readFile y + x) "" [
+        ./binds.conf
+        ./rules.conf
+        ./theme.conf
+        ./settings.conf
+        ];
       };
   }
