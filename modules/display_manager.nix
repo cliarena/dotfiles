@@ -16,7 +16,7 @@
     #}];
   };
   services.xserver = {
-      enable = true;
-      displayManager.sddm.enable = true;
-    };
+    enable = true;
+    displayManager.sddm.enable = true;
+  };
 }

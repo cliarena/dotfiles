@@ -174,6 +174,6 @@ pkgs: {
     ## Optimizations
     impatient-nvim # # Speed up loading Lua modules
   ];
-  extraPackages = with pkgs; [ zig cargo rust-analyzer rustfmt ];
+  extraPackages = with pkgs; [ zig cargo rust-analyzer rustfmt nil nixfmt ];
 
 }
