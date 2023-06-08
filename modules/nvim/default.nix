@@ -54,6 +54,7 @@ pkgs: {
     ./urlview.lua
     #  ./hologram.lua
     ./lspsaga.lua
+    ./glow.lua
   ];
   plugins = with pkgs.vimPlugins; [
     popup-nvim # # Needed by some plugins
@@ -136,7 +137,7 @@ pkgs: {
     ## mind-nvim
     ## Venn-nvim
     neorg # # Org mode for neovim
-    # glow-nvim             ## Preview Markdown in Neovim
+    glow-nvim # # Preview Markdown in Neovim
 
     ## GIT
     lazygit-nvim # # TUI for GIT

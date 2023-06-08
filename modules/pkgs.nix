@@ -31,14 +31,12 @@
     ### Session management ###
     zellij
 
-
-
     ### Session management ###
     dunst # # notification manager must for discord ...
 
-
     ### Tools ###
     bat
+    glow
     unzip
     speedtest-cli
     nmap

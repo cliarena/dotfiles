@@ -76,6 +76,12 @@ function _BTM_TOGGLE()
 	btm:toggle()
 end
 
+local glow = Terminal:new({ cmd = "glow", direction = "float", hidden = true })
+
+function _GLOW_TOGGLE()
+	glow:toggle()
+end
+
 local python = Terminal:new({ cmd = "python", direction = "float", hidden = true })
 
 function _PYTHON_TOGGLE()
