@@ -138,6 +138,7 @@ pkgs: {
     ## Venn-nvim
     neorg # # Org mode for neovim
     glow-nvim # # Preview Markdown in Neovim
+    markdown-preview-nvim # # Preview Markdown in browser support diagrams
 
     ## GIT
     lazygit-nvim # # TUI for GIT

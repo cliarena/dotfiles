@@ -300,6 +300,7 @@ local mappings = {
 		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
 		s = { "<cmd>lua _BTM_TOGGLE()<cr>", "Bottom" },
 		g = { "<cmd>lua _GLOW_TOGGLE()<cr>", "GLOW" },
+		m = { "<cmd>MarkdownPreviewToggle<cr>", "Markdown previewer" },
 		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
 		t = { "<cmd>ToggleTerm direction=float<cr>", "Terminal Float" },
 		--[[ h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" }, ]]
