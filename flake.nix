@@ -31,6 +31,9 @@
   outputs = inputs@{ ... }:
 
     {
-      nixosConfigurations = { x = import ./hosts/x { inherit inputs; }; };
+      nixosConfigurations = {
+        x = import ./hosts/x { inherit inputs; };
+        svr = import ./hosts/svr { inherit inputs; };
+      };
     };
 }
