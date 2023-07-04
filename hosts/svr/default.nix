@@ -24,8 +24,7 @@ in nixosSystem {
   modules = [
     ./configuration.nix
 
-    # ./sops.nix
-    # sops-nix.nixosModules.sops
+    sops-nix.nixosModules.sops
     disko.nixosModules.disko
     kmonad.nixosModules.default
     # home-manager.nixosModules.home-manager
