@@ -39,6 +39,7 @@
 
       # apps = import ./terranix { inherit inputs forAllSystems; };
 
+      # TODO: Change age.key and all sops secrets since age.key is exposed
       checks = forAllSystems (system:
         let
           pkgs = import inputs.nixpkgs { inherit system; };
