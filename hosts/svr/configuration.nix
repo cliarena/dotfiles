@@ -7,6 +7,7 @@
     ../../modules/boot.nix
     ../../modules/users.nix
     ../../modules/i18n.nix
+    ../../modules/sshd.nix
     ../../modules/network.nix
     ../../modules/auditd.nix
   ];
