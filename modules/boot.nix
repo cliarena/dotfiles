@@ -7,11 +7,8 @@
     kernel.sysctl = { "vm.swappiness" = 10; };
 
     loader = {
-      # timeout = 1;
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
+      timeout = 1;
+      efi = { canTouchEfiVariables = true; };
       systemd-boot.enable = true;
     };
   };
