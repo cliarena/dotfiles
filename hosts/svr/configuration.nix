@@ -13,7 +13,7 @@
     ../../modules/network.nix
     ../../modules/kmonad
     # ../../modules/pkgs.nix
-    # ../../modules/chromium.nix
+    ../../modules/auditd.nix
   ];
   system.stateVersion = "22.11";
 }
