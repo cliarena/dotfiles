@@ -1,5 +1,8 @@
 { pkgs, ... }: {
   nix = {
+    # Constrain access to nix daemon
+    settings.allowed-users = [ "@wheel" ];
+
     # Enable Flakes
     package = pkgs.nixFlakes;
     extraOptions = ''
