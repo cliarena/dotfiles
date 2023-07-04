@@ -1,24 +1,29 @@
-{ inputs, forAllSystems, ... }:
+{ inputs, ... }: {
 
-forAllSystems (system:
-  let pkgs = import inputs.nixpkgs { inherit system; };
-  in {
-    test = pkgs.nixosTest {
-      name = "default";
-      # node.specialArgs = { user = "pi"; };
-      nodes = {
-        svr = {
-          imports = [ (import ./default.nix { inherit inputs pkgs; }) ];
-          # disabledModules = [ ];
-        };
+  name = "default";
+  # node.specialArgs = { user = "svr"; };
+  nodes = {
+    svr = {
+      _module.args = rec {
+        user = "svr";
+        wan_ips = [ "10.10.0.10/24" ];
+        wan_gateway = [ "10.10.0.1" ];
+        dns = wan_gateway;
+        # open the least amount possible
+        tcp_ports = [ 8080 ];
+        udp_ports = [ ];
       };
-      testScript = ''
-        start_all()
-        svr.wait_for_unit("multi-user.target")
-
-        svr.succeed("podman -v")
-        # TODO: Test Vault needs auto-unseal
-        # Pi.succeed("vault status")
-      '';
+      imports = [ (import ./configuration.nix { inherit inputs; }) ];
+      # disabledModules = [];
     };
-  })
+  };
+  testScript = ''
+    start_all()
+    svr.wait_for_unit("multi-user.target")
+    with subtest("is podman installed"):
+      svr.succeed("podman -v")
+
+    # TODO: Test Vault needs auto-unseal
+    # Pi.succeed("vault status")
+  '';
+}

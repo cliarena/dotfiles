@@ -1,5 +1,9 @@
-{ ... }: {
+{ inputs, ... }:
+let inherit (inputs) sops-nix disko;
+in {
   imports = [
+    sops-nix.nixosModules.sops
+    disko.nixosModules.disko
     ./sops.nix
     ../../modules/nix_config.nix
     (import ../../modules/disko.nix { }) # doesn't support btrfs swapfile
