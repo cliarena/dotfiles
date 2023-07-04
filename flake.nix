@@ -30,10 +30,37 @@
 
   outputs = inputs@{ ... }:
 
-    {
+    let forAllSystems = import ./helpers/forAllSystems.nix;
+    in {
       nixosConfigurations = {
         x = import ./hosts/x { inherit inputs; };
         svr = import ./hosts/svr { inherit inputs; };
       };
+
+      # apps = import ./terranix { inherit inputs forAllSystems; };
+
+      # checks = import ./hosts/svr/checks.nix { inherit inputs forAllSystems; };
+      checks = forAllSystems (system:
+        let pkgs = import inputs.nixpkgs { inherit system; };
+        in {
+          test = pkgs.nixosTest {
+            name = "default";
+            # node.specialArgs = { user = "pi"; };
+            nodes = {
+              svr = {
+                imports = [ (import ./hosts/svr { inherit inputs pkgs; }) ];
+                # disabledModules = [ ];
+              };
+            };
+            testScript = ''
+              start_all()
+              svr.wait_for_unit("multi-user.target")
+
+              svr.succeed("podman -v")
+              # TODO: Test Vault needs auto-unseal
+              # Pi.succeed("vault status")
+            '';
+          };
+        });
     };
 }
