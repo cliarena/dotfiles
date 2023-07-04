@@ -33,10 +33,14 @@
                   "/nix" = { mountOptions = [ "compress=zstd" "noatime" ]; };
                   "/log" = {
                     mountpoint = "/var/log";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };
-                  "/srv" = { mountOptions = [ "compress=zstd" "noatime" ]; };
-                  "/swap" = { mountOptions = [ "compress=zstd" "noatime" ]; };
+                  "/srv" = {
+                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                  };
+                  "/swap" = {
+                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                  };
                 };
               };
             }
@@ -50,6 +54,7 @@
         "defaults"
         "size=6G" # limit tmpfs size to 6GiB
         "noatime"
+        "noexec"
         "mode=755"
       ];
     };
