@@ -1,5 +1,11 @@
-{ ... }: {
+{ inputs, ... }:
+let inherit (inputs) disko kmonad home-manager;
+in {
+
   imports = [
+    disko.nixosModules.disko
+    kmonad.nixosModules.default
+    home-manager.nixosModules.home-manager
     ../../modules/nix_config.nix
     (import ../../modules/disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/swap.nix

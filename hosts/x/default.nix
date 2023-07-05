@@ -25,9 +25,6 @@ in nixosSystem {
 
     # ./sops.nix
     # sops-nix.nixosModules.sops
-    disko.nixosModules.disko
-    kmonad.nixosModules.default
-    home-manager.nixosModules.home-manager
     {
       inherit nixpkgs;
       home-manager.useGlobalPkgs = true;

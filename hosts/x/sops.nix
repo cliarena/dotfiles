@@ -1,8 +1,8 @@
-{ config, user, ... }:
+{ config, host, ... }:
 let inherit (config.home) homeDirectory;
 in {
   sops = {
-    defaultSopsFile = ../../secrets/${user}.yaml;
+    defaultSopsFile = ../../secrets/${host.user}.yaml;
     age.keyFile = ../../secrets/age.key;
 
     # must set when used with home-manager 

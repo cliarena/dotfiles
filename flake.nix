@@ -45,6 +45,7 @@
           pkgs = import inputs.nixpkgs { inherit system; };
           inherit (pkgs) nixosTest;
         in {
+          x = nixosTest (import ./hosts/x/checks.nix { inherit inputs; });
           svr = nixosTest (import ./hosts/svr/checks.nix { inherit inputs; });
         });
     };

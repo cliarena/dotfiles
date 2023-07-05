@@ -1,7 +1,7 @@
-{ pkgs, user, ... }: {
+{ pkgs, host, ... }: {
   services.kmscon = {
     enable = true;
-    autologinUser = user;
+    autologinUser = host.user;
     # only firacode and hack fonts work 
     extraConfig = ''
       font-name=FiraCode Nerd Font Mono
