@@ -2,25 +2,27 @@
 let
   inherit (inputs) home-manager sops-nix disko kmonad hyprland;
   inherit (inputs.nixpkgs.lib) nixosSystem;
-  user = "svr";
+  host = rec {
+    user = "svr";
+    wan_ips = [ "10.10.0.10/24" ];
+    wan_gateway = [ "10.10.0.1" ];
+    dns = wan_gateway;
+    # open the least amount possible
+    tcp_ports = [ 8080 ];
+    udp_ports = [ ];
+    ssh_authorized_keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8IGiyQMdIau7bIL63er9C9O3o/6wxNX7x8CL0DC0Ot SVR"
+    ];
+  };
   system = "x86_64-linux";
   nixpkgs = {
     inherit system;
     config.allowUnfree = true;
   };
-  wan_ips = [ "10.10.0.10/24" ];
-  wan_gateway = [ "10.10.0.1" ];
-  dns = wan_gateway;
-  # open the least amount possible
-  tcp_ports = [ 8080 ];
-  udp_ports = [ ];
 
 in nixosSystem {
   inherit system;
-  specialArgs = {
-    inherit inputs nixpkgs home-manager user wan_ips wan_gateway dns tcp_ports
-      udp_ports;
-  };
+  specialArgs = { inherit inputs nixpkgs home-manager host; };
   modules = [
     ./configuration.nix
 

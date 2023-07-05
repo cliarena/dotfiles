@@ -15,6 +15,7 @@ in {
       };
       PI_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
       GL_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
+      SVR_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
     };
   };
 

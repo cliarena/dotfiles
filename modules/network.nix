@@ -1,4 +1,6 @@
-{ pkgs, user, tcp_ports, udp_ports, wan_ips, wan_gateway, dns, ... }: {
+{ pkgs, host, ... }:
+let inherit (host) user tcp_ports udp_ports wan_ips wan_gateway dns;
+in {
   # Rename network interface to wan
   services.udev.extraRules = ''
     KERNEL=="e*", NAME="wan"
