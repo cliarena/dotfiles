@@ -9,6 +9,13 @@
         port = 4729;
         identityFile = config.sops.secrets.PI_SSH_KEY.path;
       };
+      svr = {
+        host = "SVR";
+        hostname = "10.10.0.10";
+        user = "svr";
+        port = 4729;
+        identityFile = config.sops.secrets.SVR_SSH_KEY.path;
+      };
       gitlab = {
         host = "gitlab.com";
         identityFile = config.sops.secrets.GL_SSH_KEY.path;
