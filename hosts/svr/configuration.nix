@@ -14,6 +14,7 @@ in {
     ../../modules/sshd.nix
     ../../modules/network.nix
     ../../modules/auditd.nix
+    ../../modules/hashi_stack
   ];
   system.stateVersion = "22.11";
 }

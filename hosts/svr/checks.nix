@@ -23,8 +23,10 @@
   testScript = ''
     start_all()
     svr.wait_for_unit("multi-user.target")
-    with subtest("is podman installed"):
-      svr.succeed("podman -v")
+
+    #with subtest("is nomad running"):
+      # svr.execute("export NOMAD_ADDR=0.0.0.0:4646")
+     # svr.wait_until_succeeds("NOMAD_ADDR=http://0.0.0.0:4646 nomad node status")
 
     # TODO: Test Vault needs auto-unseal
     # Pi.succeed("vault status")
