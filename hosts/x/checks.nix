@@ -22,8 +22,9 @@
   testScript = ''
     start_all()
     x.wait_for_unit("multi-user.target")
-    with subtest("is gitlab ssh connection working"):
-      x.succeed("ssh -T git@gitlab.com")
+    # not working since vm is not able to reach internet
+    # with subtest("is gitlab ssh connection working"):
+    #  x.succeed("ssh -T git@gitlab.com")
 
     # TODO: Test Vault needs auto-unseal
     # Pi.succeed("vault status")
