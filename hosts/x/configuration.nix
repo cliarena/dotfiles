@@ -12,6 +12,7 @@ in {
     ../../modules/boot.nix
     ../../modules/users.nix
     ../../modules/fonts
+    # ../../modules/video_acceleration.nix
     ../../modules/display_manager.nix
     ../../modules/hyprland.nix
     ../../modules/i18n.nix
