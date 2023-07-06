@@ -9,7 +9,7 @@
       # webroot = "/var/lib/acme/acme-challenge/";
     };
     certs = {
-      ${VAULT_ADDR} = {
+      "vault.${DOMAIN}" = {
         group = "vault";
         credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
       };
