@@ -9,9 +9,9 @@
     ];
   };
   # Enable Intel hybrid driver
-  # nixpkgs.config.packageOverrides = pkgs: {
-  # vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  # };
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
   # Native Wayland support for GPU acceleration
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }
