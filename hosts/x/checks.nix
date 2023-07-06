@@ -15,7 +15,8 @@
         ssh_authorized_keys = [ ];
       };
       imports = [ (import ./configuration.nix { inherit inputs; }) ];
-      disabledModules = [ ../../modules/kmonad ];
+      disabledModules =
+        [ ../../modules/kmonad ../../modules/video_acceleration.nix ];
     };
   };
   testScript = ''
