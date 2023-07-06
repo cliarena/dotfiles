@@ -1,4 +1,8 @@
+secrets/age.key
+.devenv
+.direnv
+.terraform
+config.tf.json
 result
 nixos.qcow2
 x.qcow2
-secrets/age.key

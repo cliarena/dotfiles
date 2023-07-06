@@ -17,6 +17,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    devenv.url = "github:cachix/devenv";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -36,6 +38,8 @@
         x = import ./hosts/x { inherit inputs; };
         svr = import ./hosts/svr { inherit inputs; };
       };
+
+      devShells = (import ./devenv.nix { inherit inputs; }).devShells;
 
       # apps = import ./terranix { inherit inputs forAllSystems; };
 
