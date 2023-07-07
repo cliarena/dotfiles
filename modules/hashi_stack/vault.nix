@@ -4,8 +4,8 @@
   services.vault = {
     enable = true;
     package = pkgs.vault-bin;
-    tlsCertFile = "/var/lib/acme/${VAULT_ADDR}/cert.pem";
-    tlsKeyFile = "/var/lib/acme/${VAULT_ADDR}/key.pem";
+    tlsCertFile = "/var/lib/acme/vault.${DOMAIN}/cert.pem";
+    tlsKeyFile = "/var/lib/acme/vault.${DOMAIN}/key.pem";
     storageBackend = "raft";
     storageConfig = ''
       retry_join {
