@@ -6,8 +6,9 @@ let
     user = "x";
     wan_ips = [ "10.10.1.222/24" ];
     wan_gateway = [ "10.10.1.1" ];
-    is_dns_server = true; # for testing hashi_stack
+    is_dns_server = false; # for testing hashi_stack
     dns_server = wan_gateway;
+    dns_extra_hosts = "";
     ports = {
 
       dns = 53;

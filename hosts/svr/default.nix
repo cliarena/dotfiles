@@ -7,6 +7,7 @@ let
     wan_gateway = [ "10.10.0.1" ];
     is_dns_server = true;
     dns_server = wan_gateway;
+    dns_extra_hosts = "127.0.0.1 local.cliarena.com";
     # open the least amount possible
     ports = {
       dns = 53;
