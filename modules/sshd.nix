@@ -3,7 +3,7 @@
 {
   services.openssh = {
     enable = true;
-    ports = [ host.port.ssh ];
+    ports = [ host.ports.ssh ];
     permitRootLogin = "no";
     passwordAuthentication = false;
     allowSFTP = false;

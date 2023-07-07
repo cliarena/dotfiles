@@ -6,10 +6,15 @@ let
     user = "x";
     wan_ips = [ "10.10.1.222/24" ];
     wan_gateway = [ "10.10.1.1" ];
-    dns = wan_gateway;
+    is_dns_server = true; # for testing hashi_stack
+    dns_server = wan_gateway;
+    ports = {
+
+      dns = 53;
+    };
     # open the least amount possible
-    tcp_ports = [ 8080 ];
-    udp_ports = [ ];
+    tcp_ports = with ports; [ dns 8080 ];
+    udp_ports = with ports; [ dns ];
   };
   system = "x86_64-linux";
   nixpkgs = {

@@ -1,16 +1,18 @@
 { pkgs, host, ... }:
-let inherit (host) user tcp_ports udp_ports wan_ips wan_gateway dns;
+let
+  inherit (host)
+    user tcp_ports udp_ports wan_ips wan_gateway dns_server is_dns_server;
 in {
   # Rename network interface to wan
   services.udev.extraRules = ''
     KERNEL=="e*", NAME="wan"
   '';
   # Disable if this server is a dns server
-  services.resolved.enable = true;
+  services.resolved.enable = is_dns_server;
 
   networking = {
     hostName = user;
-    # extraHosts = "127.0.0.1 local.cliarena.com";
+    extraHosts = "127.0.0.1 local.cliarena.com";
     useDHCP = false;
     useNetworkd = true;
     # nameservers = [ "1.1.1.1" ];
@@ -35,7 +37,7 @@ in {
           name = "wan";
           address = wan_ips;
           gateway = wan_gateway;
-          inherit dns;
+          dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
         };
