@@ -8,7 +8,7 @@ in {
     KERNEL=="e*", NAME="wan"
   '';
   # Disable if this server is a dns server
-  services.resolved.enable = is_dns_server;
+  services.resolved.enable = !is_dns_server;
 
   networking = {
     hostName = user;
