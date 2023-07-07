@@ -13,7 +13,7 @@
         host = "SVR";
         hostname = "10.10.0.10";
         user = "svr";
-        port = 4729;
+        port = 6523;
         identityFile = config.sops.secrets.SVR_SSH_KEY.path;
       };
       gitlab = {

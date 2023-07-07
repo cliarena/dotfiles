@@ -1,9 +1,9 @@
-{ ... }:
+{ host, ... }:
 
 {
   services.openssh = {
     enable = true;
-    ports = [ 4729 ];
+    ports = [ host.port.ssh ];
     permitRootLogin = "no";
     passwordAuthentication = false;
     allowSFTP = false;
