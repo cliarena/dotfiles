@@ -21,8 +21,8 @@ in {
         inherit inputs pkgs;
         modules = [{
           env = {
-            CONSUL_HTTP_ADDR = "http://10.10.1.222:8500";
-            VAULT_ADDR = "http://10.10.1.222:8200";
+            CONSUL_HTTP_ADDR = "http://10.10.0.10:8500";
+            VAULT_ADDR = "http://10.10.0.10:8200";
           };
           processes = { };
           packages = with pkgs; [ vault consul nomad sops dig openssl cowsay ];
