@@ -1,7 +1,8 @@
 { ... }: {
   _module.args = rec {
     DOMAIN = "cliarena.com";
-    CONSUL_ADDR = "https://consul.${DOMAIN}";
+    # CONSUL_ADDR = "https://consul.${DOMAIN}";
+    CONSUL_ADDR = "http://10.10.0.10:8500";
     VAULT_ADDR = "https://vault.${DOMAIN}";
     agent_certs_dir = "/srv/consul/agent-certs";
     CONSUL = {
