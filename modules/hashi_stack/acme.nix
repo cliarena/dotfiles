@@ -11,6 +11,7 @@
     certs = {
       "vault.${DOMAIN}" = {
         group = "vault";
+        directory = "/srv/vault/certs";
         credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
       };
       # "cliarena.com" = {
