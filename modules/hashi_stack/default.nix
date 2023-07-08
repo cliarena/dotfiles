@@ -3,7 +3,7 @@
     DOMAIN = "cliarena.com";
     CONSUL_ADDR = "https://consul.${DOMAIN}";
     VAULT_ADDR = "https://vault.${DOMAIN}";
-    agent_certs_dir = "/srv/consul/agent-certs/";
+    agent_certs_dir = "/srv/consul/agent-certs";
     CONSUL = {
       ca_file = "${agent_certs_dir}/ca.crt";
       cert_file = "${agent_certs_dir}/agent.crt";
