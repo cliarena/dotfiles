@@ -1,4 +1,7 @@
-{ pkgs, DOMAIN, VAULT_ADDR, ... }: {
+{ config, pkgs, DOMAIN, VAULT_ADDR, ... }:
+
+let cfg = config.services.vault;
+in {
 
   environment.variables = { inherit VAULT_ADDR; };
   services.vault = {
@@ -12,6 +15,11 @@
         leader_tls_servername = "vault"
       }
     '';
+    storagePath =
+      if cfg.storageBackend == "file" || cfg.storageBackend == "raft" then
+        "/srv/vault/data"
+      else
+        null;
     extraConfig = ''
       ui = true
        api_addr= "https://${DOMAIN}"
