@@ -3,7 +3,8 @@ let
   inherit (inputs.nixpkgs.lib) nixosSystem;
   host = rec {
     user = "svr";
-    wan_ips = [ "10.10.0.10/24" ];
+    ip_addr = "10.10.0.10";
+    wan_ips = [ "${ip_addr}/24" ];
     wan_gateway = [ "10.10.0.1" ];
     is_dns_server = true;
     dns_server = wan_gateway;
