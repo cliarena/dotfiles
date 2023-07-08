@@ -25,7 +25,16 @@ in {
             VAULT_ADDR = "https://vault.cliarena.com";
           };
           processes = { };
-          packages = with pkgs; [ vault consul nomad sops dig openssl cowsay ];
+          packages = with pkgs; [
+            vault
+            consul
+            nomad
+            sops
+            dig
+            openssl
+            cowsay
+            libuuid
+          ];
 
           enterShell = ''
             cowsay salam to you
