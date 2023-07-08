@@ -12,6 +12,7 @@
   };
 
   imports = [
+    ./pdns
     ./acme.nix
     ./cloudflare-dyndns.nix
     ./consul.nix
