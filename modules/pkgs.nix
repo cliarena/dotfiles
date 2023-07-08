@@ -36,6 +36,7 @@
 
     ### Tools ###
     bat
+    nu_scripts
     glow
     unzip
     speedtest-cli
