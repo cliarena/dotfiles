@@ -22,7 +22,7 @@
     - be aware xargs do put its aguments into the process table
 
 4. login to VAULT: 
-    -- nushell: `for $x in 1..3 { cat $"../.sops/secrets/VAULT_UNSEAL_KEY_($x)" | xargs vault operator unseal }`
+    - nushell: `for $x in 1..3 { cat $"../.sops/secrets/VAULT_UNSEAL_KEY_($x)" | xargs vault operator unseal }`
 
 5. setup CONSUL:
     - generate UUID for `CONSUL_HTTP_TOKEN`: `uuidgen` and save it as a sops secret
