@@ -31,6 +31,6 @@ in {
     # '';
     address = "0.0.0.0:8200";
   };
-  systemd.services.vault.after = [ "acme-vault.${DOMAIN}.service" ];
+  # systemd.services.vault.after = [ "acme-vault.${DOMAIN}.service" ];
 
 }

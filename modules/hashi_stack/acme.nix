@@ -13,6 +13,7 @@
         group = "vault";
         directory = "/srv/vault/certs";
         credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
+        reloadServices = [ "vault.service" ];
       };
       # "cliarena.com" = {
       #   group = "vault";
