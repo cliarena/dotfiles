@@ -4,7 +4,7 @@
     age.keyFile = ../../secrets/age.key;
 
     secrets = {
-      VAULT_ROOT_TOKEN = { };
+      VAULT_ROOT_TOKEN = { sopsFile = ../../secrets/vault.yaml; };
       CONSUL_HTTP_TOKEN = { };
       CLOUDFLARE_API_TOKEN = { };
       ACME_VAULT_CERT_CREDENTIALS = { };
