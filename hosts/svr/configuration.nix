@@ -6,7 +6,7 @@ in {
     disko.nixosModules.disko
     ./sops.nix
     ../../modules/nix_config.nix
-    (import ../../modules/disko.nix { }) # doesn't support btrfs swapfile
+    (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/swap.nix
     ../../modules/boot.nix
     ../../modules/users.nix
