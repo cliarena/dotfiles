@@ -7,9 +7,10 @@ in {
     environment = { inherit VAULT_ADDR; };
     description = "auto initialize vault";
     script = ''
-      ${vault_bin} operator init |  if [ ! -z "$1" ]
+      init_keys="$(${vault_bin} operator init)"
+       if [ -n "$init_keys" ]
         then
-          tee /srv/vault/init.keys
+          echo "$init_keys" > /srv/vault/init.keys
         fi
     '';
     wantedBy = [ "vault.service" "consul.service" ];
