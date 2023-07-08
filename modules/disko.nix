@@ -35,6 +35,10 @@
                     mountpoint = "/var/log";
                     mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };
+                  "/acme" = {
+                    mountpoint = "/var/lib/acme";
+                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                  };
                   "/srv" = {
                     mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };

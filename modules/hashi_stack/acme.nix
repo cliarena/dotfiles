@@ -11,7 +11,6 @@
     certs = {
       "vault.${DOMAIN}" = {
         group = "vault";
-        directory = "/srv/vault/certs";
         # change this or add to it, if reached letsencrypt Rate limit
         extraDomainNames = [ "cliarena.com" ];
         credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
