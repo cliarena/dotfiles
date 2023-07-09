@@ -35,9 +35,7 @@
                     mountpoint = "/var/log";
                     mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };
-                  "/srv" = {
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
-                  };
+                  "/srv" = { mountOptions = [ "compress=zstd" "noatime" ]; };
                   "/swap" = {
                     mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };
