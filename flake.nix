@@ -41,7 +41,7 @@
 
       devShells = (import ./devenv.nix { inherit inputs; }).devShells;
 
-      # apps = import ./terranix { inherit inputs forAllSystems; };
+      apps = import ./terranix { inherit inputs forAllSystems; };
 
       # TODO: Change age.key and all sops secrets since age.key is exposed
       checks = forAllSystems (system:
