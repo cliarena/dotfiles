@@ -17,11 +17,11 @@ forAllSystems (system:
         terraform_approle_id = "";
       };
       consul = {
-        CONSUL_ADDR = "http://10.10.0.2:8500";
+        CONSUL_ADDR = "http://10.10.0.10:8500";
         consul_domain = "dc1.consul";
         dns_token_id = "";
       };
-      nomad = { NOMAD_ADDR = "http://10.10.0.2:4646"; };
+      nomad = { NOMAD_ADDR = "http://10.10.0.10:4646"; };
     };
 
     terraform = pkgs.terraform.withPlugins
