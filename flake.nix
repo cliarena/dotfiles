@@ -19,6 +19,8 @@
 
     devenv.url = "github:cachix/devenv";
 
+    terranix.url = "github:terranix/terranix";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
