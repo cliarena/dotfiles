@@ -35,7 +35,7 @@ forAllSystems (system:
         ./providers
         ./vault
         ./consul.nix
-        (import ./modules { inherit pkgs nix-nomad; })
+        (import ./nomad { inherit nix-nomad; })
       ];
     };
 
