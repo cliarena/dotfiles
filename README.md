@@ -44,9 +44,16 @@
     - Because it needs agent certs from vault which needs to be configured using terranix 
     which itself uses consul as its backend
 
-7. 
+7. apply terranix config. you will get `error creating ACL policy` since we disables ACL. no problem.
+    - just run `nix run .#apply`
 
 
-
-5. setup CONSUL:
+8. setup CONSUL:
     - generate UUID for `CONSUL_HTTP_TOKEN`: `uuidgen` and save it as a sops secret
+
+9. enable ACLs and TLS. and rebuild 
+
+10. run `nix run .#apply` to finish basic setup of consul and vault
+
+
+
