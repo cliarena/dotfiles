@@ -43,6 +43,7 @@
 6. Disable Consul ACLs and TLS encryption by commenting ACL and  TLS block and rebuild 
     - Because it needs agent certs from vault which needs to be configured using terranix 
     which itself uses consul as its backend
+    - sometimes rebuild fails because of vaul_initializer. don't worry just rebuild again and it will work
 
 7. apply terranix config. you will get `error creating ACL policy` since we disables ACL. no problem.
     - just run `nix run .#apply`
