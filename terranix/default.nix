@@ -19,7 +19,7 @@ forAllSystems (system:
       consul = {
         CONSUL_ADDR = "http://10.10.0.10:8500";
         consul_domain = "dc1.consul";
-        dns_token_id = "";
+        dns_token_id = "eaf7df3c-6875-4624-b7f5-cf75cc6153fb";
       };
       nomad = { NOMAD_ADDR = "http://10.10.0.10:4646"; };
     };
