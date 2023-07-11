@@ -51,6 +51,7 @@
 
 8. setup CONSUL:
     - generate UUID for `CONSUL_HTTP_TOKEN`: `uuidgen` and save it as a sops secret
+    - generate UUID for `dns_token_id`: `uuidgen` and save it as terranix config
 
 9. enable ACLs and TLS. and rebuild 
 
