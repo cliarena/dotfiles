@@ -18,11 +18,30 @@
     - Vault is auto initialized by vaul_initializer
     - the keys are saved in `/srv/vault/init.keys`
     - create sops secrets out of them
-    - `cat ../.sops/secrets/VAULT_UNSEAL_KEY_1 | xargs vault operator unseal`
+    - unseal with:
+        - nushell: `for $x in 1..3 { cat $"../.sops/secrets/VAULT_UNSEAL_KEY_($x)" | xargs vault operator unseal }`
     - be aware xargs do put its aguments into the process table
 
 4. login to VAULT: 
-    - nushell: `for $x in 1..3 { cat $"../.sops/secrets/VAULT_UNSEAL_KEY_($x)" | xargs vault operator unseal }`
+    - `cat ../.sops/secrets/VAULT_ROOT_TOKEN | xargs vault login`
+
+5. Creat AppRole token for terranix
+    - `vault policy write terranix ./terranix/policies/vault/terranix.hcl`
+    - check if it's created: `vault policy list`, `vault policy read terranix`
+    - `vault auth enable approle`
+    - `vault write auth/approle/role/terranix token_ttl=20m policies="default,terranix"`
+    - `vault read auth/approle/role/terranix/role-id`
+    - Constrain role-id to only be usable by specefic machine so you don't need secret-id
+    --- Constrained role-id > using secret-id
+    --- `vault write auth/approle/role/terranix bind_secret_id=false secret_id_bound_cidrs=127.0.0.1/24` change `secret_id_bound_cidrs` to the source address shown when running `nix run .#apply` but append /8
+    ---- most of the time this is enough from personal experience `172.0.0.1/8,168.0.0.1/8,188.0.0.1/8`
+    ---- it fails some time because source address changes
+    --- otherwise `vault write -f auth/approle/role/terranix/secret-id` save it somewhre safe
+    -- set or adjust policies with `vault write  auth/approle/role/terranix/policies  policies="default,terranix,..."`
+    - Check if terranix approle is set correctly `vault read auth/approle/role/terranix`
+
+
+
 
 5. setup CONSUL:
     - generate UUID for `CONSUL_HTTP_TOKEN`: `uuidgen` and save it as a sops secret
