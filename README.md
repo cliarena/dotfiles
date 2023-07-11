@@ -40,6 +40,11 @@
     -- set or adjust policies with `vault write  auth/approle/role/terranix/policies  policies="default,terranix,..."`
     - Check if terranix approle is set correctly `vault read auth/approle/role/terranix`
 
+6. Disable Consul TLS encryption by commenting tls block and rebuild 
+    - Because it needs agent certs from vault which needs to be configured using terranix 
+    which itself uses consul as its backend
+
+7. 
 
 
 
