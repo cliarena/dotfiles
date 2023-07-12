@@ -57,6 +57,7 @@ in {
 
   resource.consul_acl_token_role_attachment.default_token_dns_role_attachement =
     {
+      depends_on = [ "consul_acl_role.dns_role" ];
       token_id = consul.default_token_id;
       # token_id = config.sops.secrets."CONSUL_ACL_DEFAULT_TOKEN".path;
       role = consul_acl_role.dns_role.name;
