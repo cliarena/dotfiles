@@ -1,4 +1,4 @@
-{ lib, pkgs, host, ... }:
+{ pkgs, host, ... }:
 let
   inherit (host)
     user tcp_ports udp_ports wan_ips wan_gateway dns_server is_dns_server;
@@ -18,7 +18,7 @@ in {
     # nameservers = [ "1.1.1.1" ];
     resolvconf.enable = pkgs.lib.mkForce false;
     dhcpcd.extraConfig = "nohook resolv.conf";
-    networkmanager.dns = lib.mkDefault "none";
+    networkmanager.dns = "none";
     firewall = {
       enable = true;
       interfaces.wan = {
@@ -37,7 +37,7 @@ in {
           name = "wan";
           address = wan_ips;
           gateway = wan_gateway;
-          dns = dns_server;
+          dns = lib.mkForce dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
         };

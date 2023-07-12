@@ -13,8 +13,8 @@ in {
     ../../modules/users.nix
     ../../modules/fonts
     ../../modules/video_acceleration.nix
-    # ../../modules/display_manager.nix
-    ../../modules/gnome.nix
+    ../../modules/display_manager.nix
+    # ../../modules/gnome.nix
     ../../modules/hyprland.nix
     ../../modules/i18n.nix
     ../../modules/pipewire.nix
