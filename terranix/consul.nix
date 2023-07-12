@@ -49,14 +49,15 @@ in {
     ];
   };
 
-  resource.consul_acl_token.dns_token = {
-    accessor_id = consul.dns_token_id;
-    description = "DNS Token";
-    roles = [ consul_acl_role.dns_role.name ];
-  };
-
-  # resource.consul_acl_token_role_attachment.dns_token_role_attachement = {
-  # token_id = consul.dns_token_id;
-  # role = consul_acl_role.dns_role.name;
+  # resource.consul_acl_token.dns_token = {
+  # accessor_id = config.sops.secrets."CONSUL_ACL_DEFAULT_TOKEN".path;
+  # description = "DNS Token";
+  # roles = [ consul_acl_role.dns_role.name ];
   # };
+
+  resource.consul_acl_token_role_attachment.default_token_dns_role_attachement =
+    {
+      token_id = consul.default_token_id;
+      role_id = consul_acl_role.dns_role.id;
+    };
 }
