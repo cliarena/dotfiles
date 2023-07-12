@@ -43,6 +43,7 @@
         enabled = true;
         default_policy = "deny";
         enable_token_persistence = true;
+        acl.tokens.default = "383b5a9e-1ab4-45fd-82e8-736e57c6f10c";
         # bootstraped using sops secret file see above
       };
 
