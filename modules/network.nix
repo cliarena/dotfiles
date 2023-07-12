@@ -37,7 +37,7 @@ in {
           name = "wan";
           address = wan_ips;
           gateway = wan_gateway;
-          dns = lib.mkForce dns_server;
+          dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
         };
