@@ -21,6 +21,8 @@
 
     terranix.url = "github:terranix/terranix";
 
+    nix-nomad.url = "github:tristanpemble/nix-nomad";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
