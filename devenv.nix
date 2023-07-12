@@ -13,33 +13,31 @@ let
       inherit name;
       value = f name;
     }) systems);
-in {
-  devShells = forAllSystems (system:
-    let pkgs = import nixpkgs { inherit system; };
-    in {
-      default = devenv.lib.mkShell {
-        inherit inputs pkgs;
-        modules = [{
-          env = {
-            CONSUL_HTTP_ADDR = "http://10.10.0.10:8500";
-            VAULT_ADDR = "https://vault.cliarena.com";
-          };
-          processes = { };
-          packages = with pkgs; [
-            vault
-            consul
-            nomad
-            sops
-            dig
-            openssl
-            cowsay
-            libuuid
-          ];
+in forAllSystems (system:
+  let pkgs = import nixpkgs { inherit system; };
+  in {
+    default = devenv.lib.mkShell {
+      inherit inputs pkgs;
+      modules = [{
+        env = {
+          CONSUL_HTTP_ADDR = "http://10.10.0.10:8500";
+          VAULT_ADDR = "https://vault.cliarena.com";
+        };
+        processes = { };
+        packages = with pkgs; [
+          vault
+          consul
+          nomad
+          sops
+          dig
+          openssl
+          cowsay
+          libuuid
+        ];
 
-          enterShell = ''
-            cowsay salam to you
-          '';
-        }];
-      };
-    });
-}
+        enterShell = ''
+          cowsay salam to you
+        '';
+      }];
+    };
+  })

@@ -41,7 +41,7 @@
         svr = import ./hosts/svr { inherit inputs; };
       };
 
-      devShells = (import ./devenv.nix { inherit inputs; }).devShells;
+      devShells = import ./devenv.nix { inherit inputs; };
 
       apps = import ./terranix { inherit inputs forAllSystems; };
 
