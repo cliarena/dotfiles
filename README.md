@@ -47,11 +47,12 @@
     - Check if terranix approle is set correctly `vault read auth/approle/role/terranix`
 
 
-7. apply terranix config. you will get `error creating ACL policy` since we disables ACL. no problem.
-    - just run `nix run .#apply`
+7. apply terranix config `nix run .#apply`
 
+8. run `consul reload` for ACLs to take effect
 
-8. enable TLS. and rebuild 
+9. enable TLS. and rebuild 
+
 
 10. run `nix run .#apply` to finish basic setup of consul and vault
 
