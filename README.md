@@ -14,6 +14,11 @@
 
 2. subsequent installs ` sudo nixos-rebuild switch --flake .#`
 
+6. Disable Consul TLS encryption by commenting TLS block and rebuild 
+    - Because it needs agent certs from vault which needs to be configured using terranix 
+    which itself uses consul as its backend
+    - sometimes rebuild fails because of vaul_initializer. don't worry just rebuild again and it will work
+
 3. unseal VAULT using sops keys
     - Vault is auto initialized by vaul_initializer
     - the keys are saved in `/srv/vault/init.keys`
@@ -40,20 +45,12 @@
     -- set or adjust policies with `vault write  auth/approle/role/terranix/policies  policies="default,terranix,..."`
     - Check if terranix approle is set correctly `vault read auth/approle/role/terranix`
 
-6. Disable Consul ACLs and TLS encryption by commenting ACL and  TLS block and rebuild 
-    - Because it needs agent certs from vault which needs to be configured using terranix 
-    which itself uses consul as its backend
-    - sometimes rebuild fails because of vaul_initializer. don't worry just rebuild again and it will work
 
 7. apply terranix config. you will get `error creating ACL policy` since we disables ACL. no problem.
     - just run `nix run .#apply`
 
 
-8. setup CONSUL:
-    - generate UUID for `CONSUL_HTTP_TOKEN`: `uuidgen` and save it as a sops secret
-    - generate UUID for `dns_token_id`: `uuidgen` and save it as terranix config
-
-9. enable ACLs and TLS. and rebuild 
+9. enable TLS. and rebuild 
 
 10. run `nix run .#apply` to finish basic setup of consul and vault
 
