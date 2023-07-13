@@ -22,6 +22,7 @@ in {
     ../../modules/kmonad
     ../../modules/pkgs.nix
     ../../modules/chromium.nix
+    ../../modules/podman.nix
   ];
   system.stateVersion = "22.11";
 }
