@@ -1,8 +1,8 @@
 { time, ... }:
 let
   http = {
-    port.http = {
-      static = 80;
+    reservedPorts.http = {
+      static = 8111;
       to = 8080;
     };
   };
@@ -29,19 +29,17 @@ in {
           cpu = 10;
           memory = 50;
         };
-        services = [{
-          name = "nginx-server";
-          port = "http";
-
-          tags = [ "pi" "nginx-test-server" ];
-
-          checks = with time; [{
-            type = "http";
-            path = "/index.html";
-            interval = 2 * second;
-            timeout = 2 * second;
-          }];
-        }];
+        # services = [{
+        # name = "nginx-server";
+        # port = "http";
+        # tags = [ "pi" "nginx-test-server" ];
+        # checks = with time; [{
+        # type = "http";
+        # path = "/index.html";
+        # interval = 2 * second;
+        # timeout = 2 * second;
+        # }];
+        # }];
       };
     };
   };

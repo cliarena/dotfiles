@@ -1,13 +1,13 @@
 { time, ... }:
 let
   http = {
-    port.wizard = {
-      static = 80;
+    reservedPorts.wizard = {
+      static = 3000;
       to = 3000;
     };
-    port.http = {
-      static = 80;
-      to = 3003;
+    reservedPorts.http = {
+      static = 443;
+      to = 443;
     };
   };
 in {
@@ -17,10 +17,17 @@ in {
     group.servers = {
       count = 1;
 
-      volume.kasm = {
-        type = "host";
-        source = "kasm";
-        read_only = false;
+      volume = {
+        kasm_storage = {
+          type = "host";
+          source = "kasm_storage";
+          readOnly = false;
+        };
+        kasm_profiles = {
+          type = "host";
+          source = "kasm_profiles";
+          readOnly = false;
+        };
       };
 
       networks = [ http ];
@@ -29,22 +36,29 @@ in {
       task.server = {
         driver = "podman";
 
-        env = { KASM_PORT = 3003; };
+        env = { KASM_PORT = "443"; };
 
-        volume_mount = {
-          volume = "kasm";
-          destination = "/";
-        };
+        volumeMounts = [
+          {
+            volume = "kasm_storage";
+            destination = "/opt";
+          }
+          {
+            volume = "kasm_profiles";
+            destination = "/profiles";
+          }
+        ];
 
         config = {
           image = "lscr.io/linuxserver/kasm:latest";
+          privileged = true;
           ports = [ "http" ];
           #	volumes = [  "/vault/hdd/nomad/static-site:/usr/share/nginx/html" ]
         };
 
         resources = {
-          cpu = 10;
-          memory = 50;
+          cpu = 4000;
+          memory = 4000;
         };
 
         services = [{
@@ -55,7 +69,7 @@ in {
 
           checks = with time; [{
             type = "http";
-            path = "/index.html";
+            path = "/api/__healthcheck";
             interval = 2 * second;
             timeout = 2 * second;
           }];

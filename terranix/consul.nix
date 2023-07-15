@@ -5,8 +5,8 @@ let
 
   dns_policies = {
     base = {
-      # fixes DNS error
-      agent.${host_name} = { policy = "read"; };
+      # fixes DNS error and enable consul-template to write certs
+      agent.${host_name} = { policy = "write"; };
       # fixes DNS agent: Coordinate update warning
       node.${host_name} = { policy = "write"; };
     };
@@ -18,6 +18,7 @@ let
       service = {
         nomad.policy = "write";
         nomad-client.policy = "write";
+        kasm.policy = "write";
       };
     };
   };
