@@ -20,7 +20,7 @@ in {
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
     firewall = {
-      enable = true;
+      enable = false;
       interfaces.wan = {
         allowedTCPPorts = tcp_ports;
         allowedUDPPorts = udp_ports;
