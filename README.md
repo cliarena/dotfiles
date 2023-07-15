@@ -1,3 +1,8 @@
+
+# TODO:
+- [ ] setup beesd for deduplication
+
+
 # Installation Guide
 
 1. initial install using USB with nixos installer
