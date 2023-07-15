@@ -17,9 +17,20 @@ let
       consul = 8500;
       vault = 8200;
       surrealDB = 8000;
+      kasm = 3003;
+      kasm_wizard = 3000;
     };
 
-    tcp_ports = with ports; [ dns ssh nomad consul vault surrealDB ];
+    tcp_ports = with ports; [
+      dns
+      ssh
+      nomad
+      consul
+      vault
+      surrealDB
+      kasm
+      kasm_wizard
+    ];
     udp_ports = with ports; [ dns ];
     ssh_authorized_keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8IGiyQMdIau7bIL63er9C9O3o/6wxNX7x8CL0DC0Ot SVR"
