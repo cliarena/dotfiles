@@ -8,6 +8,7 @@
     extraSettingsPaths =
       [ config.sops.secrets."NOMAD_GOSSIP_ENCRYPTION_KEY.hcl".path ];
     settings = {
+      data_dir = "/srv/nomad";
       ui = {
         enabled = true;
         consul = { ui_url = "${CONSUL_ADDR}/ui"; };

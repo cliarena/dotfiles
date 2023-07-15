@@ -39,10 +39,10 @@
                     mountpoint = "/var/lib/acme";
                     mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };
-                  "/nomad" = {
-                    mountpoint = "/var/lib/nomad";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
-                  };
+                  # "/nomad" = {
+                  # mountpoint = "/var/lib/nomad";
+                  # mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                  # };
                   "/srv" = {
                     mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };
