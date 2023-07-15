@@ -45,10 +45,10 @@
           # path = "/vault/hdd/nomad/host-volumes/vaultwarden";
           # read_only = false;
           # };
-          # mysql = {
-          # path = "/vault/hdd/nomad/host-volumes/mysql-test";
-          # read_only = false;
-          # };
+          kasm = {
+            path = "/srv/kasm";
+            read_only = false;
+          };
           # waypoint-server = {
           # path = "/vault/hdd/nomad/host-volumes/wp-server";
           # read_only = false;
