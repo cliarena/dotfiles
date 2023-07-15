@@ -45,8 +45,14 @@
           # path = "/vault/hdd/nomad/host-volumes/vaultwarden";
           # read_only = false;
           # };
-          kasm = {
-            path = "/srv/kasm";
+          # for kasm itself
+          kasm_storage = {
+            path = "/srv/kasm/storage";
+            read_only = false;
+          };
+          # for kasm profiles data persistency
+          kasm_profiles = {
+            path = "/srv/kasm/profiles";
             read_only = false;
           };
           # waypoint-server = {
