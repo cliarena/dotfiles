@@ -46,8 +46,8 @@
           # read_only = false;
           # };
           # for kasm itself
-          kasm_storage = {
-            path = "/srv/kasm/storage";
+          kasm_data = {
+            path = "/srv/kasm/data";
             read_only = false;
           };
           # for kasm profiles data persistency

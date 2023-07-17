@@ -18,9 +18,9 @@ in {
       count = 1;
 
       volume = {
-        kasm_storage = {
+        kasm_data = {
           type = "host";
-          source = "kasm_storage";
+          source = "kasm_data";
           readOnly = false;
         };
         kasm_profiles = {
@@ -40,7 +40,7 @@ in {
 
         volumeMounts = [
           {
-            volume = "kasm_storage";
+            volume = "kasm_data";
             destination = "/opt";
           }
           {
