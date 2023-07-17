@@ -63,6 +63,14 @@
         #     #   intermediate_pki_path = "connect-dc1-intermediate";
         #     # };
       };
+
+      config_entries = {
+        bootstrap = [{
+          kind = "proxy-defaults";
+          name = "global";
+          config = { protocol = "http"; };
+        }];
+      };
     };
   };
 }
