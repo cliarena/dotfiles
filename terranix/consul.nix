@@ -9,9 +9,6 @@ let
       agent.${host_name} = { policy = "write"; };
       # fixes DNS agent: Coordinate update warning
       node.${host_name} = { policy = "write"; };
-      # facilitate cross-Consul datacenter requests of Connect services registered by Nomad
-      service_prefix."" = { policy = "read"; };
-      node_prefix."" = { policy = "read"; };
 
     };
     consul_template = {
@@ -23,7 +20,12 @@ let
         nomad.policy = "write";
         nomad-client.policy = "write";
         kasm.policy = "write";
+        nginx.policy = "write";
       };
+      # facilitate cross-Consul datacenter requests of Connect services registered by Nomad
+      agent_prefix."" = { policy = "read"; };
+      service_prefix."" = { policy = "read"; };
+      node_prefix."" = { policy = "read"; };
     };
   };
 in {
