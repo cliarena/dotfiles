@@ -2,6 +2,7 @@
   services.consul = {
     enable = true;
     webUi = true;
+    dropPrivileges = false;
     interface = {
       bind = "wan";
       advertise = "wan";
