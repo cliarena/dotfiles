@@ -30,6 +30,8 @@
       };
       auto_encrypt = { allow_tls = true; };
 
+      ports = { grpc_tls = 8503; # recommended port number for compatibility with other tools };
+
       dns_config = {
         node_ttl = "10s";
         service_ttl = {
@@ -47,8 +49,8 @@
         # bootstraped using sops secret file see above
       };
 
-      #   connect = {
-      #     enabled = true;
+         connect = {
+           enabled = true;
       #     # ca_provider = "vault";
       #     # ca_config = {
       #     #   address = "http://0.0.0.0:8200";
@@ -56,7 +58,7 @@
       #     #   root_pki_path = "connect-root";
       #     #   intermediate_pki_path = "connect-dc1-intermediate";
       #     # };
-      #   };
+         };
     };
   };
 }

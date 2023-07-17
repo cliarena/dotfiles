@@ -4,6 +4,11 @@
     # needed by Podman driver maybe others too
     dropPrivileges = false;
     enableDocker = false;
+    extraPackages = [
+      # needed for service mesh
+      pkgs.cni-plugins
+    ];
+
     extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
     extraSettingsPaths =
       [ config.sops.secrets."NOMAD_GOSSIP_ENCRYPTION_KEY.hcl".path ];
