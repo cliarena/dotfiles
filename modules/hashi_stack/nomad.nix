@@ -7,6 +7,7 @@
     extraPackages = [
       # needed for service mesh
       pkgs.cni-plugins
+      pkgs.consul
     ];
 
     extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
