@@ -14,6 +14,7 @@
       server = true;
       bootstrap_expect = 1; # for demo; no fault tolerance
       client_addr = "0.0.0.0";
+      data_dir = "/srv/consul/data";
 
       encrypt_verify_incoming = true;
       encrypt_verify_outgoing = true;
