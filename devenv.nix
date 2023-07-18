@@ -28,6 +28,7 @@ in forAllSystems (system:
           vault
           consul
           nomad
+          terraform
           sops
           dig
           openssl
