@@ -8,7 +8,7 @@
       advertise = "wan";
     };
     extraConfigFiles = [
-      config.sops.secrets."CONSUL_GOSSIP_ENCRYPTION_KEY.hcl".path
+      # config.sops.secrets."CONSUL_GOSSIP_ENCRYPTION_KEY.hcl".path
       config.sops.secrets."CONSUL_ACL_INITIAL_MANAGEMENT_TOKEN.hcl".path
     ];
     extraConfig = {
@@ -17,23 +17,24 @@
       client_addr = "0.0.0.0";
       data_dir = "/srv/consul/data";
 
-      encrypt_verify_incoming = true;
-      encrypt_verify_outgoing = true;
+      # encrypt_verify_incoming = true;
+      # encrypt_verify_outgoing = true;
 
       # TLS Encryption
-      tls = {
-        defaults = {
-          inherit (CONSUL) ca_file cert_file key_file;
-          verify_incoming = true;
-          verify_outgoing = true;
-        };
-        internal_rpc = { verify_server_hostname = true; };
-      };
-      auto_encrypt = { allow_tls = true; };
+      # tls = {
+      # defaults = {
+      # inherit (CONSUL) ca_file cert_file key_file;
+      # verify_incoming = true;
+      # verify_outgoing = true;
+      # };
+      # internal_rpc = { verify_server_hostname = true; };
+      # };
+      # auto_encrypt = { allow_tls = true; };
 
       ports = {
-        grpc_tls =
-          8503; # recommended port number for compatibility with other tools
+        grpc = 8502;
+        # grpc_tls =
+        # 8503; # recommended port number for compatibility with other tools
       };
 
       dns_config = {
@@ -46,12 +47,12 @@
         };
       };
 
-      acl = {
-        enabled = true;
-        default_policy = "deny";
-        enable_token_persistence = true;
-        # bootstraped using sops secret file see above
-      };
+      # acl = {
+      # enabled = true;
+      # default_policy = "deny";
+      # enable_token_persistence = true;
+      # # bootstraped using sops secret file see above
+      # };
 
       connect = {
         enabled = true;
