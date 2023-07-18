@@ -20,6 +20,7 @@
     ./consul.nix
     ./vault.nix
     ./nomad.nix
+    ./envoy.nix
     ./vault_initializer.nix
     ./consul_template.nix
   ];

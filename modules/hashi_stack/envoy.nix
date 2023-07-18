@@ -1,0 +1,6 @@
+{ ... }: {
+  services.envoy = {
+    enable = true;
+
+  };
+}
