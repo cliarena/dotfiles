@@ -20,6 +20,7 @@ in forAllSystems (system:
       inherit inputs pkgs;
       modules = [{
         env = {
+          NOMAD_ADDR = "http://10.10.0.10:4646";
           CONSUL_HTTP_ADDR = "http://10.10.0.10:8500";
           VAULT_ADDR = "https://vault.cliarena.com";
         };
