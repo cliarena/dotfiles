@@ -1,4 +1,4 @@
-{ config, pkgs, CONSUL_ADDR, VAULT_ADDR, ... }: {
+{ config, pkgs, CONSUL, CONSUL_ADDR, VAULT_ADDR, ... }: {
   services.nomad = {
     enable = true;
     # needed by Podman driver maybe others too
@@ -25,17 +25,18 @@
       # enabled = true;
       # address = "http://vault.cliarena.com:8200";
       # };
-      # tls = {
-      #   http = true;
-      #   rpc = true;
-      #   # /var/lib/acme/cliarena.com/cert.pem
-      #   ca_file = "/etc/certs/ca.crt";
-      #   cert_file = "/etc/certs/nomad.crt";
-      #   key_file = "/var/lib/acme/cliarena.com/key.pem";
-      #
-      #   verify_server_hostname = true;
-      #   verify_https_client = true;
-      # };
+      tls = {
+        http = true;
+        rpc = true;
+        # /var/lib/acme/cliarena.com/cert.pem
+        inherit (CONSUL) ca_file cert_file key_file;
+        # ca_file = "/etc/certs/ca.crt";
+        # cert_file = "/etc/certs/nomad.crt";
+        # key_file = "/var/lib/acme/cliarena.com/key.pem";
+
+        verify_server_hostname = true;
+        verify_https_client = true;
+      };
 
       server = {
         enabled = true;
