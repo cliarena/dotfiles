@@ -1,4 +1,4 @@
-{ config, CONSUL, ... }: {
+{ config, CONSUL, VAULT_ADDR, ... }: {
   services.consul = {
     enable = true;
     webUi = true;
@@ -56,13 +56,22 @@
 
       connect = {
         enabled = true;
-        #     # ca_provider = "vault";
-        #     # ca_config = {
-        #     #   address = "http://0.0.0.0:8200";
-        #     #   token = "<vault-token-with-necessary-policy>";
-        #     #   root_pki_path = "connect-root";
-        #     #   intermediate_pki_path = "connect-dc1-intermediate";
-        #     # };
+        ca_provider = "vault";
+        ca_config = {
+          address = VAULT_ADDR;
+          # token = "<vault-token-with-necessary-policy>";
+          auth_method = {
+            type = "approle";
+            mount_path = "auth/approle";
+            params = {
+              role_id_file_path = "";
+
+              secret_id_file_path = "";
+            };
+          };
+          root_pki_path = "pki";
+          intermediate_pki_path = "pki_int";
+        };
       };
 
       config_entries = {

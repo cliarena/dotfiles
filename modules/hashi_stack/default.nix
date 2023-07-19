@@ -18,8 +18,8 @@
     ./cloudflare-dyndns.nix
     # ../podman.nix
     ../docker.nix
-    ./consul.nix
-    ./vault.nix
+    ./consul
+    ./vault
     ./nomad.nix
     ./envoy.nix
     ./vault_initializer.nix
