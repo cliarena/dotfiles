@@ -7,10 +7,9 @@
     extraPackages = [
       # needed for service mesh
       pkgs.cni-plugins
-      pkgs.consul
     ];
 
-    extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
+    # extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
     extraSettingsPaths =
       [ config.sops.secrets."NOMAD_GOSSIP_ENCRYPTION_KEY.hcl".path ];
     settings = {

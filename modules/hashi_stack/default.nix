@@ -16,7 +16,8 @@
     ./pdns
     ./acme.nix
     ./cloudflare-dyndns.nix
-    ../podman.nix
+    # ../podman.nix
+    ../docker.nix
     ./consul.nix
     ./vault.nix
     ./nomad.nix
