@@ -36,7 +36,7 @@
     - `cat ../.sops/secrets/VAULT_ROOT_TOKEN | xargs vault login`
 
 6. Creat AppRole token for terranix
-    - `vault policy write terranix ./terranix/policies/vault/terranix.hcl`
+    - `vault policy write terranix ./modules/hashi_stack/vault/policies/terranix.hcl`
     - check if it's created: `vault policy list`, `vault policy read terranix`
     - `vault auth enable approle`
     - `vault write auth/approle/role/terranix token_ttl=20m policies="default,terranix"`
@@ -53,7 +53,7 @@
 
 
 6. Creat AppRole token for Consul connect
-    - `vault policy write terranix ./terranix/policies/vault/consul.hcl`
+    - `vault policy write consul ./modules/hashi_stack/vault/policies/consul.hcl`
     - check if it's created: `vault policy list`, `vault policy read consul`
     - `vault write auth/approle/role/consul  policies="default,consul"`
     - `vault read auth/approle/role/consul/role-id`
