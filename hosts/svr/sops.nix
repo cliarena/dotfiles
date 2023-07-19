@@ -22,6 +22,16 @@
         group = config.users.groups.consul.name;
         sopsFile = ../../secrets/consul.yaml;
       };
+      CONSUL_VAULT_ROLE_ID = {
+        owner = config.users.groups.consul.name;
+        group = config.users.groups.consul.name;
+        sopsFile = ../../secrets/consul.yaml;
+      };
+      CONSUL_VAULT_SECRET_ID = {
+        owner = config.users.groups.consul.name;
+        group = config.users.groups.consul.name;
+        sopsFile = ../../secrets/consul.yaml;
+      };
       # CONSUL_ACL_DEFAULT_TOKEN = { };
 
       # SURREALDB_USER = { };
