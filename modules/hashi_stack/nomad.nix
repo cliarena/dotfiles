@@ -7,6 +7,8 @@
     extraPackages = [
       # needed for service mesh
       pkgs.cni-plugins
+      # needed eved if consul is running as a service
+      pkgs.consul
     ];
 
     # extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
