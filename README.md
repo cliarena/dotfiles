@@ -55,7 +55,7 @@
 6. Creat AppRole token for Consul connect
     - `vault policy write consul ./modules/hashi_stack/vault/policies/consul.hcl`
     - check if it's created: `vault policy list`, `vault policy read consul`
-    - `vault write auth/approle/role/consul  policies="default,consul"`
+    - `vault write auth/approle/role/consul  policies="consul"`
     - `vault read auth/approle/role/consul/role-id`
     - save it as sops secret `CONSUL_VAULT_ROLE_ID`
     - `vault write -f auth/approle/role/consul/secret-id` save it somewhre safe
