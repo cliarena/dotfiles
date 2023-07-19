@@ -64,9 +64,9 @@
             type = "approle";
             mount_path = "auth/approle";
             params = {
-              role_id_file_path = "";
-
-              secret_id_file_path = "";
+              role_id_file_path = config.sops.secrets.CONSUL_VAULT_ROLE_ID.path;
+              secret_id_file_path =
+                config.sops.secrets.CONSUL_VAULT_SECRET_ID.path;
             };
           };
           root_pki_path = "pki";
