@@ -52,6 +52,18 @@
     - Check if terranix approle is set correctly `vault read auth/approle/role/terranix`
 
 
+6. Creat AppRole token for Consul connect
+    - `vault policy write terranix ./terranix/policies/vault/consul.hcl`
+    - check if it's created: `vault policy list`, `vault policy read consul`
+    - `vault write auth/approle/role/consul  policies="default,consul"`
+    - `vault read auth/approle/role/consul/role-id`
+    - save it as sops secret `CONSUL_VAULT_ROLE_ID`
+    - `vault write -f auth/approle/role/consul/secret-id` save it somewhre safe
+    - save it as sops secret `CONSUL_VAULT_SECRET_ID`
+    - set or adjust policies with `vault write  auth/approle/role/consul/policies  policies="default,consul,..."`
+    - Check if consul approle is set correctly `vault read auth/approle/role/consul`
+
+
 7. apply terranix config `nix run .#apply`
 
 8. run `consul reload` for ACLs to take effect
