@@ -4,8 +4,14 @@
     # CONSUL_ADDR = "https://consul.${DOMAIN}";
     CONSUL_ADDR = "http://10.10.0.10:8500";
     VAULT_ADDR = "https://vault.${DOMAIN}";
-    agent_certs_dir = "/srv/consul/agent-certs";
-    CONSUL = {
+    CONSUL = rec {
+      agent_certs_dir = "/srv/consul/agent-certs";
+      ca_file = "${agent_certs_dir}/ca.crt";
+      cert_file = "${agent_certs_dir}/agent.crt";
+      key_file = "${agent_certs_dir}/agent.key";
+    };
+    NOMAD = rec {
+      agent_certs_dir = "/srv/nomad/agent-certs";
       ca_file = "${agent_certs_dir}/ca.crt";
       cert_file = "${agent_certs_dir}/agent.crt";
       key_file = "${agent_certs_dir}/agent.key";

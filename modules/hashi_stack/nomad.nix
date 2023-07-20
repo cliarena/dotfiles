@@ -1,4 +1,4 @@
-{ config, pkgs, CONSUL, CONSUL_ADDR, VAULT_ADDR, ... }: {
+{ config, pkgs, NOMAD, CONSUL_ADDR, VAULT_ADDR, ... }: {
   services.nomad = {
     enable = true;
     # needed by Podman driver maybe others too
@@ -15,7 +15,7 @@
     extraSettingsPaths =
       [ config.sops.secrets."NOMAD_GOSSIP_ENCRYPTION_KEY.hcl".path ];
     settings = {
-      data_dir = "/srv/nomad";
+      data_dir = "/srv/nomad/data";
       ui = {
         enabled = true;
         consul = { ui_url = "${CONSUL_ADDR}/ui"; };
@@ -29,7 +29,7 @@
         http = true;
         rpc = true;
         # /var/lib/acme/cliarena.com/cert.pem
-        inherit (CONSUL) ca_file cert_file key_file;
+        inherit (NOMAD) ca_file cert_file key_file;
         # ca_file = "/etc/certs/ca.crt";
         # cert_file = "/etc/certs/nomad.crt";
         # key_file = "/var/lib/acme/cliarena.com/key.pem";
