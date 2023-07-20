@@ -22,7 +22,10 @@ forAllSystems (system:
         # default_token_id = "383b5a9e-1ab4-45fd-82e8-736e57c6f10c";
         default_token_id = "00000000-0000-0000-0000-000000000002";
       };
-      nomad = { NOMAD_ADDR = "http://10.10.0.10:4646"; };
+      nomad = {
+        NOMAD_ADDR = "http://10.10.0.10:4646";
+        domain = "global.nomad";
+      };
     };
 
     terraform = pkgs.terraform.withPlugins

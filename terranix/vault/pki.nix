@@ -1,7 +1,7 @@
 { config, x, ... }:
 let
   inherit (config.resource.vault_mount) pki pki_int;
-  inherit (x) time vault consul;
+  inherit (x) time nomad vault consul;
   inherit (vault) VAULT_ADDR;
   inherit (consul) consul_domain;
   inherit (time) minute hour day year;
@@ -25,7 +25,7 @@ in {
     description = "Intermediate Certificates issuer";
   };
 
-  # Generate new self-signed certificate
+  # Generate new root self-signed certificate
   resource.vault_pki_secret_backend_root_cert.consul = {
     depends_on = [ "vault_mount.pki" ];
     backend = pki.path;
@@ -38,15 +38,27 @@ in {
     key_type = "rsa";
     key_bits = 4096;
   };
+  resource.vault_pki_secret_backend_root_cert.nomad = {
+    depends_on = [ "vault_mount.pki" ];
+    backend = pki.path;
+    type = "internal";
+    common_name = "${nomad.domain} Root CA";
+    # exclude_cn_from_sans = true;
+    ttl = 10 * year;
+    format = "pem";
+    private_key_format = "der";
+    key_type = "rsa";
+    key_bits = 4096;
+  };
 
   # Update the CRL location and issuing certificates
-  resource.vault_pki_secret_backend_config_urls.consul = {
+  resource.vault_pki_secret_backend_config_urls.pki = {
     depends_on = [ "vault_mount.pki" ];
     backend = pki.path;
     issuing_certificates = [ "${VAULT_ADDR}/v1/pki/ca" ];
     crl_distribution_points = [ "${VAULT_ADDR}/v1/pki/crl" ];
   };
-  resource.vault_pki_secret_backend_config_urls.consul_int = {
+  resource.vault_pki_secret_backend_config_urls.pki_int = {
     depends_on = [ "vault_mount.pki_int" ];
     backend = pki_int.path;
     issuing_certificates = [ "${VAULT_ADDR}/v1/pki_int/ca" ];
@@ -59,6 +71,17 @@ in {
     backend = pki_int.path;
     type = config.resource.vault_pki_secret_backend_root_cert.consul.type;
     common_name = "${consul_domain} Intermediate Certificate";
+    # exclude_cn_from_sans = true;
+    format = "pem";
+    private_key_format = "der";
+    key_type = "rsa";
+    key_bits = 4096;
+  };
+  resource.vault_pki_secret_backend_intermediate_cert_request.nomad_int_csr = {
+    depends_on = [ "vault_pki_secret_backend_root_cert.nomad" ];
+    backend = pki_int.path;
+    type = config.resource.vault_pki_secret_backend_root_cert.nomad.type;
+    common_name = "${nomad.domain} Intermediate Certificate";
     # exclude_cn_from_sans = true;
     format = "pem";
     private_key_format = "der";
@@ -80,6 +103,19 @@ in {
       format = "pem_bundle";
       ttl = 5 * year;
     };
+  resource.vault_pki_secret_backend_root_sign_intermediate.nomad_int_signed_csr =
+    {
+      depends_on =
+        [ "vault_pki_secret_backend_intermediate_cert_request.nomad_int_csr" ];
+      backend = pki.path;
+      csr =
+        "\${vault_pki_secret_backend_intermediate_cert_request.nomad_int_csr.csr}";
+      common_name = "${nomad.domain} Intermediate Certificate";
+      exclude_cn_from_sans = true;
+      # revoke = true;
+      format = "pem_bundle";
+      ttl = 5 * year;
+    };
 
   # import certificate into vault
   resource.vault_pki_secret_backend_intermediate_set_signed.consul_int_csr = {
@@ -90,6 +126,14 @@ in {
     certificate =
       "\${vault_pki_secret_backend_root_sign_intermediate.consul_int_signed_csr.certificate}";
   };
+  resource.vault_pki_secret_backend_intermediate_set_signed.nomad_int_csr = {
+    depends_on = [
+      "vault_pki_secret_backend_root_sign_intermediate.nomad_int_signed_csr"
+    ];
+    backend = pki_int.path;
+    certificate =
+      "\${vault_pki_secret_backend_root_sign_intermediate.nomad_int_signed_csr.certificate}";
+  };
 
   # Create role pki_role for backend "pki"
   resource.vault_pki_secret_backend_role.consul-dc1 = {
@@ -99,6 +143,16 @@ in {
     key_bits = 4096;
     name = consul_domain;
     allowed_domains = [ consul_domain ];
+    allow_subdomains = true;
+    max_ttl = 30 * day;
+  };
+  resource.vault_pki_secret_backend_role.nomad-global = {
+    depends_on = [ "vault_mount.pki_int" ];
+    backend = pki_int.path;
+    key_type = "rsa";
+    key_bits = 4096;
+    name = nomad.domain;
+    allowed_domains = [ nomad.domain ];
     allow_subdomains = true;
     max_ttl = 30 * day;
   };
