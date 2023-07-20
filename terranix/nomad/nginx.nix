@@ -26,7 +26,7 @@ in {
         };
       }];
       task.server = {
-        driver = "podman";
+        driver = "docker";
 
         config = {
           image = "nginxinc/nginx-unprivileged:alpine";
