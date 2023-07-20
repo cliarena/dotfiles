@@ -16,7 +16,7 @@ job "countdash" {
     }
 
     task "web" {
-      driver = "podman"
+      driver = "docker"
 
       config {
         image = "hashicorpdev/counter-api:v3"
@@ -51,7 +51,7 @@ job "countdash" {
     }
 
     task "dashboard" {
-      driver = "podman"
+      driver = "docker"
 
       env {
         COUNTING_SERVICE_URL = "http://${NOMAD_UPSTREAM_ADDR_count_api}"

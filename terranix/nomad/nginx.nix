@@ -2,10 +2,10 @@
 let
   http = {
     mode = "bridge";
-    # reservedPorts.http = {
-    # static = 8111;
-    # to = 8080;
-    # };
+    reservedPorts.http = {
+      static = 8111;
+      to = 8080;
+    };
   };
 in {
   job.nginx = {
@@ -18,7 +18,7 @@ in {
       # networks = [ http { mode = "bridge"; } ];
       services = [{
         name = "nginx";
-        port = "8080";
+        port = "http";
         connect = {
           sidecarService = {
             # port = "20000";
