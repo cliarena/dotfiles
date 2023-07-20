@@ -44,17 +44,17 @@ let
   };
   nomad_certs = rec {
     agent_crt_tpl = toFile "agent.crt.tpl" ''
-      {{ with secret "pki_int/issue/svr.global" "common_name=server.global.nomad" "ttl=24h" "alt_names=localhost" "ip_sans=127.0.0.1"}}
+      {{ with secret "pki_int/issue/global.nomad" "common_name=server.global.nomad" "ttl=24h" "alt_names=localhost" "ip_sans=127.0.0.1"}}
       {{ .Data.certificate }}
       {{ end }}
     '';
     agent_key_tpl = toFile "agent.crt.tpl" ''
-      {{ with secret "pki_int/issue/svr.global" "common_name=server.global.nomad" "ttl=24h" "alt_names=localhost" "ip_sans=127.0.0.1"}}
+      {{ with secret "pki_int/issue/global.nomad" "common_name=server.global.nomad" "ttl=24h" "alt_names=localhost" "ip_sans=127.0.0.1"}}
       {{ .Data.private_key }}
       {{ end }}
     '';
     ca_crt_tpl = toFile "agent.crt.tpl" ''
-      {{ with secret "pki_int/issue/svr.global" "common_name=server.global.nomad" "ttl=24h" "alt_names=localhost"}}
+      {{ with secret "pki_int/issue/global.nomad" "common_name=server.global.nomad" "ttl=24h" "alt_names=localhost"}}
       {{ .Data.issuing_ca }}
       {{ end }}
     '';
