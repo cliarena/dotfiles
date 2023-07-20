@@ -60,8 +60,14 @@ path "pki_int/revoke" {
 path "pki_int/roles/dc1.consul" {
   capabilities = [ "read","create", "update", "delete"  ]
 }
+path "pki_int/roles/global.nomad" {
+  capabilities = [ "read","create", "update", "delete"  ]
+}
 // manage issuing certificates
 path "pki_int/issue/dc1.consul" {
+  capabilities = [ "read","create", "update", "delete"  ]
+}
+path "pki_int/issue/global.nomad" {
   capabilities = [ "read","create", "update", "delete"  ]
 }
 
