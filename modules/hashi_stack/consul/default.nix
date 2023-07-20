@@ -33,6 +33,7 @@
 
       ports = {
         # grpc = 8502;
+        https = 8501;
         # 8503: recommended port number for compatibility with other tools
         grpc_tls = 8503;
       };
