@@ -1,4 +1,4 @@
-{ config, pkgs, NOMAD, CONSUL_ADDR, VAULT_ADDR, ... }: {
+{ config, pkgs, NOMAD, CONSUL, CONSUL_ADDR, VAULT_ADDR, ... }: {
   services.nomad = {
     enable = true;
     # needed by Podman driver maybe others too
@@ -36,6 +36,14 @@
 
         verify_server_hostname = true;
         verify_https_client = true;
+      };
+
+      # Needed so nomad uses https and grpc_tls to communicate with consul
+      consul = {
+        address = "127.0.0.1:8501";
+        inherit (CONSUL) ca_file cert_file key_file;
+        grpc_address = "127.0.0.1:8503";
+        ssl = true;
       };
 
       server = {
