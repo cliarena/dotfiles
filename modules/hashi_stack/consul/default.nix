@@ -84,7 +84,7 @@
           }
           {
             name = "cliarena_gateway";
-            kind = "api_gateway";
+            kind = "api-gateway";
 
             listeners = [{
               port = 8443;
