@@ -41,7 +41,7 @@
       # Needed so nomad uses https and grpc_tls to communicate with consul
       consul = {
         address = "127.0.0.1:8501";
-        inherit (CONSUL) ca_file cert_file key_file;
+        inherit (CONSUL) grpc_ca_file ca_file cert_file key_file;
         grpc_address = "127.0.0.1:8503";
         ssl = true;
       };

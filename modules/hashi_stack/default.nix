@@ -6,6 +6,7 @@
     VAULT_ADDR = "https://vault.${DOMAIN}";
     CONSUL = rec {
       agent_certs_dir = "/srv/consul/agent-certs";
+      grpc_ca_file = "${agent_certs_dir}/ca.crt";
       ca_file = "${agent_certs_dir}/ca.crt";
       cert_file = "${agent_certs_dir}/agent.crt";
       key_file = "${agent_certs_dir}/agent.key";
