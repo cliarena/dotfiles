@@ -21,11 +21,18 @@ let
         nomad-client.policy = "write";
         kasm.policy = "write";
         nginx.policy = "write";
+        nginx-sidecar-proxy.policy = "write";
+        count-api.policy = "write";
+        count-api-sidecar-proxy.policy = "write";
+        count-dashboard.policy = "write";
+        count-dashboard-sidecar-proxy.policy = "write";
       };
       # facilitate cross-Consul datacenter requests of Connect services registered by Nomad
       agent_prefix."" = { policy = "read"; };
       service_prefix."" = { policy = "read"; };
       node_prefix."" = { policy = "read"; };
+      acl = "write";
+      mesh = "write";
     };
   };
 in {
