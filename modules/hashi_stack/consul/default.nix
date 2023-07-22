@@ -24,7 +24,8 @@
       tls = {
         defaults = {
           inherit (CONSUL) ca_file cert_file key_file;
-          verify_incoming = true;
+          # FIX: nomad consul grpc_ca_file gives bad certificate
+          # verify_incoming = true;
           verify_outgoing = true;
         };
         internal_rpc = { verify_server_hostname = true; };

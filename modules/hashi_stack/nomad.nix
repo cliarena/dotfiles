@@ -26,7 +26,8 @@
       # address = "http://vault.cliarena.com:8200";
       # };
       tls = {
-        http = true;
+        # FIX: enable after setting up api gateway
+        # http = true;
         rpc = true;
         # /var/lib/acme/cliarena.com/cert.pem
         inherit (NOMAD) ca_file cert_file key_file;
@@ -35,7 +36,8 @@
         # key_file = "/var/lib/acme/cliarena.com/key.pem";
 
         verify_server_hostname = true;
-        verify_https_client = true;
+        # FIX: enable after setting up api gateway
+        # verify_https_client = true;
       };
 
       # Needed so nomad uses https and grpc_tls to communicate with consul
