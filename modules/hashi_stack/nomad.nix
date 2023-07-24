@@ -25,27 +25,27 @@
       # enabled = true;
       # address = "http://vault.cliarena.com:8200";
       # };
-      tls = {
-        # FIX: enable after setting up api gateway
-        # http = true;
-        rpc = true;
-        # /var/lib/acme/cliarena.com/cert.pem
-        inherit (NOMAD) ca_file cert_file key_file;
-        # ca_file = "/etc/certs/ca.crt";
-        # cert_file = "/etc/certs/nomad.crt";
-        # key_file = "/var/lib/acme/cliarena.com/key.pem";
-
-        verify_server_hostname = true;
-        # FIX: enable after setting up api gateway
-        # verify_https_client = true;
-      };
+      # # FIX: enable after setting up api gateway
+      # tls = {
+      # # http = true;
+      # rpc = true;
+      # # /var/lib/acme/cliarena.com/cert.pem
+      # inherit (NOMAD) ca_file cert_file key_file;
+      # # ca_file = "/etc/certs/ca.crt";
+      # # cert_file = "/etc/certs/nomad.crt";
+      # # key_file = "/var/lib/acme/cliarena.com/key.pem";
+      # verify_server_hostname = true;
+      # # FIX: enable after setting up api gateway
+      # # verify_https_client = true;
+      # };
 
       # Needed so nomad uses https and grpc_tls to communicate with consul
       consul = {
-        address = "127.0.0.1:8501";
-        inherit (CONSUL) grpc_ca_file ca_file cert_file key_file;
-        grpc_address = "127.0.0.1:8503";
-        ssl = true;
+        address = "127.0.0.1:8500";
+        # # FIX: enable after setting up api gateway
+        # inherit (CONSUL) grpc_ca_file ca_file cert_file key_file;
+        # grpc_address = "127.0.0.1:8503";
+        # ssl = true;
       };
 
       server = {
