@@ -28,15 +28,11 @@ job "countdash" {
     network {
       mode = "bridge"
 
-      port "http" {
-        static = 9002
-        to     = 9002
-      }
     }
 
     service {
       name = "count-dashboard"
-      port = "http"
+      port = "9002"
 
       connect {
         sidecar_service {
