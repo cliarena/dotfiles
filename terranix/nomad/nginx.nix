@@ -18,6 +18,7 @@ in {
       # networks = [ http { mode = "bridge"; } ];
       services = [{
         name = "nginx";
+        # WARN: Don't use named ports ie: port ="http". use literal ones
         port = "8080";
         connect = {
           sidecarService = {
