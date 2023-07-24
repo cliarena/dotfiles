@@ -40,13 +40,13 @@
       # };
 
       # Needed so nomad uses https and grpc_tls to communicate with consul
-      consul = {
-        address = "127.0.0.1:8500";
-        # # FIX: enable after setting up api gateway
-        # inherit (CONSUL) grpc_ca_file ca_file cert_file key_file;
-        # grpc_address = "127.0.0.1:8503";
-        # ssl = true;
-      };
+      # consul = {
+      # address = "127.0.0.1:8500";
+      # # FIX: enable after setting up api gateway
+      # inherit (CONSUL) grpc_ca_file ca_file cert_file key_file;
+      # grpc_address = "127.0.0.1:8503";
+      # ssl = true;
+      # };
 
       server = {
         enabled = true;
