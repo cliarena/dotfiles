@@ -50,12 +50,12 @@
         };
       };
 
-      acl = {
-        enabled = true;
-        default_policy = "deny";
-        enable_token_persistence = true;
-        # bootstraped using sops secret file see above
-      };
+      # acl = {
+      # enabled = true;
+      # default_policy = "deny";
+      # enable_token_persistence = true;
+      # # bootstraped using sops secret file see above
+      # };
 
       connect = {
         enabled = true;
