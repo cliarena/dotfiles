@@ -103,24 +103,24 @@
             name = "cliarena_http_routes";
             kind = "http-route";
             rules = [
-              {
-                matches = [{
-                  path = {
-                    match = "prefix";
-                    value = "/";
-                  };
-                }];
-                services = [
-                  {
-                    name = "ui";
-                    weight = 90;
-                  }
-                  {
-                    name = "experimental-ui";
-                    weight = 10;
-                  }
-                ];
-              }
+              # {
+              # matches = [{
+              # path = {
+              # match = "prefix";
+              # value = "/";
+              # };
+              # }];
+              # services = [
+              # {
+              # name = "ui";
+              # weight = 90;
+              # }
+              # {
+              # name = "experimental-ui";
+              # weight = 10;
+              # }
+              # ];
+              # }
               {
                 matches = [{
                   path = {
@@ -143,7 +143,7 @@
             parents = [{
               kind = "api-gateway";
               name = "cliarena_gateway";
-              # section_name = "my-http-listener";
+              section_name = "cliarena-http-listener";
             }];
           }
         ];
