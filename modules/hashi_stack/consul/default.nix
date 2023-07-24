@@ -78,6 +78,7 @@
       };
 
       config_entries = {
+        # if you change or delete any existing entry you need to delete it using `consul config delete -kind http-route -name cliarena_http_routes` and restart consul to take effect
         bootstrap = [
           {
             kind = "proxy-defaults";
@@ -125,7 +126,7 @@
                 matches = [{
                   path = {
                     match = "prefix";
-                    value = "/nginx";
+                    value = "/";
                   };
                 }];
                 services = [{ name = "nginx"; }];
@@ -143,7 +144,7 @@
             parents = [{
               kind = "api-gateway";
               name = "cliarena_gateway";
-              section_name = "cliarena-http-listener";
+              sectionName = "cliarena-http-listener";
             }];
           }
         ];
