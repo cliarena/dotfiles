@@ -78,65 +78,75 @@
       };
 
       config_entries = {
-        bootstrap = [{
-          kind = "proxy-defaults";
-          name = "global";
-          config = { protocol = "http"; };
-        }
-        # {
-        # name = "cliarena_gateway";
-        # kind = "api-gateway";
-        # listeners = [{
-        # port = 8443;
-        # name = "cliarena-http-listener";
-        # protocol = "http";
-        # # tls = {
-        # # certificates = [{
-        # # kind = "inline-certificate";
-        # # name = "cliarena_cert";
-        # # }];
-        # # };
-        # }];
-        # }
-        # {
-        # name = "cliarena_http_routes";
-        # kind = "http-route";
-        # rules = [
-        # {
-        # matches = [{
-        # path = {
-        # match = "prefix";
-        # value = "/";
-        # };
-        # }];
-        # services = [
-        # {
-        # name = "ui";
-        # weight = 90;
-        # }
-        # {
-        # name = "experimental-ui";
-        # weight = 10;
-        # }
-        # ];
-        # }
-        # {
-        # matches = [{
-        # path = {
-        # match = "prefix";
-        # value = "/nginx";
-        # };
-        # }];
-        # services = [{ name = "nginx"; }];
-        # }
-        # ];
-        # parents = [{
-        # kind = "api-gateway";
-        # name = "cliarena_gateway";
-        # # section_name = "my-http-listener";
-        # }];
-        # }
-          ];
+        bootstrap = [
+          {
+            kind = "proxy-defaults";
+            name = "global";
+            config = { protocol = "http"; };
+          }
+          {
+            name = "cliarena_gateway";
+            kind = "api-gateway";
+            listeners = [{
+              port = 8443;
+              name = "cliarena-http-listener";
+              protocol = "http";
+              # tls = {
+              # certificates = [{
+              # kind = "inline-certificate";
+              # name = "cliarena_cert";
+              # }];
+              # };
+            }];
+          }
+          {
+            name = "cliarena_http_routes";
+            kind = "http-route";
+            rules = [
+              {
+                matches = [{
+                  path = {
+                    match = "prefix";
+                    value = "/";
+                  };
+                }];
+                services = [
+                  {
+                    name = "ui";
+                    weight = 90;
+                  }
+                  {
+                    name = "experimental-ui";
+                    weight = 10;
+                  }
+                ];
+              }
+              {
+                matches = [{
+                  path = {
+                    match = "prefix";
+                    value = "/nginx";
+                  };
+                }];
+                services = [{ name = "nginx"; }];
+              }
+              {
+                matches = [{
+                  path = {
+                    match = "prefix";
+                    value = "/counter";
+                  };
+                }];
+                services = [{ name = "count-dashboard"; }];
+              }
+            ];
+            parents = [{
+              kind = "api-gateway";
+              name = "cliarena_gateway";
+              # section_name = "my-http-listener";
+            }];
+          }
+        ];
       };
     };
   };
