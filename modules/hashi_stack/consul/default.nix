@@ -122,20 +122,20 @@
               # }
               # ];
               # }
+              # {
+              # matches = [{
+              # path = {
+              # match = "prefix";
+              # value = "/";
+              # };
+              # }];
+              # services = [{ name = "nginx"; }];
+              # }
               {
                 matches = [{
                   path = {
                     match = "prefix";
                     value = "/";
-                  };
-                }];
-                services = [{ name = "nginx"; }];
-              }
-              {
-                matches = [{
-                  path = {
-                    match = "prefix";
-                    value = "/counter";
                   };
                 }];
                 services = [{ name = "count-dashboard"; }];
