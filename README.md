@@ -10,10 +10,11 @@
     - use nixos-anywhere to deploy 
     `nix run github:numtide/nixos-anywhere -- --flake '.#svr' nixos@target_server_ip`
     - format disk with
-    `sudo nix --extra-experimental-features nix-command --extra-experimental-features flakes run github:nix-community/disko -- --mode zap_create_mount ./modules/disko.nix --arg disks '[ "/dev/sda" ]'`
+    `sudo nix --extra-experimental-features nix-command --extra-experimental-features flakes run github:nix-community/disko -- --mode zap_create_mount ./hosts/svr/disko.nix --arg disks '[ "/dev/sda" ]'`
     - clone repo 
+    -- `sudo scp ../.sops/secrets/AGE_SECRET_KEY nixos@10.10.0.102:age.key`
     -- `nix-shell -p git`
-    -- `git clone git@gitlab.com:cliarena_dotfiles/nixos`
+    -- `git clone https://gitlab.com/cliarena_dotfiles/nixos`
     -- add age.key to secrets folder
 
 2. Disable Consul TLS encryption by commenting TLS block and rebuild 
