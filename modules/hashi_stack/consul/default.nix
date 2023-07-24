@@ -21,16 +21,16 @@
       encrypt_verify_outgoing = true;
 
       # TLS Encryption
-      /* tls = { */
-        /* defaults = { */
-          /* inherit (CONSUL) ca_file cert_file key_file; */
-          # FIX: nomad consul grpc_ca_file gives bad certificate
-          # verify_incoming = true;
-          # verify_outgoing = true;
-        };
-        /* internal_rpc = { verify_server_hostname = true; }; */
-      /* }; */
-      /* auto_encrypt = { allow_tls = true; }; */
+      ## tls = { 
+      ## defaults = { 
+      ## inherit (CONSUL) ca_file cert_file key_file; 
+      # FIX: nomad consul grpc_ca_file gives bad certificate
+      # verify_incoming = true;
+      # verify_outgoing = true;
+      ##};
+      ## internal_rpc = { verify_server_hostname = true; }; 
+      ## }; */
+      # auto_encrypt = { allow_tls = true; }; 
 
       ports = {
         grpc = 8502;
