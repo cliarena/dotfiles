@@ -11,9 +11,9 @@ in {
     forwardZones = {
       consul = "127.0.0.1:8600";
       # "m7an.com" = "127.0.0.1:5353";
-      # "cliarena.com" = "127.0.0.1:5353";
+      "cliarena.com" = "127.0.0.1:5353";
 
-      # "0.0.127.in-addr.arpa" = "127.0.0.1:5353";
+      "0.0.127.in-addr.arpa" = "127.0.0.1:5353";
     };
     dnssecValidation = "off";
   };
