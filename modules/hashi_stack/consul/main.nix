@@ -92,13 +92,19 @@
               port = 8443;
               name = "cliarena-http-listener";
               protocol = "http";
-              # tls = {
-              # certificates = [{
-              # kind = "inline-certificate";
-              # name = "cliarena_cert";
-              # }];
-              # };
+              tls = {
+                certificates = [{
+                  kind = "inline-certificate";
+                  name = "cliarena_cert";
+                }];
+              };
             }];
+          }
+          {
+            kind = "inline-certificate";
+            name = "cliarena_cert";
+            certificate = builtins.readFile /var/lib/acme/cliarena.com/cert.pem;
+            privateKey = builtins.readFile /var/lib/acme/cliarena.com/key.pem;
           }
           {
             name = "cliarena_http_routes";
