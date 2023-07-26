@@ -7,8 +7,8 @@ in {
   services.vault = {
     enable = true;
     package = pkgs.vault-bin;
-    tlsCertFile = "/var/lib/acme/vault.${DOMAIN}/cert.pem";
-    tlsKeyFile = "/var/lib/acme/vault.${DOMAIN}/key.pem";
+    # tlsCertFile = "/var/lib/acme/vault.${DOMAIN}/cert.pem";
+    # tlsKeyFile = "/var/lib/acme/vault.${DOMAIN}/key.pem";
     storageBackend = "raft";
     storageConfig = ''
       retry_join {
@@ -24,8 +24,8 @@ in {
       ui_config {
         enabled = true
       }
-      api_addr= "https://${DOMAIN}"
-      cluster_addr= "https://${DOMAIN}:8201"
+      api_addr= "http://0.0.0.0:8200"
+      cluster_addr= "http://0.0.0.0:8201"
 
       # register vault as a service in consul
       service_registration "consul" {
