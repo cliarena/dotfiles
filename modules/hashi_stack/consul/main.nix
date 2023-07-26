@@ -138,7 +138,7 @@
                     value = "/";
                   };
                 }];
-                services = [{ name = "count-dashboard"; }];
+                services = [{ name = "nginx"; }];
               }
             ];
             parents = [{
