@@ -8,6 +8,7 @@ in {
     script = ''
       ${consul_bin} connect envoy -gateway api -register -service cliarena_gateway
     '';
+    serviceConfig = { Restart = "on-failure"; };
     wantedBy = [ "vault.service" "consul.service" ];
     partOf = [ "vault.service" "consul.service" ];
     after = [ "vault.service" "consul.service" ];
