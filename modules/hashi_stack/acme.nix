@@ -9,12 +9,13 @@
       # webroot = "/var/lib/acme/acme-challenge/";
     };
     certs = {
-      "vault.${DOMAIN}" = {
-        group = "vault";
+      # "${DOMAIN}" = {
+      "cliarena.com" = {
+        # group = "vault";
         # change this or add to it, if reached letsencrypt Rate limit
-        extraDomainNames = [ "cliarena.com" ];
+        extraDomainNames = [ "*.cliarena.com" ];
         credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
-        reloadServices = [ "vault.service" ];
+        # reloadServices = [ "vault.service" ];
       };
       # "cliarena.com" = {
       #   group = "vault";
