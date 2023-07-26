@@ -22,8 +22,13 @@ in {
         null;
     extraConfig = ''
       ui = true
-       api_addr= "https://${DOMAIN}"
-       cluster_addr= "https://${DOMAIN}:8201"
+      api_addr= "https://${DOMAIN}"
+      cluster_addr= "https://${DOMAIN}:8201"
+
+      # register vault as a service in consul
+      service_registration "consul" {
+        address      = "0.0.0.0:8500"
+      }
     '';
     # listenerExtraConfig = ''
     # tls_require_and_verify_client_cert = "true"
