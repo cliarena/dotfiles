@@ -21,7 +21,9 @@ in {
       else
         null;
     extraConfig = ''
-      ui = true
+      ui_config {
+        enabled = true
+      }
       api_addr= "https://${DOMAIN}"
       cluster_addr= "https://${DOMAIN}:8201"
 
