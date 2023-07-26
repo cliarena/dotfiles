@@ -25,7 +25,7 @@ in {
         enabled = true
       }
       api_addr= "http://0.0.0.0:8200"
-      cluster_addr= "http://0.0.0.0:8201"
+      cluster_addr= "http://10.0.10.10:8201"
 
       # register vault as a service in consul
       service_registration "consul" {
