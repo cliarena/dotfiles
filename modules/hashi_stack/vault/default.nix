@@ -24,7 +24,7 @@ in {
       ui_config {
         enabled = true
       }
-      api_addr= "http://0.0.0.0:8200"
+      api_addr= "http://10.10.0.10:8200"
       cluster_addr= "http://10.0.10.10:8201"
 
       # register vault as a service in consul
@@ -36,7 +36,7 @@ in {
     # tls_require_and_verify_client_cert = "true"
     # tls_client_ca_file = "${builtins.path { path = ./pki/origin.cert.pem; }}"
     # '';
-    address = "0.0.0.0:8200";
+    address = "10.10.0.10:8200";
   };
   # systemd.services.vault.after = [ "acme-vault.${DOMAIN}.service" ];
 
