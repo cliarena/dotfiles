@@ -1,6 +1,8 @@
 
 # TODO:
 - [ ] setup beesd for deduplication
+- [ ] setup system & services monitoring
+- [ ] Optimize power consumption
 
 
 # Installation Guide
