@@ -18,7 +18,7 @@ in {
     ../../modules/hyprland.nix
     ../../modules/i18n.nix
     ../../modules/pipewire.nix
-    ../../modules/network.nix
+    ../../modules/netwoking/network.nix
     ../../modules/kmonad
     ../../modules/pkgs.nix
     ../../modules/chromium.nix
