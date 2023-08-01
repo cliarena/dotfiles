@@ -19,6 +19,7 @@ null_ls.setup({
 		formatting.rustfmt,
 		formatting.taplo,
 		formatting.nixfmt,
+		formatting.tidy, -- for html
 
 		hover.dictionary,
 		hover.printenv,
