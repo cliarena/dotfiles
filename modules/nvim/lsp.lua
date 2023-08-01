@@ -8,6 +8,7 @@ lspconfig.grammarly.setup({})
 lspconfig.jsonls.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.jsonls.setup({})
+lspconfig.html.setup({})
 
 lspconfig.lua_ls.setup({
 	settings = {
