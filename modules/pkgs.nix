@@ -8,6 +8,7 @@
     ### Web ###
     w3m
     python310Packages.howdoi
+    brave
     # mpv
     # ytfzf
 
@@ -44,6 +45,7 @@
     sops
     musikcube
     ventoy-bin # multiple Bootable usb drives in one
+    pavucontrol
 
     bottles
     wineWowPackages.waylandFull
