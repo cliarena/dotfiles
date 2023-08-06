@@ -47,6 +47,7 @@
     ventoy-bin # multiple Bootable usb drives in one
     pavucontrol
 
+    appimage-run
     bottles
     wineWowPackages.waylandFull
   ];
