@@ -30,13 +30,20 @@
                 extraArgs = [ "--label nixos" ]; # Override existing partition
                 subvolumes = {
                   # Mountpoints inferred from subvolume name
-                  "/nix" = { mountOptions = [ "compress=zstd" "noatime" ]; };
+                  "/nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = [ "compress=zstd" "noatime" ];
+                  };
                   "/log" = {
                     mountpoint = "/var/log";
                     mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };
-                  "/srv" = { mountOptions = [ "compress=zstd" "noatime" ]; };
+                  "/srv" = {
+                    mountpoint = "/srv";
+                    mountOptions = [ "compress=zstd" "noatime" ];
+                  };
                   "/swap" = {
+                    mountpoint = "/swap";
                     mountOptions = [ "compress=zstd" "noatime" "noexec" ];
                   };
                 };
