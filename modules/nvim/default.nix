@@ -109,7 +109,7 @@ pkgs: {
     null-ls-nvim # # Formatting, Diagnostics, Code Action...
     lsp_signature-nvim # # Show Function Signature
     # lsp_lines-nvim # # Show Diagnostics using virtual line
-    lspsaga-nvim-original # LSP++
+    lspsaga-nvim # LSP++
 
     ## Telescope
     telescope-nvim # # Highly extandable Fuzzy Finder
