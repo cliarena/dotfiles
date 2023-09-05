@@ -8,6 +8,8 @@ let
     wan_gateway = [ "10.10.0.1" ];
     wan_mac = "1c:83:41:32:6a:3c";
     lan_mac = "c8:4d:44:23:95:db";
+    lan_ip_addr = "10.10.2.1";
+    lan_ips = [ "${lan_ip_addr}/24" ];
     is_dns_server = true;
     dns_server = wan_gateway;
     dns_extra_hosts = "127.0.0.1 local.cliarena.com";
