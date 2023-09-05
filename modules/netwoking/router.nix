@@ -37,7 +37,7 @@ in {
         "20-wan0" = {
           enable = true;
           name = "wan0";
-          # address = wan_ips;
+          address = wan_ips;
           # gateway = wan_gateway;
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
