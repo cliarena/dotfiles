@@ -13,7 +13,13 @@
       "xt_comment"
       "xt_multiport"
     ];
-    kernel.sysctl = { "vm.swappiness" = 10; };
+    kernel.sysctl = {
+      "vm.swappiness" = 10;
+      # set the kernel parameters necessary to let us forward packets
+      ## TODO: only needed for router need to refactor to not add it to other hosts
+      "net.ipv4.conf.all.forwarding" = true;
+      "net.ipv6.conf.all.forwarding" = true;
+    };
 
     loader = {
       timeout = 1;
