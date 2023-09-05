@@ -7,8 +7,7 @@ let
 in {
   # Rename network interface to wan
   services.udev.extraRules = ''
-    KERNEL=="e*", ATTR{address}==${lan_mac}, NAME="lan0"
-    KERNEL=="e*", ATTR{address}==${wan_mac}, NAME="wan0"
+    KERNEL=="e*", ATTR{address}=="1c:83:41:32:6a:3c", NAME="wan"
   '';
   # Disable if this server is a dns server
   services.resolved.enable = !is_dns_server;
@@ -34,9 +33,9 @@ in {
       enable = true;
       wait-online.anyInterface = true;
       networks = {
-        "20-wan0" = {
+        "20-wan" = {
           enable = true;
-          name = "wan0";
+          name = "wan";
           # address = wan_ips;
           # gateway = wan_gateway;
           # dns = dns_server;
