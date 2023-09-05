@@ -7,8 +7,8 @@ let
 in {
   # Rename network interface to wan
   services.udev.extraRules = ''
-    SUBSYSTEM=="net", ACTION=="add", ATTR{address}==${lan_mac}, NAME="lan0"
-    SUBSYSTEM=="net", ACTION=="add", ATTR{address}==${wan_mac}, NAME="wan0"
+    KERNEL=="e*", ATTR{address}==${lan_mac}, NAME="lan0"
+    KERNEL=="e*", ATTR{address}==${wan_mac}, NAME="wan0"
   '';
   # Disable if this server is a dns server
   services.resolved.enable = !is_dns_server;
