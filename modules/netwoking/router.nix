@@ -8,6 +8,7 @@ in {
   # Rename network interface to wan
   services.udev.extraRules = ''
     KERNEL=="e*", ATTR{address}=="1c:83:41:32:6a:3c", NAME="wan"
+    KERNEL=="e*", ATTR{address}=="c8:4d:44:23:95:db", NAME="lan"
   '';
   # Disable if this server is a dns server
   services.resolved.enable = !is_dns_server;
