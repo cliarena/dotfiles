@@ -1,8 +1,8 @@
 { pkgs, host, ... }:
 let
   inherit (host)
-    user wan_mac lan_mac tcp_ports udp_ports wan_ips wan_gateway dns_server
-    is_dns_server;
+    user wan_mac lan_mac tcp_ports udp_ports wan_ips lan_ips wan_gateway
+    dns_server is_dns_server;
 
 in {
   # Rename network interface to wan
@@ -31,7 +31,7 @@ in {
       nftables.ruleset = ''
         flush ruleset
 
-        define LAN_SPACE = 10.10.0.0/24
+        define LAN_SPACE = 10.10.2.0/24
         define LAN6_SPACE = fd00::/64
 
         table inet global {
