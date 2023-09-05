@@ -12,7 +12,7 @@ in {
     ../../modules/users.nix
     ../../modules/i18n.nix
     # ../../modules/sshd.nix
-    ../../modules/netwoking/network.nix
+    ../../modules/netwoking/router.nix
     ../../modules/auditd.nix
     ../../modules/hashi_stack
   ];

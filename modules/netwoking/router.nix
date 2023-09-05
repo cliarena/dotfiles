@@ -1,12 +1,14 @@
 { pkgs, host, ... }:
 let
   inherit (host)
-    user tcp_ports udp_ports wan_ips wan_gateway dns_server is_dns_server;
+    user wan_mac lan_mac tcp_ports udp_ports wan_ips wan_gateway dns_server
+    is_dns_server;
+
 in {
   # Rename network interface to wan
   services.udev.extraRules = ''
-    KERNEL=="eth0", NAME="lan"
-    KERNEL=="eth1", NAME="wan"
+    SUBSYSTEM=="net", ACTION=="add", ATTR{address}==${lan_mac}, NAME="lan0"
+    SUBSYSTEM=="net", ACTION=="add", ATTR{address}==${wan_mac}, NAME="wan0"
   '';
   # Disable if this server is a dns server
   services.resolved.enable = !is_dns_server;
@@ -32,24 +34,24 @@ in {
       enable = true;
       wait-online.anyInterface = true;
       networks = {
-        "20-wired" = {
+        "20-wan0" = {
           enable = true;
-          name = "wan";
-          address = wan_ips;
-          gateway = wan_gateway;
-          dns = dns_server;
+          name = "wan0";
+          # address = wan_ips;
+          # gateway = wan_gateway;
+          # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
-          # DHCP = "ipv4";
+          DHCP = "ipv4";
         };
-        "30-wired" = {
-          enable = true;
-          name = "lan";
-          address = wan_ips;
-          gateway = wan_gateway;
-          dns = dns_server;
-          # if you want dhcp uncomment this and comment address,gateway and dns
-          # DHCP = "ipv4";
-        };
+        # "30-lan0" = {
+        #   enable = true;
+        #   name = "lan0";
+        #   address = wan_ips;
+        #  gateway = wan_gateway;
+        #  dns = dns_server;
+        # if you want dhcp uncomment this and comment address,gateway and dns
+        # DHCP = "ipv4";
+        # };
       };
     };
   };
