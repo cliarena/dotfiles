@@ -12,6 +12,18 @@ in {
   '';
   # Disable if this server is a dns server
   services.resolved.enable = !is_dns_server;
+  services.dhcpd4 = {
+    enable = true;
+    interfaces = [ "lan0" ];
+    extraConfig = ''
+      option routers 10.10.2.1;
+      option domain-name-servers 8.8.8.8, 8.8.4.4;
+      option domain-name "local";
+      subnet 10.10.2.0 netmask 255.255.255.0 {
+        range 10.10.2.100 10.10.2.254;
+      }
+    '';
+  };
 
   networking = {
     hostName = user;
