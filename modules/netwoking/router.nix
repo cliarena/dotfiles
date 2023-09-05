@@ -27,6 +27,47 @@ in {
         allowedTCPPorts = tcp_ports;
         allowedUDPPorts = udp_ports;
       };
+      nftables.enable = true;
+      nftables.ruleset = ''
+        flush ruleset
+
+        define LAN_SPACE = 10.10.0.0/24
+        define LAN6_SPACE = fd00::/64
+
+        table inet global {
+          chain inbound_wan {
+            # https://shouldiblockicmp.com/
+            # that said, icmp has some dangerous packet types, so limit it to
+            # some extent
+            ip protocol icmp icmp type { destination-unreachable, echo-request, time-exceeded, parameter-problem } accept
+            ip6 nexthdr icmpv6 icmpv6 type { destination-unreachable, echo-request, time-exceeded, parameter-problem, packet-too-big } accept
+          }
+          chain inbound_lan {
+            # I trust my LAN, however you might have different requirements
+            accept
+          }
+          chain inbound {
+            type filter hook input priority 0; policy drop;
+
+            ct state vmap { established : accept, related : accept, invalid : drop }
+
+            iifname vmap { lo : accept, wan0 : jump inbound_wan, lan0 : jump inbound_lan, wlan0 : jump inbound_lan }
+          }
+          chain forward {
+            type filter hook forward priority 0; policy drop;
+
+            ct state vmap { established : accept, related : accept, invalid : drop }
+
+            iifname lan0 accept
+          }
+          chain postrouting {
+            type nat hook postrouting priority 100; policy accept;
+            ip saddr $LAN_SPACE oifname wan0 masquerade
+            ip6 saddr $LAN6_SPACE oifname wan0 masquerade
+          }
+        }
+      '';
+
     };
   };
   systemd = {
