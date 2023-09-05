@@ -39,8 +39,10 @@ in {
         allowedTCPPorts = tcp_ports;
         allowedUDPPorts = udp_ports;
       };
-      nftables.enable = true;
-      nftables.ruleset = ''
+    };
+    nftables = {
+      enable = true;
+      ruleset = ''
         flush ruleset
 
         define LAN_SPACE = 10.10.2.0/24
@@ -79,7 +81,6 @@ in {
           }
         }
       '';
-
     };
   };
   systemd = {
