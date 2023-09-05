@@ -13,23 +13,23 @@
 
       CONSUL_HTTP_TOKEN = { sopsFile = ../../secrets/consul.yaml; };
       "CONSUL_GOSSIP_ENCRYPTION_KEY.hcl" = {
-        owner = config.users.groups.consul.name;
-        group = config.users.groups.consul.name;
+        # owner = config.users.groups.consul.name;
+        # group = config.users.groups.consul.name;
         sopsFile = ../../secrets/consul.yaml;
       };
       "CONSUL_ACL_INITIAL_MANAGEMENT_TOKEN.hcl" = {
-        owner = config.users.groups.consul.name;
-        group = config.users.groups.consul.name;
+        # owner = config.users.groups.consul.name;
+        # group = config.users.groups.consul.name;
         sopsFile = ../../secrets/consul.yaml;
       };
       CONSUL_VAULT_ROLE_ID = {
-        owner = config.users.groups.consul.name;
-        group = config.users.groups.consul.name;
+        # owner = config.users.groups.consul.name;
+        # group = config.users.groups.consul.name;
         sopsFile = ../../secrets/consul.yaml;
       };
       CONSUL_VAULT_SECRET_ID = {
-        owner = config.users.groups.consul.name;
-        group = config.users.groups.consul.name;
+        # owner = config.users.groups.consul.name;
+        # group = config.users.groups.consul.name;
         sopsFile = ../../secrets/consul.yaml;
       };
       # CONSUL_ACL_DEFAULT_TOKEN = { };
