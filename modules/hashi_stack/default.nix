@@ -22,7 +22,7 @@
   imports = [
     ./pdns
     # ./acme.nix
-    ./cloudflare-dyndns.nix
+    # ./cloudflare-dyndns.nix
     # ../podman.nix
     # ../docker.nix
     # ./consul
