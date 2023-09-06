@@ -9,6 +9,7 @@ in {
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/swap.nix
     ../../modules/boot.nix
+    ../../modules/hardware/amd.nix
     ../../modules/users.nix
     ../../modules/i18n.nix
     # ../../modules/sshd.nix
