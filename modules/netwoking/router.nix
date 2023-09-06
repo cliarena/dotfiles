@@ -25,6 +25,13 @@ in {
   #    }
   #  '';
   #};
+  services.hostapd = {
+    enable = true;
+    interface = "wlan0";
+    hwMode = "g";
+    ssid = "av_test";
+    wpaPassphrase = "test";
+  };
 
   networking = {
     hostName = user;
