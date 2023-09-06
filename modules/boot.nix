@@ -5,6 +5,7 @@
     kernelParams = [ "video=1920x1080" ];
     initrd.availableKernelModules = [ "xhci_pci" "usbhid" "uas" "usb_storage" ];
     kernelModules = [
+      "kvm-amd" # support virtual machine acceleration
       # need for nomad iptables
       "iptable_nat"
       "iptable_filter"
