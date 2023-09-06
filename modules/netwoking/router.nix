@@ -29,6 +29,7 @@ in {
     hostName = user;
     useDHCP = false;
     useNetworkd = true;
+    wireless.enable = true;
     # nameservers = [ "1.1.1.1" ];
     resolvconf.enable = pkgs.lib.mkForce false;
     dhcpcd.extraConfig = "nohook resolv.conf";
