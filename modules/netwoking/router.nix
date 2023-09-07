@@ -31,13 +31,10 @@ in {
       # Simple 2.4GHz AP
       wlan0 = {
         # countryCode = "US";
-        channel = 11;
+        channel = 3;
         networks.wlan0 = {
-          ssid = "av_test";
-          authentication = {
-            mode = "wpa2-sha256";
-            wpaPassword = "test-test"; # Use wpaPasswordFile if possible.
-          };
+          ssid = "AVX_test";
+          authentication = { authentication.mode = "none"; };
         };
       };
     };
