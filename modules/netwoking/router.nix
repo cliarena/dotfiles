@@ -31,6 +31,7 @@ in {
       # Simple 2.4GHz AP
       wlan0 = {
         # countryCode = "US";
+        band = "5g";
         networks.wlan0 = {
           ssid = "av_test";
           authentication = {
