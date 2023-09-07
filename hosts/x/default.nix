@@ -4,8 +4,8 @@ let
   inherit (inputs.nixpkgs.lib) nixosSystem;
   host = rec {
     user = "x";
-    wan_ips = [ "10.10.1.222/24" ];
-    wan_gateway = [ "10.10.1.1" ];
+    wan_ips = [ "10.10.2.222/24" ];
+    wan_gateway = [ "10.10.2.1" ];
     is_dns_server = false; # for testing hashi_stack
     dns_server = wan_gateway;
     dns_extra_hosts = "";
