@@ -144,7 +144,7 @@
                     value = "/";
                   };
                 }];
-                services = [{ name = "nginx"; }];
+                services = [{ name = "kasm"; }];
               }
             ];
             parents = [{
