@@ -34,7 +34,7 @@ in {
         channel = 3;
         networks.wlan0 = {
           ssid = "AVX_test";
-          authentication = { authentication.mode = "none"; };
+          authentication = { mode = "none"; };
         };
       };
     };
