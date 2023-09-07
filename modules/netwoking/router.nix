@@ -31,7 +31,6 @@ in {
       # Simple 2.4GHz AP
       wlan0 = {
         # countryCode = "US";
-        band = "5g";
         networks.wlan0 = {
           ssid = "av_test";
           authentication = {
@@ -66,6 +65,7 @@ in {
         flush ruleset
 
         define LAN_SPACE = 10.10.2.0/24
+        define WLAN_SPACE = 10.10.3.0/24
         define LAN6_SPACE = fd00::/64
 
         table inet global {
@@ -93,9 +93,11 @@ in {
             ct state vmap { established : accept, related : accept, invalid : drop }
 
             iifname lan0 accept
+            iifname wlan0 accept
           }
           chain postrouting {
             type nat hook postrouting priority 100; policy accept;
+            ip saddr $WLAN_SPACE oifname wan0 masquerade
             ip saddr $LAN_SPACE oifname wan0 masquerade
             ip6 saddr $LAN6_SPACE oifname wan0 masquerade
           }
