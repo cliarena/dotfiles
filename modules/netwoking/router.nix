@@ -27,10 +27,18 @@ in {
   #};
   services.hostapd = {
     enable = true;
-    interface = "wlan0";
-    hwMode = "g";
-    ssid = "av_test";
-    wpaPassphrase = "test";
+    radios = {
+      # Simple 2.4GHz AP
+      wlan0 = {
+        # countryCode = "US";
+        networks.wlan0 = {
+          ssid = "av_test";
+          authentication.saePasswords =
+            [{ password = "test"; }]; # Use saePasswordsFile if possible.
+        };
+      };
+    };
+
   };
 
   networking = {
