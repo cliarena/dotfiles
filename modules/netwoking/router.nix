@@ -35,7 +35,7 @@ in {
           ssid = "av_test";
           authentication = {
             mode = "wpa2-sha256";
-            wpaPassword = "test"; # Use wpaPasswordFile if possible.
+            wpaPassword = "test-test"; # Use wpaPasswordFile if possible.
           };
         };
       };
