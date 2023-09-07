@@ -21,15 +21,15 @@
 
   imports = [
     ./pdns
-    # ./acme.nix
-    # ./cloudflare-dyndns.nix
+    ./acme.nix
+    ./cloudflare-dyndns.nix
     # ../podman.nix
-    # ../docker.nix
-    # ./consul
-    # ./vault
-    # ./nomad.nix
-    # ./envoy.nix
-    # ./vault_initializer.nix
-    # ./consul_template.nix
+    ../docker.nix
+    ./consul
+    ./vault
+    ./nomad.nix
+    ./envoy.nix
+    ./vault_initializer.nix
+    ./consul_template.nix
   ];
 }
