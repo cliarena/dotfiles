@@ -31,6 +31,7 @@ in {
       # Simple 2.4GHz AP
       wlan0 = {
         # countryCode = "US";
+        wifi6.enable = true;
         channel = 0;
         networks.wlan0 = {
           ssid = "AVX_test";
