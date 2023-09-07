@@ -32,7 +32,7 @@ in {
       wlan0 = {
         # countryCode = "US";
         wifi6.enable = true;
-        channel = 0;
+        channel = 12;
         networks.wlan0 = {
           ssid = "AVX_test";
           authentication = { mode = "none"; };
