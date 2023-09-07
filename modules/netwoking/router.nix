@@ -31,7 +31,7 @@ in {
       # Simple 2.4GHz AP
       wlan0 = {
         # countryCode = "US";
-        channel = 3;
+        channel = 0;
         networks.wlan0 = {
           ssid = "AVX_test";
           authentication = { mode = "none"; };
