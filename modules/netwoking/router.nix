@@ -146,12 +146,7 @@ in {
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
           networkConfig = { DHCPServer = true; };
-          dhcpServerConfig = {
-            PoolOffset = 100;
-            PoolSize = 100;
-            EmitDNS = true;
-            DNS = "8.8.8.8";
-          };
+          dhcpServerConfig = { };
         };
       };
     };
