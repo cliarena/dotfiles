@@ -2,29 +2,29 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/consul" {
-  version = "2.17.0"
+  version = "2.18.0"
   hashes = [
-    "h1:tGSu1KAySFhNm1CABReAP1RXSKyxkTeLMOm+J2XRlGo=",
+    "h1:cpCFB0zX+y7+Gxghbpwz5/rYs1szq+fHL7Sdd+qCiic=",
   ]
 }
 
 provider "registry.terraform.io/hashicorp/nomad" {
-  version = "1.4.20"
+  version = "2.0.0"
   hashes = [
-    "h1:skqtAGpu73JBFGRKBRG8hE18gRg3DIYe5s7kzTR2meQ=",
+    "h1:/i3tB9fBRGv7qUOiCbGXSlDEEpq2aktlZuhpyayR7L0=",
   ]
 }
 
 provider "registry.terraform.io/hashicorp/vault" {
-  version = "3.18.0"
+  version = "3.20.0"
   hashes = [
-    "h1:SMxbFgwFgzdAPULiqxwvjnPJUqs+gMfS7BhUPoxa6tM=",
+    "h1:Cl9K8oQIp5Dj9C+kh0cvoxVM5ATuEy90eK54e2i1Hw4=",
   ]
 }
 
 provider "registry.terraform.io/tenstad/remote" {
   version = "0.1.2"
   hashes = [
-    "h1:RGtiXeWyLnLgt4Q+BjYIgwCxqszaQ3qwsGAuhiTfD/8=",
+    "h1:7Ykn4HljYW33Q2CdK9xTYv5b5gYFern5VL+xpapn+3I=",
   ]
 }
