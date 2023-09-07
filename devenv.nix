@@ -22,7 +22,8 @@ in forAllSystems (system:
         env = {
           NOMAD_ADDR = "http://10.10.0.10:4646";
           CONSUL_HTTP_ADDR = "http://10.10.0.10:8500";
-          VAULT_ADDR = "https://vault.cliarena.com";
+          # VAULT_ADDR = "https://vault.cliarena.com";
+          VAULT_ADDR = "http://10.10.0.10:8200";
         };
         processes = { };
         packages = with pkgs; [
