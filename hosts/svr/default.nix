@@ -10,6 +10,8 @@ let
     lan_mac = "c8:4d:44:23:95:db";
     lan_ip_addr = "10.10.2.1";
     lan_ips = [ "${lan_ip_addr}/24" ];
+    wlan_ip_addr = "10.10.3.1";
+    wlan_ips = [ "${wlan_ip_addr}/24" ];
     is_dns_server = true;
     dns_server = wan_gateway;
     dns_extra_hosts = "127.0.0.1 local.cliarena.com";

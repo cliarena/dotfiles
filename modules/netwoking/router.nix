@@ -1,8 +1,8 @@
 { pkgs, host, ... }:
 let
   inherit (host)
-    user wan_mac lan_mac tcp_ports udp_ports wan_ips lan_ips wan_gateway
-    dns_server is_dns_server;
+    user wan_mac lan_mac tcp_ports udp_ports wan_ips lan_ips wlan_ips
+    wan_gateway dns_server is_dns_server;
 
 in {
   # Rename network interface to wan
@@ -120,6 +120,22 @@ in {
           enable = true;
           name = "lan0";
           address = lan_ips;
+          # gateway = wan_gateway;
+          # dns = dns_server;
+          # if you want dhcp uncomment this and comment address,gateway and dns
+          # DHCP = "ipv4";
+          networkConfig = { DHCPServer = true; };
+          dhcpServerConfig = {
+            PoolOffset = 100;
+            PoolSize = 100;
+            EmitDNS = true;
+            DNS = "8.8.8.8";
+          };
+        };
+        "40-wlan0" = {
+          enable = true;
+          name = "wlan0";
+          address = wlan_ips;
           # gateway = wan_gateway;
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
