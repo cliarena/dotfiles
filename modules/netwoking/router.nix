@@ -35,7 +35,10 @@ in {
         channel = 12;
         networks.wlan0 = {
           ssid = "AVX_test";
-          authentication = { mode = "none"; };
+          authentication = {
+            mode = "wpa2-sha256";
+            wpaPassword = "ilounane123";
+          };
         };
       };
     };
