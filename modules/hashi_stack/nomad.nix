@@ -21,6 +21,8 @@
         consul = { ui_url = "${CONSUL_ADDR}/ui"; };
         vault = { ui_url = "${VAULT_ADDR}/ui"; };
       };
+      plugin.docker = { config = { allow_privileged = true; }; };
+
       # vault = {
       # enabled = true;
       # address = "http://vault.cliarena.com:8200";
