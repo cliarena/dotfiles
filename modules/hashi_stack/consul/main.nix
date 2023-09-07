@@ -4,8 +4,8 @@
     webUi = true;
     dropPrivileges = false;
     interface = {
-      bind = "wan";
-      advertise = "wan";
+      bind = "wan0";
+      advertise = "wan0";
     };
     extraConfigFiles = [
       config.sops.secrets."CONSUL_GOSSIP_ENCRYPTION_KEY.hcl".path
