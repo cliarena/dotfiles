@@ -33,8 +33,10 @@ in {
         # countryCode = "US";
         networks.wlan0 = {
           ssid = "av_test";
-          authentication.saePasswords =
-            [{ password = "test"; }]; # Use saePasswordsFile if possible.
+          authentication = {
+            mode = "wpa2-sha256";
+            wpaPassword = "test"; # Use wpaPasswordFile if possible.
+          };
         };
       };
     };
