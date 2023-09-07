@@ -13,7 +13,8 @@ forAllSystems (system:
       };
       host_name = "svr";
       vault = {
-        VAULT_ADDR = "https://vault.cliarena.com";
+        # VAULT_ADDR = "https://vault.cliarena.com";
+        VAULT_ADDR = "http://10.10.0.10:8200";
         terraform_approle_id = "952cf550-8311-9fea-418e-7701f0096531";
       };
       consul = {
