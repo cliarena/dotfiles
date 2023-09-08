@@ -3,7 +3,8 @@
     DOMAIN = "cliarena.com";
     # CONSUL_ADDR = "https://consul.${DOMAIN}";
     CONSUL_ADDR = "http://10.10.0.10:8500";
-    VAULT_ADDR = "https://vault.${DOMAIN}";
+    #VAULT_ADDR = "https://vault.${DOMAIN}";
+    VAULT_ADDR = "http://10.10.0.10:8200";
     CONSUL = rec {
       agent_certs_dir = "/srv/consul/agent-certs";
       grpc_ca_file = "${agent_certs_dir}/ca.crt";
