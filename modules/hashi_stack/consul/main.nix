@@ -135,7 +135,7 @@
                     value = "/echo";
                   };
                 }];
-                filters = { URLRewrite.path = "/"; };
+                filters = { URLRewrite.path = ""; };
                 services = [{ name = "echo"; }];
               }
               {
