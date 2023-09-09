@@ -137,26 +137,6 @@
                 }];
                 services = [{ name = "echo"; }];
               }
-              {
-                matches = [{
-                  path = {
-                    match = "prefix";
-                    value = "/nginx";
-                  };
-                }];
-                filters = { URLRewrite.path = "/"; };
-                services = [{ name = "nginx"; }];
-              }
-              {
-                matches = [{
-                  path = {
-                    match = "prefix";
-                    value = "/kasm";
-                  };
-                }];
-                filters = { URLRewrite.path = "/"; };
-                services = [{ name = "kasm"; }];
-              }
             ];
             parents = [{
               kind = "api-gateway";
