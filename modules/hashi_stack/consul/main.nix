@@ -132,10 +132,9 @@
                 matches = [{
                   path = {
                     match = "prefix";
-                    value = "/echo";
+                    value = "/";
                   };
                 }];
-                filters = { URLRewrite.path = ""; };
                 services = [{ name = "echo"; }];
               }
               {
@@ -152,9 +151,10 @@
                 matches = [{
                   path = {
                     match = "prefix";
-                    value = "/";
+                    value = "/kasm";
                   };
                 }];
+                filters = { URLRewrite.path = "/"; };
                 services = [{ name = "kasm"; }];
               }
             ];
