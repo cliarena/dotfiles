@@ -19,18 +19,27 @@ in {
       services = [{
         name = "echo";
         # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "8080";
+        port = "8443";
         connect = {
           sidecarService = {
             # port = "20000";
           };
         };
+        checks = with time; [{
+          type = "http";
+          path = "/";
+          protocol = "https";
+          tlsSkipVerify = true;
+          interval = 2 * second;
+          timeout = 2 * second;
+        }];
       }];
       task.server = {
         driver = "docker";
 
         config = {
-          image = "jmalloc/echo-server";
+          image = "mendhak/http-https-echo";
+          #image = "jmalloc/echo-server";
           #	image = "mysql"
           # ports = [ "http" ];
           #	volumes = [  "/vault/hdd/nomad/static-site:/usr/share/nginx/html" ]
