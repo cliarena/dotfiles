@@ -135,7 +135,7 @@
                     value = "/";
                   };
                 }];
-                services = [{ name = "nginx"; }];
+                services = [{ name = "echo"; }];
               }
             ];
             parents = [{
