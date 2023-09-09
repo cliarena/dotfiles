@@ -135,12 +135,7 @@
                     value = "/nginx";
                   };
                 }];
-                filters = {
-                  URLRewrite.path = {
-                    type = "replacePrefixMatch";
-                    replacePrefixMatch = "/";
-                  };
-                };
+                filters = { URLRewrite.path.replacePrefixMatch = "/"; };
                 services = [{ name = "nginx"; }];
               }
               {
