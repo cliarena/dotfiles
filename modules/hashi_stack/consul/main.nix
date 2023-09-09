@@ -128,15 +128,15 @@
               # }
               # ];
               # }
-              # {
-              # matches = [{
-              # path = {
-              # match = "prefix";
-              # value = "/";
-              # };
-              # }];
-              # services = [{ name = "nginx"; }];
-              # }
+              {
+                matches = [{
+                  path = {
+                    match = "prefix";
+                    value = "/nginx";
+                  };
+                }];
+                services = [{ name = "nginx"; }];
+              }
               {
                 matches = [{
                   path = {
