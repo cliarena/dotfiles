@@ -132,6 +132,16 @@
                 matches = [{
                   path = {
                     match = "prefix";
+                    value = "/echo";
+                  };
+                }];
+                filters = { URLRewrite.path = "/"; };
+                services = [{ name = "echo"; }];
+              }
+              {
+                matches = [{
+                  path = {
+                    match = "prefix";
                     value = "/nginx";
                   };
                 }];
