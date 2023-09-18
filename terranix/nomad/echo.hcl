@@ -4,9 +4,11 @@ job "echo" {
   group "echo" {
     network {
       mode = "bridge"
-      #port "https" {
-        #static = 8443
-        #}
+      port "https" {
+       static = 8443
+       to = 8443
+        #to = 8080
+      }
     }
     volume "certs_fullchain" {
       type = "host"
@@ -48,8 +50,9 @@ job "echo" {
 
       config {
         image = "mendhak/http-https-echo"
+          #image = "jmalloc/echo-server";
         privileged = true
-        # ports = ["https"]
+        ports = ["https"]
 
       }
     }
