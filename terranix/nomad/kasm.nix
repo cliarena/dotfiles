@@ -2,14 +2,14 @@
 let
   http = {
     mode = "bridge";
-    #reservedPorts.wizard = {
-    #  static = 3000;
-    #  to = 3000;
-    #};
-    #reservedPorts.http = {
-    #  static = 8443;
-    #  to = 443;
-    #};
+    reservedPorts.wizard = {
+      static = 3000;
+      to = 3000;
+    };
+    reservedPorts.http = {
+      static = 9443;
+      to = 443;
+    };
   };
 in {
   job.kasm = {
@@ -37,7 +37,7 @@ in {
       services = [{
         name = "kasm";
         # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "443";
+        port = "3000";
         connect = {
           sidecarService = {
             # port = "20000";
@@ -63,7 +63,7 @@ in {
         config = {
           image = "lscr.io/linuxserver/kasm:latest";
           privileged = true;
-          # ports = [ "http" ];
+          ports = [ "http" "https" ];
           #	volumes = [  "/vault/hdd/nomad/static-site:/usr/share/nginx/html" ]
         };
 
