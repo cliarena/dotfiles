@@ -89,7 +89,7 @@
             name = "cliarena_gateway";
             kind = "api-gateway";
             listeners = [{
-              port = 443;
+              port = 3443;
               name = "cliarena-http-listener";
               protocol = "http";
               tls = {
