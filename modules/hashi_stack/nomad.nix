@@ -65,7 +65,7 @@
         host_volume = {
           certs = {
             path = "/srv/certs";
-            read_only = true;
+            read_only = false;
           };
           taskserver_data = {
             path = "/srv/taskserver/data";
