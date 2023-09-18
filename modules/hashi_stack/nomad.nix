@@ -63,9 +63,13 @@
         # cpu_total_compute = 4 * 2200;
         memory_total_mb = 2 * 64 * 1024; # double the ram to benefit from zram
         host_volume = {
-          certs = {
-            path = "/srv/certs";
-            read_only = false;
+          certs_fullchain = {
+            path = "/srv/certs/fullchain.pem";
+            read_only = true;
+          };
+          certs_privkey = {
+            path = "/srv/certs/privkey.pem";
+            read_only = true;
           };
           taskserver_data = {
             path = "/srv/taskserver/data";
