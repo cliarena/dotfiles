@@ -6,7 +6,7 @@ in {
     path = [ pkgs.getent pkgs.envoy ];
     description = "register consul api gateways";
     script = ''
-      ${consul_bin} connect envoy -gateway api -register -service cliarena_gateway
+      ${consul_bin} connect envoy -gateway api -register -service cliarena-gateway
     '';
     serviceConfig = {
       Restart = "on-failure";
