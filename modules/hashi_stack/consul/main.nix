@@ -83,7 +83,7 @@
           {
             kind = "proxy-defaults";
             name = "global";
-            config = { protocol = "http"; };
+            config = { protocol = "tcp"; };
           }
           {
             name = "cliarena_gateway";
