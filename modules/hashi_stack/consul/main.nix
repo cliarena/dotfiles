@@ -91,7 +91,7 @@
             listeners = [{
               port = 443;
               name = "cliarena-http-listener";
-              protocol = "http";
+              protocol = "tcp";
               tls = {
                 minVersion = "TLSv1_3";
                 maxVersion = "TLSv1_3";
