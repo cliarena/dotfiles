@@ -86,7 +86,7 @@
             config = { protocol = "tcp"; };
           }
           {
-            name = "cliarena_gateway";
+            name = "cliarena-gateway";
             kind = "api-gateway";
             listeners = [{
               port = 443;
@@ -97,19 +97,19 @@
                 # maxVersion = "TLSv1_3";
                 certificates = [{
                   kind = "inline-certificate";
-                  name = "cliarena_cert";
+                  name = "cliarena-cert";
                 }];
               };
             }];
           }
           {
             kind = "inline-certificate";
-            name = "cliarena_cert";
+            name = "cliarena-cert";
             certificate = builtins.readFile /var/lib/acme/cliarena.com/cert.pem;
             privateKey = builtins.readFile /var/lib/acme/cliarena.com/key.pem;
           }
           {
-            name = "cliarena_http_routes";
+            name = "cliarena-http-routes";
             kind = "http-route";
             rules = [
               # {
@@ -142,7 +142,7 @@
             ];
             parents = [{
               kind = "api-gateway";
-              name = "cliarena_gateway";
+              name = "cliarena-gateway";
               sectionName = "cliarena-http-listener";
             }];
           }
