@@ -93,8 +93,8 @@
               name = "cliarena-http-listener";
               protocol = "tcp";
               tls = {
-                minVersion = "TLSv1_3";
-                maxVersion = "TLSv1_3";
+                # minVersion = "TLSv1_3";
+                # maxVersion = "TLSv1_3";
                 certificates = [{
                   kind = "inline-certificate";
                   name = "cliarena_cert";
