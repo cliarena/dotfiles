@@ -12,31 +12,31 @@ pkgs: {
     ./options.lua
     #./autopairs.lua
     #./auto-save.lua
-    #./comment.lua
+    ./comment.lua
     ./nvim-tree.lua
-    #./toggleterm.lua
-    #./project.lua
-    #./guess-indent.lua
-    #./theme.lua
-    #./dashboard.lua
+    ./toggleterm.lua
+    ./project.lua
+    ./guess-indent.lua
+    ./theme.lua
+    ./dashboard.lua
     # it should be disabled so showtabline=0 works
     # ./bufferline.lua
-    #./lualine.lua
+    ./lualine.lua
     ./keymaps.lua
     ./which-key.lua
-    #./true-zen.lua
-    #./twilight.lua
-    #./todo-comments.lua
-    #./trouble.lua
-    #./telescope.lua
-    #./highlight-colors.lua
-    #./inc-rename.lua
+    ./true-zen.lua
+    ./twilight.lua
+    ./todo-comments.lua
+    ./trouble.lua
+    ./telescope.lua
+    ./highlight-colors.lua
+    ./inc-rename.lua
     # ./noice.lua
     #./vim-illuminate.lua
     #./diagnostics.lua
     #./cmp.lua
-    #./treesitter.lua
-    #./lsp.lua
+    ./treesitter.lua
+    ./lsp.lua
     #./lsp_signs.lua
     #./lsp_signature.lua
     #./null-ls.lua
