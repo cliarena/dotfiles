@@ -7,8 +7,8 @@ let
       to = 3000;
     };
     reservedPorts.http = {
-      static = 9443;
-      to = 443;
+      static = 4000;
+      to = 4000;
     };
   };
 in {
@@ -47,7 +47,7 @@ in {
       task.server = {
         driver = "docker";
 
-        env = { KASM_PORT = "443"; };
+        env = { KASM_PORT = "4000"; };
 
         volumeMounts = [
           {
