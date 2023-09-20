@@ -1,6 +1,3 @@
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-
 local function on_attach(bufnr)
 	local api = require("nvim-tree.api")
 
@@ -75,28 +72,17 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "v", api.node.open.vertical, opts("Open: Vertical Split"))
 end
 
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-	return
-end
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-	return
-end
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
-nvim_tree.setup({
-	on_attach = on_attach,
+require("nvim-tree").setup({
+        on_attach = on_attach,
 	disable_netrw = true,
 	hijack_netrw = true,
-	--[[ open_on_setup = false, ]]
-	--[[ ignore_ft_on_setup = { ]]
-	--[[ 	"startify", ]]
-	--[[ 	"dashboard", ]]
-	--[[ 	"alpha", ]]
-	--[[ }, ]]
+	-- open_on_setup = false, 
+	-- ignore_ft_on_setup = { 
+	-- 	"startify", 
+	-- 	"dashboard",
+	-- 	"alpha", 
+	-- }, 
 	open_on_tab = false,
 	hijack_cursor = false,
 	update_cwd = true,
@@ -127,14 +113,14 @@ nvim_tree.setup({
 		width = 30,
 		hide_root_folder = false,
 		side = "right",
-		--[[ mappings = { ]]
-		--[[   custom_only = false, ]]
-		--[[   list = { ]]
-		--[[     { key = { "h", "<CR>", "o" }, cb = tree_cb("edit") }, ]]
-		--[[     { key = "k",                  cb = tree_cb("close_node") }, ]]
-		--[[     { key = "v",                  cb = tree_cb("vsplit") }, ]]
-		--[[   }, ]]
-		--[[ }, ]]
+		-- mappings = { 
+		--   custom_only = false, 
+		--   list = { 
+		--     { key = { "h", "<CR>", "o" }, cb = tree_cb("edit") }, 
+		--     { key = "k",                  cb = tree_cb("close_node") },
+		--     { key = "v",                  cb = tree_cb("vsplit") }, 
+		--   }, 
+		-- }, 
 		number = false,
 		relativenumber = false,
 	},

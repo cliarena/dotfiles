@@ -13,7 +13,7 @@ pkgs: {
     #./autopairs.lua
     #./auto-save.lua
     #./comment.lua
-    #./nvim-tree.lua
+    ./nvim-tree.lua
     #./toggleterm.lua
     #./project.lua
     #./guess-indent.lua
