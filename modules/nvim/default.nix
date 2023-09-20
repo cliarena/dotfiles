@@ -32,24 +32,24 @@ pkgs: {
     ./highlight-colors.lua
     ./inc-rename.lua
     # ./noice.lua
-    #./vim-illuminate.lua
+    ./vim-illuminate.lua
     #./diagnostics.lua
     #./cmp.lua
     ./treesitter.lua
     ./lsp.lua
-    #./lsp_signs.lua
-    #./lsp_signature.lua
+    ./lsp_signs.lua
+    ./lsp_signature.lua
     ./null-ls.lua
-    # ./lsp_lines.lua
+    #./lsp_lines.lua
     #./aerial.lua
     #./leap.lua
     #./flit.lua
     #./neorg.lua
-    #./gitsigns.lua
-    #./lastplace.lua
-    #./better-escape.lua
+    ./gitsigns.lua
+    ./lastplace.lua
+    ./better-escape.lua
     #./template-string.lua
-    #./surround.lua
+    ./surround.lua
     #    ./rename-state.lua
     #./urlview.lua
     #  ./hologram.lua
