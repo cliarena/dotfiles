@@ -22,7 +22,7 @@ pkgs: {
     # it should be disabled so showtabline=0 works
     # ./bufferline.lua
     #./lualine.lua
-    #./keymaps.lua
+    ./keymaps.lua
     #./which-key.lua
     #./true-zen.lua
     #./twilight.lua
