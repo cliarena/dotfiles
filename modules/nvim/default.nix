@@ -39,7 +39,7 @@ pkgs: {
     ./lsp.lua
     #./lsp_signs.lua
     #./lsp_signature.lua
-    #./null-ls.lua
+    ./null-ls.lua
     # ./lsp_lines.lua
     #./aerial.lua
     #./leap.lua
