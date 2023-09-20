@@ -48,7 +48,7 @@
                   # };
                   "/srv" = {
                     mountpoint = "/srv";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                    mountOptions = [ "compress=zstd" "noatime" ];
                   };
                   "/swap" = {
                     mountpoint = "/swap";
