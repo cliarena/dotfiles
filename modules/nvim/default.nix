@@ -23,7 +23,7 @@ pkgs: {
     # ./bufferline.lua
     #./lualine.lua
     ./keymaps.lua
-    #./which-key.lua
+    ./which-key.lua
     #./true-zen.lua
     #./twilight.lua
     #./todo-comments.lua
