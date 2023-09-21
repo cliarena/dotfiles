@@ -53,7 +53,7 @@ pkgs: {
     #    ./rename-state.lua
     ./urlview.lua
     #  ./hologram.lua
-    # ./lspsaga.lua
+    ./lspsaga.lua
     #./glow.lua
   ];
   plugins = with pkgs.vimPlugins; [
