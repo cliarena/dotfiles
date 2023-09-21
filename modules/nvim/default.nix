@@ -10,8 +10,8 @@ pkgs: {
 
   extraLuaConfig = builtins.foldl' (x: y: builtins.readFile y + x) "" [
     ./options.lua
-    #./autopairs.lua
-    #./auto-save.lua
+    ./autopairs.lua
+    ./auto-save.lua
     ./comment.lua
     ./nvim-tree.lua
     ./toggleterm.lua
@@ -33,27 +33,27 @@ pkgs: {
     ./inc-rename.lua
     ./noice.lua
     ./vim-illuminate.lua
-    #./diagnostics.lua
-    #./cmp.lua
+    ./diagnostics.lua
+    ./cmp.lua
     ./treesitter.lua
     ./lsp.lua
     ./lsp_signs.lua
     ./lsp_signature.lua
     ./null-ls.lua
     #./lsp_lines.lua
-    #./aerial.lua
-    #./leap.lua
-    #./flit.lua
+    ./aerial.lua
+    ./leap.lua
+    ./flit.lua
     #./neorg.lua
     ./gitsigns.lua
     ./lastplace.lua
     ./better-escape.lua
-    #./template-string.lua
+    ./template-string.lua
     ./surround.lua
     #    ./rename-state.lua
-    #./urlview.lua
+    ./urlview.lua
     #  ./hologram.lua
-    #./lspsaga.lua
+    ./lspsaga.lua
     #./glow.lua
   ];
   plugins = with pkgs.vimPlugins; [
