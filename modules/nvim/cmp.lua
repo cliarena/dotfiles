@@ -52,10 +52,10 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		["<C-e>"] = cmp.mapping.select_prev_item(),
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+		["<Up>"] = cmp.mapping.select_prev_item(),
+		["<Down>"] = cmp.mapping.select_next_item(),
+		["<C-Up>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+		["<C-Down>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 		--    ["<C-e>"] = cmp.mapping {
@@ -66,9 +66,7 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expandable() then
+			if luasnip.expandable() then
 				luasnip.expand()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
@@ -82,9 +80,7 @@ cmp.setup({
 			"s",
 		}),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
+			if luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			else
 				fallback()
@@ -118,16 +114,16 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "neorg" },
 	},
-	confirm_opts = {
-		behavior = cmp.ConfirmBehavior.Replace,
-		select = false,
-	},
-	window = {
-		documentation = {
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-		},
-	},
-	view = {
-		entries = "native",
-	},
+	--[[ confirm_opts = { ]]
+	--[[ 	behavior = cmp.ConfirmBehavior.Replace, ]]
+	--[[ 	select = false, ]]
+	--[[ }, ]]
+	--[[ window = { ]]
+	--[[ 	documentation = { ]]
+	--[[ 		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, ]]
+	--[[ 	}, ]]
+	--[[ }, ]]
+	--[[ view = { ]]
+	--[[ 	entries = "native", ]]
+	--[[ }, ]]
 })
