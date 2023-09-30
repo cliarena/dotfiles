@@ -308,6 +308,13 @@ local mappings = {
 		A = { "<cmd>ASToggle<CR>", "Auto-Save" },
 		C = { "<cmd>HighlightColorsToggle<CR>", "Highlight Colors" },
 		T = { "<cmd>TodoTrouble<CR>", "Todos" },
+		z = {
+			name = "Zen mode",
+			a = { "<cmd>TZAtaraxis<cr>", "Ataraxis" },
+			f = { "<cmd>TZFocus<cr>", "Focus" },
+			n = { "<cmd>TZNarrow<cr>", "Narrow" },
+			z = { "<cmd>TZMinimalist<cr>", "Minimal" },
+		}
 	},
 }
 
