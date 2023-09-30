@@ -44,7 +44,7 @@ local options = {
 	spelllang = "en",
 	scrolloff = 8, -- lines away from bottom
 	sidescrolloff = 8, -- columns away from side
-	statuscolumn = "%s%{v:relnum?v:relnum:v:lnum}%C", -- align relative number with line number
+	--[[ statuscolumn = "%s%{v:relnum?v:relnum:v:lnum}%C", -- align relative number with line number ]]
 }
 
 for k, v in pairs(options) do
