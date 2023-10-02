@@ -6,7 +6,32 @@ lspconfig.nil_ls.setup({})
 lspconfig.denols.setup({})
 lspconfig.grammarly.setup({})
 lspconfig.jsonls.setup({})
-lspconfig.rust_analyzer.setup({})
+lspconfig.rust_analyzer.setup({
+	settings = {
+    ["rust-analyzer"] = {
+        -- enable clippy on save
+        checkOnSave = {
+          command = "clippy",
+        },
+
+      -- Other Settings ...
+      procMacro = {
+				enable = true,
+        ignored = {
+            leptos_macro = {
+                "server",
+                "component",
+            },
+        },
+      },
+			-- Fix showing ssr blocks as dead code
+			cargo = {
+        features = { "ssr" } -- features = ssr, for LSP support in leptos SSR functions
+      }
+   -- 
+  }
+  }
+})
 lspconfig.jsonls.setup({})
 lspconfig.html.setup({})
 
