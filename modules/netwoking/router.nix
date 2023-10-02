@@ -91,7 +91,9 @@ in {
             iifname vmap { lo : accept, wan0 : jump inbound_wan, lan0 : jump inbound_lan, wlan0 : jump inbound_lan }
           }
           chain forward {
-            type filter hook forward priority 10; policy accept;
+            # FIX: Change this to drop and only accept docker
+            # type filter hook forward priority 10; policy drop;
+            type filter hook forward priority 10; policy accept; # workaround to accept docker. basically like no firewall
 
             ct state vmap { established : accept, related : accept, invalid : drop }
 
