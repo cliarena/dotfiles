@@ -102,6 +102,7 @@ lspconfig.tailwindcss.setup({
 		"typescriptreact",
 		"vue",
 		"svelte",
+		"rust"
 	},
 	init_options = {
 		userLanguages = {
@@ -127,6 +128,7 @@ lspconfig.tailwindcss.setup({
 					'tw={"([^"}]*)',
 					"tw\\.\\w+`([^`]*)",
 					"tw\\(.*?\\)`([^`]*)",
+					"classes([^`]*$)",
 				},
 			},
 			validate = true,
