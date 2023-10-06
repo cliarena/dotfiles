@@ -1,9 +1,10 @@
 { ... }: {
+
   containers.nextcloud = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = "10.10.2.222";
-    localAddress = "10.10.2.555";
+    localAddress = "10.10.2.100";
     # hostAddress6 = "fc00::1";
     # localAddress6 = "fc00::2";
     config = { config, pkgs, ... }: {
@@ -23,7 +24,7 @@
           done
         '';
       };
-      # networking.firewall.allowedTCPPorts = [ 50 ];
+      networking.firewall.allowedTCPPorts = [ 50 ];
 
       # system.stateVersion = "23.05";
 
