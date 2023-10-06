@@ -23,6 +23,8 @@ in {
     ../../modules/pkgs.nix
     ../../modules/chromium.nix
     ../../modules/podman.nix
+    ../../modules/extra_containers.nix
+    ../../containers/nextcloud.nix
   ];
   system.stateVersion = "22.11";
 }
