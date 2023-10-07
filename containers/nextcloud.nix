@@ -5,6 +5,7 @@
     privateNetwork = true;
     hostAddress = "10.10.2.222";
     localAddress = "10.10.2.100";
+    ephemeral = true;
     # hostAddress6 = "fc00::1";
     # localAddress6 = "fc00::2";
     # config = { config, pkgs, ... }: {
@@ -56,8 +57,11 @@
         # ./configuration.nix
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
+        ../modules/pkgs.nix
       ];
 
+      services.x2goserver = { enable = true; };
+      services.openssh.enable = true;
       # environment.systemPackages = with pkgs; [ xterm ];
       services.xserver = {
         enable = true;
@@ -67,7 +71,8 @@
         };
         windowManager.i3 = {
           enable = true;
-          # configFile = ../modules/i3/config;
+          # configFile = import ../modules/i3/default.nix { };
+          configFile = ../modules/i3/config;
         };
       };
       services.xrdp = {

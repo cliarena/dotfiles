@@ -21,6 +21,7 @@
     httpie
     pgcli
     manix # # CLI Searcher for Nix, HM documentation
+    kitty
 
     ### Search ###
     fd # # Search file names
@@ -37,19 +38,19 @@
 
     ### Tools ###
     bat
-    nu_scripts
-    glow
+    # nu_scripts
+    # glow
     unzip
     speedtest-cli
     nmap
     sops
-    musikcube
-    ventoy-bin # multiple Bootable usb drives in one
+    # musikcube
+    # ventoy-bin # multiple Bootable usb drives in one
     pavucontrol
 
-    appimage-run
-    bottles
-    wineWowPackages.waylandFull
+    # appimage-run
+    # bottles
+    # wineWowPackages.waylandFull
   ];
 
 }
