@@ -1,4 +1,4 @@
-{ ... }: {
+{ inputs, ... }: {
 
   containers.nextcloud = {
     autoStart = true;
@@ -45,6 +45,13 @@
         '';
       };
       networking.firewall.allowedTCPPorts = [ 50 ];
+
+      imports = [
+        # ./configuration.nix
+        inputs.nixvim.nixosModules.nixvim
+        { programs.nixvim = import ../modules/nixvim pkgs; }
+      ];
+
       services.xserver = {
         enable = true;
         desktopManager = {
