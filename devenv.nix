@@ -36,6 +36,10 @@ in forAllSystems (system:
           openssl
           cowsay
           libuuid
+
+          # for nix
+          nixfmt
+          nil
         ];
 
         enterShell = ''

@@ -1,8 +1,10 @@
-{ inputs, ... }:
-let inherit (inputs) disko kmonad home-manager;
+{ inputs, pkgs, ... }:
+let inherit (inputs) disko kmonad home-manager nixvim;
 in {
 
   imports = [
+    nixvim.nixosModules.nixvim
+
     disko.nixosModules.disko
     kmonad.nixosModules.default
     home-manager.nixosModules.home-manager
@@ -27,4 +29,5 @@ in {
     ../../containers/nextcloud.nix
   ];
   system.stateVersion = "22.11";
+  programs.nixvim = import ../../modules/nixvim pkgs;
 }

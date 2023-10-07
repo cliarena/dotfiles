@@ -21,5 +21,5 @@
     ../../modules/home/bottom.nix
   ];
   programs.home-manager.enable = true;
-  programs.neovim = import ../../modules/nvim pkgs;
+  # programs.neovim = import ../../modules/nvim pkgs;
 }
