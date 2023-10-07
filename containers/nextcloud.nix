@@ -44,6 +44,12 @@
           done
         '';
       };
+      systemd.services.vnc = {
+        wantedBy = [ "multi-user.target" ];
+        script = ''
+          ${pkgs.tigervnc}/bin/vncserver
+        '';
+      };
       networking.firewall.allowedTCPPorts = [ 50 ];
 
       imports = [
@@ -52,17 +58,22 @@
         { programs.nixvim = import ../modules/nixvim pkgs; }
       ];
 
+      # environment.systemPackages = with pkgs; [ xterm ];
       services.xserver = {
         enable = true;
         desktopManager = {
           xterm.enable = false;
-          xfce.enable = true;
+          xfce.enable = false;
+        };
+        windowManager.i3 = {
+          enable = true;
+          # configFile = ../modules/i3/config;
         };
       };
       services.xrdp = {
         enable = true;
         openFirewall = true;
-        defaultWindowManager = "startxfce4";
+        defaultWindowManager = "i3";
       };
       users.users.test = {
         isNormalUser = true;
