@@ -6,6 +6,12 @@
     hostAddress = "10.10.2.222";
     localAddress = "10.10.2.100";
     ephemeral = true;
+    bindMounts = {
+      "/nix/store" = {
+        hostPath = "/nix/store";
+        isReadOnly = true;
+      };
+    };
     # hostAddress6 = "fc00::1";
     # localAddress6 = "fc00::2";
     # config = { config, pkgs, ... }: {
