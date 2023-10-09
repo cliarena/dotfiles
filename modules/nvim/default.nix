@@ -132,6 +132,7 @@ pkgs: {
 
     ## DAP
     trouble-nvim # # Show Diagnostics in a window
+    # chrome-remote-nvim # TODO: add to nix
 
     ## Note Taking
     ## mind-nvim
