@@ -1,4 +1,13 @@
 require("noice").setup({
+	    routes = {
+      {
+        filter = {
+          event = "msg_show",
+          kind = "",
+        },
+        opts = { skip = true },
+      },
+    },
 	cmdline = {
 		enabled = true, -- enables the Noice cmdline UI
 		view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
@@ -23,7 +32,7 @@ require("noice").setup({
 	messages = {
 		-- NOTE: If you enable messages, then the cmdline is enabled automatically.
 		-- This is a current Neovim limitation.
-		enabled = true, -- enables the Noice messages UI
+		enabled = false, -- enables the Noice messages UI
 		view = "notify", -- default view for messages
 		view_error = "notify", -- view for errors
 		view_warn = "notify", -- view for warnings
@@ -31,7 +40,7 @@ require("noice").setup({
 		view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
 	},
 	popupmenu = {
-		enabled = true, -- enables the Noice popupmenu UI
+		enabled = false, -- enables the Noice popupmenu UI
 		---@type 'nui'|'cmp'
 		backend = "nui", -- backend to use to show regular cmdline completions
 		---@type NoicePopupmenuItemKind|false
@@ -92,7 +101,7 @@ require("noice").setup({
 		-- event is always "notify" and kind can be any log level as a string
 		-- The default routes will forward notifications to nvim-notify
 		-- Benefit of using Noice for this is the routing and consistent history view
-		enabled = true,
+		enabled = false,
 		view = "notify",
 	},
 	lsp = {
@@ -135,7 +144,7 @@ require("noice").setup({
 		},
 		message = {
 			-- Messages shown by lsp servers
-			enabled = true,
+			enabled = false,
 			view = "notify",
 			opts = {},
 		},
