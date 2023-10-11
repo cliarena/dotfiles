@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, nixpkgs, ... }: {
 
   containers.nextcloud = {
     autoStart = true;
@@ -43,6 +43,12 @@
     # # services.resolved.enable = true;
     # };
     config = { config, pkgs, ... }: {
+      nix.extraOptions = ''
+        experimental-features = nix-command flakes
+        keep-outputs = true
+        keep-derivations = true
+        warn-dirty = false
+      '';
       systemd.services.hello = {
         wantedBy = [ "multi-user.target" ];
         script = ''
