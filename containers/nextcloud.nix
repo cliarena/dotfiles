@@ -60,7 +60,7 @@
       systemd.services.vnc = {
         wantedBy = [ "multi-user.target" ];
         script = ''
-          ${pkgs.tigervnc}/bin/vncserver
+          ${pkgs.wayvnc}/bin/wayvnc
         '';
       };
       networking.firewall.allowedTCPPorts = [ 50 ];
@@ -75,18 +75,17 @@
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
       # environment.systemPackages = with pkgs; [ xterm ];
-      services.xserver = {
-        enable = true;
-        desktopManager = {
-          xterm.enable = false;
-          xfce.enable = false;
-        };
-        windowManager.i3 = {
+        /* windowManager.i3 = { */
+          /* enable = true; */
+          # configFile = import ../modules/i3/default.nix { };
+          /* configFile = ../modules/i3/config; */
+        /* }; */
+      /* }; */
+        programs.hyprland = {
           enable = true;
           # configFile = import ../modules/i3/default.nix { };
-          configFile = ../modules/i3/config;
+          /* configFile = ../modules/i3/config; */
         };
-      };
       services.xrdp = {
         enable = true;
         openFirewall = true;
