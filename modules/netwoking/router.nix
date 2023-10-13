@@ -68,7 +68,7 @@ in {
         flush ruleset
 
         define LAN_SPACE = 10.10.2.0/24
-        define WLAN_SPACE = 10.10.3.0/24
+        define WLAN_SPACE = 10.10.5.0/24
         define LAN6_SPACE = fd00::/64
 
         table inet global {
