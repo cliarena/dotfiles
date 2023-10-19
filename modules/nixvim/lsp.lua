@@ -128,7 +128,12 @@ lspconfig.tailwindcss.setup({
 					'tw={"([^"}]*)',
 					"tw\\.\\w+`([^`]*)",
 					"tw\\(.*?\\)`([^`]*)",
-					"classes([^`]*$)",
+					--[[ "classes([^`]*$)", ]]
+					--[[ 'classes[^]+?(?:"))', ]]
+					--[[ "classes([^)]*)", ]]
+					--[[ 'classes\\("([^)]*)', ]]
+					--[[ 'classes\\(\\s*"([^,)]*)' ]]
+					'classes\\(\\s*"([^"]*)'
 				},
 			},
 			validate = true,
