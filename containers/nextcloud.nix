@@ -42,7 +42,8 @@
     # # };
     # # services.resolved.enable = true;
     # };
-    config = { config, pkgs, ... }: {
+    config = { config, pkgs, ... }: let inherit (inputs) home-manager; in{
+
       nix.extraOptions = ''
         experimental-features = nix-command flakes
         keep-outputs = true
@@ -70,6 +71,30 @@
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
         ../modules/pkgs.nix
+    home-manager.nixosModules.home-manager
+    {
+      inherit nixpkgs;
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.x = { 
+xsession.windowManager.i3= {
+enable = true;
+  extraConfig = "## indeed";
+        };
+
+  home = {
+    stateVersion = "22.11";
+    username = "x";
+    homeDirectory = "/home/x";
+  };
+  };
+      # Optionally, use home-manager.extraSpecialArgs to pass
+      # arguments to home.nix
+      home-manager.extraSpecialArgs = {
+        inherit inputs nixpkgs home-manager ;
+     
+      };
+    }
       ];
 
       services.x2goserver = { enable = true; };
@@ -91,7 +116,7 @@
         openFirewall = true;
         defaultWindowManager = "i3";
       };
-      users.users.test = {
+      users.users.x = {
         isNormalUser = true;
         extraGroups = [ "wheel" "docker" ];
         initialPassword = "nixos";
