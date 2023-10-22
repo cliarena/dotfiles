@@ -42,7 +42,7 @@
     # # };
     # # services.resolved.enable = true;
     # };
-    config = { config, pkgs, ... }: let inherit (inputs) home-manager; in{
+    config = { config, pkgs, ... }: let inherit (inputs) home-manager hyprland; in{
 
       nix.extraOptions = ''
         experimental-features = nix-command flakes
@@ -77,9 +77,14 @@
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.x = { 
+    /*   imports = [ */
+    /* hyprland.homeManagerModules.default */
+    /* ../modules/home/hyprland */
+    /**/
+    /*   ]; */
 xsession.windowManager.i3= {
 enable = true;
-  extraConfig = "## indeed";
+  /* extraConfig = import ../modules/i3 {}; */
         };
 
   home = {
@@ -100,17 +105,17 @@ enable = true;
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
       # environment.systemPackages = with pkgs; [ xterm ];
-        /* windowManager.i3 = { */
+        services.xserver.windowManager.i3 = {
+          /* enable = true; */
+          # configFile = import ../modules/i3/default.nix { };
+          /* configFile = ../modules/i3/config; */
+        };
+      /* }; */
+        /* programs.hyprland = { */
           /* enable = true; */
           # configFile = import ../modules/i3/default.nix { };
           /* configFile = ../modules/i3/config; */
         /* }; */
-      /* }; */
-        programs.hyprland = {
-          enable = true;
-          # configFile = import ../modules/i3/default.nix { };
-          /* configFile = ../modules/i3/config; */
-        };
       services.xrdp = {
         enable = true;
         openFirewall = true;
