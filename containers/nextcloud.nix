@@ -71,43 +71,43 @@
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
         ../modules/pkgs.nix
-    home-manager.nixosModules.home-manager
-    {
-      inherit nixpkgs;
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.x = { 
-    /*   imports = [ */
-    /* hyprland.homeManagerModules.default */
-    /* ../modules/home/hyprland */
-    /**/
-    /*   ]; */
-xsession.windowManager.i3= {
-enable = true;
-  /* extraConfig = import ../modules/i3 {}; */
-        };
-
-  home = {
-    stateVersion = "22.11";
-    username = "x";
-    homeDirectory = "/home/x";
-  };
-  };
-      # Optionally, use home-manager.extraSpecialArgs to pass
-      # arguments to home.nix
-      home-manager.extraSpecialArgs = {
-        inherit inputs nixpkgs home-manager ;
-     
-      };
-    }
+/*     home-manager.nixosModules.home-manager */
+/*     { */
+/*       inherit nixpkgs; */
+/*       home-manager.useGlobalPkgs = true; */
+/*       home-manager.useUserPackages = true; */
+/*       home-manager.users.x = {  */
+/*       imports = [ */
+/*     hyprland.homeManagerModules.default */
+/*     ../modules/home/hyprland */
+/**/
+/*       ]; */
+/* xsession.windowManager.i3= { */
+/* enable = true; */
+/*   extraConfig = import ../modules/i3 {}; */
+/*         }; */
+/**/
+/*   home = { */
+/*     stateVersion = "22.11"; */
+/*     username = "x"; */
+/*     homeDirectory = "/home/x"; */
+/*   }; */
+/*   }; */
+/*       # Optionally, use home-manager.extraSpecialArgs to pass */
+/*       # arguments to home.nix */
+/*       home-manager.extraSpecialArgs = { */
+/*         inherit inputs nixpkgs home-manager ; */
+/*       */
+/*       }; */
+/*     } */
       ];
 
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
-      # environment.systemPackages = with pkgs; [ xterm ];
+      environment.systemPackages = with pkgs; [ xterm ];
         services.xserver.windowManager.i3 = {
-          /* enable = true; */
-          # configFile = import ../modules/i3/default.nix { };
+          enable = true;
+           configFile = import ../modules/i3/default.nix { };
           /* configFile = ../modules/i3/config; */
         };
       /* }; */
