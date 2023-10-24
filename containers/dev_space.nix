@@ -65,6 +65,7 @@
         '';
       };
       networking.firewall.allowedTCPPorts = [ 50 ];
+      networking.resolvconf.enable = pkgs.lib.mkForce false;
 
       imports = [
         # ./configuration.nix
