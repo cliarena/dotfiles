@@ -1,6 +1,6 @@
 { inputs, nixpkgs, ... }: {
 
-  containers.nextcloud = {
+  containers.dev_space = {
     autoStart = true;
     /* privateNetwork = true; */
     /* hostAddress = "10.10.0.10"; */
