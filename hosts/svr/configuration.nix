@@ -16,6 +16,7 @@ in {
     ../../modules/netwoking/router.nix
     ../../modules/auditd.nix
     ../../modules/hashi_stack
+    ../../containers/dev_space.nix
   ];
   system.stateVersion = "22.11";
 }
