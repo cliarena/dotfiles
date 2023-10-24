@@ -2,9 +2,9 @@
 
   containers.nextcloud = {
     autoStart = true;
-    privateNetwork = true;
-    hostAddress = "10.10.2.222";
-    localAddress = "10.10.2.100";
+    /* privateNetwork = true; */
+    /* hostAddress = "10.10.0.10"; */
+    /* localAddress = "10.10.0.100"; */
     ephemeral = true;
     # bindMounts = {
     # "/nix/store" = {
