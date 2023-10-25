@@ -52,7 +52,7 @@ in {
     wireless.enable = true;
     bridges.br0.interfaces = [ "wan0" "wlan0" ];
     # nameservers = [ "1.1.1.1" ];
-    resolvconf.enable = pkgs.lib.mkForce true;
+    resolvconf.enable = pkgs.lib.mkForce true; # must be true. for nixos-containers to work 
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
     firewall = {
