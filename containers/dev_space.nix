@@ -19,9 +19,9 @@ in {
 
   containers.dev_space = {
     autoStart = true;
-    privateNetwork = true;
-    hostAddress = "10.10.0.10";
-    localAddress = "10.10.0.100";
+    /* privateNetwork = true; */
+    /* hostAddress = "10.10.0.10"; */
+    /* localAddress = "10.10.0.100"; */
     ephemeral = true;
     # bindMounts = {
     # "/nix/store" = {
@@ -87,44 +87,7 @@ in {
   services.udev.extraRules = ''
     KERNEL=="e*", NAME="wan"
   '';
-  # Disable if this server is a dns server
-  services.resolved.enable = !is_dns_server;
 
-  networking = {
-    hostName = user;
-    extraHosts = "127.0.0.1 local.cliarena.com";
-    useDHCP = false;
-    useNetworkd = true;
-    # nameservers = [ "1.1.1.1" ];
-    resolvconf.enable = pkgs.lib.mkForce false;
-    dhcpcd.extraConfig = "nohook resolv.conf";
-    networkmanager.dns = "none";
-    # useHostResolvConf = pkgs.lib.mkForce false;
-    firewall = {
-      enable = false;
-      interfaces.wan = {
-        allowedTCPPorts = tcp_ports;
-        allowedUDPPorts = udp_ports;
-      };
-    };
-  };
-  systemd = {
-    network = {
-      enable = true;
-      wait-online.anyInterface = true;
-      networks = {
-        "20-wired" = {
-          enable = true;
-          name = "wan";
-          address = wan_ips;
-          gateway = wan_gateway;
-          dns = dns_server;
-          # if you want dhcp uncomment this and comment address,gateway and dns
-          # DHCP = "ipv4";
-        };
-      };
-    };
-  };
       imports = [
         # ./configuration.nix
         inputs.nixvim.nixosModules.nixvim
