@@ -44,9 +44,7 @@ in {
     };
 
   };
-environment.etc = {
-  "resolv.conf".text = "nameserver 127.0.0.1";
-};
+
   networking = {
     hostName = user;
     useDHCP = false;
@@ -54,7 +52,7 @@ environment.etc = {
     wireless.enable = true;
     bridges.br0.interfaces = [ "wan0" "wlan0" ];
     # nameservers = [ "1.1.1.1" ];
-    /* resolvconf.enable = true; */
+    resolvconf.enable = true;
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
     firewall = {
