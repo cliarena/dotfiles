@@ -18,7 +18,7 @@
 in {
 
   containers.hello = {
-    autoStart = true;
+    /* autoStart = true; */
     /* privateNetwork = true; */
     /* hostAddress = "10.10.0.10"; */
     /* localAddress = "10.10.0.100"; */
