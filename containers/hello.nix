@@ -15,7 +15,6 @@
     tcp_ports = with ports; [ dns ssh 8080 ];
     udp_ports = with ports; [ dns ];
 
-  in
 in {
 
   containers.hello = {
