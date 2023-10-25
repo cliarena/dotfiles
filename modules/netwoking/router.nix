@@ -52,7 +52,7 @@ in {
     wireless.enable = true;
     bridges.br0.interfaces = [ "wan0" "wlan0" ];
     # nameservers = [ "1.1.1.1" ];
-    resolvconf.enable = pkgs.lib.mkForce false;
+    resolvconf.enable = pkgs.lib.mkForce true;
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
     firewall = {
