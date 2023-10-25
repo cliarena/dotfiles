@@ -64,14 +64,25 @@
           ${pkgs.wayvnc}/bin/wayvnc
         '';
       };
-      networking.firewall.allowedTCPPorts = [ 50 ];
-      networking.resolvconf.enable = pkgs.lib.mkForce false;
+      /* networking.firewall.allowedTCPPorts = [ 50 ]; */
+      /* networking.resolvconf.enable = pkgs.lib.mkForce false; */
+    networking = {
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [ 22 ];
+      };
+      # Use systemd-resolved inside the container
+      useHostResolvConf = mkForce false;
+    };
+    
+    services.resolved.enable = true;
 
       imports = [
         # ./configuration.nix
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
         ../modules/pkgs.nix
+        
 /*     home-manager.nixosModules.home-manager */
 /*     { */
 /*       inherit nixpkgs; */
