@@ -71,6 +71,14 @@
         enable = true;
         allowedTCPPorts = [ 22 ];
       };
+      hostName = "x";
+      extraHosts = "127.0.0.1 local.cliarena.com";
+      useDHCP = false;
+      useNetworkd = true;
+      # nameservers = [ "1.1.1.1" ];
+      resolvconf.enable = pkgs.lib.mkForce false;
+      dhcpcd.extraConfig = "nohook resolv.conf";
+      networkmanager.dns = "none";
       # Use systemd-resolved inside the container
       useHostResolvConf = mkForce false;
     };
