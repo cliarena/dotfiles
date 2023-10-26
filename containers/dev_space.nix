@@ -72,7 +72,7 @@ in {
         /*   hostPath = "/home/admin/Downloads"; */
         /*   isReadOnly = false; */
         /* }; */
-        /* "/tmp/.X11-unix".hostPath = "/tmp/.X11-unix"; */
+        "/tmp/.X11-unix".hostPath = "/tmp/.X11-unix";
         "/dev/dri" = {
           hostPath = "/dev/dri";
           isReadOnly = false;
