@@ -128,11 +128,14 @@ in {
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
       environment.systemPackages = with pkgs; [ xterm ];
-        services.xserver.windowManager.i3 = {
-          enable = true;
-           configFile = import ../modules/i3/default.nix { };
-          /* configFile = ../modules/i3/config; */
-        };
+      services.xserver.enable = true;
+      services.xserver.videoDrivers = [ "amdgpu" ];
+    services.xserver.windowManager.i3 = {
+      enable = true;
+       configFile = import ../modules/i3/default.nix { };
+      /* configFile = ../modules/i3/config; */
+    };
+
       /* }; */
         /* programs.hyprland = { */
           /* enable = true; */
