@@ -18,9 +18,15 @@ in {
     ../../modules/hashi_stack
     ../../containers/dev_space.nix
     ../../containers/hello.nix
+    ../../modules/pkgs.nix
   ];
 
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
+    services.xserver.windowManager.i3 = {
+      enable = true;
+       configFile = import ../../modules/i3/default.nix { };
+      /* configFile = ../modules/i3/config; */
+    };
   system.stateVersion = "22.11";
 }
