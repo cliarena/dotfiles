@@ -59,6 +59,30 @@ in {
     # # };
     # # services.resolved.enable = true;
     # };
+      bindMounts = {
+        /* "/home/.mozilla" = { */
+        /*   hostPath = "/home/browser/.mozilla"; */
+        /*   isReadOnly = false; */
+        /* }; */
+        /* "/home/.cache" = { */
+        /*   hostPath = "/home/browser/.cache"; */
+        /*   isReadOnly = false; */
+        /* }; */
+        /* "/home/Downloads" = { */
+        /*   hostPath = "/home/admin/Downloads"; */
+        /*   isReadOnly = false; */
+        /* }; */
+        /* "/tmp/.X11-unix".hostPath = "/tmp/.X11-unix"; */
+        "/dev/dri" = {
+          hostPath = "/dev/dri";
+          isReadOnly = false;
+        };
+        "/dev/shm" = {
+          hostPath = "/dev/shm";
+          isReadOnly = false;
+        };
+      };
+      /* extraFlags = [ "-E DISPLAY=:0" "--resolv-conf=replace-uplink" ]; */
     config = { config, pkgs, ... }: let inherit (inputs) home-manager hyprland; in{
 
       nix.extraOptions = ''
@@ -93,6 +117,7 @@ in {
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
         ../modules/pkgs.nix
+        ../modules/hardware/amd.nix
         
 /*     home-manager.nixosModules.home-manager */
 /*     { */
