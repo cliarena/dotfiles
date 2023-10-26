@@ -107,10 +107,8 @@ in {
       };
       /* networking.firewall.allowedTCPPorts = [ 50 ]; */
       /* networking.resolvconf.enable = pkgs.lib.mkForce false; */
+system.stateVersion = "22.11"
 
-  services.udev.extraRules = ''
-    KERNEL=="e*", NAME="wan"
-  '';
 
       imports = [
         # ./configuration.nix
@@ -153,8 +151,8 @@ in {
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
       environment.systemPackages = with pkgs; [ xterm ];
-      services.xserver.enable = true;
-      services.xserver.videoDrivers = [ "amdgpu" ];
+      /* services.xserver.enable = true; */
+      /* services.xserver.videoDrivers = [ "amdgpu" ]; */
     services.xserver.windowManager.i3 = {
       enable = true;
        configFile = import ../modules/i3/default.nix { };
