@@ -117,7 +117,7 @@ in {
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
         ../modules/pkgs.nix
-        ../modules/hardware/amd.nix
+        /* ../modules/hardware/amd.nix */
         
 /*     home-manager.nixosModules.home-manager */
 /*     { */
@@ -149,7 +149,7 @@ in {
 /*       }; */
 /*     } */
       ];
-
+        hardware.opengl.enable = true;
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
       environment.systemPackages = with pkgs; [ xterm ];
