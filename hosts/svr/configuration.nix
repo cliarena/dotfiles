@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 let inherit (inputs) sops-nix disko;
 in {
   imports = [
