@@ -107,7 +107,7 @@ in {
       };
       /* networking.firewall.allowedTCPPorts = [ 50 ]; */
       /* networking.resolvconf.enable = pkgs.lib.mkForce false; */
-system.stateVersion = "22.11"
+system.stateVersion = "22.11";
 
 
       imports = [
