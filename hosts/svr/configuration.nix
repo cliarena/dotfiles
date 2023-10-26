@@ -19,5 +19,8 @@ in {
     ../../containers/dev_space.nix
     ../../containers/hello.nix
   ];
+
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
   system.stateVersion = "22.11";
 }
