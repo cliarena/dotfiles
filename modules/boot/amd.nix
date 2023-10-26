@@ -24,6 +24,12 @@
       "net.ipv4.conf.all.forwarding" = true;
       "net.ipv6.conf.all.forwarding" = true;
     };
+
+    loader = {
+      timeout = 1;
+      efi = { canTouchEfiVariables = true; };
+      systemd-boot.enable = true;
+    };
   };
 
 }
