@@ -115,6 +115,7 @@ system.stateVersion = "22.11";
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
         ../modules/pkgs.nix
+        ../modules/gnome.nix
         /* ../modules/hardware/amd.nix */
         
 /*     home-manager.nixosModules.home-manager */
@@ -153,11 +154,11 @@ system.stateVersion = "22.11";
       environment.systemPackages = with pkgs; [ xterm ];
       /* services.xserver.enable = true; */
       /* services.xserver.videoDrivers = [ "amdgpu" ]; */
-    services.xserver.windowManager.i3 = {
-      enable = true;
-       configFile = import ../modules/i3/default.nix { };
-      /* configFile = ../modules/i3/config; */
-    };
+    /* services.xserver.windowManager.i3 = { */
+    /*   enable = true; */
+    /*    configFile = import ../modules/i3/default.nix { }; */
+    /* configFile = ../modules/i3/config; */ 
+    /* }; */
 
       /* }; */
         /* programs.hyprland = { */
