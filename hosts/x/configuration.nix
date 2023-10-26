@@ -11,7 +11,7 @@ in {
     ../../modules/nix_config.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/swap.nix
-    ../../modules/boot.nix
+    ../../modules/boot/intel.nix
     ../../modules/users.nix
     ../../modules/fonts
     ../../modules/video_acceleration.nix

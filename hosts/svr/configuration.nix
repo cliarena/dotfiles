@@ -8,7 +8,7 @@ in {
     ../../modules/nix_config.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/swap.nix
-    ../../modules/boot.nix
+    ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
     ../../modules/users.nix
     ../../modules/i18n.nix
