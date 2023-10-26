@@ -82,7 +82,7 @@ in {
           isReadOnly = false;
         };
       };
-      /* extraFlags = [ "-E DISPLAY=:0" "--resolv-conf=replace-uplink" ]; */
+      extraFlags = [ "-E DISPLAY=:0" "--resolv-conf=replace-uplink" ]; 
     config = { config, pkgs, ... }: let inherit (inputs) home-manager hyprland; in{
 
       nix.extraOptions = ''

@@ -21,6 +21,7 @@ in {
     ../../modules/pkgs.nix
   ];
 
+      environment.systemPackages = with pkgs; [ xterm xorg.xhost ];
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
     services.xserver.windowManager.i3 = {
