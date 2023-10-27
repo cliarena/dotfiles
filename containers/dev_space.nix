@@ -116,7 +116,7 @@ system.stateVersion = "22.11";
         { programs.nixvim = import ../modules/nixvim pkgs; }
         /* ../modules/pkgs.nix */
         /* ../modules/gnome.nix */
-        /* ../modules/hardware/amd.nix */
+        ../modules/hardware/amd.nix
         
 /*     home-manager.nixosModules.home-manager */
 /*     { */
@@ -129,7 +129,7 @@ system.stateVersion = "22.11";
 /*     ../modules/home/hyprland */
 /**/
 /*       ]; */
-xsession.windowManager.i3= {
+services.xserver.windowManager.i3= {
 enable = true;
   extraConfig = import ../modules/i3 {};
         };
@@ -148,7 +148,7 @@ enable = true;
 /*       }; */
 /*     } */
       ];
-        hardware.opengl.enable = true;
+        /* hardware.opengl.enable = true; */
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
       environment.systemPackages = with pkgs; [ xterm kitty chromium];
@@ -166,11 +166,11 @@ enable = true;
           # configFile = import ../modules/i3/default.nix { };
           /* configFile = ../modules/i3/config; */
         /* }; */
-      /* services.xrdp = { */
-      /*   enable = true; */
-      /*   openFirewall = true; */
-      /*   defaultWindowManager = "i3"; */
-      /* }; */
+      services.xrdp = {
+        enable = true;
+        openFirewall = true;
+        defaultWindowManager = "i3";
+      };
       users.users.x = {
         isNormalUser = true;
         extraGroups = [ "wheel" "docker" ];
