@@ -151,7 +151,7 @@ enable = true;
         /* hardware.opengl.enable = true; */
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
-      environment.systemPackages = with pkgs; [ xterm kitty chromium];
+      environment.systemPackages = with pkgs; [ xterm kitty chromium glxinfo ];
       /* services.xserver.enable = true; */
       /* services.xserver.videoDrivers = [ "amdgpu" ]; */
     /* services.xserver.windowManager.i3 = { */
