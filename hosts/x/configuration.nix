@@ -26,7 +26,7 @@ in {
     ../../modules/chromium.nix
     ../../modules/podman.nix
     ../../modules/extra_containers.nix
-  ];
+    ../../containers/dev_space-intel.nix  ];
   system.stateVersion = "22.11";
   programs.nixvim = import ../../modules/nixvim pkgs;
 }
