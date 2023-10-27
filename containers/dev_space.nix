@@ -128,7 +128,7 @@ system.stateVersion = "22.11";
 /*     hyprland.homeManagerModules.default */
 /*     ../modules/home/hyprland */
 /**/
-/*       ]; */
+      ];
 services.xserver.windowManager.i3= {
 enable = true;
   extraConfig = import ../modules/i3 {};
@@ -147,7 +147,7 @@ enable = true;
 /*       */
 /*       }; */
 /*     } */
-      ];
+      /* ]; */
         /* hardware.opengl.enable = true; */
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
