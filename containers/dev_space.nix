@@ -131,7 +131,7 @@ system.stateVersion = "22.11";
       ];
 services.xserver.windowManager.i3= {
 enable = true;
-  extraConfig = import ../modules/i3 {};
+  configFile = import ../modules/i3 {};
         };
 /**/
 /*   home = { */
