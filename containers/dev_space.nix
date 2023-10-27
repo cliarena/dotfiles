@@ -99,12 +99,12 @@ in {
           done
         '';
       };
-      systemd.services.vnc = {
-        wantedBy = [ "multi-user.target" ];
-        script = ''
-          ${pkgs.wayvnc}/bin/wayvnc
-        '';
-      };
+      /* systemd.services.vnc = { */
+      /*   wantedBy = [ "multi-user.target" ]; */
+      /*   script = '' */
+      /*     ${pkgs.wayvnc}/bin/wayvnc */
+      /*   ''; */
+      /* }; */
       /* networking.firewall.allowedTCPPorts = [ 50 ]; */
       /* networking.resolvconf.enable = pkgs.lib.mkForce false; */
 system.stateVersion = "22.11";
@@ -114,8 +114,8 @@ system.stateVersion = "22.11";
         # ./configuration.nix
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
-        ../modules/pkgs.nix
-        ../modules/gnome.nix
+        /* ../modules/pkgs.nix */
+        /* ../modules/gnome.nix */
         /* ../modules/hardware/amd.nix */
         
 /*     home-manager.nixosModules.home-manager */
@@ -129,10 +129,10 @@ system.stateVersion = "22.11";
 /*     ../modules/home/hyprland */
 /**/
 /*       ]; */
-/* xsession.windowManager.i3= { */
-/* enable = true; */
-/*   extraConfig = import ../modules/i3 {}; */
-/*         }; */
+xsession.windowManager.i3= {
+enable = true;
+  extraConfig = import ../modules/i3 {};
+        };
 /**/
 /*   home = { */
 /*     stateVersion = "22.11"; */
@@ -151,7 +151,7 @@ system.stateVersion = "22.11";
         hardware.opengl.enable = true;
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
-      environment.systemPackages = with pkgs; [ xterm ];
+      environment.systemPackages = with pkgs; [ xterm kitty chromium];
       /* services.xserver.enable = true; */
       /* services.xserver.videoDrivers = [ "amdgpu" ]; */
     /* services.xserver.windowManager.i3 = { */
@@ -166,11 +166,11 @@ system.stateVersion = "22.11";
           # configFile = import ../modules/i3/default.nix { };
           /* configFile = ../modules/i3/config; */
         /* }; */
-      services.xrdp = {
-        enable = true;
-        openFirewall = true;
-        defaultWindowManager = "i3";
-      };
+      /* services.xrdp = { */
+      /*   enable = true; */
+      /*   openFirewall = true; */
+      /*   defaultWindowManager = "i3"; */
+      /* }; */
       users.users.x = {
         isNormalUser = true;
         extraGroups = [ "wheel" "docker" ];
