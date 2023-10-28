@@ -42,7 +42,8 @@ in {
         ../modules/pkgs.nix
         ../modules/chromium.nix
         ../modules/hardware/amd.nix
-        
+        ../modules/users.nix
+
     home-manager.nixosModules.home-manager
     {
       inherit nixpkgs;
@@ -81,12 +82,6 @@ in {
         enable = true;
         openFirewall = true;
         defaultWindowManager = "i3";
-      };
-      users.users.x = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" "docker" ];
-        initialPassword = "nixos";
-        # hashedPassword = "${builtins.readFile ./hpass}";
       };
     };
   };
