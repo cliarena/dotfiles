@@ -118,36 +118,37 @@ system.stateVersion = "22.11";
         /* ../modules/gnome.nix */
         ../modules/hardware/intel.nix
         
-/*     home-manager.nixosModules.home-manager */
-/*     { */
-/*       inherit nixpkgs; */
-/*       home-manager.useGlobalPkgs = true; */
-/*       home-manager.useUserPackages = true; */
-/*       home-manager.users.x = {  */
-/*       imports = [ */
-/*     hyprland.homeManagerModules.default */
-/*     ../modules/home/hyprland */
-/**/
+    home-manager.nixosModules.home-manager
+    {
+      inherit nixpkgs;
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.x = { 
+      imports = [
+    hyprland.homeManagerModules.default
+    /* ../modules/home/hyprland */
+    ../modules/home/i3
+
       ];
-    services.xserver.windowManager.i3 = {
-        enable = true;
-        configFile = import ../modules/i3 {};
-        };
-/**/
-/*   home = { */
-/*     stateVersion = "22.11"; */
-/*     username = "x"; */
-/*     homeDirectory = "/home/x"; */
-/*   }; */
-/*   }; */
-/*       # Optionally, use home-manager.extraSpecialArgs to pass */
-/*       # arguments to home.nix */
-/*       home-manager.extraSpecialArgs = { */
-/*         inherit inputs nixpkgs home-manager ; */
-/*       */
-/*       }; */
-/*     } */
-      /* ]; */
+    /* services.xserver.windowManager.i3 = { */
+    /*     enable = true; */
+    /*     configFile = import ../modules/i3 {}; */
+    /*     }; */
+
+  home = {
+    stateVersion = "22.11";
+    username = "x";
+    homeDirectory = "/home/x";
+  };
+  };
+      # Optionally, use home-manager.extraSpecialArgs to pass
+      # arguments to home.nix
+      home-manager.extraSpecialArgs = {
+        inherit inputs nixpkgs home-manager ;
+     
+      };
+    }
+      ];
         /* hardware.opengl.enable = true; */
       services.x2goserver = { enable = true; };
       services.openssh.enable = true;
