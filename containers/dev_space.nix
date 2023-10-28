@@ -26,6 +26,7 @@ in {
         is_dns_server = false; # for testing hashi_stack
         dns_server = wan_gateway;
         dns_extra_hosts = "";
+        ssh_authorized_keys = [];
         ports = {
           dns = 53;
           ssh = 22;
