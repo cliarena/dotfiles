@@ -35,6 +35,7 @@ in {
       system.stateVersion = "22.11";
 
 
+      _module.args = inherit host;
       imports = [
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
