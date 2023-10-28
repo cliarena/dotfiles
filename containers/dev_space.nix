@@ -1,20 +1,4 @@
 { inputs, nixpkgs, ... }: let
-  host = rec{
-    user = "x";
-    wan_ips = [ "10.10.0.100/24" ];
-    wan_gateway = [ "10.10.0.10" ];
-    is_dns_server = false; # for testing hashi_stack
-    dns_server = wan_gateway;
-    dns_extra_hosts = "";
-    ports = {
-
-      dns = 53;
-      ssh = 22;
-    };
-    # open the least amount possible
-    tcp_ports = with ports; [ dns ssh 8080 ];
-    udp_ports = with ports; [ dns ];
-  };
 
 in {
 
@@ -35,7 +19,22 @@ in {
       system.stateVersion = "22.11";
 
 
-      _module.args = [ host ];
+      _module.args.host =  rec {
+        user = "x";
+        wan_ips = [ "10.10.0.100/24" ];
+        wan_gateway = [ "10.10.0.10" ];
+        is_dns_server = false; # for testing hashi_stack
+        dns_server = wan_gateway;
+        dns_extra_hosts = "";
+        ports = {
+          dns = 53;
+          ssh = 22;
+        };
+        # open the least amount possible
+        tcp_ports = with ports; [ dns ssh 8080 ];
+        udp_ports = with ports; [ dns ];
+      };
+
       imports = [
         inputs.nixvim.nixosModules.nixvim
         { programs.nixvim = import ../modules/nixvim pkgs; }
