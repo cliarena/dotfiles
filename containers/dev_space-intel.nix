@@ -1,5 +1,5 @@
 { inputs, nixpkgs, ... }: let
-  
+  host = rec{
     user = "x";
     wan_ips = [ "10.10.0.100/24" ];
     wan_gateway = [ "10.10.0.10" ];
@@ -14,6 +14,7 @@
     # open the least amount possible
     tcp_ports = with ports; [ dns ssh 8080 ];
     udp_ports = with ports; [ dns ];
+  };
 
 in {
 
@@ -83,7 +84,7 @@ in {
       /*   }; */
       /* }; */
       extraFlags = [ "-E DISPLAY=:10" "--resolv-conf=replace-uplink" ]; 
-    config = { config, pkgs, ... }: let inherit (inputs) home-manager hyprland; in{
+    config = { config, pkgs, ... }: let inherit (inputs) home-manager sops-nix ; in{
 
       nix.extraOptions = ''
         experimental-features = nix-command flakes
@@ -117,6 +118,7 @@ system.stateVersion = "22.11";
         /* ../modules/pkgs.nix */
         /* ../modules/gnome.nix */
         ../modules/hardware/intel.nix
+        ../modules/fonts
         
     home-manager.nixosModules.home-manager
     {
@@ -127,8 +129,16 @@ system.stateVersion = "22.11";
       imports = [
     /* hyprland.homeManagerModules.default */
     /* ../modules/home/hyprland */
+    sops-nix.homeManagerModules.sops
+    ../hosts/x/sops.nix
     ../modules/home/i3
-
+    ../modules/home/git.nix
+    ../modules/home/lazygit.nix
+    ../modules/home/ssh.nix
+    ../modules/home/shell.nix
+    ../modules/home/direnv.nix
+    ../modules/home/kitty.nix
+    ../modules/home/bottom.nix
       ];
     /* services.xserver.windowManager.i3 = { */
     /*     enable = true; */
@@ -144,7 +154,7 @@ system.stateVersion = "22.11";
       # Optionally, use home-manager.extraSpecialArgs to pass
       # arguments to home.nix
       home-manager.extraSpecialArgs = {
-        inherit inputs nixpkgs home-manager ;
+        inherit inputs nixpkgs home-manager sops-nix;
      
       };
     }
