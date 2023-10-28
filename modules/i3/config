@@ -39,7 +39,7 @@
   # Auto start apps
   exec --no-startup-id kitty
   exec --no-startup-id kitty
-  exec --no-startup-id chromium-browser http://0.0.0.0:8080
+  exec --no-startup-id chromium-browser http://0.0.0.0:8080 --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --enable-unsafe-webgpu --enable-drdc --canvas-oop-rasterization --ui-enabe-shared-image-cache-for-gpu --use-gpu-scheduler-dfs
 
   # Workspaces layouts
   # exec --no-startup-id "i3-msg 'workspace 1; append_layout ${
