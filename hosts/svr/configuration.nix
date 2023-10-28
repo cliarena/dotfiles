@@ -21,13 +21,5 @@ in {
     ../../modules/pkgs.nix
   ];
 
-      environment.systemPackages = with pkgs; [ xterm xorg.xhost ];
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-    services.xserver.windowManager.i3 = {
-      enable = true;
-       configFile = import ../../modules/i3/default.nix { };
-      /* configFile = ../modules/i3/config; */
-    };
   system.stateVersion = "22.11";
 }
