@@ -30,6 +30,8 @@ in {
     radios = {
       # Simple 2.4GHz AP
       wlan0 = {
+        band = "5g"; # 5g radio
+
         # countryCode = "US";
         wifi6.enable = true;
         channel = 11;
