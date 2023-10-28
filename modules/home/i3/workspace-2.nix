@@ -1,5 +1,5 @@
 { ... }:
-builtins.toFile "workspace-1.json" ''
+builtins.toFile "workspace-2.json" ''
   // vim:ts=4:sw=4:et
   {
               "border": "pixel",
