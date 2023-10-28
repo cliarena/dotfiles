@@ -125,7 +125,7 @@ system.stateVersion = "22.11";
       home-manager.useUserPackages = true;
       home-manager.users.x = { 
       imports = [
-    hyprland.homeManagerModules.default
+    /* hyprland.homeManagerModules.default */
     /* ../modules/home/hyprland */
     ../modules/home/i3
 
