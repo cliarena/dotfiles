@@ -15,6 +15,7 @@
       "epejoicbhllgiimigokgjdoijnpaphdp" # Emmet Re:view
       "inmopeiepgfljkpkidclfgbgbmfcennb" # Responsive viewer
       "ckejmhbmlajgoklhgbapkiccekfoccmk" # Mobile simulator
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock origin
       ];
   };
 }
