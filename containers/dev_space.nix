@@ -40,6 +40,7 @@ in {
         { programs.nixvim = import ../modules/nixvim pkgs; }
         ../modules/fonts
         ../modules/pkgs.nix
+        ../modules/chromium.nix
         ../modules/hardware/amd.nix
         
     home-manager.nixosModules.home-manager
