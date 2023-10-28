@@ -34,7 +34,7 @@ in {
 
         # countryCode = "US";
         wifi6.enable = true;
-        channel = 11;
+        channel = 40;
         networks.wlan0 = {
           ssid = "AVX_test";
           authentication = {
@@ -43,6 +43,20 @@ in {
           };
         };
       };
+      /* wlan0 = { */
+      /*   band = "5g"; # 5g radio */
+      /**/
+      /*   # countryCode = "US"; */
+      /*   wifi6.enable = true; */
+      /*   channel = 40; */
+      /*   networks.wlan0 = { */
+      /*     ssid = "AVX_test2"; */
+      /*     authentication = { */
+      /*       mode = "wpa2-sha256"; */
+      /*       wpaPassword = "ilounane123"; */
+      /*     }; */
+      /*   }; */
+      /* }; */
     };
 
   };
