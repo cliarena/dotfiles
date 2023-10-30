@@ -4,6 +4,7 @@ in {
   sops = {
     defaultSopsFile = ../../secrets/${host.user}.yaml;
     age.keyFile = ../../secrets/age.key;
+    age.sshKeyPaths = []; # Must set to empty list for age heyfile to work 
 
     # must set when used with home-manager 
     defaultSymlinkPath = "${homeDirectory}/.sops/secrets";
