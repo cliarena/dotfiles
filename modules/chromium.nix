@@ -16,6 +16,6 @@
       "inmopeiepgfljkpkidclfgbgbmfcennb" # Responsive viewer
       "ckejmhbmlajgoklhgbapkiccekfoccmk" # Mobile simulator
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock origin
-      ];
+    ];
   };
 }

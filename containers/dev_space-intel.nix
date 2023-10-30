@@ -1,5 +1,6 @@
-{ inputs, nixpkgs, ... }: let
-  host = rec{
+{ inputs, nixpkgs, ... }:
+let
+  host = rec {
     user = "x";
     wan_ips = [ "10.10.0.100/24" ];
     wan_gateway = [ "10.10.0.10" ];
@@ -60,134 +61,142 @@ in {
     # # };
     # # services.resolved.enable = true;
     # };
-      /* bindMounts = { */
-        /* "/home/.mozilla" = { */
-        /*   hostPath = "/home/browser/.mozilla"; */
-        /*   isReadOnly = false; */
-        /* }; */
-        /* "/home/.cache" = { */
-        /*   hostPath = "/home/browser/.cache"; */
-        /*   isReadOnly = false; */
-        /* }; */
-        /* "/home/Downloads" = { */
-        /*   hostPath = "/home/admin/Downloads"; */
-        /*   isReadOnly = false; */
-        /* }; */
-      /*   "/tmp/.X11-unix".hostPath = "/tmp/.X11-unix"; */
-      /*   "/dev/dri" = { */
-      /*     hostPath = "/dev/dri"; */
-      /*     isReadOnly = false; */
-      /*   }; */
-      /*   "/dev/shm" = { */
-      /*     hostPath = "/dev/shm"; */
-      /*     isReadOnly = false; */
-      /*   }; */
-      /* }; */
-      extraFlags = [ "-E DISPLAY=:10" "--resolv-conf=replace-uplink" ]; 
-    config = { config, pkgs, ... }: let inherit (inputs) home-manager sops-nix ; in{
+    # bindMounts = {
+    # "/home/.mozilla" = {
+    # hostPath = "/home/browser/.mozilla";
+    # isReadOnly = false;
+    # };
+    # "/home/.cache" = {
+    # hostPath = "/home/browser/.cache";
+    # isReadOnly = false;
+    # };
+    # "/home/Downloads" = {
+    # hostPath = "/home/admin/Downloads";
+    # isReadOnly = false;
+    # };
+    # "/tmp/.X11-unix".hostPath = "/tmp/.X11-unix";
+    # "/dev/dri" = {
+    # hostPath = "/dev/dri";
+    # isReadOnly = false;
+    # };
+    # "/dev/shm" = {
+    # hostPath = "/dev/shm";
+    # isReadOnly = false;
+    # };
+    # };
+    extraFlags = [ "-E DISPLAY=:10" "--resolv-conf=replace-uplink" ];
+    config = { config, pkgs, ... }:
+      let inherit (inputs) home-manager sops-nix;
+      in {
 
-      nix.extraOptions = ''
-        experimental-features = nix-command flakes
-        keep-outputs = true
-        keep-derivations = true
-        warn-dirty = false
-      '';
-      systemd.services.hello = {
-        wantedBy = [ "multi-user.target" ];
-        script = ''
-          while true; do
-            echo hello | ${pkgs.netcat}/bin/nc -lN 50
-          done
+        nix.extraOptions = ''
+          experimental-features = nix-command flakes
+          keep-outputs = true
+          keep-derivations = true
+          warn-dirty = false
         '';
-      };
-      /* systemd.services.vnc = { */
-      /*   wantedBy = [ "multi-user.target" ]; */
-      /*   script = '' */
-      /*     ${pkgs.wayvnc}/bin/wayvnc */
-      /*   ''; */
-      /* }; */
-      /* networking.firewall.allowedTCPPorts = [ 50 ]; */
-      /* networking.resolvconf.enable = pkgs.lib.mkForce false; */
-system.stateVersion = "22.11";
+        systemd.services.hello = {
+          wantedBy = [ "multi-user.target" ];
+          script = ''
+            while true; do
+              echo hello | ${pkgs.netcat}/bin/nc -lN 50
+            done
+          '';
+        };
+        # systemd.services.vnc = {
+        # wantedBy = [ "multi-user.target" ];
+        # script = ''
+        # ${pkgs.wayvnc}/bin/wayvnc
+        # '';
+        # };
+        # networking.firewall.allowedTCPPorts = [ 50 ];
+        # networking.resolvconf.enable = pkgs.lib.mkForce false;
+        system.stateVersion = "22.11";
 
+        imports = [
+          # ./configuration.nix
+          inputs.nixvim.nixosModules.nixvim
+          {
+            programs.nixvim = import ../modules/nixvim pkgs;
+          }
+          # ../modules/pkgs.nix
+          # ../modules/gnome.nix
+          ../modules/hardware/intel.nix
+          ../modules/fonts
 
-      imports = [
-        # ./configuration.nix
-        inputs.nixvim.nixosModules.nixvim
-        { programs.nixvim = import ../modules/nixvim pkgs; }
-        /* ../modules/pkgs.nix */
-        /* ../modules/gnome.nix */
-        ../modules/hardware/intel.nix
-        ../modules/fonts
-        
-    home-manager.nixosModules.home-manager
-    {
-      inherit nixpkgs;
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.x = { 
-      imports = [
-    /* hyprland.homeManagerModules.default */
-    /* ../modules/home/hyprland */
-    sops-nix.homeManagerModules.sops
-    ../hosts/x/sops.nix
-    ../modules/home/i3
-    ../modules/home/git.nix
-    ../modules/home/lazygit.nix
-    ../modules/home/ssh.nix
-    ../modules/home/shell.nix
-    ../modules/home/direnv.nix
-    ../modules/home/kitty.nix
-    ../modules/home/bottom.nix
-      ];
-    /* services.xserver.windowManager.i3 = { */
-    /*     enable = true; */
-    /*     configFile = import ../modules/i3 {}; */
-    /*     }; */
+          home-manager.nixosModules.home-manager
+          {
+            inherit nixpkgs;
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.x = {
+              imports = [
+                # hyprland.homeManagerModules.default
+                # ../modules/home/hyprland
+                sops-nix.homeManagerModules.sops
+                ../hosts/x/sops.nix
+                ../modules/home/i3
+                ../modules/home/git.nix
+                ../modules/home/lazygit.nix
+                ../modules/home/ssh.nix
+                ../modules/home/shell.nix
+                ../modules/home/direnv.nix
+                ../modules/home/kitty.nix
+                ../modules/home/bottom.nix
+              ];
+              # services.xserver.windowManager.i3 = {
+              # enable = true;
+              # configFile = import ../modules/i3 {};
+              # };
 
-  home = {
-    stateVersion = "22.11";
-    username = "x";
-    homeDirectory = "/home/x";
-  };
-  };
-      # Optionally, use home-manager.extraSpecialArgs to pass
-      # arguments to home.nix
-      home-manager.extraSpecialArgs = {
-        inherit inputs nixpkgs home-manager sops-nix;
-     
-      };
-    }
-      ];
-        /* hardware.opengl.enable = true; */
-      services.x2goserver = { enable = true; };
-      services.openssh.enable = true;
-      environment.systemPackages = with pkgs; [ xterm kitty chromium glxinfo ];
-      services.xserver.enable = true;
-      /* services.xserver.videoDrivers = [ "amdgpu" ]; */
-    /* services.xserver.windowManager.i3 = { */
-    /*   enable = true; */
-    /*    configFile = import ../modules/i3/default.nix { }; */
-    /* configFile = ../modules/i3/config; */ 
-    /* }; */
+              home = {
+                stateVersion = "22.11";
+                username = "x";
+                homeDirectory = "/home/x";
+              };
+            };
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+            home-manager.extraSpecialArgs = {
+              inherit inputs nixpkgs home-manager sops-nix;
 
-      /* }; */
-        /* programs.hyprland = { */
-          /* enable = true; */
-          # configFile = import ../modules/i3/default.nix { };
-          /* configFile = ../modules/i3/config; */
-        /* }; */
-      services.xrdp = {
-        enable = true;
-        openFirewall = true;
-        defaultWindowManager = "i3";
+            };
+          }
+        ];
+        # hardware.opengl.enable = true;
+        services.x2goserver = { enable = true; };
+        services.openssh.enable = true;
+        environment.systemPackages = with pkgs; [
+          xterm
+          kitty
+          chromium
+          glxinfo
+        ];
+        services.xserver.enable = true;
+        # services.xserver.videoDrivers = [ "amdgpu" ];
+        # services.xserver.windowManager.i3 = {
+        # enable = true;
+        # configFile = import ../modules/i3/default.nix { };
+        # configFile = ../modules/i3/config;
+        # };
+
+        # };
+        # programs.hyprland = {
+        # enable = true;
+        # configFile = import ../modules/i3/default.nix { };
+        # configFile = ../modules/i3/config;
+        # };
+        services.xrdp = {
+          enable = true;
+          openFirewall = true;
+          defaultWindowManager = "i3";
+        };
+        users.users.x = {
+          isNormalUser = true;
+          extraGroups = [ "wheel" "docker" ];
+          initialPassword = "nixos";
+          # hashedPassword = "${builtins.readFile ./hpass}";
+        };
       };
-      users.users.x = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" "docker" ];
-        initialPassword = "nixos";
-        # hashedPassword = "${builtins.readFile ./hpass}";
-      };
-    };
   };
 }
