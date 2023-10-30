@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   sops = {
     defaultSopsFile = ../../secrets/default.yaml;
     age.keyFile = ../../secrets/age.key;
