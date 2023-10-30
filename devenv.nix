@@ -14,7 +14,11 @@ let
       value = f name;
     }) systems);
 in forAllSystems (system:
-  let pkgs = import nixpkgs { inherit system; };
+  let
+    pkgs = import nixpkgs {
+      inherit system;
+      config = { allowUnfree = true; };
+    };
   in {
     default = devenv.lib.mkShell {
       inherit inputs pkgs;
