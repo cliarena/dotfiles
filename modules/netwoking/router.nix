@@ -31,10 +31,13 @@ in {
       # Simple 2.4GHz AP
       wlan0 = {
         band = "5g"; # 5g radio
-
-        # countryCode = "US";
-        wifi6.enable = true;
-        channel = 40;
+        countryCode = "US";
+        wifi6 = {
+          enable = true;
+          operatingChannelWidth = "80";
+          multiUserBeamformer = true;
+        };
+        channel = 122;
         networks.wlan0 = {
           ssid = "AVX_test";
           authentication = {
