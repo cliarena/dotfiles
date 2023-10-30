@@ -8,6 +8,7 @@
       kernelModules = [ "amdgpu" ];
     };
     kernelModules = [
+      "mt7921e" # wlan/bt driver
       "kvm-amd" # support virtual machine acceleration
       # need for nomad iptables
       "iptable_nat"
