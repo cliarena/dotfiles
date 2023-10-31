@@ -9,12 +9,12 @@
     };
     extensions = [
       "mbnbehikldjhnfehhnaidhjhoofhpehk" # Css pepper
-      "eljapbgkmlngdpckoiiibecpemleclhh" # Fonts ninja
+      # "eljapbgkmlngdpckoiiibecpemleclhh" # Fonts ninja -- auto opens new tabs
       "pekhihjiehdafocefoimckjpbkegknoh" # Site pallet
       "baocaagndhipibgklemoalmkljaimfdj" # Dimensions
       "epejoicbhllgiimigokgjdoijnpaphdp" # Emmet Re:view
       "inmopeiepgfljkpkidclfgbgbmfcennb" # Responsive viewer
-      "ckejmhbmlajgoklhgbapkiccekfoccmk" # Mobile simulator
+      # "ckejmhbmlajgoklhgbapkiccekfoccmk" # Mobile simulator -- auto opens new tabs
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock origin
     ];
   };
