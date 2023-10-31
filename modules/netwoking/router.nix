@@ -46,20 +46,19 @@ in {
           };
         };
       };
-      /* wlan0 = { */
-      /*   band = "5g"; # 5g radio */
-      /**/
-      /*   # countryCode = "US"; */
-      /*   wifi6.enable = true; */
-      /*   channel = 40; */
-      /*   networks.wlan0 = { */
-      /*     ssid = "AVX_test2"; */
-      /*     authentication = { */
-      /*       mode = "wpa2-sha256"; */
-      /*       wpaPassword = "ilounane123"; */
-      /*     }; */
-      /*   }; */
-      /* }; */
+      # wlan0 = {
+      # band = "5g"; # 5g radio
+      # # countryCode = "US";
+      # wifi6.enable = true;
+      # channel = 40;
+      # networks.wlan0 = {
+      # ssid = "AVX_test2";
+      # authentication = {
+      # mode = "wpa2-sha256";
+      # wpaPassword = "ilounane123";
+      # };
+      # };
+      # };
     };
 
   };
@@ -71,7 +70,8 @@ in {
     wireless.enable = true;
     bridges.br0.interfaces = [ "wan0" "wlan0" ];
     # nameservers = [ "1.1.1.1" ];
-    resolvconf.enable = pkgs.lib.mkForce true; # must be true. for nixos-containers to work 
+    resolvconf.enable =
+      pkgs.lib.mkForce true; # must be true. for nixos-containers to work
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
     firewall = {
@@ -103,7 +103,7 @@ in {
             accept
           }
           chain inbound {
-            type filter hook input priority 0; policy drop;
+            type filter hook input priority 0; policy accept; # workaround to nomad containers reach localhost. basically like no firewall
 
             ct state vmap { established : accept, related : accept, invalid : drop }
 
