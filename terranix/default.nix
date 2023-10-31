@@ -2,7 +2,10 @@
 forAllSystems (system:
   let
     inherit (inputs) nixpkgs terranix nix-nomad;
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = import nixpkgs {
+      inherit system;
+      config = { allowUnfree = true; };
+    };
 
     x = {
       time = rec {
