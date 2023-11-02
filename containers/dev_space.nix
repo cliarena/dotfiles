@@ -86,7 +86,7 @@ in {
           openFirewall = true;
           defaultWindowManager = "i3";
         };
-        netwoking.useHostResolvConf = pkgs.lib.mkForce false;
+        networking.useHostResolvConf = pkgs.lib.mkForce false;
         services.resolved.enable = true;
 
       };
