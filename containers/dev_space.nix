@@ -5,9 +5,9 @@ in {
 
   containers.dev-space = {
     autoStart = true;
-    # privateNetwork = true;
-    # hostAddress = "10.10.0.10";
-    # localAddress = "10.10.0.100";
+    privateNetwork = true;
+    hostAddress = "10.10.2.1";
+    localAddress = "10.10.2.100";
     ephemeral = true;
     config = { config, pkgs, ... }:
       let inherit (inputs) home-manager sops-nix;
@@ -86,6 +86,9 @@ in {
           openFirewall = true;
           defaultWindowManager = "i3";
         };
+        netwoking.useHostResolvConf = pkgs.lib.mkForce false;
+        services.resolved.enable = true;
+
       };
   };
 }
