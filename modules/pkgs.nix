@@ -40,7 +40,7 @@
     bat
     # nu_scripts
     # glow
-    btm
+    bottom
     s-tui
     sysbench
     unzip
