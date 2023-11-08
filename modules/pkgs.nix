@@ -40,6 +40,9 @@
     bat
     # nu_scripts
     # glow
+    btm
+    s-tui
+    sysbench
     unzip
     speedtest-cli
     nmap
