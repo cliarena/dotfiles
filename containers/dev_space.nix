@@ -45,6 +45,7 @@ in {
           ../modules/pkgs.nix
           ../modules/chromium.nix
           ../modules/hardware/amd.nix
+          ../modules/corectrl.nix
           ../modules/users.nix
 
           home-manager.nixosModules.home-manager

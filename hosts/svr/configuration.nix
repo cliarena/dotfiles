@@ -10,6 +10,7 @@ in {
     ../../modules/swap.nix
     ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
+    ../../modules/corectrl.nix
     ../../modules/users.nix
     ../../modules/i18n.nix
     ../../modules/sshd.nix

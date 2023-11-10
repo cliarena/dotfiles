@@ -2,7 +2,7 @@
   users.users.${host.user} = {
     isNormalUser = true;
     initialPassword = "nixos";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "corectrl"];
     shell = pkgs.nushell;
     openssh.authorizedKeys.keys = host.ssh_authorized_keys;
   };
