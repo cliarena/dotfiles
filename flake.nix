@@ -2,10 +2,8 @@
   description = "Nixos configuration";
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # Pinned to a specefic revision to avoid envoy and consul compatibility problems
-    nixpkgs.url =
-      "github:NixOS/nixpkgs/9957cd48326fe8dbd52fdc50dd2502307f188b0d";
+    /* nixpkgs.url = "github:NixOS/nixpkgs/9957cd48326fe8dbd52fdc50dd2502307f188b0d"; */
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     flake-registry.url = "github:NixOS/flake-registry";
     flake-registry.flake = false;
