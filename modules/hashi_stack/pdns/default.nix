@@ -7,7 +7,7 @@ let
 in {
   services.pdns-recursor = {
     enable = true;
-
+    exportHosts = true;
     forwardZones = {
       consul = "127.0.0.1:8600";
       # "m7an.com" = "127.0.0.1:5353";
