@@ -68,6 +68,12 @@ in {
     useDHCP = false;
     useNetworkd = true;
     wireless.enable = true;
+    stevenBlackHosts = {
+      blockFakenews = true;
+      blockGambling = true;
+      blockPorn = true;
+      blockSocial = true;
+    };
     bridges.br0.interfaces = [ "wan0" "wlan0" ];
     # nameservers = [ "1.1.1.1" ];
     resolvconf.enable =

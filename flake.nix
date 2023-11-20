@@ -32,6 +32,8 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     lanzaboote.inputs.flake-compat.follows = "";
 
+    black-hosts.url = "github:StevenBlack/hosts";
+
     kmonad.url = "github:kmonad/kmonad?dir=nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
