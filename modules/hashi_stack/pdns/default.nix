@@ -14,7 +14,6 @@ in {
       "cliarena.com" = "127.0.0.1:5353";
 
       "0.0.127.in-addr.arpa" = "127.0.0.1:5353";
-      "youtube.com" = "127.0.0.1:5353";
     };
     dnssecValidation = "off";
   };
@@ -39,11 +38,6 @@ in {
             type master;
             file "${bind_0_0_127_arpa}";
             };
-
-          # Ad & site blocking
-          zone "youtube.com" { type master; file "dummy-block"; };
-
-
         ''
       }
     '';
