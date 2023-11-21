@@ -52,6 +52,7 @@ in {
           ../modules/corectrl.nix
           ../modules/users.nix
           ../modules/netwoking/container-network.nix
+          ../modules/sunshine.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -84,6 +85,7 @@ in {
             };
           }
         ];
+        modules.services.sunshine.enable = true;
         services.openssh.enable = true;
         environment.systemPackages = with pkgs; [ glxinfo ];
         services.xserver.enable = true;
