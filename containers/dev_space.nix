@@ -51,7 +51,7 @@ in {
           ../modules/hardware/amd.nix
           ../modules/corectrl.nix
           ../modules/users.nix
-          ../modules/netwoking/network.nix
+          ../modules/netwoking/container-network.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -92,7 +92,6 @@ in {
           openFirewall = true;
           defaultWindowManager = "i3";
         };
-        # networking.useHostResolvConf = pkgs.lib.mkForce false;
         # services.resolved.enable = true;
 
       };
