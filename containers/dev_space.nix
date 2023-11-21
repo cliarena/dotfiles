@@ -28,6 +28,13 @@ in {
     # hostAddress = "10.10.2.1";
     # localAddress = "10.10.2.100";
     ephemeral = true;
+    bindMounts = {
+      "/dev/dri" = {
+        hostPath = "/dev/dri";
+        isReadOnly = false;
+      };
+    };
+
     config = { config, pkgs, ... }:
       let inherit (inputs) home-manager sops-nix;
       in {
