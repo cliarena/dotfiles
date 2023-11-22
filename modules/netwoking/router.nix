@@ -175,7 +175,7 @@ in {
         "21-mv-lan0" = {
           enable = true;
           name = "mv-lan0";
-          address = lan_ips;
+          address = [ "10.10.20.1/24" ];
           # gateway = wan_gateway;
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
