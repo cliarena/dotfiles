@@ -3,8 +3,8 @@ let
 
   host = rec {
     user = "x";
-    hostAddress = "10.10.20.1";
-    localAddress = "10.10.20.100";
+    hostAddress = "10.10.2.1";
+    localAddress = "10.10.2.100";
     wan_ips = [ "${localAddress}/24" ];
     wan_gateway = [ hostAddress ];
     is_dns_server = false; # for testing hashi_stack
@@ -32,9 +32,9 @@ in {
   # }];
   # };
   containers.dev-space = {
-    # inherit (host) hostAddress localAddress;
+    inherit (host) hostAddress localAddress;
     autoStart = true;
-    # privateNetwork = true;
+    privateNetwork = true;
     macvlans = [ "lan0" ];
 
     # hostAddress = "10.10.2.1";
