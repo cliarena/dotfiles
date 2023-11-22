@@ -31,7 +31,7 @@ in {
       networks = {
         "20-wired" = {
           enable = true;
-          name = "mv-lan0";
+          name = "eth0";
           address = wan_ips;
           gateway = wan_gateway;
           dns = dns_server;

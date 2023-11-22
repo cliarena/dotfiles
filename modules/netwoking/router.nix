@@ -1,4 +1,4 @@
-{ lib, pkgs, host, ... }:
+{ pkgs, host, ... }:
 let
   inherit (host)
     user wan_mac lan_mac tcp_ports udp_ports wan_ips lan_ips wlan_ips
@@ -76,7 +76,7 @@ in {
       blockSocial = true;
     };
     bridges.br0.interfaces = [ "wan0" "wlan0" ];
-    macvlans.mv-lan0-host = {
+    macvlans.mv-lan0 = {
       interface = "lan0";
       mode = "bridge";
     };
@@ -155,47 +155,38 @@ in {
           # if you want dhcp uncomment this and comment address,gateway and dns
           DHCP = "ipv4";
         };
-        # "20-lan0" = {
-        # enable = true;
-        # name = "lan0";
-        # address = lan_ips;
-        # # gateway = wan_gateway;
-        # # dns = dns_server;
-        # # if you want dhcp uncomment this and comment address,gateway and dns
-        # # DHCP = "ipv4";
-        # networkConfig = { DHCPServer = true; };
-        # dhcpServerConfig = {
-        # PoolOffset = 100;
-        # PoolSize = 100;
-        # EmitDNS = true;
-        # DNS = "8.8.8.8";
-        # };
-        # macvlan = [ "mv-lan0" ];
-        # };
         "20-lan0" = {
           enable = true;
           name = "lan0";
-          address = lib.mkForce [ ];
+          address = lan_ips;
           # gateway = wan_gateway;
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
+          networkConfig = { DHCPServer = true; };
+          dhcpServerConfig = {
+            PoolOffset = 100;
+            PoolSize = 100;
+            EmitDNS = true;
+            DNS = "8.8.8.8";
+          };
+          macvlan = [ "mv-lan0" ];
         };
         "21-mv-lan0" = {
           enable = true;
-          name = "mv-lan0-host";
-          address = [ "10.10.2.1/24" ];
+          name = "mv-lan0";
+          address = [ "10.10.20.1/24" ];
           # gateway = wan_gateway;
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
-          # networkConfig = { DHCPServer = true; };
-          # dhcpServerConfig = {
-          # PoolOffset = 100;
-          # PoolSize = 100;
-          # EmitDNS = true;
-          # DNS = "8.8.8.8";
-          # };
+          networkConfig = { DHCPServer = true; };
+          dhcpServerConfig = {
+            PoolOffset = 100;
+            PoolSize = 100;
+            EmitDNS = true;
+            DNS = "8.8.8.8";
+          };
         };
         "30-wlan0" = {
           enable = true;
