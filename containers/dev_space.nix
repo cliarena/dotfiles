@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, ... }:
+{ lib, inputs, nixpkgs, ... }:
 let
 
   host = rec {
@@ -20,11 +20,23 @@ let
     udp_ports = with ports; [ dns ];
   };
 in {
-
+  networking.macvlans.mv-lan0-host = {
+    interface = "lan0";
+    mode = "bridge";
+  };
+  networking.interfaces.lan0.ipv4.addresses = lib.mkForce [ ];
+  networking.interfaces.mv-lan0-host = {
+    ipv4.addresses = [{
+      address = host.hostAddress;
+      prefixLength = 24;
+    }];
+  };
   containers.dev-space = {
     inherit (host) hostAddress localAddress;
     autoStart = true;
     privateNetwork = true;
+    macvlans = [ "lan0" ];
+
     # hostAddress = "10.10.2.1";
     # localAddress = "10.10.2.100";
     ephemeral = true;
@@ -38,6 +50,12 @@ in {
     config = { config, pkgs, ... }:
       let inherit (inputs) home-manager sops-nix;
       in {
+        networking.interfaces.mv-lan0 = {
+          ipv4.addresses = [{
+            address = host.localAddress;
+            prefixLength = 24;
+          }];
+        };
 
         nix.extraOptions = ''
           experimental-features = nix-command flakes
