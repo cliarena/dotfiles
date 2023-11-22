@@ -165,7 +165,6 @@ in {
             EmitDNS = true;
             DNS = "8.8.8.8";
           };
-          macvlan = [ "vlan0" ];
         };
         "30-wlan0" = {
           enable = true;
