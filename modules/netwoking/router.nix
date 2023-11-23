@@ -146,10 +146,10 @@ in {
       enable = true;
       wait-online.anyInterface = true;
       netdevs = {
-        "10-mv-bridge" = {
+        "21-mv-lan0" = {
           enable = true;
           netdevConfig = {
-            Name = "mv-bridge";
+            Name = "mv-lan0";
             Kind = "bridge";
           };
           macvlanConfig = { Mode = "bridge"; };
@@ -185,18 +185,22 @@ in {
         "21-mv-lan0" = {
           enable = true;
           name = "mv-lan0";
-          address = lan_ips;
-          # gateway = wan_gateway;
+          address = [ "10.10.2.100/24" ];
+          gateway = [ "10.10.2.1" ];
+          dns = [ "10.10.2.1" ];
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
-          networkConfig = { DHCPServer = true; };
-          dhcpServerConfig = {
-            PoolOffset = 100;
-            PoolSize = 100;
-            EmitDNS = true;
-            DNS = "8.8.8.8";
+          networkConfig = {
+            # DHCPServer = true;
+            IPForward = true;
           };
+          # dhcpServerConfig = {
+          # PoolOffset = 100;
+          # PoolSize = 100;
+          # EmitDNS = true;
+          # DNS = "8.8.8.8";
+          # };
         };
         "30-wlan0" = {
           enable = true;
