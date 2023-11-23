@@ -150,7 +150,7 @@ in {
           enable = true;
           netdevConfig = {
             Name = "mv-lan0";
-            Kind = "bridge";
+            Kind = "macvlan";
           };
           macvlanConfig = { Mode = "bridge"; };
         };
