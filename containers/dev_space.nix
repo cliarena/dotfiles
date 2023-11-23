@@ -35,7 +35,7 @@ in {
     inherit (host) hostAddress localAddress;
     autoStart = true;
     privateNetwork = true;
-    macvlans = [ "mv-lan0" ];
+    macvlans = [ "mv-qub0" ];
 
     # hostAddress = "10.10.2.1";
     # localAddress = "10.10.2.100";
@@ -50,12 +50,6 @@ in {
     config = { config, pkgs, ... }:
       let inherit (inputs) home-manager sops-nix;
       in {
-        # networking.interfaces.mv-lan0 = {
-        # ipv4.addresses = [{
-        # address = host.localAddress;
-        # prefixLength = 24;
-        # }];
-        # };
 
         nix.extraOptions = ''
           experimental-features = nix-command flakes

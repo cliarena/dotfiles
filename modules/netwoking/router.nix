@@ -150,6 +150,14 @@ in {
           };
           macvlanConfig = { Mode = "bridge"; };
         };
+        "22-mv-qub0" = {
+          enable = true;
+          netdevConfig = {
+            Name = "mv-qub0";
+            Kind = "macvlan";
+          };
+          macvlanConfig = { Mode = "bridge"; };
+        };
       };
       networks = {
         "10-wan0" = {
@@ -176,7 +184,7 @@ in {
           # EmitDNS = true;
           # DNS = "8.8.8.8";
           # };
-          macvlan = [ "mv-lan0" ];
+          macvlan = [ "mv-lan0" "mv-qub0" ];
         };
         "21-mv-lan0" = {
           enable = true;
@@ -194,9 +202,9 @@ in {
             DNS = "8.8.8.8";
           };
         };
-        "22-mv-lan1" = {
+        "22-mv-qub0" = {
           enable = false;
-          name = "mv-lan1";
+          name = "mv-qub0";
           address = [ "10.10.2.100/24" ];
           gateway = [ "10.10.2.1" ];
           dns = [ "10.10.2.1" ];
