@@ -74,7 +74,7 @@ in {
           ../modules/chromium.nix
           ../modules/hardware/amd.nix
           ../modules/corectrl.nix
-          ../modules/users.nix
+          # ../modules/users.nix
           ../modules/netwoking/container-network.nix
           # ../modules/sunshine.nix
 
