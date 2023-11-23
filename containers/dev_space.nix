@@ -35,7 +35,7 @@ in {
     inherit (host) hostAddress localAddress;
     autoStart = true;
     privateNetwork = true;
-    macvlans = [ "lan0" ];
+    macvlans = [ "mv-lan0" ];
 
     # hostAddress = "10.10.2.1";
     # localAddress = "10.10.2.100";
