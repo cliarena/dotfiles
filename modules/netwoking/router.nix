@@ -145,6 +145,16 @@ in {
     network = {
       enable = true;
       wait-online.anyInterface = true;
+      netdevs = {
+        "10-mv-bridge" = {
+          enable = true;
+          netdevConfig = {
+            Name = "mv-bridge";
+            Kind = "bridge";
+          };
+          macvlanConfig = { Mode = "bridge"; };
+        };
+      };
       networks = {
         "10-wan0" = {
           enable = true;
