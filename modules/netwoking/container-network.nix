@@ -1,4 +1,4 @@
-{ pkgs, host, ... }:
+{ lib, pkgs, host, ... }:
 let
   inherit (host)
     user tcp_ports udp_ports wan_ips wan_gateway dns_server is_dns_server;
@@ -15,7 +15,7 @@ in {
     resolvconf.enable = pkgs.lib.mkForce false;
     useHostResolvConf = pkgs.lib.mkForce false;
     dhcpcd.extraConfig = "nohook resolv.conf";
-    networkmanager.dns = "none";
+    networkmanager.dns = lib.mkForce "none";
     firewall = {
       enable = false;
       interfaces.wan = {

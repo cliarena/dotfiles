@@ -48,7 +48,12 @@ in {
     };
 
     config = { config, pkgs, ... }:
-      let inherit (inputs) home-manager sops-nix;
+      let
+        inherit (inputs) home-manager sops-nix;
+
+        configFile = pkgs.writeTextDir "config/sunshine.conf" ''
+          origin_web_ui_allowed=wan
+        '';
       in {
 
         nix.extraOptions = ''
@@ -71,7 +76,7 @@ in {
           ../modules/corectrl.nix
           ../modules/users.nix
           ../modules/netwoking/container-network.nix
-          ../modules/sunshine.nix
+          # ../modules/sunshine.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -82,7 +87,7 @@ in {
               imports = [
                 sops-nix.homeManagerModules.sops
                 ../hosts/x/sops.nix
-                ../modules/home/i3
+                # ../modules/home/i3
                 ../modules/home/git.nix
                 ../modules/home/lazygit.nix
                 ../modules/home/ssh.nix
@@ -104,16 +109,106 @@ in {
             };
           }
         ];
-        modules.services.sunshine.enable = true;
+        # modules.services.sunshine.enable = true;
         services.openssh.enable = true;
         environment.systemPackages = with pkgs; [ glxinfo ];
-        services.xserver.enable = true;
+        # services.xserver.enable = true;
         services.xrdp = {
           enable = true;
           openFirewall = true;
-          defaultWindowManager = "i3";
+          defaultWindowManager = "gnome";
         };
         # services.resolved.enable = true;
+
+        # X and audio
+        sound.enable = true;
+        hardware.pulseaudio.enable = true;
+        security.rtkit.enable = true;
+
+        services.xserver = {
+          enable = true;
+          # videoDrivers = [ "nvidia" ];
+
+          # Using gdm and gnome
+          # lightdm failed to start with autologin, probably linked to X auth and Gnome service conflict
+          # X auth was not ready when Gnome session started, can be seen with journalctl _UID=$(id -u sunshine) -b
+          # Maybe another combination of displayManager / desktopManager works
+          displayManager.gdm.enable = true;
+          desktopManager.gnome.enable = true;
+
+          # autologin
+          displayManager.autoLogin.enable = true;
+          displayManager.autoLogin.user = "x";
+          displayManager.defaultSession = "gnome";
+
+          # Dummy screen
+          monitorSection = ''
+            VendorName     "Unknown"
+            HorizSync   30-85
+            VertRefresh 48-120
+
+            ModelName      "Unknown"
+            Option         "DPMS"
+          '';
+
+          deviceSection = ''
+            VendorName "NVIDIA Corporation"
+            Option      "AllowEmptyInitialConfiguration"
+            Option      "ConnectedMonitor" "DFP"
+            Option      "CustomEDID" "DFP-0"
+
+          '';
+
+          screenSection = ''
+            DefaultDepth    24
+            Option      "ModeValidation" "AllowNonEdidModes, NoVesaModes"
+            Option      "MetaModes" "1920x1080"
+            SubSection     "Display"
+                Depth       24
+            EndSubSection
+          '';
+        };
+
+        # Sunshine user, service and config 
+        users.users.x = {
+          isNormalUser = true;
+          home = "/home/x";
+          description = "Sunshine Server";
+          extraGroups = [ "wheel" "input" "video" "sound" ];
+        };
+
+        security.sudo.extraRules = [{
+          users = [ "x" ];
+          commands = [{
+            command = "ALL";
+            options = [ "NOPASSWD" ];
+          }];
+        }];
+
+        security.wrappers.sunshine = {
+          owner = "root";
+          group = "root";
+          capabilities = "cap_sys_admin+p";
+          source = "${pkgs.sunshine}/bin/sunshine";
+        };
+
+        # Inspired from https://github.com/LizardByte/Sunshine/blob/5bca024899eff8f50e04c1723aeca25fc5e542ca/packaging/linux/sunshine.service.in
+        systemd.user.services.sunshine = {
+          description = "Sunshine server";
+          wantedBy = [ "graphical-session.target" ];
+          startLimitIntervalSec = 500;
+          startLimitBurst = 5;
+          partOf = [ "graphical-session.target" ];
+          wants = [ "graphical-session.target" ];
+          after = [ "graphical-session.target" ];
+
+          serviceConfig = {
+            ExecStart =
+              "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf";
+            Restart = "on-failure";
+            RestartSec = "5s";
+          };
+        };
 
       };
   };
