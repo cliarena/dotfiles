@@ -210,6 +210,18 @@ in {
           };
         };
 
+        services.avahi = {
+          enable = true;
+          reflector = true;
+          nssmdns = true;
+          publish = {
+            enable = true;
+            addresses = true;
+            userServices = true;
+            workstation = true;
+          };
+        };
+
       };
   };
 }
