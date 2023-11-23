@@ -164,6 +164,23 @@ in {
         "20-lan0" = {
           enable = true;
           name = "lan0";
+          # address = lan_ips;
+          # # gateway = wan_gateway;
+          # # dns = dns_server;
+          # # if you want dhcp uncomment this and comment address,gateway and dns
+          # # DHCP = "ipv4";
+          # networkConfig = { DHCPServer = true; };
+          # dhcpServerConfig = {
+          # PoolOffset = 100;
+          # PoolSize = 100;
+          # EmitDNS = true;
+          # DNS = "8.8.8.8";
+          # };
+          macvlan = [ "mv-lan0" ];
+        };
+        "21-mv-lan0" = {
+          enable = true;
+          name = "mv-lan0";
           address = lan_ips;
           # gateway = wan_gateway;
           # dns = dns_server;
@@ -176,11 +193,10 @@ in {
             EmitDNS = true;
             DNS = "8.8.8.8";
           };
-          macvlan = [ "mv-lan0" ];
         };
-        "21-mv-lan0" = {
-          enable = true;
-          name = "mv-lan0";
+        "22-mv-lan1" = {
+          enable = false;
+          name = "mv-lan1";
           address = [ "10.10.2.100/24" ];
           gateway = [ "10.10.2.1" ];
           dns = [ "10.10.2.1" ];
