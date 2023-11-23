@@ -76,10 +76,6 @@ in {
       blockSocial = true;
     };
     bridges.br0.interfaces = [ "wan0" "wlan0" ];
-    macvlans.mv-lan0 = {
-      interface = "lan0";
-      mode = "bridge";
-    };
     # nameservers = [ "1.1.1.1" ];
     resolvconf.enable =
       pkgs.lib.mkForce true; # must be true. for nixos-containers to work
