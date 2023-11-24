@@ -21,6 +21,9 @@ in {
     ../../containers/dev_space.nix
     ../../containers/hello.nix
     ../../modules/pkgs.nix
+
+    ../../modules/sunshine.nix
+    ../../modules/gnome.nix
   ];
 
   system.stateVersion = "22.11";

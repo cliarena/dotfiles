@@ -51,6 +51,7 @@
     # ventoy-bin # multiple Bootable usb drives in one
     pavucontrol
     remmina
+    moonlight-qt
 
     # appimage-run
     # bottles

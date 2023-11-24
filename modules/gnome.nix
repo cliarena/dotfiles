@@ -2,7 +2,12 @@
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.autoLogin = {
+    enable = true;
+    user = "x";
+  };
   services.xserver.desktopManager.gnome.enable = true;
+
   environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
     ++ (with pkgs.gnome; [
       cheese # webcam tool
