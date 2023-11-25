@@ -47,6 +47,10 @@ in {
         hostPath = "/dev/dri";
         isReadOnly = false;
       };
+      "/dev/fb0" = {
+        hostPath = "/dev/fb0";
+        isReadOnly = false;
+      };
     };
     allowedDevices = [
       {
@@ -64,6 +68,10 @@ in {
       {
         modifier = "rw";
         node = "/dev/dri/renderD129";
+      }
+      {
+        modifier = "rw";
+        node = "/dev/fb0";
       }
     ];
 
