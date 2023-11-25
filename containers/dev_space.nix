@@ -46,6 +46,10 @@ in {
     # isReadOnly = false;
     # };
     # };
+    allowedDevices = [{
+      modifier = "rw";
+      node = "/dev/dri/card0";
+    }];
 
     config = { config, pkgs, ... }:
       let
