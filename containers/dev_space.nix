@@ -229,7 +229,7 @@ in {
 
           serviceConfig = {
             ExecStart =
-              "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf";
+              "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf min_log_level=1 encoder=software";
             Restart = "on-failure";
             RestartSec = "5s";
           };
