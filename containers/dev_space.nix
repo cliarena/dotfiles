@@ -40,16 +40,32 @@ in {
     # hostAddress = "10.10.2.1";
     # localAddress = "10.10.2.100";
     ephemeral = true;
-    # bindMounts = {
-    # "/dev/dri" = {
-    # hostPath = "/dev/dri";
-    # isReadOnly = false;
-    # };
-    # };
-    allowedDevices = [{
-      modifier = "rw";
-      node = "/dev/dri/card0";
-    }];
+
+    # INFO: you need to bindmount your devices and add each device to allowedDevices
+    bindMounts = {
+      "/dev/dri" = {
+        hostPath = "/dev/dri";
+        isReadOnly = false;
+      };
+    };
+    allowedDevices = [
+      {
+        modifier = "rw";
+        node = "/dev/dri/card0";
+      }
+      {
+        modifier = "rw";
+        node = "/dev/dri/card1";
+      }
+      {
+        modifier = "rw";
+        node = "/dev/dri/renderD128";
+      }
+      {
+        modifier = "rw";
+        node = "/dev/dri/renderD129";
+      }
+    ];
 
     config = { config, pkgs, ... }:
       let
