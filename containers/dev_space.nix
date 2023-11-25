@@ -66,6 +66,11 @@ in {
 
         _module.args.host = host;
 
+        boot.kernelModules = [ "uinput" ];
+        services.udev.extraRules = ''
+          KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+        '';
+
         imports = [
           inputs.nixvim.nixosModules.nixvim
           { programs.nixvim = import ../modules/nixvim pkgs; }
