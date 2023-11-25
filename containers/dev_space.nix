@@ -227,6 +227,7 @@ in {
           wants = [ "graphical-session.target" ];
           after = [ "graphical-session.target" ];
 
+          preStart = "echo $XDG_SESSION_TYPE && ${pkgs.xorg.xrandr}/bin/xrandr";
           serviceConfig = {
             ExecStart =
               "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf min_log_level=1 encoder=software";
