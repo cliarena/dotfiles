@@ -115,11 +115,6 @@ in {
 
         _module.args.host = host;
 
-        boot.kernelModules = [ "uinput" ];
-        services.udev.extraRules = ''
-          KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-        '';
-
         imports = [
           inputs.nixvim.nixosModules.nixvim
           { programs.nixvim = import ../modules/nixvim pkgs; }
@@ -130,6 +125,7 @@ in {
           ../modules/corectrl.nix
           # ../modules/users.nix
           ../modules/netwoking/container-network.nix
+          ../modules/boot/amd.nix
           # ../modules/sunshine.nix
 
           home-manager.nixosModules.home-manager

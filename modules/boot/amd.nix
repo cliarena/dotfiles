@@ -8,6 +8,7 @@
       kernelModules = [ "amdgpu" ];
     };
     kernelModules = [
+      "uinput"
       "kvm-amd" # support virtual machine acceleration
       # need for nomad iptables
       "iptable_nat"
@@ -25,6 +26,9 @@
       "net.ipv6.conf.all.forwarding" = true;
     };
 
+    services.udev.extraRules = ''
+      KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+    '';
     loader = {
       timeout = 1;
       efi = { canTouchEfiVariables = true; };
