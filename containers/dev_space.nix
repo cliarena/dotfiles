@@ -36,6 +36,8 @@ in {
     autoStart = true;
     privateNetwork = true;
     macvlans = [ "mv-qub0" ];
+    # TODO: Test if it's needed BY SUNSHIN
+    # additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
     # hostAddress = "10.10.2.1";
     # localAddress = "10.10.2.100";
@@ -51,6 +53,15 @@ in {
         hostPath = "/dev/fb0";
         isReadOnly = false;
       };
+      # TODO: Test if it's needed by sunshine to forward mouse and keyboard events
+      # "/dev/input" = {
+      # hostPath = "/dev/input";
+      # isReadOnly = false;
+      # };
+      # "/dev/uinput" = {
+      # hostPath = "/dev/uinput";
+      # isReadOnly = false;
+      # };
     };
     allowedDevices = [
       {
@@ -59,20 +70,30 @@ in {
       }
       {
         modifier = "rw";
-        node = "/dev/dri/card1";
-      }
-      {
-        modifier = "rw";
         node = "/dev/dri/renderD128";
       }
-      {
-        modifier = "rw";
-        node = "/dev/dri/renderD129";
-      }
+      # TODO: fix dual gpu sunshine errors
+      # {
+      # modifier = "rw";
+      # node = "/dev/dri/card1";
+      # }
+      # {
+      # modifier = "rw";
+      # node = "/dev/dri/renderD129";
+      # }
       {
         modifier = "rw";
         node = "/dev/fb0";
       }
+      {
+        modifier = "rw";
+        node = "/dev/uinput";
+      }
+      {
+        modifier = "rw";
+        node = "/dev/input";
+      }
+
     ];
 
     config = { config, pkgs, ... }:
@@ -120,7 +141,7 @@ in {
               imports = [
                 sops-nix.homeManagerModules.sops
                 ../hosts/x/sops.nix
-                # ../modules/home/i3
+                ../modules/home/i3
                 ../modules/home/git.nix
                 ../modules/home/lazygit.nix
                 ../modules/home/ssh.nix
@@ -149,9 +170,10 @@ in {
         services.xrdp = {
           enable = true;
           openFirewall = true;
-          defaultWindowManager = "gnome";
+          defaultWindowManager = "i3";
         };
         # services.resolved.enable = true;
+        hardware.steam-hardware.enable = true;
 
         # X and audio
         sound.enable = true;
@@ -160,54 +182,56 @@ in {
 
         services.xserver = {
           enable = true;
-          # videoDrivers = [ "nvidia" ];
+          # videoDrivers = [ "amdgpu" ];
 
           # Using gdm and gnome
           # lightdm failed to start with autologin, probably linked to X auth and Gnome service conflict
           # X auth was not ready when Gnome session started, can be seen with journalctl _UID=$(id -u sunshine) -b
           # Maybe another combination of displayManager / desktopManager works
-          displayManager.gdm.enable = true;
-          desktopManager.gnome.enable = true;
+          # displayManager.gdm.enable = true;
+          # desktopManager.gnome.enable = true;
 
           # autologin
-          displayManager.autoLogin.enable = true;
-          displayManager.autoLogin.user = "x";
-          displayManager.defaultSession = "gnome";
+          # displayManager.autoLogin.enable = true;
+          # displayManager.autoLogin.user = "x";
+          # displayManager.defaultSession = "gnome";
 
           # Dummy screen
-          monitorSection = ''
-            VendorName     "Unknown"
-            HorizSync   30-85
-            VertRefresh 48-120
+          /* monitorSection = ''
+               VendorName     "Unknown"
+               HorizSync   30-85
+               VertRefresh 48-120
 
-            ModelName      "Unknown"
-            Option         "DPMS"
-          '';
+               ModelName      "Unknown"
+               Option         "DPMS"
+             '';
 
-          deviceSection = ''
-            VendorName "NVIDIA Corporation"
-            Option      "AllowEmptyInitialConfiguration"
-            Option      "ConnectedMonitor" "DFP"
-            Option      "CustomEDID" "DFP-0"
+             deviceSection = ''
+               VendorName "NVIDIA Corporation"
+               Option      "AllowEmptyInitialConfiguration"
+               Option      "ConnectedMonitor" "DFP"
+               Option      "CustomEDID" "DFP-0"
 
-          '';
+             '';
 
-          screenSection = ''
-            DefaultDepth    24
-            Option      "ModeValidation" "AllowNonEdidModes, NoVesaModes"
-            Option      "MetaModes" "1920x1080"
-            SubSection     "Display"
-                Depth       24
-            EndSubSection
-          '';
+             screenSection = ''
+               DefaultDepth    24
+               Option      "ModeValidation" "AllowNonEdidModes, NoVesaModes"
+               Option      "MetaModes" "1920x1080"
+               SubSection     "Display"
+                   Depth       24
+               EndSubSection
+             '';
+          */
         };
 
         # Sunshine user, service and config 
-        users.users.x = {
+        users.users.${host.user} = {
           isNormalUser = true;
-          home = "/home/x";
-          description = "Sunshine Server";
+          initialPassword = "nixos";
           extraGroups = [ "wheel" "input" "video" "sound" ];
+          shell = pkgs.nushell;
+          openssh.authorizedKeys.keys = host.ssh_authorized_keys;
         };
 
         security.sudo.extraRules = [{
@@ -235,7 +259,7 @@ in {
           wants = [ "graphical-session.target" ];
           after = [ "graphical-session.target" ];
 
-          preStart = "echo $XDG_SESSION_TYPE && ${pkgs.xorg.xrandr}/bin/xrandr";
+          # preStart = "echo $XDG_SESSION_TYPE && ${pkgs.xorg.xrandr}/bin/xrandr";
           serviceConfig = {
             ExecStart =
               "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf min_log_level=1 encoder=software";
