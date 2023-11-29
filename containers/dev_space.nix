@@ -105,6 +105,12 @@ in {
 
         configFile = pkgs.writeTextDir "config/sunshine.conf" ''
           origin_web_ui_allowed=wan
+          #output_name = 0
+          #capture = kms
+          #hevc_mode = 1
+          #min_threads = 4
+          #encoder = software
+          #adapter_name = /dev/dri/renderD128
         '';
       in {
 
