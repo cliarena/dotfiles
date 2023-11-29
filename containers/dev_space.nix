@@ -93,6 +93,10 @@ in {
         modifier = "rwm";
         node = "/dev/uinput";
       }
+      {
+        modifier = "rwm";
+        node = "/dev/input";
+      }
     ];
 
     config = { config, pkgs, ... }:
