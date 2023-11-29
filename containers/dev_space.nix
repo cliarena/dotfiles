@@ -54,14 +54,18 @@ in {
         isReadOnly = false;
       };
       # TODO: Test if it's needed by sunshine to forward mouse and keyboard events
-      # "/dev/input" = {
-      # hostPath = "/dev/input";
-      # isReadOnly = false;
-      # };
-      # "/dev/uinput" = {
-      # hostPath = "/dev/uinput";
-      # isReadOnly = false;
-      # };
+      "/dev/input" = {
+        hostPath = "/dev/input";
+        isReadOnly = false;
+      };
+      "/dev/uinput" = {
+        hostPath = "/dev/uinput";
+        isReadOnly = false;
+      };
+      "/dev/udev" = {
+        hostPath = "/dev/udev";
+        isReadOnly = false;
+      };
     };
     allowedDevices = [
       {
@@ -86,14 +90,9 @@ in {
         node = "/dev/fb0";
       }
       {
-        modifier = "rw";
+        modifier = "rwm";
         node = "/dev/uinput";
       }
-      {
-        modifier = "rw";
-        node = "/dev/input";
-      }
-
     ];
 
     config = { config, pkgs, ... }:
