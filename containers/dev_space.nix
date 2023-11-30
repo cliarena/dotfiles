@@ -85,10 +85,10 @@ in {
       # modifier = "rw";
       # node = "/dev/dri/renderD129";
       # }
-      {
-        modifier = "rw";
-        node = "/dev/fb0";
-      }
+      # {
+      # modifier = "rw";
+      # node = "/dev/fb0";
+      # }
       {
         modifier = "rwm";
         node = "/dev/uinput";
@@ -142,11 +142,11 @@ in {
             inherit nixpkgs;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.x = {
+            home-manager.users.${host.user} = {
               imports = [
                 sops-nix.homeManagerModules.sops
                 ../hosts/x/sops.nix
-                ../modules/home/i3
+                # ../modules/home/i3
                 ../modules/home/git.nix
                 ../modules/home/lazygit.nix
                 ../modules/home/ssh.nix
@@ -158,7 +158,7 @@ in {
               home = {
                 stateVersion = "22.11";
                 username = "x";
-                homeDirectory = "/home/x";
+                homeDirectory = "/home/${host.user}";
               };
             };
             # Optionally, use home-manager.extraSpecialArgs to pass
@@ -175,7 +175,7 @@ in {
         services.xrdp = {
           enable = true;
           openFirewall = true;
-          defaultWindowManager = "i3";
+          defaultWindowManager = "gnome";
         };
         # services.resolved.enable = true;
         hardware.steam-hardware.enable = true;
@@ -193,13 +193,13 @@ in {
           # lightdm failed to start with autologin, probably linked to X auth and Gnome service conflict
           # X auth was not ready when Gnome session started, can be seen with journalctl _UID=$(id -u sunshine) -b
           # Maybe another combination of displayManager / desktopManager works
-          # displayManager.gdm.enable = true;
-          # desktopManager.gnome.enable = true;
+          displayManager.gdm.enable = true;
+          desktopManager.gnome.enable = true;
 
           # autologin
-          # displayManager.autoLogin.enable = true;
-          # displayManager.autoLogin.user = "x";
-          # displayManager.defaultSession = "gnome";
+          displayManager.autoLogin.enable = true;
+          displayManager.autoLogin.user = host.user;
+          displayManager.defaultSession = "gnome";
 
           # Dummy screen
           /* monitorSection = ''
@@ -233,14 +233,14 @@ in {
         # Sunshine user, service and config 
         users.users.${host.user} = {
           isNormalUser = true;
-          initialPassword = "nixos";
+          # initialPassword = "nixos";
           extraGroups = [ "wheel" "input" "video" "sound" ];
           shell = pkgs.nushell;
           openssh.authorizedKeys.keys = host.ssh_authorized_keys;
         };
 
         security.sudo.extraRules = [{
-          users = [ "x" ];
+          users = [ host.user ];
           commands = [{
             command = "ALL";
             options = [ "NOPASSWD" ];
