@@ -1,7 +1,8 @@
 { inputs, pkgs, ... }:
-let inherit (inputs) sops-nix disko black-hosts;
+let inherit (inputs) sops-nix disko black-hosts nixvim;
 in {
   imports = [
+    nixvim.nixosModules.nixvim
     sops-nix.nixosModules.sops
     disko.nixosModules.disko
     black-hosts.nixosModule
