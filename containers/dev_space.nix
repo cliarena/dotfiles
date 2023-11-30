@@ -62,8 +62,8 @@ in {
         hostPath = "/dev/uinput";
         isReadOnly = false;
       };
-      "/dev/udev" = {
-        hostPath = "/dev/udev";
+      "/run/udev" = {
+        hostPath = "/run/udev";
         isReadOnly = false;
       };
     };
