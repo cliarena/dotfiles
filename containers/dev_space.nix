@@ -102,7 +102,9 @@ in {
     config = { config, pkgs, ... }:
       let
         inherit (inputs) home-manager sops-nix;
-
+        sunshine = pkgs.sunshine.overrideAttrs (old: {
+          runtimeDependencies = old.runtimeDependencies ++ [ pkgs.libglvnd ];
+        });
         configFile = pkgs.writeTextDir "config/sunshine.conf" ''
           origin_web_ui_allowed=wan
           #output_name = 0
@@ -251,7 +253,7 @@ in {
           owner = "root";
           group = "root";
           capabilities = "cap_sys_admin+p";
-          source = "${pkgs.sunshine}/bin/sunshine";
+          source = "${sunshine}/bin/sunshine";
         };
 
         # Inspired from https://github.com/LizardByte/Sunshine/blob/5bca024899eff8f50e04c1723aeca25fc5e542ca/packaging/linux/sunshine.service.in
