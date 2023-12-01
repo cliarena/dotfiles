@@ -77,14 +77,14 @@ in {
         node = "/dev/dri/renderD128";
       }
       # TODO: fix dual gpu sunshine errors
-      # {
-      # modifier = "rw";
-      # node = "/dev/dri/card1";
-      # }
-      # {
-      # modifier = "rw";
-      # node = "/dev/dri/renderD129";
-      # }
+      {
+        modifier = "rw";
+        node = "/dev/dri/card1";
+      }
+      {
+        modifier = "rw";
+        node = "/dev/dri/renderD129";
+      }
       # {
       # modifier = "rw";
       # node = "/dev/fb0";
