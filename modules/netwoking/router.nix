@@ -81,6 +81,7 @@ in {
       0.0.0.0 anime-planet.com
       0.0.0.0 iqiyi.com
       0.0.0.0 aniwatch.to
+      0.0.0.0 aniwave.to
       0.0.0.0 myanimelist.com
       0.0.0.0 asiancrush.com
       0.0.0.0 netflix.com
