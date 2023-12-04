@@ -75,6 +75,18 @@ in {
       blockPorn = true;
       blockSocial = false;
     };
+    extraHosts = ''
+      0.0.0.0 crunchyroll.com
+      0.0.0.0 funimation.com
+      0.0.0.0 anime-planet.com
+      0.0.0.0 iqiyi.com
+      0.0.0.0 aniwatch.to
+      0.0.0.0 myanimelist.com
+      0.0.0.0 asiancrush.com
+      0.0.0.0 netflix.com
+      0.0.0.0 hidive.com
+      0.0.0.0 retrocrush.tv
+    '';
     bridges.br0.interfaces = [ "wan0" "wlan0" ];
     # nameservers = [ "1.1.1.1" ];
     resolvconf.enable =
