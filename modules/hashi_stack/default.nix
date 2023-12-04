@@ -26,11 +26,11 @@
     ./cloudflare-dyndns.nix
     # ../podman.nix
     ../docker.nix
-    ./consul
-    ./vault
-    ./nomad.nix
-    ./envoy.nix
-    ./vault_initializer.nix
-    ./consul_template.nix
+    # ./consul
+    # ./vault
+    # ./nomad.nix
+    # ./envoy.nix
+    # ./vault_initializer.nix
+    # ./consul_template.nix
   ];
 }
