@@ -34,7 +34,6 @@ in {
   containers.dev-space = {
     inherit (host) hostAddress localAddress;
     autoStart = true;
-    privateNetwork = true;
     interfaces = [ "mv-qub0" ];
     # TODO: Test if it's needed BY SUNSHIN
     # additionalCapabilities = [ "CAP_SYS_ADMIN" ];
