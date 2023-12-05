@@ -29,9 +29,9 @@ in {
       enable = true;
       wait-online.anyInterface = true;
       networks = {
-        "20-mv-mv-qub0" = {
+        "20-mv-qub0" = {
           enable = true;
-          name = "mv-mv-qub0";
+          name = "mv-qub0";
           address = wan_ips;
           gateway = wan_gateway;
           dns = dns_server;

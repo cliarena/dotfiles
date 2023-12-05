@@ -35,7 +35,7 @@ in {
     inherit (host) hostAddress localAddress;
     autoStart = true;
     privateNetwork = true;
-    macvlans = [ "mv-qub0" ];
+    interfaces = [ "mv-qub0" ];
     # TODO: Test if it's needed BY SUNSHIN
     # additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
