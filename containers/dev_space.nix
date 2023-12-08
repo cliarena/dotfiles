@@ -94,7 +94,7 @@ in {
       }
       {
         modifier = "rwm";
-        node = "/dev/input";
+        node = "char-input";
       }
     ];
 
