@@ -179,12 +179,9 @@ in {
           defaultWindowManager = "gnome";
         };
         # services.resolved.enable = true;
-        hardware.steam-hardware.enable = true;
 
         # X and audio
         sound.enable = true;
-        hardware.pulseaudio.enable = true;
-        security.rtkit.enable = true;
 
         services.xserver = {
           enable = true;
