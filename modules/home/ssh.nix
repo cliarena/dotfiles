@@ -21,6 +21,11 @@
         identityFile = config.sops.secrets.GL_SSH_KEY.path;
         extraOptions = { PreferredAuthentications = "publickey"; };
       };
+      github = {
+        host = "github.com";
+        identityFile = config.sops.secrets.GH_SSH_KEY.path;
+        extraOptions = { PreferredAuthentications = "publickey"; };
+      };
     };
   };
 }
