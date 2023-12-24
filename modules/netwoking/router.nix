@@ -69,7 +69,7 @@ in {
     useNetworkd = true;
     wireless.enable = true;
     stevenBlackHosts = {
-      enable = true;
+      enable = false;
       blockFakenews = true;
       blockGambling = true;
       blockPorn = true;
