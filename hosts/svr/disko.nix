@@ -67,7 +67,7 @@
         "defaults"
         "size=6G" # limit tmpfs size to 6GiB
         "noatime"
-        "noexec"
+        # "noexec"
         "mode=755"
       ];
     };
