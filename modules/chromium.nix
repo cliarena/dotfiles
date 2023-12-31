@@ -8,6 +8,7 @@
       "SpellcheckEnabled" = true;
     };
     extensions = [
+      "dnebklifojaaecmheejjopgjdljebpeo" # Everhour time tracker
       "mbnbehikldjhnfehhnaidhjhoofhpehk" # Css pepper
       # "eljapbgkmlngdpckoiiibecpemleclhh" # Fonts ninja -- auto opens new tabs
       "pekhihjiehdafocefoimckjpbkegknoh" # Site pallet
