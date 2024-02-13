@@ -3,6 +3,7 @@
 {
   services.surrealdb = {
     enable = true;
-    dbPath = "file:///srv/surrealdb/";
+    dbPath = "memory";
+    # dbPath = "file:///srv/surrealdb/";
     };
 }
