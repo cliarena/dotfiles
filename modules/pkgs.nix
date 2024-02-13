@@ -7,7 +7,7 @@
 
     ### Web ###
     w3m
-    python310Packages.howdoi
+    # python310Packages.howdoi
     brave
     # mpv
     # ytfzf
