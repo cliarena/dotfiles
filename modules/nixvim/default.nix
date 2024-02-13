@@ -1,5 +1,5 @@
-pkgs: let
-   runtimePkgs = with pkgs; [ zig cargo rust-analyzer rustfmt nil nixfmt ];
+pkgs:
+let runtimePkgs = with pkgs; [ zig cargo rust-analyzer rustfmt nil nixfmt ];
 in {
   enable = true;
   # package = pkgs.neovim-nightly;
@@ -58,7 +58,8 @@ in {
     ./lspsaga.lua
     #./glow.lua
   ];
-  extraPlugins = with pkgs.vimPlugins; [
+  extraPlugins = with pkgs.vimPlugins;
+    [
       popup-nvim # # Needed by some plugins
       plenary-nvim # # Lua Library
       nvim-tree-lua # # File Explorer
@@ -124,7 +125,7 @@ in {
       ## TreeSitter
       nvim-treesitter # # TreeSitter Configurations and abstrations
       nvim-treesitter.withAllGrammars # # All treesitter parsers
-      nvim-ts-rainbow # # Rainbow Parentheses
+      rainbow-delimiters-nvim # # Rainbow Parentheses
       nvim-ts-context-commentstring # # Comment style based on context
       nvim-ts-autotag # # auto-close tag
       aerial-nvim # # symbol tree panel
@@ -178,6 +179,5 @@ in {
       ## Optimizations
       impatient-nvim # # Speed up loading Lua modules
     ] ++ runtimePkgs;
-  
 
 }
