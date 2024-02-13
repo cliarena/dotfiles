@@ -22,6 +22,7 @@ in {
     ../../containers/dev_space.nix
     ../../containers/hello.nix
     ../../modules/pkgs.nix
+    ../../modules/surrealdb.nix
   ];
   programs.nixvim = import ../../modules/nixvim pkgs;
   system.stateVersion = "22.11";
