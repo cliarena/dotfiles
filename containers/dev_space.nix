@@ -230,7 +230,7 @@ in {
         # Sunshine user, service and config 
         users.users.${host.user} = {
           isNormalUser = true;
-          # initialPassword = "nixos";
+          initialPassword = "nixos";
           extraGroups = [ "wheel" "input" "video" "sound" ];
           shell = pkgs.nushell;
           openssh.authorizedKeys.keys = host.ssh_authorized_keys;
