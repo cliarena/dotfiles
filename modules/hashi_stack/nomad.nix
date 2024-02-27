@@ -63,32 +63,32 @@
         # cpu_total_compute = 4 * 2200;
         memory_total_mb = 2 * 64 * 1024; # double the ram to benefit from zram
         host_volume = {
-          certs_fullchain = {
-            path = "/srv/certs/fullchain.pem";
-            read_only = true;
-          };
-          certs_privkey = {
-            path = "/srv/certs/privkey.pem";
-            read_only = true;
-          };
-          taskserver_data = {
-            path = "/srv/taskserver/data";
-            read_only = false;
-          };
+          # certs_fullchain = {
+          #   path = "/srv/certs/fullchain.pem";
+          #   read_only = true;
+          # };
+          # certs_privkey = {
+          #   path = "/srv/certs/privkey.pem";
+          #   read_only = true;
+          # };
+          # taskserver_data = {
+          #   path = "/srv/taskserver/data";
+          #   read_only = false;
+          # };
           # vaultwarden = {
           # path = "/vault/hdd/nomad/host-volumes/vaultwarden";
           # read_only = false;
           # };
           # for kasm itself
-          kasm_data = {
-            path = "/srv/kasm/data";
-            read_only = false;
-          };
-          # for kasm profiles data persistency
-          kasm_profiles = {
-            path = "/srv/kasm/profiles";
-            read_only = false;
-          };
+          # kasm_data = {
+          #   path = "/srv/kasm/data";
+          #   read_only = false;
+          # };
+          # # for kasm profiles data persistency
+          # kasm_profiles = {
+          #   path = "/srv/kasm/profiles";
+          #   read_only = false;
+          # };
           # waypoint-server = {
           # path = "/vault/hdd/nomad/host-volumes/wp-server";
           # read_only = false;

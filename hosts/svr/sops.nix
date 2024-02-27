@@ -11,7 +11,7 @@
       ACME_VAULT_CERT_CREDENTIALS = { };
       CLOUDFLARE_API_TOKEN = { };
 
-      # "NOMAD_GOSSIP_ENCRYPTION_KEY.hcl" = { };
+      "NOMAD_GOSSIP_ENCRYPTION_KEY.hcl" = { };
 
       # VAULT_ROOT_TOKEN = { sopsFile = ../../secrets/vault.yaml; };
 
