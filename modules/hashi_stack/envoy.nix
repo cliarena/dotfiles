@@ -10,7 +10,7 @@ let
 in
 {
   services.envoy = {
-    package = pkgs.envoy;
+    /* package = pkgs.envoy; */
     enable = true;
   };
 }
