@@ -26,7 +26,7 @@
     ./cloudflare-dyndns.nix
     # ../podman.nix
     ../docker.nix
-    # ./consul
+    ./consul
     # ./vault
     # ./nomad.nix
     # ./envoy.nix
