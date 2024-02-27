@@ -27,10 +27,10 @@
     # ../podman.nix
     ../docker.nix
     ./consul
-    # ./vault
+    ./vault
     # ./nomad.nix
     ./envoy.nix
-    # ./vault_initializer.nix
+    ./vault_initializer.nix
     # ./consul_template.nix
   ];
 }
