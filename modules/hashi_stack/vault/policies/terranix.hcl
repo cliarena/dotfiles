@@ -30,10 +30,21 @@ path "pki/root" {
 path "pki/root/generate/internal" {
   capabilities = [ "read","create", "update","delete" ]
 }
+path "pki/issuers/generate/root/internal" {
+  capabilities = [ "read","create", "update","delete" ]
+}
+
 // Manage intermediate cert for PKI secret backend "pki_int"
 path "pki_int/intermediate/generate/internal" {
   capabilities = [ "read","create", "update","delete" ]
 }
+path "pki_int/issuers/generate/intermediate/internal" {
+  capabilities = [ "read","create", "update","delete" ]
+}
+path "pki/issuer/*" {
+  capabilities = [ "read","create", "update","delete" ]
+}
+
 // Configure CRL location and issuing certificates
 path "pki/config/urls" {
   capabilities = [ "read", "create", "update"  ]
