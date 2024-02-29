@@ -17,6 +17,7 @@ let
     };
     nomad = {
       service = {
+        vault.policy = "write";
         nomad.policy = "write";
         nomad-client.policy = "write";
         kasm.policy = "write";
