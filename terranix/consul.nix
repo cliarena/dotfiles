@@ -20,6 +20,7 @@ let
         vault.policy = "write";
         nomad.policy = "write";
         nomad-client.policy = "write";
+        cliarena-gateway.policy = "write";
         kasm.policy = "write";
         nginx.policy = "write";
         nginx-sidecar-proxy.policy = "write";
