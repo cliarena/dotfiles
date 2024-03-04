@@ -77,77 +77,77 @@
         };
       };
 
-      # config_entries = {
-      # # if you change or delete any existing entry you need to delete it using `consul config delete -kind http-route -name cliarena_http_routes` and restart consul to take effect
-      # bootstrap = [
-      # {
-      # kind = "proxy-defaults";
-      # name = "global";
-      # config = { protocol = "http"; };
-      # }
-      # {
-      # name = "cliarena-gateway";
-      # kind = "api-gateway";
-      # listeners = [{
-      # port = 443;
-      # name = "cliarena-http-listener";
-      # protocol = "http";
-      # tls = {
-      # # minVersion = "TLSv1_3";
-      # # maxVersion = "TLSv1_3";
-      # certificates = [{
-      # kind = "inline-certificate";
-      # name = "cliarena-cert";
-      # }];
-      # };
-      # }];
-      # }
-      # {
-      # kind = "inline-certificate";
-      # name = "cliarena-cert";
-      # certificate = builtins.readFile /var/lib/acme/cliarena.com/cert.pem;
-      # privateKey = builtins.readFile /var/lib/acme/cliarena.com/key.pem;
-      # }
-      # {
-      # name = "cliarena-http-routes";
-      # kind = "http-route";
-      # rules = [
-      # # {
-      # # matches = [{
-      # # path = {
-      # # match = "prefix";
-      # # value = "/";
-      # # };
-      # # }];
-      # # services = [
-      # # {
-      # # name = "ui";
-      # # weight = 90;
-      # # }
-      # # {
-      # # name = "experimental-ui";
-      # # weight = 10;
-      # # }
-      # # ];
-      # # }
-      # {
-      # matches = [{
-      # path = {
-      # match = "prefix";
-      # value = "/";
-      # };
-      # }];
-      # services = [{ name = "echo"; }];
-      # }
-      # ];
-      # parents = [{
-      # kind = "api-gateway";
-      # name = "cliarena-gateway";
-      # sectionName = "cliarena-http-listener";
-      # }];
-      # }
-      # ];
-      # };
+      config_entries = {
+        # if you change or delete any existing entry you need to delete it using `consul config delete -kind http-route -name cliarena_http_routes` and restart consul to take effect
+        bootstrap = [
+          # {
+          # kind = "proxy-defaults";
+          # name = "global";
+          # config = { protocol = "http"; };
+          # }
+          # {
+          # name = "cliarena-gateway";
+          # kind = "api-gateway";
+          # listeners = [{
+          # port = 443;
+          # name = "cliarena-http-listener";
+          # protocol = "http";
+          # tls = {
+          # # minVersion = "TLSv1_3";
+          # # maxVersion = "TLSv1_3";
+          # certificates = [{
+          # kind = "inline-certificate";
+          # name = "cliarena-cert";
+          # }];
+          # };
+          # }];
+          # }
+          {
+            kind = "inline-certificate";
+            name = "cliarena-cert";
+            certificate = builtins.readFile /var/lib/acme/cliarena.com/cert.pem;
+            privateKey = builtins.readFile /var/lib/acme/cliarena.com/key.pem;
+          }
+          # {
+          # name = "cliarena-http-routes";
+          # kind = "http-route";
+          # rules = [
+          # # {
+          # # matches = [{
+          # # path = {
+          # # match = "prefix";
+          # # value = "/";
+          # # };
+          # # }];
+          # # services = [
+          # # {
+          # # name = "ui";
+          # # weight = 90;
+          # # }
+          # # {
+          # # name = "experimental-ui";
+          # # weight = 10;
+          # # }
+          # # ];
+          # # }
+          # {
+          # matches = [{
+          # path = {
+          # match = "prefix";
+          # value = "/";
+          # };
+          # }];
+          # services = [{ name = "echo"; }];
+          # }
+          # ];
+          # parents = [{
+          # kind = "api-gateway";
+          # name = "cliarena-gateway";
+          # sectionName = "cliarena-http-listener";
+          # }];
+          # }
+        ];
+      };
     };
   };
 }
