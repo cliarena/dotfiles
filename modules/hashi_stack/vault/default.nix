@@ -7,8 +7,8 @@ in {
   services.vault = {
     enable = true;
     package = pkgs.vault-bin;
-    # tlsCertFile = "/var/lib/acme/vault.${DOMAIN}/cert.pem";
-    # tlsKeyFile = "/var/lib/acme/vault.${DOMAIN}/key.pem";
+    tlsCertFile = "/var/lib/acme/vault.${DOMAIN}/cert.pem";
+    tlsKeyFile = "/var/lib/acme/vault.${DOMAIN}/key.pem";
     storageBackend = "raft";
     storageConfig = ''
       retry_join {
@@ -22,8 +22,8 @@ in {
         null;
     extraConfig = ''
       ui = true
-      api_addr= "http://10.10.0.10:8200"
-      cluster_addr= "http://10.0.10.10:8201"
+      api_addr= "https://vault.${DOMAIN}"
+      cluster_addr= "https://vault.${DOMAIN}:8201"
 
       # register vault as a service in consul
       service_registration "consul" {
@@ -34,8 +34,9 @@ in {
     # tls_require_and_verify_client_cert = "true"
     # tls_client_ca_file = "${builtins.path { path = ./pki/origin.cert.pem; }}"
     # '';
-    address = "10.10.0.10:8200";
+    # address = "10.10.0.10:8200";
+    address = "vault.${DOMAIN}:8200";
   };
-  # systemd.services.vault.after = [ "acme-vault.${DOMAIN}.service" ];
+  systemd.services.vault.after = [ "acme-vault.${DOMAIN}.service" ];
 
 }
