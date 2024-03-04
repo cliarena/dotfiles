@@ -95,8 +95,6 @@ in {
         name = "cliarena-http-listener";
         protocol = "http";
         tls = {
-          # minVersion = "TLSv1_3";
-          # maxVersion = "TLSv1_3";
           certificates = [{
             kind = "inline-certificate";
             name = "cliarena-cert";
@@ -105,4 +103,26 @@ in {
       }];
     };
   };
+
+  resource.consul_config_entry.cliarena_http_routes = {
+    name = "cliarena-http-routes";
+    kind = "http-route";
+    config_json = builtins.toJSON {
+      rules = [{
+        matches = [{
+          path = {
+            match = "prefix";
+            value = "/";
+          };
+        }];
+        services = [{ name = "nginx"; }];
+      }];
+      parents = [{
+        inherit (config.resource.consul_config_entry.cliarena_gateway)
+          kind name;
+        sectionName = "cliarena-http-listener";
+      }];
+    };
+  };
+
 }
