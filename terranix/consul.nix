@@ -112,7 +112,7 @@ in {
       sources = {
         name = config.resource.consul_config_entry.cliarena_gateway.name;
         type = "consul";
-        action = "deny";
+        action = "allow";
       };
     };
   };
