@@ -17,11 +17,12 @@
         credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
         # reloadServices = [ "vault.service" ];
       };
-      # "cliarena.com" = {
-      #   group = "vault";
-      #   credentialsFile = ./cliarena.com;
-      #   extraDomainNames = [ "*.cliarena.com" ];
-      # };
+      "vault.cliarena.com" = {
+        group = "vault";
+        # change this or add to it, if reached letsencrypt Rate limit
+        credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
+        reloadServices = [ "vault.service" ];
+      };
     };
   };
 }
