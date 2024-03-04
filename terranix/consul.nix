@@ -104,13 +104,16 @@ in {
     };
   };
 
-  resource.consul_config_entry_service_intentions.nginx = {
+  resource.consul_config_entry.nginx_intentions = {
     name = "nginx";
+    kind = "service-intentions";
 
-    sources = {
-      name = config.resource.consul_config_entry.cliarena_gateway.name;
-      type = "consul";
-      action = "allow";
+    config_json = builtins.toJSON {
+      sources = {
+        name = config.resource.consul_config_entry.cliarena_gateway.name;
+        type = "consul";
+        action = "deny";
+      };
     };
   };
 
