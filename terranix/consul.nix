@@ -85,4 +85,24 @@ in {
     name = "global";
     config_json = builtins.toJSON { config.protocol = "http"; };
   };
+
+  resource.consul_config_entry.cliarena_gateway = {
+    kind = "api-gateway";
+    name = "cliarena-gateway";
+    config_json = builtins.toJSON {
+      listeners = [{
+        port = 443;
+        name = "cliarena-http-listener";
+        protocol = "http";
+        tls = {
+          # minVersion = "TLSv1_3";
+          # maxVersion = "TLSv1_3";
+          certificates = [{
+            kind = "inline-certificate";
+            name = "cliarena-cert";
+          }];
+        };
+      }];
+    };
+  };
 }
