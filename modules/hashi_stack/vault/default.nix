@@ -21,9 +21,7 @@ in {
       else
         null;
     extraConfig = ''
-      ui_config {
-        enabled = true
-      }
+      ui = true
       api_addr= "http://10.10.0.10:8200"
       cluster_addr= "http://10.0.10.10:8201"
 
