@@ -78,4 +78,11 @@ in {
       # token_id = config.sops.secrets."CONSUL_ACL_DEFAULT_TOKEN".path;
       role = consul_acl_role.dns_role.name;
     };
+
+  # Service Mesh
+  resource.consul_config_entry.proxy_defaults = {
+    kind = "proxy-defaults";
+    name = "global";
+    config_json = builtins.toJSON { config.protocol = "http"; };
+  };
 }
