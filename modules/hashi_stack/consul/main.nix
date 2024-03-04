@@ -59,22 +59,22 @@
 
       connect = {
         enabled = true;
-        # ca_provider = "vault";
-        # ca_config = {
-        # address = VAULT_ADDR;
-        # # token = "<vault-token-with-necessary-policy>";
-        # auth_method = {
-        # type = "approle";
-        # mount_path = "approle";
-        # params = {
-        # role_id_file_path = config.sops.secrets.CONSUL_VAULT_ROLE_ID.path;
-        # secret_id_file_path =
-        # config.sops.secrets.CONSUL_VAULT_SECRET_ID.path;
-        # };
-        # };
-        # root_pki_path = "pki";
-        # intermediate_pki_path = "pki_int";
-        # };
+        ca_provider = "vault";
+        ca_config = {
+          address = VAULT_ADDR;
+          # token = "<vault-token-with-necessary-policy>";
+          auth_method = {
+            type = "approle";
+            mount_path = "approle";
+            params = {
+              role_id_file_path = config.sops.secrets.CONSUL_VAULT_ROLE_ID.path;
+              secret_id_file_path =
+                config.sops.secrets.CONSUL_VAULT_SECRET_ID.path;
+            };
+          };
+          root_pki_path = "pki";
+          intermediate_pki_path = "pki_int";
+        };
       };
 
       # config_entries = {
