@@ -104,6 +104,16 @@ in {
     };
   };
 
+  resource.consul_config_entry_service_intentions.nginx = {
+    name = "nginx";
+
+    sources = {
+      name = config.resource.consul_config_entry.cliarena_gateway.name;
+      type = "consul";
+      action = "allow";
+    };
+  };
+
   resource.consul_config_entry.cliarena_http_routes = {
     name = "cliarena-http-routes";
     kind = "http-route";
