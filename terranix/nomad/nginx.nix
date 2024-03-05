@@ -25,6 +25,16 @@ in {
             # port = "20000";
           };
         };
+
+        checks = with time; [{
+          type = "http";
+          path = "/";
+          # protocol = "https";
+          # expose = true;
+          # tlsSkipVerify = true;
+          interval = 3 * second;
+          timeout = 2 * second;
+        }];
       }];
       task.server = {
         driver = "docker";
