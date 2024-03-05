@@ -118,6 +118,18 @@ in {
       };
     };
   };
+  resource.consul_config_entry.echo_intentions = {
+    name = "echo";
+    kind = "service-intentions";
+
+    config_json = builtins.toJSON {
+      sources = {
+        name = config.resource.consul_config_entry.cliarena_gateway.name;
+        type = "consul";
+        action = "allow";
+      };
+    };
+  };
 
   resource.consul_config_entry.cliarena_http_routes = {
     name = "cliarena-http-routes";
