@@ -19,7 +19,7 @@ in {
       services = [{
         name = "echo";
         # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "8443";
+        port = "8080";
         connect = {
           sidecarService = {
             # port = "20000";
@@ -28,9 +28,10 @@ in {
         checks = with time; [{
           type = "http";
           path = "/";
-          protocol = "https";
-          tlsSkipVerify = true;
-          interval = 2 * second;
+          # protocol = "https";
+          # expose = true;
+          # tlsSkipVerify = true;
+          interval = 3 * second;
           timeout = 2 * second;
         }];
       }];
