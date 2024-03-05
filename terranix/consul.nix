@@ -135,15 +135,26 @@ in {
     name = "cliarena-http-routes";
     kind = "http-route";
     config_json = builtins.toJSON {
-      rules = [{
-        matches = [{
-          path = {
-            match = "prefix";
-            value = "/";
-          };
-        }];
-        services = [{ name = "nginx"; }];
-      }];
+      rules = [
+        {
+          matches = [{
+            path = {
+              match = "prefix";
+              value = "/";
+            };
+          }];
+          services = [{ name = "nginx"; }];
+        }
+        {
+          matches = [{
+            path = {
+              match = "prefix";
+              value = "/echo";
+            };
+          }];
+          services = [{ name = "echo"; }];
+        }
+      ];
       parents = [{
         inherit (config.resource.consul_config_entry.cliarena_gateway)
           kind name;
