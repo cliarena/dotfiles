@@ -24,6 +24,8 @@ let
         kasm.policy = "write";
         nginx.policy = "write";
         nginx-sidecar-proxy.policy = "write";
+        echo.policy = "write";
+        echo-sidecar-proxy.policy = "write";
         count-api.policy = "write";
         count-api-sidecar-proxy.policy = "write";
         count-dashboard.policy = "write";
