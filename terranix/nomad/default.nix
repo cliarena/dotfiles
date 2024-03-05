@@ -14,9 +14,9 @@ in {
     jobspec = ''''${file("${jobs}/nginx.json")}'';
     json = true;
   };
-  # resource.nomad_job.echo = {
-  # jobspec = ''''${file("${jobs}/echo.json")}'';
-  # json = true;
-  # };
+  resource.nomad_job.echo = {
+    jobspec = ''''${file("${jobs}/echo.json")}'';
+    json = true;
+  };
   # data.vault_kv_secret.test = { path = "kv/test"; };
 }
