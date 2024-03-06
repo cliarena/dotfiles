@@ -40,6 +40,7 @@ in {
 
     # hostAddress = "10.10.2.1";
     # localAddress = "10.10.2.100";
+    restartIfChanged = false;
     ephemeral = true;
 
     # INFO: you need to bindmount your devices and add each device to allowedDevices
