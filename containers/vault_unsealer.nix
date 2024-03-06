@@ -80,7 +80,7 @@ in {
 
       services.getty.autologinUser = "x";
       systemd.services.vault_unsealer = {
-        path = [ pkgs.vault-bin ];
+        path = [ pkgs.getent pkgs.vault-bin ];
         description = "Vault unsealer";
         environment = { VAULT_ADDR = "https://vault.cliarena.com:8200"; };
         script = ''
