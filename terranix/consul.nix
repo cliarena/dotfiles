@@ -93,7 +93,7 @@ in {
     name = "cliarena-gateway";
     config_json = builtins.toJSON {
       listeners = [{
-        port = 8080;
+        port = 443;
         name = "cliarena-http-listener";
         protocol = "http";
         tls = {
