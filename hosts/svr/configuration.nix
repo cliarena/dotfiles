@@ -20,6 +20,7 @@ in {
     ../../modules/auditd.nix
     ../../modules/hashi_stack
     ../../containers/dev_space.nix
+    ../../containers/vault_unsealer.nix
     ../../containers/hello.nix
     ../../modules/pkgs.nix
     ../../modules/surrealdb.nix
