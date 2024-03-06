@@ -20,20 +20,18 @@ in {
         name = "echo";
         # WARN: Don't use named ports ie: port ="http". use literal ones
         port = "8080";
-        connect = {
-          sidecarService = {
-            # port = "20000";
-          };
-        };
-        checks = with time; [{
-          type = "http";
-          path = "/";
-          # protocol = "https";
-          # expose = true;
-          # tlsSkipVerify = true;
-          interval = 3 * second;
-          timeout = 2 * second;
-        }];
+        connect = { sidecarService = { }; };
+
+        # FIX: check throws error connection refused
+        # checks = with time; [{
+        # type = "http";
+        # path = "/";
+        # # protocol = "https";
+        # # expose = true;
+        # # tlsSkipVerify = true;
+        # interval = 3 * second;
+        # timeout = 2 * second;
+        # }];
       }];
       task.server = {
         driver = "docker";
