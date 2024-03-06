@@ -67,7 +67,6 @@ in {
       users.users.${host.user} = {
         isNormalUser = true;
         initialPassword = "nixos";
-        shell = pkgs.nushell;
         openssh.authorizedKeys.keys = host.ssh_authorized_keys;
       };
 
@@ -79,20 +78,23 @@ in {
         }];
       }];
 
-      systemd.services.consul_api_gateway_registerer = {
-        path = [ pkgs.getent pkgs.envoy ];
+      services.getty.autologinUser = "x";
+      systemd.services.vault_unsealer = {
+        path = [ pkgs.vault-bin ];
         description = "Vault unsealer";
+        environment = { VAULT_ADDR = "https://vault.cliarena.com:8200"; };
         script = ''
-          cat $HOME/.sops/secrets/VAULT_UNSEAL_KEY_1
+          for i in {1..3}
+          do
+             cat /home/${host.user}/.sops/secrets/VAULT_UNSEAL_KEY_$i | xargs vault operator unseal
+          done
         '';
         serviceConfig = {
           Restart = "on-failure";
           # avoid error start request repeated too quickly since RestartSec defaults to 100ms
           RestartSec = 3;
         };
-        # wantedBy = [ "vault.service" "consul.service" ];
-        # partOf = [ "vault.service" "consul.service" ];
-        # after = [ "vault.service" "consul.service" ];
+        wantedBy = [ "multi-user.target" ];
       };
     };
   };
