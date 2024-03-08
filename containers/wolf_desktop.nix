@@ -135,7 +135,6 @@ in {
           initialPassword = "nixos";
           extraGroups = [ "wheel" "input" "video" "sound" ];
           shell = pkgs.nushell;
-          openssh.authorizedKeys.keys = host.ssh_authorized_keys;
         };
 
         security.sudo.extraRules = [{
