@@ -3,7 +3,7 @@ let
 
   host = rec { user = "x"; };
 in {
-  containers.wolf_desktop = {
+  containers.wolf-desktop = {
     autoStart = false;
     ephemeral = true;
 
