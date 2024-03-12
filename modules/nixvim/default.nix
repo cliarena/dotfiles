@@ -1,5 +1,5 @@
 pkgs:
-let runtimePkgs = with pkgs; [ zig cargo rust-analyzer rustfmt nil nixfmt ];
+let runtimePkgs = with pkgs; [ zig cargo cargo-nextest tailwindcss-language-server rust-analyzer rustfmt nil nixfmt ];
 in {
   enable = true;
   # package = pkgs.neovim-nightly;
