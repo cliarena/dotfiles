@@ -42,6 +42,7 @@ in {
     ./lsp_signs.lua
     ./lsp_signature.lua
     ./null-ls.lua
+    ./neotest.lua
     #./lsp_lines.lua
     ./aerial.lua
     ./leap.lua
@@ -132,6 +133,11 @@ in {
       leap-nvim # # Leap Through code
       flit-nvim # # f/F/t/T motions on steroids
       # leap-spooky         ## Remote operations without leaving. eg: yank paragraph in another window TODO: add to nixpkgs
+
+
+      ## Testing
+      neotest
+      rustaceanvim
 
       ## DAP
       trouble-nvim # # Show Diagnostics in a window
