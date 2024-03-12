@@ -1,3 +1,6 @@
+require("ts_context_commentstring").setup = {
+		enable_autocmd = false,
+}
 require("Comment").setup({
   pre_hook = function(ctx)
     local U = require "Comment.utils"
