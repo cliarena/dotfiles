@@ -63,6 +63,10 @@
         # cpu_total_compute = 4 * 2200;
         memory_total_mb = 2 * 64 * 1024; # double the ram to benefit from zram
         host_volume = {
+          nix_store = {
+            path = "/nix/store";
+            read_only = true;
+          };
           # certs_fullchain = {
           #   path = "/srv/certs/fullchain.pem";
           #   read_only = true;
