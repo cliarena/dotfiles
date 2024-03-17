@@ -65,7 +65,7 @@
       fsType = "tmpfs";
       mountOptions = [
         "defaults"
-        "size=6G" # limit tmpfs size to 6GiB
+        "size=24G" # limit tmpfs size to 24GiB
         "noatime"
         # "noexec"
         "mode=755"
