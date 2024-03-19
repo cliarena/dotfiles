@@ -67,6 +67,32 @@
             path = "/nix/store";
             read_only = true;
           };
+          ## WOLF ##
+          wolf = {
+            path = "/srv/wolf";
+            read_only = false;
+          };
+          tmp_sockets = {
+            path = "/tmp/sockets";
+            read_only = false;
+          };
+          docker_socket = {
+            path = "/var/run/docker.sock";
+            read_only = false;
+          };
+          shared_mem = {
+            path = "/dev/shm";
+            read_only = false;
+          };
+          dev_input = {
+            path = "/dev/input";
+            read_only = false;
+          };
+          udev = {
+            path = "/run/udev";
+            read_only = false;
+          };
+          ## WOLF end ##
           # certs_fullchain = {
           #   path = "/srv/certs/fullchain.pem";
           #   read_only = true;
