@@ -3,13 +3,13 @@ let
   jobs = nix-nomad.lib.mkNomadJobs {
     system = "x86_64-linux";
     # system = "aarch64-linux";
-    config = [ ./kasm.nix ./nginx.nix ./echo.nix ];
+    config = [ ./kasm.nix ./nginx.nix ./echo.nix ./wolf.nix ];
   };
 in {
-  # resource.nomad_job.kasm = {
-  # jobspec = ''''${file("${jobs}/kasm.json")}'';
-  # json = true;
-  # };
+  resource.nomad_job.wolf = {
+    jobspec = ''''${file("${jobs}/wolf.json")}'';
+    json = true;
+  };
   resource.nomad_job.nginx = {
     jobspec = ''''${file("${jobs}/nginx.json")}'';
     json = true;
