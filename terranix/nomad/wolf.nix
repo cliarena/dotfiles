@@ -58,6 +58,11 @@ in {
           source = "wolf";
           readOnly = false;
         };
+        tmp_sockets = {
+          type = "host";
+          source = "tmp_sockets";
+          readOnly = false;
+        };
         docker_socket = {
           type = "host";
           source = "docker_socket";
@@ -103,13 +108,17 @@ in {
 
         env = {
           XDG_RUNTIME_DIR = "/tmp/sockets";
-          HOST_APPS_STATE_FOLDER = "/etc/wolf";
+          HOST_APPS_STATE_FOLDER = "/srv/wolf";
         };
 
         volumeMounts = [
           {
             volume = "wolf";
-            destination = "/etc/wolf";
+            destination = "/srv/wolf";
+          }
+          {
+            volume = "tmp_sockets";
+            destination = "/tmp";
           }
           {
             volume = "docker_socket";
