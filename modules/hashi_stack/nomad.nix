@@ -72,8 +72,8 @@
             path = "/srv/wolf";
             read_only = false;
           };
-          tmp_sockets = {
-            path = "/tmp/sockets";
+          tmp = {
+            path = "/tmp";
             read_only = false;
           };
           docker_socket = {
@@ -84,8 +84,16 @@
             path = "/dev/shm";
             read_only = false;
           };
+          dev_dri = {
+            path = "/dev/dri";
+            read_only = false;
+          };
           dev_input = {
             path = "/dev/input";
+            read_only = false;
+          };
+          dev_uinput = {
+            path = "/dev/uinput";
             read_only = false;
           };
           udev = {
