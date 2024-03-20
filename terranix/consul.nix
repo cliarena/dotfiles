@@ -26,6 +26,8 @@ let
         nginx-sidecar-proxy.policy = "write";
         echo.policy = "write";
         echo-sidecar-proxy.policy = "write";
+        wolf.policy = "write";
+        # echo-sidecar-proxy.policy = "write";
         count-api.policy = "write";
         count-api-sidecar-proxy.policy = "write";
         count-dashboard.policy = "write";
