@@ -106,9 +106,13 @@ in {
       task.server = {
         driver = "docker";
 
-        env = {
+        env = rec {
           XDG_RUNTIME_DIR = "/tmp/sockets";
           HOST_APPS_STATE_FOLDER = "/srv/wolf";
+          WOLF_CFG_FILE = "${HOST_APPS_STATE_FOLDER}/cfg/config.toml";
+          WOLF_PRIVATE_KEY_FILE = "${HOST_APPS_STATE_FOLDER}/cfg/key.pem";
+          WOLF_PRIVATE_CERT_FILE = "${HOST_APPS_STATE_FOLDER}/cfg/cert.pem";
+          WOLF_RENDER_NODE = "/dev/dri/renderD128";
         };
 
         volumeMounts = [
