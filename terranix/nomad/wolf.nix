@@ -58,9 +58,9 @@ in {
           source = "wolf";
           readOnly = false;
         };
-        tmp_sockets = {
+        tmp = {
           type = "host";
-          source = "tmp_sockets";
+          source = "tmp";
           readOnly = false;
         };
         docker_socket = {
@@ -117,7 +117,7 @@ in {
             destination = "/srv/wolf";
           }
           {
-            volume = "tmp_sockets";
+            volume = "tmp";
             destination = "/tmp";
           }
           {
