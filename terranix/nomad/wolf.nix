@@ -23,9 +23,17 @@ let
         static = 48100;
         to = 48100;
       };
-      autio = {
+      audio = {
         static = 48200;
         to = 48200;
+      };
+      video1 = {
+        static = 48101;
+        to = 48101;
+      };
+      autio1 = {
+        static = 48201;
+        to = 48201;
       };
       # # Control
       # EXPOSE 47999/udp
@@ -44,6 +52,43 @@ in {
     group.servers = {
       count = 1;
 
+      volume = {
+        wolf = {
+          type = "host";
+          source = "wolf";
+          readOnly = false;
+        };
+        docker_socket = {
+          type = "host";
+          source = "docker_socket";
+          readOnly = false;
+        };
+        shared_mem = {
+          type = "host";
+          source = "shared_mem";
+          readOnly = false;
+        };
+        dev_input = {
+          type = "host";
+          source = "dev_input";
+          readOnly = false;
+        };
+        dev_dri = {
+          type = "host";
+          source = "dev_dri";
+          readOnly = false;
+        };
+        dev_uinput = {
+          type = "host";
+          source = "dev_uinput";
+          readOnly = false;
+        };
+        udev = {
+          type = "host";
+          source = "udev";
+          readOnly = false;
+        };
+      };
       networks = [ http ];
       # networks = [ http { mode = "bridge"; } ];
       services = [{
@@ -56,16 +101,54 @@ in {
       task.server = {
         driver = "docker";
 
+        env = {
+          XDG_RUNTIME_DIR = "/tmp/sockets";
+          HOST_APPS_STATE_FOLDER = "/etc/wolf";
+        };
+
+        volumeMounts = [
+          {
+            volume = "wolf";
+            destination = "/etc/wolf";
+          }
+          {
+            volume = "docker_socket";
+            destination = "/var/run/docker.sock";
+          }
+          {
+            volume = "shared_mem";
+            destination = "/dev/shm";
+          }
+          {
+            volume = "dev_input";
+            destination = "/dev/input";
+          }
+          {
+            volume = "dev_dri";
+            destination = "/dev/dri";
+          }
+          {
+            volume = "dev_uinput";
+            destination = "/dev/uinput";
+          }
+          {
+            volume = "udev";
+            destination = "/run/udev";
+          }
+        ];
         config = {
           image = "ghcr.io/games-on-whales/wolf:stable";
           #	image = "mysql"
           # ports = [ "http" ];
           #	volumes = [  "/vault/hdd/nomad/static-site:/usr/share/nginx/html" ]
+          privileged = true;
+          devices =
+            [ { host_path = "/dev/dri"; } { host_path = "/dev/uinput"; } ];
         };
-        resources = {
-          cpu = 10;
-          memory = 50;
-        };
+        # resources = {
+        # cpu = 10;
+        # memory = 50;
+        # };
         # services = [{
         # name = "nginx";
         # port = "http";
