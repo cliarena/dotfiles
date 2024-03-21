@@ -1,11 +1,14 @@
 { inputs, pkgs, ... }:
-let inherit (inputs) sops-nix disko black-hosts nixvim;
+let inherit (inputs) sops-nix disko black-hosts nixvim microvm;
 in {
   imports = [
     nixvim.nixosModules.nixvim
     sops-nix.nixosModules.sops
     disko.nixosModules.disko
     black-hosts.nixosModule
+    microvm.nixosModules.microvm
+    microvm.nixosModules.host
+
     ./sops.nix
     ../../modules/nix_config.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile

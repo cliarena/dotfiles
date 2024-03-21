@@ -2,7 +2,7 @@
   description = "Nixos configuration";
 
   inputs = {
-    /* nixpkgs.url = "github:NixOS/nixpkgs/9957cd48326fe8dbd52fdc50dd2502307f188b0d"; */
+    # nixpkgs.url = "github:NixOS/nixpkgs/9957cd48326fe8dbd52fdc50dd2502307f188b0d";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     flake-registry.url = "github:NixOS/flake-registry";
@@ -20,6 +20,9 @@
     devenv.url = "github:cachix/devenv";
 
     terranix.url = "github:terranix/terranix";
+
+    microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-nomad.url = "github:tristanpemble/nix-nomad";
 
