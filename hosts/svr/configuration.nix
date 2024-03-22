@@ -6,7 +6,7 @@ in {
     sops-nix.nixosModules.sops
     disko.nixosModules.disko
     black-hosts.nixosModule
-    microvm.nixosModules.microvm
+    # microvm.nixosModules.microvm
     microvm.nixosModules.host
 
     ./sops.nix
@@ -26,6 +26,7 @@ in {
     ../../containers/vault_unsealer.nix
     ../../containers/wolf_desktop.nix
     ../../containers/hello.nix
+    ../../microvms/test.nix
     ../../modules/pkgs.nix
     ../../modules/surrealdb.nix
   ];
