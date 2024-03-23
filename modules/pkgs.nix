@@ -38,6 +38,10 @@
 
     ### Tools ###
     bat
+    file # shows types of files needed by yazi
+    poppler # PDF rendering lib needed by yazi
+    xclip   # cli clipboard utility needed by yazi
+    wl-clipboard  # cli wayland clipboard utility needed by yazi
     # nu_scripts
     # glow
     bottom
