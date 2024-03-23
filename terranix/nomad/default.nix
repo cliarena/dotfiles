@@ -1,9 +1,15 @@
-{ nix-nomad, ... }:
+{ nix-nomad, microvm, pkgs, config, ... }:
 let
   jobs = nix-nomad.lib.mkNomadJobs {
     system = "x86_64-linux";
     # system = "aarch64-linux";
-    config = [ ./kasm.nix ./nginx.nix ./echo.nix ./wolf.nix ];
+    config = [
+      ./kasm.nix
+      ./nginx.nix
+      ./echo.nix
+      ./wolf.nix
+      # (import ./microvm.nix { inherit microvm pkgs config; })
+    ];
   };
 in {
   resource.nomad_job.wolf = {
@@ -18,5 +24,9 @@ in {
     jobspec = ''''${file("${jobs}/echo.json")}'';
     json = true;
   };
+  # resource.nomad_job.microvm = {
+  # jobspec = ''''${file("${jobs}/microvm.json")}'';
+  # json = true;
+  # };
   # data.vault_kv_secret.test = { path = "kv/test"; };
 }

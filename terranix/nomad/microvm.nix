@@ -1,27 +1,62 @@
-{ user, repo, vmName, datacenters, pkgs, config, runner }:
+{ pkgs, config, microvm, ... }:
 
 let
   inherit (pkgs) lib;
+  user = "svr";
+  repo = "test";
+  vmName = "my-microvm";
 
   workDir = "/run/microvms/${user}/${repo}/${vmName}";
 
-  constraints = [
-    {
-      attribute = "\${attr.kernel.name}";
-      operator = "=";
-      value = pkgs.lib.toLower config.nixpkgs.localSystem.uname.system;
-    }
-    {
-      attribute = "\${attr.kernel.arch}";
-      operator = "=";
-      value = config.nixpkgs.localSystem.uname.processor;
-    }
-    {
-      attribute = "\${attr.cpu.numcores}";
-      operator = ">=";
-      value = config.microvm.vcpu;
-    }
-  ] ++ config.skyflake.nomadJob.constraints;
+  # runner = config.microvm.declaredRunner;
+  runner = microvm.lib.buildRunner {
+    inherit pkgs;
+    microvmConfig = {
+      inherit user;
+      hostName = vmName;
+      hypervisor = "qemu";
+      preStart = "";
+      forwardPorts = [ ];
+      shares = [ ];
+      volumes = [ ];
+      devices = [ ];
+      interfaces = [ ];
+      prettyProcnames = true;
+      qemu.extraArgs = [ ];
+      qemu.serialConsole = true;
+      cpu = null;
+      storeOnDisk = true;
+      graphics.enable = false;
+      socket = "${user}.sock";
+      balloonMem = 0;
+      vsock.cid = null;
+      optimize.enable = false;
+      mem = 512;
+      vcpu = 1;
+
+      # inherit (config.boot.kernelPackages) kernel;
+      kernel = pkgs.linuxPackages_latest.kernel;
+      initrdPath = config.system.boot.loader;
+    };
+    inherit (config.system.build) toplevel;
+  };
+  # constraints = [
+  # {
+  # attribute = "\${attr.kernel.name}";
+  # operator = "=";
+  # value = pkgs.lib.toLower config.nixpkgs.localSystem.uname.system;
+  # }
+  # {
+  # attribute = "\${attr.kernel.arch}";
+  # operator = "=";
+  # value = config.nixpkgs.localSystem.uname.processor;
+  # }
+  # {
+  # attribute = "\${attr.cpu.numcores}";
+  # operator = ">=";
+  # value = config.microvm.vcpu;
+  # }
+  # ] ++ config.skyflake.nomadJob.constraints;
 in {
 
   job.microvm = {
