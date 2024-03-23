@@ -92,6 +92,6 @@
         la = "ls -a";
       };
     };
-    programs.starship.enable = true;
+    starship.enable = true;
   };
 }
