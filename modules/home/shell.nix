@@ -18,7 +18,7 @@
           show_hidden = false;
           # sort_by = "modified";
           sort_dir_first = true;
-          sort_reverse = true;
+          # sort_reverse = true;
         };
       };
       # keymap = {
@@ -84,12 +84,16 @@
         PROMPT_INDICATOR_VI_INSERT : ": ",
         PROMPT_INDICATOR_VI_NORMAL : "  ",
         PROMPT_MULTILINE_INDICATOR : "::: ",
+        EDITOR : "nvim"
         }
       '';
       shellAliases = {
         l = "ls";
         ll = "ls -l";
         la = "ls -a";
+        y = "yazi";
+        n = "nvim";
+        da = "direnv allow";
       };
     };
     starship.enable = true;
