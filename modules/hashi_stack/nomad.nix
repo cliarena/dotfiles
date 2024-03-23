@@ -22,6 +22,7 @@
         vault = { ui_url = "${VAULT_ADDR}/ui"; };
       };
       plugin.docker = { config = { allow_privileged = true; }; };
+      plugin.raw_exec = { config = { enabled = true; }; };
 
       # vault = {
       # enabled = true;
