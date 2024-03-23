@@ -1,5 +1,4 @@
 { config, lib, pkgs, microvm, ... }: {
-  imports = [ microvm.host ];
   microvm.vms = {
     my-microvm = {
       # The package set to use for the microvm. This also determines the microvm's architecture.
