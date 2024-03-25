@@ -1,4 +1,4 @@
-{ pkgs, config, microvm, ... }:
+{ pkgs, self, config, microvm, ... }:
 
 let
   inherit (pkgs) lib;
@@ -6,57 +6,10 @@ let
   repo = "test";
   vmName = "my-microvm";
 
-  workDir = "/run/microvms/${user}/${repo}/${vmName}";
+  workDir = "/home/svr/microvms/${user}/${repo}/${vmName}";
 
-  # runner = config.microvm.declaredRunner;
-  runner = microvm.lib.buildRunner {
-    inherit pkgs;
-    microvmConfig = {
-      inherit user;
-      hostName = vmName;
-      hypervisor = "qemu";
-      preStart = "";
-      forwardPorts = [ ];
-      shares = [ ];
-      volumes = [ ];
-      devices = [ ];
-      interfaces = [ ];
-      prettyProcnames = true;
-      qemu.extraArgs = [ ];
-      qemu.serialConsole = true;
-      cpu = null;
-      storeOnDisk = true;
-      graphics.enable = false;
-      socket = "${user}.sock";
-      balloonMem = 0;
-      vsock.cid = null;
-      optimize.enable = false;
-      mem = 512;
-      vcpu = 1;
-
-      # inherit (config.boot.kernelPackages) kernel;
-      kernel = pkgs.linuxPackages_latest.kernel;
-      initrdPath = config.system.boot.loader;
-    };
-    inherit (config.system.build) toplevel;
-  };
-  # constraints = [
-  # {
-  # attribute = "\${attr.kernel.name}";
-  # operator = "=";
-  # value = pkgs.lib.toLower config.nixpkgs.localSystem.uname.system;
-  # }
-  # {
-  # attribute = "\${attr.kernel.arch}";
-  # operator = "=";
-  # value = config.nixpkgs.localSystem.uname.processor;
-  # }
-  # {
-  # attribute = "\${attr.cpu.numcores}";
-  # operator = ">=";
-  # value = config.microvm.vcpu;
-  # }
-  # ] ++ config.skyflake.nomadJob.constraints;
+  runner =
+    self.nixosConfigurations.svr.config.microvm.vms.my-microvm.config.config.microvm.declaredRunner;
 in {
 
   job.microvm = {
@@ -66,11 +19,41 @@ in {
     group.servers = {
       count = 1;
 
+      # task.virtiofsd-${tag}= {
+      # lifecycle ={
+      # hook = "prestart";
+      # sidecar = true;
+      # };
+      # driver = "raw_exec";
+      # user = "root";
+      # config ={
+      # command = "local/virtiofsd-${tag}.sh";
+      # };
+      # template = [{
+      # destination = "local/virtiofsd-${tag}.sh";
+      # perms = "755";
+      # data = ''
+      # #! /run/current-system/sw/bin/bash -e
+      # mkdir -p ${workDir}
+      # chown microvm:kvm ${workDir}
+      # cd ${workDir}
+      # mkdir -p ${source}
+      # exec /run/current-system/sw/bin/virtiofsd \
+      # --socket-path=${socket} \
+      # --socket-group=kvm \
+      # --shared-dir=${source} \
+      # --sandbox=none \
+      # --thread-pool-size `nproc` \
+      # --cache=always
+      # '';
+      # kill_timeout = "5s";
+      # }];};
+
       task.copy_system = {
         driver = "raw_exec";
         lifecycle = { hook = "prestart"; };
         config = { command = "local/copy-system.sh"; };
-        template = {
+        templates = [{
           destination = "local/copy-system.sh";
           perms = "755";
           data = ''
@@ -80,14 +63,14 @@ in {
               /run/current-system/sw/bin/nix copy --from file://@binaryCachePath@?trusted=1 --no-check-sigs ${runner}
             fi
           '';
-        };
+        }];
       };
 
       task.hypervisor = {
         driver = "raw_exec";
         user = "microvm";
         config = { command = "local/hypervisor.sh"; };
-        template = {
+        templates = [{
           destination = "local/hypervisor.sh";
           perms = "755";
           data = ''
@@ -111,18 +94,18 @@ in {
             trap handle_signal CONT
             wait
           '';
-        };
+        }];
 
         leader = true;
         # don't get killed immediately but get shutdown by wait-shutdown
-        kill_signal = "SIGCONT";
+        # kill_signal = "SIGCONT";
         # systemd timeout is at 90s by default
-        kill_timeout = "95s";
+        # kill_timeout = "95s";
 
-        resources = {
-          memory = toString (config.microvm.mem + 8);
-          cpu = toString (config.microvm.vcpu * 50);
-        };
+        # resources = {
+        # memory = toString (config.microvm.mem + 8);
+        # cpu = toString (config.microvm.vcpu * 50);
+        # };
       };
     };
   };

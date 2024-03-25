@@ -1,4 +1,4 @@
-{ nix-nomad, microvm, pkgs, config, ... }:
+{ nix-nomad, self, microvm, pkgs, config, ... }:
 let
   jobs = nix-nomad.lib.mkNomadJobs {
     system = "x86_64-linux";
@@ -8,7 +8,7 @@ let
       ./nginx.nix
       ./echo.nix
       ./wolf.nix
-      # (import ./microvm.nix { inherit microvm pkgs config; })
+      (import ./microvm.nix { inherit microvm self pkgs config; })
     ];
   };
 in {
@@ -24,9 +24,9 @@ in {
     jobspec = ''''${file("${jobs}/echo.json")}'';
     json = true;
   };
-  # resource.nomad_job.microvm = {
-  # jobspec = ''''${file("${jobs}/microvm.json")}'';
-  # json = true;
-  # };
+  resource.nomad_job.microvm = {
+    jobspec = ''''${file("${jobs}/microvm.json")}'';
+    json = true;
+  };
   # data.vault_kv_secret.test = { path = "kv/test"; };
 }

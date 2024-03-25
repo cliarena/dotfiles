@@ -1,7 +1,7 @@
 { inputs, forAllSystems, ... }:
 forAllSystems (system:
   let
-    inherit (inputs) nixpkgs terranix nix-nomad microvm;
+    inherit (inputs) nixpkgs terranix nix-nomad microvm self;
     pkgs = import nixpkgs {
       inherit system;
       config = { allowUnfree = true; };
@@ -37,7 +37,7 @@ forAllSystems (system:
 
     terraformConfiguration = terranix.lib.terranixConfiguration {
       inherit system;
-      extraArgs = { inherit x microvm nix-nomad; };
+      extraArgs = { inherit self x microvm nix-nomad; };
       modules = [
         ./backend.nix
         ./providers
