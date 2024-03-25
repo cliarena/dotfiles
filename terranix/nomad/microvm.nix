@@ -1,15 +1,17 @@
-{ pkgs, self, config, microvm, ... }:
+{ time, pkgs, self, config, microvm, ... }:
 
 let
   inherit (pkgs) lib;
+  inherit (time) second;
   user = "svr";
   repo = "test";
   vmName = "my-microvm";
 
-  workDir = "/home/svr/microvms/${user}/${repo}/${vmName}";
-
-  runner =
-    self.nixosConfigurations.svr.config.microvm.vms.my-microvm.config.config.microvm.declaredRunner;
+  workDir = "/run/microvms/${user}/${repo}/${vmName}";
+  microvm =
+    self.nixosConfigurations.svr.config.microvm.vms.my-microvm.config.config.microvm;
+  runner = microvm.declaredRunner;
+  inherit (lib.last microvm.shares) tag source socket;
 in {
 
   job.microvm = {
@@ -18,36 +20,44 @@ in {
 
     group.servers = {
       count = 1;
-
-      # task.virtiofsd-${tag}= {
-      # lifecycle ={
-      # hook = "prestart";
-      # sidecar = true;
-      # };
-      # driver = "raw_exec";
-      # user = "root";
-      # config ={
-      # command = "local/virtiofsd-${tag}.sh";
-      # };
-      # template = [{
-      # destination = "local/virtiofsd-${tag}.sh";
-      # perms = "755";
-      # data = ''
-      # #! /run/current-system/sw/bin/bash -e
-      # mkdir -p ${workDir}
-      # chown microvm:kvm ${workDir}
-      # cd ${workDir}
-      # mkdir -p ${source}
-      # exec /run/current-system/sw/bin/virtiofsd \
-      # --socket-path=${socket} \
-      # --socket-group=kvm \
-      # --shared-dir=${source} \
-      # --sandbox=none \
-      # --thread-pool-size `nproc` \
-      # --cache=always
-      # '';
-      # kill_timeout = "5s";
-      # }];};
+      restart = {
+        attempts = 3;
+        delay = 3 * second;
+        mode = "fail";
+        interval = 60 * second;
+      };
+      reschedule = {
+        unlimited = true;
+        delay = 90 * second;
+      };
+      task."virtiofsd-${tag}" = {
+        lifecycle = {
+          hook = "prestart";
+          sidecar = true;
+        };
+        driver = "raw_exec";
+        user = "root";
+        config = { command = "local/virtiofsd-${tag}.sh"; };
+        templates = [{
+          destination = "local/virtiofsd-${tag}.sh";
+          perms = "755";
+          data = ''
+            #! /run/current-system/sw/bin/bash -e
+            mkdir -p ${workDir}
+            chown microvm:kvm ${workDir}
+            cd ${workDir}
+            mkdir -p ${source}
+            exec /run/current-system/sw/bin/virtiofsd \
+            --socket-path=${socket} \
+            --socket-group=kvm \
+            --shared-dir=${source} \
+            --sandbox=none \
+            --thread-pool-size `nproc` \
+            --cache=always
+          '';
+        }];
+        killTimeout = 5 * second;
+      };
 
       task.copy_system = {
         driver = "raw_exec";
@@ -98,9 +108,9 @@ in {
 
         leader = true;
         # don't get killed immediately but get shutdown by wait-shutdown
-        # kill_signal = "SIGCONT";
+        killSignal = "SIGCONT";
         # systemd timeout is at 90s by default
-        # kill_timeout = "95s";
+        killTimeout = 95 * second;
 
         # resources = {
         # memory = toString (config.microvm.mem + 8);
