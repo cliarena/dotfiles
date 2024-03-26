@@ -158,7 +158,7 @@ in {
               value = "/";
             };
           }];
-          services = [{ name = "nginx"; }];
+          services = [{ name = "microvm"; }];
         }
         {
           matches = [{
