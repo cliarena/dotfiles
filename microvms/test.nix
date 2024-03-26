@@ -18,8 +18,20 @@
           source = "/nix/store";
           mountPoint = "/nix/.ro-store";
           tag = "ro-store";
-          proto = "virtiofs";
+          proto = "9p";
         }];
+        # services.nginx.enable = true;
+        environment.systemPackages = with pkgs; [ curl bottom ];
+        networking.firewall.enable = false;
+        systemd.services.hello = {
+          wantedBy = [ "multi-user.target" ];
+          script = ''
+            ${pkgs.http-server}/bin/http-server -p 8080
+              # while true; do
+              #   echo hello | ${pkgs.netcat}/bin/nc -lN 80
+              # done
+          '';
+        };
 
         # Any other configuration for your MicroVM
         # [...]
