@@ -13,6 +13,7 @@ let
     self.nixosConfigurations.svr.config.microvm.vms.my-microvm.config.config.microvm;
   runner = microvm.declaredRunner;
   inherit (lib.last microvm.shares) tag source socket;
+  inherit (lib.last microvm.interfaces) id;
   http = {
     mode = "bridge";
     reservedPorts.http = {
@@ -55,6 +56,37 @@ in {
         # timeout = 2 * second;
         # }];
       }];
+      # task."add-interface-${id}" = {
+      # lifecycle = { hook = "prestart"; };
+      # driver = "raw_exec";
+      # user = "root";
+      # config = { command = "local/add-interface-${id}.sh"; };
+      # templates = [{
+      # destination = "local/add-interface-${id}.sh";
+      # perms = "755";
+      # data = ''
+      # #! /run/current-system/sw/bin/bash -e
+      # ip tuntap add ${id} mode tap user microvm
+      # ip link set ${id} up
+      # '';
+      # }];
+      # };
+      # task."delete-interface-${id}" = {
+      # lifecycle = { hook = "poststop"; };
+      # driver = "raw_exec";
+      # user = "root";
+      # config = { command = "local/delete-interface-${id}.sh"; };
+      # templates = [{
+      # destination = "local/delete-interface-${id}.sh";
+      # perms = "755";
+      # data = ''
+      # #! /run/current-system/sw/bin/bash
+      # IFACE="${id}"
+      # ip link set "$IFACE" down
+      # ip tuntap del "$IFACE" mode tap
+      # '';
+      # }];
+      # };
       # task."virtiofsd-${tag}" = {
       # lifecycle = {
       # hook = "prestart";
@@ -183,8 +215,8 @@ in {
 
       task.hypervisor = {
         driver = "raw_exec";
-        # user = "microvm";
-        user = "root";
+        user = "microvm";
+        # user = "root";
         config = { command = "local/hypervisor.sh"; };
         templates = [{
           destination = "local/hypervisor.sh";

@@ -32,6 +32,23 @@
               # done
           '';
         };
+        microvm.interfaces = [
+          # {
+          # id = "eth0";
+          # type = "bridge";
+          # mac = "02:00:00:00:00:01";
+          # bridge = "default";
+          # }
+          {
+            type = "tap";
+            # interface name on the host
+            id = "default";
+            # Ethernet address of the MicroVM's interface, not the host's
+            #
+            # Locally administered have one of 2/6/A/E in the second nibble.
+            mac = "02:00:00:00:00:01";
+          }
+        ];
 
         # Any other configuration for your MicroVM
         # [...]
