@@ -12,6 +12,9 @@
       # The configuration for the MicroVM.
       # Multiple definitions will be merged as expected.
       config = {
+        microvm.hypervisor = "cloud-hypervisor";
+        microvm.mem = 200;
+        microvm.balloonMem = 512;
         # It is highly recommended to share the host's nix-store
         # with the VMs to prevent building huge images.
         microvm.shares = [{
