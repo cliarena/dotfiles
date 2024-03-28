@@ -18,7 +18,7 @@
           source = "/nix/store";
           mountPoint = "/nix/.ro-store";
           tag = "ro-store";
-          proto = "9p";
+          proto = "virtiofs";
         }];
         # services.nginx.enable = true;
         environment.systemPackages = with pkgs; [ curl bottom ];
