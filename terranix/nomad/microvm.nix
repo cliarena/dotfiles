@@ -87,34 +87,35 @@ in {
       # '';
       # }];
       # };
-      # task."virtiofsd-${tag}" = {
-      # lifecycle = {
-      # hook = "prestart";
-      # sidecar = true;
-      # };
-      # driver = "raw_exec";
-      # user = "root";
-      # config = { command = "local/virtiofsd-${tag}.sh"; };
-      # templates = [{
-      # destination = "local/virtiofsd-${tag}.sh";
-      # perms = "755";
-      # data = ''
-      # #! /run/current-system/sw/bin/bash -e
-      # mkdir -p ${workDir}
-      # chown microvm:kvm ${workDir}
-      # cd ${workDir}
-      # mkdir -p ${source}
-      # exec /run/current-system/sw/bin/virtiofsd \
-      # --socket-path=${socket} \
-      # --socket-group=kvm \
-      # --shared-dir=${source} \
-      # --sandbox=none \
-      # --thread-pool-size `nproc` \
-      # --cache=always
-      # '';
-      # }];
-      # killTimeout = 5 * second;
-      # };
+      task."virtiofsd-${tag}" = {
+        # must add virtiofsd to host for this task to find it
+        lifecycle = {
+          hook = "prestart";
+          sidecar = true;
+        };
+        driver = "raw_exec";
+        user = "root";
+        config = { command = "local/virtiofsd-${tag}.sh"; };
+        templates = [{
+          destination = "local/virtiofsd-${tag}.sh";
+          perms = "755";
+          data = ''
+            #! /run/current-system/sw/bin/bash -e
+            mkdir -p ${workDir}
+            chown microvm:kvm ${workDir}
+            cd ${workDir}
+            mkdir -p ${source}
+            exec /run/current-system/sw/bin/virtiofsd \
+            --socket-path=${socket} \
+            --socket-group=kvm \
+            --shared-dir=${source} \
+            --sandbox=none \
+            --thread-pool-size `nproc` \
+            --cache=always
+          '';
+        }];
+        killTimeout = 5 * second;
+      };
 
       task.copy_system = {
         driver = "raw_exec";
