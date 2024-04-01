@@ -40,6 +40,7 @@ in forAllSystems (system:
           openssl
           cowsay
           libuuid
+          wander
 
           # for nix
           nixfmt
