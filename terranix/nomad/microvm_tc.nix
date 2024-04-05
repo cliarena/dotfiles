@@ -15,7 +15,7 @@ let
   inherit (lib.last microvm.shares) tag source socket;
   inherit (lib.last microvm.interfaces) id;
   http = {
-    mode = "host";
+    mode = "bridge";
     reservedPorts.http = {
       static = 8080;
       to = 8080;
@@ -52,8 +52,7 @@ in {
         name = "microvm";
         # WARN: Don't use named ports ie: port ="http". use literal ones
         port = "8080";
-        # connect = { sidecarService = { }; };
-        # address = "192.168.249.1";
+        connect = { sidecarService = { }; };
         # task = "hypervisor";
         # checks = [{
         # type = "http";
@@ -85,10 +84,10 @@ in {
             fi
             ip tuntap add "$IFACE" mode tap user microvm
             ip link set "$IFACE" up
-            # tc qdisc add dev eth0 ingress
-            # tc filter add dev eth0 parent ffff: protocol all u32 match u8 0 0 action mirred egress redirect dev microvm-tap
-            # tc qdisc add dev microvm-tap ingress
-            # tc filter add dev microvm-tap parent ffff: protocol all u32 match u8 0 0 action mirred egress redirect dev eth0
+            tc qdisc add dev eth0 ingress
+            tc filter add dev eth0 parent ffff: protocol all u32 match u8 0 0 action mirred egress redirect dev microvm-tap
+            tc qdisc add dev microvm-tap ingress
+            tc filter add dev microvm-tap parent ffff: protocol all u32 match u8 0 0 action mirred egress redirect dev eth0
           '';
         }];
       };
