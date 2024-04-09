@@ -15,7 +15,7 @@ let
   inherit (lib.last microvm.shares) tag source socket;
   inherit (lib.last microvm.interfaces) id;
   http = {
-    mode = "host";
+    mode = "bridge";
     reservedPorts.http = {
       static = 8080;
       to = 8080;
@@ -65,57 +65,55 @@ in {
         # timeout = 2 * second;
         # }];
       }];
-      task."add-interface-${id}" = {
-        lifecycle = { hook = "prestart"; };
-        driver = "raw_exec";
-        user = "root";
-        config = { command = "local/add-interface-${id}.sh"; };
-        templates = [{
-          destination = "local/add-interface-${id}.sh";
-          perms = "755";
-          data = ''
-            #! /run/current-system/sw/bin/bash -e
-            # ip tuntap add ${id} mode tap user microvm
-            # ip link set ${id} up
-            IFACE="${id}"
-
-            if [ -d /sys/class/net/"$IFACE" ]; then
-              echo "WARNING: Removing stale tap interface "$IFACE"" >&2
-              ip tuntap del "$IFACE" mode tap || true
-            fi
-            ip tuntap add "$IFACE" mode tap user microvm
-            ip link set "$IFACE" up
-            # tc qdisc add dev eth0 ingress
-            # tc filter add dev eth0 parent ffff: protocol all u32 match u8 0 0 action mirred egress redirect dev microvm-tap
-            # tc qdisc add dev microvm-tap ingress
-            # tc filter add dev microvm-tap parent ffff: protocol all u32 match u8 0 0 action mirred egress redirect dev eth0
-          '';
-        }];
-      };
-      task."delete-interface-${id}" = {
-        lifecycle = { hook = "poststop"; };
-        driver = "raw_exec";
-        user = "root";
-        config = { command = "local/delete-interface-${id}.sh"; };
-        templates = [{
-          destination = "local/delete-interface-${id}.sh";
-          perms = "755";
-          data = ''
-            #! /run/current-system/sw/bin/bash
-            IFACE="${id}"
-            # ip link set "$IFACE" down
-            # ip tuntap del "$IFACE" mode tap
-            IFACE="${id}"
-
-            if [ -d /sys/class/net/"$IFACE" ]; then
-              echo "WARNING: Removing stale tap interface "$IFACE"" >&2
-              ip tuntap del "$IFACE" mode tap || true
-            fi
-            ip tuntap add "$IFACE" mode tap user microvm
-            ip link set "$IFACE" up
-          '';
-        }];
-      };
+      # task."add-interface-${id}" = {
+      # lifecycle = { hook = "prestart"; };
+      # driver = "raw_exec";
+      # user = "root";
+      # config = { command = "local/add-interface-${id}.sh"; };
+      # templates = [{
+      # destination = "local/add-interface-${id}.sh";
+      # perms = "755";
+      # data = ''
+      # #! /run/current-system/sw/bin/bash -e
+      # # ip tuntap add ${id} mode tap user microvm
+      # # ip link set ${id} up
+      # IFACE="${id}"
+      # if [ -d /sys/class/net/"$IFACE" ]; then
+      # echo "WARNING: Removing stale tap interface "$IFACE"" >&2
+      # ip tuntap del "$IFACE" mode tap || true
+      # fi
+      # ip tuntap add "$IFACE" mode tap user microvm
+      # ip link set "$IFACE" up
+      # # tc qdisc add dev eth0 ingress
+      # # tc filter add dev eth0 parent ffff: protocol all u32 match u8 0 0 action mirred egress redirect dev microvm-tap
+      # # tc qdisc add dev microvm-tap ingress
+      # # tc filter add dev microvm-tap parent ffff: protocol all u32 match u8 0 0 action mirred egress redirect dev eth0
+      # '';
+      # }];
+      # };
+      # task."delete-interface-${id}" = {
+      # lifecycle = { hook = "poststop"; };
+      # driver = "raw_exec";
+      # user = "root";
+      # config = { command = "local/delete-interface-${id}.sh"; };
+      # templates = [{
+      # destination = "local/delete-interface-${id}.sh";
+      # perms = "755";
+      # data = ''
+      # #! /run/current-system/sw/bin/bash
+      # IFACE="${id}"
+      # # ip link set "$IFACE" down
+      # # ip tuntap del "$IFACE" mode tap
+      # IFACE="${id}"
+      # if [ -d /sys/class/net/"$IFACE" ]; then
+      # echo "WARNING: Removing stale tap interface "$IFACE"" >&2
+      # ip tuntap del "$IFACE" mode tap || true
+      # fi
+      # ip tuntap add "$IFACE" mode tap user microvm
+      # ip link set "$IFACE" up
+      # '';
+      # }];
+      # };
       task."virtiofsd-${tag}" = {
         # must add virtiofsd to host for this task to find it
         lifecycle = {

@@ -12,7 +12,7 @@
       # The configuration for the MicroVM.
       # Multiple definitions will be merged as expected.
       config = {
-        microvm.hypervisor = "cloud-hypervisor";
+        # microvm.hypervisor = "cloud-hypervisor";
         # microvm.mem = 200;
         # microvm.balloonMem = 512;
         # It is highly recommended to share the host's nix-store
@@ -51,7 +51,7 @@
           # bridge = "default";
           # }
           {
-            type = "tap";
+            type = "user";
             # interface name on the host
             id = "microvm-tap";
             # Ethernet address of the MicroVM's interface, not the host's
@@ -77,18 +77,24 @@
         # KERNEL=="e*", NAME="wan"
         # '';
         # Disable if this server is a dns server
-        services.resolved.enable = false;
+        # services.resolved.enable = false;
         services.openssh.enable = true;
+        users.users.microvm = {
+          isNormalUser = true;
+          initialPassword = "nixos";
+          extraGroups = [ "wheel" "corectrl" ];
+          shell = pkgs.nushell;
+        };
 
         networking = {
           hostName = "microvm";
-          extraHosts = "127.0.0.1 local.cliarena.com";
-          useDHCP = false;
+          # extraHosts = "127.0.0.1 local.cliarena.com";
+          # useDHCP = false;
           useNetworkd = true;
           # nameservers = [ "1.1.1.1" ];
-          resolvconf.enable = pkgs.lib.mkForce false;
-          dhcpcd.extraConfig = "nohook resolv.conf";
-          networkmanager.dns = "none";
+          # resolvconf.enable = pkgs.lib.mkForce false;
+          # dhcpcd.extraConfig = "nohook resolv.conf";
+          # networkmanager.dns = "none";
           firewall = {
             enable = false;
             # interfaces.wan = {
@@ -97,54 +103,59 @@
             # };
           };
         };
-        systemd = {
-          network = {
-            enable = true;
-            wait-online.anyInterface = true;
-            networks = {
-              "20-wired" = {
-                enable = true;
-                matchConfig.Type = "ether";
-                # name = "wan";
-                address = [ "192.168.246.222/24" ];
-                gateway = [ "192.168.246.1" ];
-                dns = [ "192.168.246.1" ];
-                # if you want dhcp uncomment this and comment address,gateway and dns
-                # DHCP = "ipv4";
-              };
-            };
-          };
-        };
-        networking.nat = {
-          enable = true;
-          externalInterface = "eth0";
-          internalInterfaces = [ "microvm-tap" ];
-          forwardPorts = [{
-            proto = "tcp";
-            sourcePort = 8080;
-            destination = "0.0.0.0:8080";
-          }
-          # {
-          # proto = "tcp";
-          # sourcePort = 443;
-          # destination = my-addresses.https-reverse-proxy.ip4;
-          # }
-            ];
-        };
-
-        # microvm.forwardPorts =
-        # [ # forward local port 2222 -> 22, to ssh into the VM
-        # {
-        # from = "host";
-        # host.port = 8080;
-        # guest.port = 8080;
+        # systemd = {
+        # network = {
+        # enable = true;
+        # wait-online.anyInterface = true;
+        # networks = {
+        # "20-wired" = {
+        # enable = true;
+        # matchConfig.Type = "ether";
+        # # name = "wan";
+        # address = [ "192.168.246.222/24" ];
+        # gateway = [ "192.168.246.1" ];
+        # dns = [ "192.168.246.1" ];
+        # # if you want dhcp uncomment this and comment address,gateway and dns
+        # # DHCP = "ipv4";
+        # };
+        # };
+        # };
+        # };
+        # networking.nat = {
+        # enable = true;
+        # externalInterface = "eth0";
+        # internalInterfaces = [ "microvm-tap" ];
+        # forwardPorts = [{
+        # proto = "tcp";
+        # sourcePort = 8080;
+        # destination = "0.0.0.0:8080";
         # }
-        # {
-        # from = "host";
-        # host.port = 8081;
-        # guest.port = 8081;
-        # }
+        # # {
+        # # proto = "tcp";
+        # # sourcePort = 443;
+        # # destination = my-addresses.https-reverse-proxy.ip4;
+        # # }
         # ];
+        # };
+
+        microvm.forwardPorts =
+          [ # forward local port 2222 -> 22, to ssh into the VM
+            {
+              from = "host";
+              host.port = 8080;
+              guest.port = 8080;
+            }
+            {
+              from = "host";
+              host.port = 8081;
+              guest.port = 8081;
+            }
+            {
+              from = "host";
+              host.port = 22;
+              guest.port = 22;
+            }
+          ];
 
         # Any other configuration for your MicroVM
         # [...]
