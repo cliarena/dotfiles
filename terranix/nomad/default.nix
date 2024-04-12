@@ -5,7 +5,7 @@ let
     # system = "aarch64-linux";
     config = [
       ./kasm.nix
-      ./nginx.nix
+      ./echoip_nix.nix
       ./echo.nix
       ./wolf.nix
       (import ./microvm.nix { inherit microvm self pkgs config; })

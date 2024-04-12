@@ -47,6 +47,18 @@ in {
         unlimited = true;
         delay = 90 * second;
       };
+      volume = {
+        nix_store = {
+          type = "host";
+          source = "nix_store";
+          readOnly = true;
+        };
+        tmp = {
+          type = "host";
+          source = "tmp";
+          readOnly = false;
+        };
+      };
       networks = [ http ];
       services = [{
         name = "microvm";
@@ -144,6 +156,7 @@ in {
         killTimeout = 5 * second;
       };
 
+      #TODO: Make it work with exec
       task.copy_system = {
         driver = "raw_exec";
         lifecycle = { hook = "prestart"; };
@@ -153,41 +166,58 @@ in {
           perms = "755";
           data = ''
             #! /run/current-system/sw/bin/bash -e
-
             if ! [ -e ${runner} ] ; then
-              /run/current-system/sw/bin/nix copy --from file://@binaryCachePath@?trusted=1 --no-check-sigs ${runner}
+            #TODO: Make it work with exec
+            /run/current-system/sw/bin/nix copy --from file://@binaryCachePath@?trusted=1 --no-check-sigs ${runner}
             fi
           '';
         }];
       };
 
-      task.volume-dirs = {
-        driver = "raw_exec";
-        lifecycle = { hook = "prestart"; };
-        config = { command = "local/make-dirs.sh"; };
-        templates = [{
-          destination = "local/make-dirs.sh";
-          perms = "755";
-          data = ''
-            #! /run/current-system/sw/bin/bash -e
-            ${lib.concatMapStrings ({ image, ... }: ''
-              mkdir -p "${dirOf image}"
-              chown microvm:kvm "${dirOf image}"
-            '') microvm.volumes}
-          '';
-        }];
-      };
+      # task.volume-dirs = {
+      # driver = "raw_exec";
+      # lifecycle = { hook = "prestart"; };
+      # config = { command = "local/make-dirs.sh"; };
+      # templates = [{
+      # destination = "local/make-dirs.sh";
+      # perms = "755";
+      # data = ''
+      # #! /run/current-system/sw/bin/bash -e
+      # ${lib.concatMapStrings ({ image, ... }: ''
+      # mkdir -p "${dirOf image}"
+      # chown microvm:kvm "${dirOf image}"
+      # '') microvm.volumes}
+      # '';
+      # }];
+      # };
 
       task.hypervisor = {
-        driver = "raw_exec";
-        # user = "microvm";
-        user = "root";
-        config = { command = "local/hypervisor.sh"; };
+        # driver = "raw_exec";
+        driver = "exec";
+        user = "microvm";
+        #user = "root";
+        volumeMounts = [
+          {
+            volume = "nix_store";
+            destination = "/nix/store";
+          }
+          {
+            volume = "tmp";
+            destination = "/tmp";
+          }
+        ];
+        config = {
+          # command = "local/hypervisor.sh";
+          command = "${pkgs.bash}/bin/sh";
+          args = [ "./hypervisor.sh" ];
+        };
         templates = [{
-          destination = "local/hypervisor.sh";
+          destination = "hypervisor.sh";
           perms = "755";
           data = ''
             #! /run/current-system/sw/bin/bash -e
+
+            ${pkgs.kmod}/bin/modprobe kvm
 
             mkdir -p ${workDir}
             cd ${workDir}

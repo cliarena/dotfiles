@@ -12,6 +12,7 @@
       # The configuration for the MicroVM.
       # Multiple definitions will be merged as expected.
       config = {
+        imports = [ ../modules/nix_config.nix ];
         # microvm.hypervisor = "cloud-hypervisor";
         # microvm.mem = 200;
         # microvm.balloonMem = 512;
@@ -22,44 +23,48 @@
           mountPoint = "/nix/.ro-store";
           tag = "ro-store";
           proto = "virtiofs";
+          socket = "/tmp/test.sock";
         }];
         # services.nginx.enable = true;
-        environment.systemPackages = with pkgs; [ curl bottom ];
+        # environment.systemPackages = with pkgs; [ socat dig curl bottom ];
         # networking.firewall.enable = false;
-        systemd.services.hello = {
-          wantedBy = [ "multi-user.target" ];
-          script = ''
-            >&2 ${pkgs.toybox}/bin/echo "testnig log"
-            ${pkgs.http-server}/bin/http-server -p 8080
-            # while true; do
-            #   echo hello | ${pkgs.netcat}/bin/nc -lN 80
-            # done
-          '';
-        };
-        services.iperf3 = {
-          enable = true;
-          port = 8081;
-          verbose = true;
-          debug = true;
-        };
+        # systemd.services.hello = {
+        # wantedBy = [ "multi-user.target" ];
+        # script = ''
+        # ${pkgs.http-server}/bin/http-server -p 8080
+        # '';
+        # };
+        # systemd.services.socat = {
+        # wantedBy = [ "multi-user.target" ];
+        # script = ''
+        # ${pkgs.socat}/bin/socat VSOCK-LISTEN:2000,reuseaddr,fork TCP:localhost:8080
+        # '';
+        # };
+        # services.iperf3 = {
+        # enable = true;
+        # port = 8081;
+        # verbose = true;
+        # debug = true;
+        # };
 
-        microvm.interfaces = [
-          # {
-          # id = "eth0";
-          # type = "bridge";
-          # mac = "02:00:00:00:00:01";
-          # bridge = "default";
-          # }
-          {
-            type = "user";
-            # interface name on the host
-            id = "microvm-tap";
-            # Ethernet address of the MicroVM's interface, not the host's
-            #
-            # Locally administered have one of 2/6/A/E in the second nibble.
-            mac = "02:00:00:00:00:01";
-          }
-        ];
+        microvm.vsock.cid = 5;
+        # microvm.interfaces = [
+        # # {
+        # # id = "eth0";
+        # # type = "bridge";
+        # # mac = "02:00:00:00:00:01";
+        # # bridge = "default";
+        # # }
+        # {
+        # type = "user";
+        # # interface name on the host
+        # id = "microvm-tap";
+        # # Ethernet address of the MicroVM's interface, not the host's
+        # #
+        # # Locally administered have one of 2/6/A/E in the second nibble.
+        # mac = "02:00:00:00:00:01";
+        # }
+        # ];
         # systemd.network.enable = true;
         # systemd.network.networks."20-lan" = {
         # matchConfig.Type = "ether";
@@ -78,31 +83,31 @@
         # '';
         # Disable if this server is a dns server
         # services.resolved.enable = false;
-        services.openssh.enable = true;
-        users.users.microvm = {
-          isNormalUser = true;
-          initialPassword = "nixos";
-          extraGroups = [ "wheel" "corectrl" ];
-          shell = pkgs.nushell;
-        };
+        # services.openssh.enable = true;
+        # users.users.microvm = {
+        # isNormalUser = true;
+        # initialPassword = "nixos";
+        # extraGroups = [ "wheel" "corectrl" ];
+        # shell = pkgs.nushell;
+        # };
 
-        networking = {
-          hostName = "microvm";
-          # extraHosts = "127.0.0.1 local.cliarena.com";
-          # useDHCP = false;
-          useNetworkd = true;
-          # nameservers = [ "1.1.1.1" ];
-          # resolvconf.enable = pkgs.lib.mkForce false;
-          # dhcpcd.extraConfig = "nohook resolv.conf";
-          # networkmanager.dns = "none";
-          firewall = {
-            enable = false;
-            # interfaces.wan = {
-            # allowedTCPPorts = tcp_ports;
-            # allowedUDPPorts = udp_ports;
-            # };
-          };
-        };
+        # networking = {
+        # hostName = "microvm";
+        # # extraHosts = "127.0.0.1 local.cliarena.com";
+        # # useDHCP = false;
+        # useNetworkd = true;
+        # # nameservers = [ "1.1.1.1" ];
+        # # resolvconf.enable = pkgs.lib.mkForce false;
+        # # dhcpcd.extraConfig = "nohook resolv.conf";
+        # # networkmanager.dns = "none";
+        # firewall = {
+        # enable = false;
+        # # interfaces.wan = {
+        # # allowedTCPPorts = tcp_ports;
+        # # allowedUDPPorts = udp_ports;
+        # # };
+        # };
+        # };
         # systemd = {
         # network = {
         # enable = true;
@@ -138,25 +143,24 @@
         # ];
         # };
 
-        microvm.forwardPorts =
-          [ # forward local port 2222 -> 22, to ssh into the VM
-            {
-              from = "host";
-              host.port = 8080;
-              guest.port = 8080;
-            }
-            {
-              from = "host";
-              host.port = 8081;
-              guest.port = 8081;
-            }
-            {
-              from = "host";
-              host.port = 22;
-              guest.port = 22;
-            }
-          ];
-
+        # microvm.forwardPorts =
+        # [ # forward local port 2222 -> 22, to ssh into the VM
+        # {
+        # from = "host";
+        # host.port = 8080;
+        # guest.port = 8080;
+        # }
+        # {
+        # from = "host";
+        # host.port = 8081;
+        # guest.port = 8081;
+        # }
+        # {
+        # from = "host";
+        # host.port = 22;
+        # guest.port = 22;
+        # }
+        # ];
         # Any other configuration for your MicroVM
         # [...]
       };
