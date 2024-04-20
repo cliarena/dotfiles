@@ -133,6 +133,7 @@ in {
           { programs.nixvim = import ../modules/nixvim pkgs; }
           ../modules/fonts
           ../modules/pkgs.nix
+          ../modules/sshd.nix
           ../modules/chromium.nix
           ../modules/hardware/amd.nix
           ../modules/corectrl.nix
@@ -174,7 +175,6 @@ in {
           }
         ];
         # modules.services.sunshine.enable = true;
-        services.openssh.enable = true;
         environment.systemPackages = with pkgs; [ glxinfo ];
         # services.xserver.enable = true;
         services.xrdp = {
