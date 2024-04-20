@@ -10,11 +10,7 @@ let
     is_dns_server = false; # for testing hashi_stack
     dns_server = wan_gateway;
     dns_extra_hosts = "";
-    ssh_authorized_keys = [
-      # This to avoid fingerprints verification prompt on git clone
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf GL"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl GH"
-    ];
+    ssh_authorized_keys = [ ];
     ports = {
       dns = 53;
       ssh = 22;
