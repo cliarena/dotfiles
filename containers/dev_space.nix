@@ -10,7 +10,9 @@ let
     is_dns_server = false; # for testing hashi_stack
     dns_server = wan_gateway;
     dns_extra_hosts = "";
-    ssh_authorized_keys = [ ];
+    ssh_authorized_keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDODhAGCpRb2xFiBi9tMOtegTWaze+gmYtQkaUWRqF/u dev_space"
+    ];
     ports = {
       dns = 53;
       ssh = 22;
