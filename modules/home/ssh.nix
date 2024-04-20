@@ -16,6 +16,13 @@
         port = 6523;
         identityFile = config.sops.secrets.SVR_SSH_KEY.path;
       };
+      dev-space = {
+        host = "DS";
+        hostname = "10.10.2.100";
+        user = "x";
+        port = 22;
+        identityFile = config.sops.secrets.DS_SSH_KEY.path;
+      };
       gitlab = {
         host = "gitlab.com";
         identityFile = config.sops.secrets.GL_SSH_KEY.path;

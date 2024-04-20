@@ -18,9 +18,10 @@ in {
         path = "${homeDirectory}/.config/sops/age/keys.txt";
       };
       PI_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
+      SVR_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
+      DS_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
       GL_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
       GH_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
-      SVR_SSH_KEY = { sopsFile = ../../secrets/ssh.yaml; };
 
       VAULT_ROOT_TOKEN = { sopsFile = ../../secrets/vault.yaml; };
       VAULT_UNSEAL_KEY_1 = { sopsFile = ../../secrets/vault.yaml; };
