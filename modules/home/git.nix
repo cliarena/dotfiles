@@ -1,11 +1,11 @@
-{ ... }: {
+{ config, ... }: {
   programs.git = {
     enable = true;
     userName = "CLI Arena";
     userEmail = "git@cliarena.com";
     signing.signByDefault = true;
-    signing.key =
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDppFak0qD2HXu9mtYXfrjzKFqPFtKzzmnBP5dNQr4Me GitLab";
+    # the private key of public key added to git instance to sign commits
+    signing.key = config.sops.secrets.GL_SSH_KEY.path;
     extraConfig = {
       init.defaultBranch = "main";
       gpg.format = "ssh";
