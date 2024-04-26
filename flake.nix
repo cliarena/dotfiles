@@ -19,6 +19,8 @@
 
     devenv.url = "github:cachix/devenv";
 
+    comin.url = "github:nlewo/comin";
+
     terranix.url = "github:terranix/terranix";
 
     microvm.url = "github:astro/microvm.nix";

@@ -1,7 +1,8 @@
 { inputs, pkgs, ... }:
-let inherit (inputs) sops-nix disko black-hosts nixvim microvm;
+let inherit (inputs) sops-nix disko black-hosts nixvim microvm comin;
 in {
   imports = [
+    comin.nixosModules.comin
     nixvim.nixosModules.nixvim
     sops-nix.nixosModules.sops
     disko.nixosModules.disko
@@ -17,6 +18,7 @@ in {
     ../../modules/hardware/amd.nix
     ../../modules/corectrl.nix
     ../../modules/users.nix
+    ../../modules/comin.nix
     ../../modules/i18n.nix
     ../../modules/sshd.nix
     ../../modules/netwoking/router.nix
