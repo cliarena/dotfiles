@@ -9,6 +9,13 @@
     extraConfig = {
       init.defaultBranch = "main";
       gpg.format = "ssh";
+      url = {
+        "git@gitlab.com:cliarena_dotfiles/nixos" = { insteadOf = "nixos"; };
+        "git@gitlab.com:persona_code/notes" = { insteadOf = "notes"; };
+        "git@gitlab.com:clxarena/" = { insteadOf = "arena:"; };
+        "git@gitlab.com" = { insteadOf = "gl"; };
+        "git@github.com" = { insteadOf = "gh"; };
+      };
     };
   };
 }
