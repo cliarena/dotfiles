@@ -12,7 +12,7 @@
       }];
       gui = {
         sidePanelWidth = 0.3; # number from 0 to 1
-        showIcons = true;
+        nerdFontsVersion = "3";
         splitDiff = "always";
         theme = {
           showIcons = true;
