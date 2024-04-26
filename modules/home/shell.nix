@@ -94,6 +94,7 @@
         y = "yazi";
         n = "nvim";
         da = "direnv allow";
+        gc = "git clone";
       };
     };
     starship.enable = true;
