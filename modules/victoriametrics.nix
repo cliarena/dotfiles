@@ -8,9 +8,9 @@
   services.vmagent = {
     enable = true;
     prometheusConfig = builtins.toJSON {
-      scrape_configs = [{
-        job_name = "nomad";
-        nomad_sd_configs = [{ server = "localhost:4646"; }];
+      scrapeConfigs = [{
+        jobName = "nomad";
+        nomadSdConfigs = [{ server = "localhost:4646"; }];
       }
       # server is an optional Nomad server to connect to.
       # If the server isn't specified, then it is read from NOMAD_ADDR environment var.
