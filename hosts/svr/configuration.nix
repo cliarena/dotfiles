@@ -31,6 +31,9 @@ in {
     ../../microvms/test.nix
     ../../modules/pkgs.nix
     ../../modules/surrealdb.nix
+
+    # Observability
+    ../../modules/victoriametrics.nix
   ];
   programs.nixvim = import ../../modules/nixvim pkgs;
   system.stateVersion = "22.11";
