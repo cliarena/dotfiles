@@ -16,8 +16,12 @@
     };
 
     ### Networking ###
+    ping.enable = true; # ICMP echo requests
     snmp.enable = true;
     smokeping.enable = true; # ping services
+
+    ### Ad blockers ###
+    pihole.enable = false; # Ad blocker
 
     ### DB ###
     sql.enable = true; # custom SQL queries
@@ -30,6 +34,10 @@
     ### Hardware ###
     smartctl.enable = true; # HDD health monitor
     scaphandre.enable = true; # Electricity consumption for bare metal & vms
+    nut.enable = false; # Network UPS monitor
+
+    ### Reverse Proxies ###
+    nginx.enable = false;
 
     ### Spam ###
     rspamd.enable = false; # Email/messages spam fileterer
