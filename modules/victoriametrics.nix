@@ -16,10 +16,22 @@
     };
 
     ### Networking ###
+    mail.enable = false; # monitor mail servers
     ping.enable = true; # ICMP echo requests
     snmp.enable = true;
     smokeping.enable = true; # ping services
     nats.enable = false;
+    modemmanager.enable = false; # mobile broadband (4G/5G) management system
+    lnd.enable = false; # monitor Blockchain/P2P networking
+
+    ### API ###
+    json.enable = true; # scrapes remote JSON
+
+    ### DNS ###
+    knot.enable = false;
+
+    ### DHCP ###
+    kea.enable = false;
 
     ### Ad blockers ###
     pihole.enable = false; # Ad blocker
@@ -27,11 +39,15 @@
     ### Storage ###
     nextcloud.enable = false;
 
+    ### Object Storage ###
+    minio.enable = false;
+
     ### DB ###
     sql.enable = true; # custom SQL queries
     redis.enable = false;
     mysqld.enable = false; # mysql & mariadb
     postgres.enable = false;
+    mongodb.enable = false;
 
     ### Caching ###
     varnish.enable = false; # reverse proxy Cache
@@ -48,7 +64,6 @@
     rspamd.enable = false; # Email/messages spam fileterer
 
   };
-
   services.victoriametrics = {
     enable = true;
     # extraOptions = [ "-storageDataPath=/srv/victoriametrics" ];
