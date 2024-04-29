@@ -1,5 +1,20 @@
 { ... }: {
-  services.prometheus.exporters.node.enable = true;
+  services.prometheus.exporters = {
+    node.enable = true;
+    systemd.enable = true;
+    snmp.enable = true;
+    smokeping.enable = true; # ping services
+    smartctl.enable = true; # HDD health monitor
+    script = { # custom scripts checks
+      enable = false;
+      scripts = [{
+        name = "sleep";
+        script = "sleep 5";
+        timeout = 5;
+      }];
+    };
+
+  };
 
   services.victoriametrics = {
     enable = true;
