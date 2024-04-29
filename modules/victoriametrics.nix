@@ -19,13 +19,18 @@
     ping.enable = true; # ICMP echo requests
     snmp.enable = true;
     smokeping.enable = true; # ping services
+    nats.enable = false;
 
     ### Ad blockers ###
     pihole.enable = false; # Ad blocker
 
+    ### Storage ###
+    nextcloud.enable = false;
+
     ### DB ###
     sql.enable = true; # custom SQL queries
     redis.enable = false;
+    mysqld.enable = false; # mysql & mariadb
     postgres.enable = false;
 
     ### Caching ###
