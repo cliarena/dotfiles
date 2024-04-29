@@ -16,13 +16,17 @@
     };
 
     ### Networking ###
-    mail.enable = false; # monitor mail servers
     ping.enable = true; # ICMP echo requests
     snmp.enable = true;
     smokeping.enable = true; # ping services
     nats.enable = false;
     modemmanager.enable = false; # mobile broadband (4G/5G) management system
     lnd.enable = false; # monitor Blockchain/P2P networking
+    ipmi.enable = false; # monitor IPMI: remote full pc w/ bios access
+
+    ### Mail ###
+    mail.enable = false; # monitor mail servers
+    imap-mailstat.enable = false; # shows how many mails in inbox & each folder
 
     ### API ###
     json.enable = true; # scrapes remote JSON
@@ -48,6 +52,7 @@
     mysqld.enable = false; # mysql & mariadb
     postgres.enable = false;
     mongodb.enable = false;
+    influxdb.enable = false;
 
     ### Caching ###
     varnish.enable = false; # reverse proxy Cache
