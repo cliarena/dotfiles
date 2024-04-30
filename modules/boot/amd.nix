@@ -10,6 +10,7 @@
     kernelModules = [
       "uinput"
       "kvm-amd" # support virtual machine acceleration
+      "intel_rapl_common" # needed by scaphandre prometheus exporter
       # need for nomad iptables
       "iptable_nat"
       "iptable_filter"
