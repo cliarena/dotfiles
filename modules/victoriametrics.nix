@@ -23,7 +23,7 @@
     };
 
     ### Networking ###
-    ping.enable = true; # ICMP echo requests
+    ping.enable = false; # ICMP echo requests
     snmp.enable = false;
     smokeping.enable = false; # ping services
     # nats.enable = false; # needs system update
