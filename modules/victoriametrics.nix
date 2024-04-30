@@ -4,7 +4,14 @@
     ### Linux processes ###
     node.enable = true;
     process.enable = false; # monitor specefic process
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      extraFlags = [
+        "--systemd.collector.enable-restart-count"
+        "--systemd.collector.enable-file-descriptor-size"
+        "--systemd.collector.enable-ip-accounting"
+      ];
+    };
 
     script = { # custom scripts checks
       enable = false;
