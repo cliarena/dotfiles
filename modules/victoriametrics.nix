@@ -26,7 +26,7 @@
     ping.enable = true; # ICMP echo requests
     snmp.enable = true;
     smokeping.enable = true; # ping services
-    nats.enable = false;
+    # nats.enable = false; # needs system update
     modemmanager.enable = false; # mobile broadband (4G/5G) management system
     lnd.enable = false; # monitor Blockchain/P2P networking
     ipmi.enable = false; # monitor IPMI: remote full pc w/ bios access
