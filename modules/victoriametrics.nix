@@ -24,7 +24,7 @@
 
     ### Networking ###
     ping.enable = true; # ICMP echo requests
-    snmp.enable = true;
+    snmp.enable = false;
     smokeping.enable = true; # ping services
     # nats.enable = false; # needs system update
     modemmanager.enable = false; # mobile broadband (4G/5G) management system
@@ -54,7 +54,7 @@
     minio.enable = false;
 
     ### DB ###
-    sql.enable = true; # custom SQL queries
+    sql.enable = false; # custom SQL queries
     redis.enable = false;
     mysqld.enable = false; # mysql & mariadb
     postgres.enable = false;
