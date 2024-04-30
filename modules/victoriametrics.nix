@@ -15,7 +15,7 @@
 
     script = { # custom scripts checks
       enable = false;
-      scripts = [{
+      settings.scripts = [{
         name = "sleep";
         script = "sleep 5";
         timeout = 5;
