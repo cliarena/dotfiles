@@ -8,7 +8,7 @@
       enable = true;
       extraFlags = [
         "--systemd.collector.enable-restart-count"
-        "--systemd.collector.enable-file-descriptor-size"
+        # "--systemd.collector.enable-file-descriptor-size" # throws unknown flag error
         "--systemd.collector.enable-ip-accounting"
       ];
     };
