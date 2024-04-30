@@ -36,7 +36,7 @@
     imap-mailstat.enable = false; # shows how many mails in inbox & each folder
 
     ### API ###
-    json.enable = true; # scrapes remote JSON
+    json.enable = false; # scrapes remote JSON
 
     ### DNS ###
     knot.enable = false;
