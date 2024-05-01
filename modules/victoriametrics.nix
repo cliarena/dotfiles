@@ -23,9 +23,8 @@
     };
 
     ### Networking ###
-    ping.enable = false; # ICMP echo requests
     snmp.enable = false;
-    smokeping.enable = false; # ping services
+    smokeping.enable = false; # latency monitor
     # nats.enable = false; # needs system update
     modemmanager.enable = false; # mobile broadband (4G/5G) management system
     lnd.enable = false; # monitor Blockchain/P2P networking
