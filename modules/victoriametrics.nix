@@ -24,7 +24,8 @@
 
     ### Networking ###
     snmp.enable = false;
-    smokeping.enable = false; # latency monitor
+    smokeping.enable = false; # best latency monitor
+    blackbox.enable = false; # HTTP, HTTPS, DNS, TCP, ICMP and gRPC prober
     # nats.enable = false; # needs system update
     modemmanager.enable = false; # mobile broadband (4G/5G) management system
     lnd.enable = false; # monitor Blockchain/P2P networking
