@@ -3,7 +3,7 @@ let inherit (config.home) homeDirectory;
 in {
   sops = {
     defaultSopsFile = ../../secrets/${host.user}.yaml;
-    age.keyFile = ../../secrets/age.key;
+    age.keyFile = /srv/secrets/SOPS_AGE_KEY;
     age.sshKeyPaths =
       pkgs.lib.mkForce [ ]; # Must set to empty list for age heyfile to work
     gnupg.sshKeyPaths =

@@ -47,6 +47,10 @@ in {
 
     # INFO: you need to bindmount your devices and add each device to allowedDevices
     bindMounts = {
+      "/srv/secrets" = { # need for sops
+        hostPath = "/srv/secrets";
+        isReadOnly = true;
+      };
       "/dev/dri" = {
         hostPath = "/dev/dri";
         isReadOnly = false;
