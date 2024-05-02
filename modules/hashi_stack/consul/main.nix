@@ -102,12 +102,12 @@
           # };
           # }];
           # }
-          {
-            kind = "inline-certificate";
-            name = "cliarena-cert";
-            certificate = builtins.readFile /var/lib/acme/cliarena.com/cert.pem;
-            privateKey = builtins.readFile /var/lib/acme/cliarena.com/key.pem;
-          }
+          # {
+          # kind = "inline-certificate";
+          # name = "cliarena-cert";
+          # certificate = builtins.readFile /var/lib/acme/cliarena.com/cert.pem;
+          # privateKey = builtins.readFile /var/lib/acme/cliarena.com/key.pem;
+          # }
           # {
           # name = "cliarena-http-routes";
           # kind = "http-route";

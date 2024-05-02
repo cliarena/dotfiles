@@ -91,6 +91,15 @@ in {
     config_json = builtins.toJSON { config.protocol = "http"; };
   };
 
+  resource.consul_config_entry.cliarena_cert = {
+    kind = "inline-certificate";
+    name = "cliarena-cert";
+    config_json = builtins.toJSON {
+      certificate = builtins.readFile /var/lib/acme/cliarena.com/cert.pem;
+      privateKey = builtins.readFile /var/lib/acme/cliarena.com/key.pem;
+    };
+  };
+
   resource.consul_config_entry.cliarena_gateway = {
     kind = "api-gateway";
     name = "cliarena-gateway";
