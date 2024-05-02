@@ -243,7 +243,13 @@ in {
         users.users.${host.user} = {
           isNormalUser = true;
           initialPassword = "nixos";
-          extraGroups = [ "wheel" "input" "video" "sound" ];
+          extraGroups = [
+            "avahi" # needed to read /var/lib/acme files for terranix apply
+            "wheel"
+            "input"
+            "video"
+            "sound"
+          ];
           shell = pkgs.nushell;
           openssh.authorizedKeys.keys = host.ssh_authorized_keys;
         };
