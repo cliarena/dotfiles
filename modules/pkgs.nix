@@ -9,7 +9,8 @@
     w3m
     # python310Packages.howdoi
     brave
-    # mpv
+    mpv
+    youtube-tui
     # ytfzf
 
     ### Programing ###
