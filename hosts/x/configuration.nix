@@ -13,6 +13,7 @@ in {
     ../../modules/swap.nix
     ../../modules/boot/intel.nix
     ../../modules/users.nix
+    ../../modules/comin.nix
     ../../modules/fonts
     ../../modules/hardware/intel.nix
     ../../modules/display_manager.nix
@@ -26,8 +27,8 @@ in {
     ../../modules/chromium.nix
     ../../modules/podman.nix
     ../../modules/extra_containers.nix
-    /* ../../containers/dev_space-intel.nix   */
-    ];
+    # ../../containers/dev_space-intel.nix
+  ];
   system.stateVersion = "22.11";
   programs.nixvim = import ../../modules/nixvim pkgs;
 }
