@@ -23,7 +23,8 @@ in {
     ../../modules/pipewire.nix
     ../../modules/netwoking/network.nix
     ../../modules/kmonad
-    ../../modules/pkgs.nix
+    # ../../modules/pkgs.nix
+    (import ../../modules/pkgs.nix { inherit inputs pkgs; })
     ../../modules/chromium.nix
     ../../modules/podman.nix
     # ../../modules/extra_containers.nix

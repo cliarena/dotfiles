@@ -29,7 +29,9 @@ in {
     ../../containers/wolf_desktop.nix
     ../../containers/hello.nix
     ../../microvms/test.nix
-    ../../modules/pkgs.nix
+    # ../../modules/pkgs.nix
+    (import ../../modules/pkgs.nix { inherit inputs pkgs; })
+    # doesn't support btrfs swapfile
     ../../modules/surrealdb.nix
 
     # Observability
