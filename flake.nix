@@ -17,6 +17,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    wolf.url = "github:games-on-whales/wolf/dev-nix";
+
     devenv.url = "github:cachix/devenv";
 
     comin.url = "github:nlewo/comin";
