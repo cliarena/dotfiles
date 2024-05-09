@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, ... }:
+{ inputs, nixpkgs, name ? "Tom", ... }:
 let
 
   user = "x";
@@ -29,7 +29,7 @@ in {
         wantedBy = [ "multi-user.target" ];
         script = ''
           while true; do
-            echo hello | ${pkgs.netcat}/bin/nc -lN 50
+            echo hello ${name} | ${pkgs.netcat}/bin/nc -lN 50
           done
         '';
       };
