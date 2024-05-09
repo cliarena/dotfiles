@@ -5,29 +5,27 @@
         type = "disk";
         device = builtins.elemAt disks 0;
         content = {
-          type = "table";
-          format = "gpt";
-          partitions = [
-            {
-              name = "ESP";
-              start = "1MiB";
-              end = "512MiB";
-              fs-type = "fat32";
-              bootable = true;
+          type = "gpt";
+          partitions = {
+            ESP = {
+              start = "1M";
+              end = "512M";
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
                 extraArgs = [ "-n boot" ];
+                device = "/dev/disk/by-partlabel/ESP";
               };
-            }
-            {
-              name = "nixos";
-              start = "512MiB";
+            };
+            nixos = {
+              start = "512M";
               end = "100%";
               content = {
                 type = "btrfs";
                 extraArgs = [ "--label nixos" ]; # Override existing partition
+                device = "/dev/disk/by-partlabel/nixos";
                 subvolumes = {
                   # Mountpoints inferred from subvolume name
                   "/nix" = {
@@ -48,8 +46,8 @@
                   };
                 };
               };
-            }
-          ];
+            };
+          };
         };
       };
     };
