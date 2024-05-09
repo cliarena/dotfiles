@@ -13,7 +13,6 @@
               start = "1MiB";
               end = "512MiB";
               type = "EF00";
-              bootable = true;
               content = {
                 type = "filesystem";
                 format = "vfat";
