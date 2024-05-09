@@ -38,5 +38,11 @@ in {
     ../../modules/victoriametrics.nix
   ];
   programs.nixvim = import ../../modules/nixvim pkgs;
+
+  environment.systemPackages = with pkgs;
+    [
+      ### Streaming ###
+      inputs.wolf.packages.x86_64-linux.default
+    ];
   system.stateVersion = "22.11";
 }

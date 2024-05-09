@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     ### Git ###
     gh
@@ -36,9 +36,6 @@
 
     ### Session management ###
     dunst # # notification manager must for discord ...
-
-    ### Streaming ###
-    inputs.wolf.packages.x86_64-linux.default
 
     ### Tools ###
     bat
