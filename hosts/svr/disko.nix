@@ -8,26 +8,24 @@
           type = "gpt";
           partitions = {
             ESP = {
-              priority = 1;
-              name = "ESP";
               start = "1M";
               end = "512M";
               type = "EF00";
               content = {
-                device = "/dev/disk/by-partlabel/ESP";
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
                 extraArgs = [ "-n boot" ];
+                device = "/dev/disk/by-partlabel/ESP";
               };
             };
             nixos = {
               start = "512M";
               end = "100%";
               content = {
-                device = "/dev/disk/by-partlabel/nixos";
                 type = "btrfs";
                 extraArgs = [ "--label nixos" ]; # Override existing partition
+                device = "/dev/disk/by-partlabel/nixos";
                 subvolumes = {
                   # Mountpoints inferred from subvolume name
                   "/nix" = {
