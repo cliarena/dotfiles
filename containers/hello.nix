@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, name ? "Tom", ... }:
+{ inputs, nixpkgs, ... }:
 let
 
   user = "x";
@@ -24,7 +24,7 @@ in {
     # hostAddress = "10.10.0.10";
     # localAddress = "10.10.0.100";
     # ephemeral = true;
-    config = { config, pkgs, ... }: {
+    config = { config, pkgs, name ? "Tom", ... }: {
       systemd.services.hello = {
         wantedBy = [ "multi-user.target" ];
         script = ''
