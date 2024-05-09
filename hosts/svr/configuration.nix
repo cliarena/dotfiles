@@ -24,6 +24,7 @@ in {
     ../../modules/netwoking/router.nix
     ../../modules/auditd.nix
     ../../modules/hashi_stack
+    ../../modules/extra_containers.nix
     ../../containers/dev_space.nix
     ../../containers/vault_unsealer.nix
     ../../containers/wolf_desktop.nix
