@@ -5,14 +5,14 @@
         type = "disk";
         device = builtins.elemAt disks 0;
         content = {
-          type = "table";
-          format = "gpt";
-          partitions = [
-            {
+          type = "gpt";
+          partitions = {
+            ESP = {
+              priority = 1;
               name = "ESP";
               start = "1MiB";
               end = "512MiB";
-              fs-type = "fat32";
+              type = "EF00";
               bootable = true;
               content = {
                 type = "filesystem";
@@ -20,8 +20,8 @@
                 mountpoint = "/boot";
                 extraArgs = [ "-n boot" ];
               };
-            }
-            {
+            };
+            nixos = {
               name = "nixos";
               start = "512MiB";
               end = "100%";
@@ -56,8 +56,8 @@
                   };
                 };
               };
-            }
-          ];
+            };
+          };
         };
       };
     };
