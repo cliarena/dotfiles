@@ -10,10 +10,11 @@
             ESP = {
               priority = 1;
               name = "ESP";
-              start = "1MiB";
-              end = "512MiB";
+              start = "1M";
+              end = "512M";
               type = "EF00";
               content = {
+                device = "/dev/disk/by-partlabel/ESP";
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
@@ -21,10 +22,10 @@
               };
             };
             nixos = {
-              name = "nixos";
-              start = "512MiB";
+              start = "512M";
               end = "100%";
               content = {
+                device = "/dev/disk/by-partlabel/nixos";
                 type = "btrfs";
                 extraArgs = [ "--label nixos" ]; # Override existing partition
                 subvolumes = {
