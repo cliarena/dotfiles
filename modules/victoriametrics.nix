@@ -90,7 +90,9 @@
         {
           job_name = "vault";
           static_configs = [{
-            targets = [ "https://vault.cliarena.com:8200/v1/sys/metrics" ];
+            targets = [
+              "https://vault.cliarena.com:8200/v1/sys/metrics?format=prometheus"
+            ];
           }];
           authorization.credentials_file =
             config.sops.secrets.VICTORIA_METRICS_VAULT_TOKEN.path;
