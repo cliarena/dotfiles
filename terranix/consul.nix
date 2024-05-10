@@ -88,7 +88,12 @@ in {
   resource.consul_config_entry.proxy_defaults = {
     kind = "proxy-defaults";
     name = "global";
-    config_json = builtins.toJSON { config.protocol = "http"; };
+    config_json = builtins.toJSON {
+      config = {
+        protocol = "http";
+        envoy_prometheus_bind_addr = "0.0.0.0:8484";
+      };
+    };
   };
 
   resource.consul_config_entry.cliarena_cert = {
