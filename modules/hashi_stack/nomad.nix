@@ -51,31 +51,23 @@
       # ssl = true;
       # };
 
+      telemetry = {
+        collection_interval = "1s";
+        disable_hostname = true;
+        prometheus_metrics = true;
+        publish_allocation_metrics = true;
+        publish_node_metrics = true;
+      };
+
       server = {
         enabled = true;
         bootstrap_expect = 1; # for demo; no fault tolerance
         # able to access sops secrets because dropPrivileges =  false;
-        telemetry = {
-          collection_interval = "1s";
-          disable_hostname = true;
-          prometheus_metrics = true;
-          publish_allocation_metrics = true;
-          publish_node_metrics = true;
-        };
-
       };
 
       client = {
         enabled = true;
         cni_path = "${pkgs.cni-plugins}/bin";
-
-        telemetry = {
-          collection_interval = "1s";
-          disable_hostname = true;
-          prometheus_metrics = true;
-          publish_allocation_metrics = true;
-          publish_node_metrics = true;
-        };
 
         # cpu_total_compute = 4 * 2200;
         memory_total_mb = 2 * 64 * 1024; # double the ram to benefit from zram
