@@ -97,6 +97,10 @@
           consul_sd_configs = [{ server = "127.0.0.1:8500"; }];
         }
         {
+          job_name = "envoy";
+          static_configs = [{ targets = [ "127.0.0.1:8484" ]; }];
+        }
+        {
           job_name = "node";
           static_configs = [{ targets = [ "127.0.0.1:9100" ]; }];
         }
