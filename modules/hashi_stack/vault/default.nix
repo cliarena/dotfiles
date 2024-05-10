@@ -36,7 +36,13 @@ in {
     # '';
     # address = "10.10.0.10:8200";
     address = "vault.${DOMAIN}:8200";
+
+    telemetryConfig = ''
+      prometheus_retention_time = "30s"
+      disable_hostname = true
+    '';
   };
+
   systemd.services.vault.after = [ "acme-vault.${DOMAIN}.service" ];
 
 }
