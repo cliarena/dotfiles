@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   services.prometheus.exporters = {
 
     ### Linux processes ###
@@ -87,6 +87,14 @@
     prometheusConfig = {
       scrape_configs = [
         # Never use "localhost" to avoid dns lookup latency
+        {
+          job_name = "vault";
+          static_configs = [{
+            targets = [ "https://vault.cliarena.com:8200/v1/sys/metrics" ];
+          }];
+          authorization.credentials_file =
+            config.sops.secrets.VICTORIA_METRICS_VAULT_TOKEN.path;
+        }
         {
           job_name = "nomad";
           static_configs =
