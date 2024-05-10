@@ -77,6 +77,11 @@
         };
       };
 
+      telemetry = {
+        prometheus_retention_time = "60s";
+        disable_hostname = true;
+      };
+
       config_entries = {
         # if you change or delete any existing entry you need to delete it using `consul config delete -kind http-route -name cliarena_http_routes` and restart consul to take effect
         bootstrap = [
