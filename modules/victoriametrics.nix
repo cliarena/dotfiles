@@ -94,6 +94,12 @@
         }
         {
           job_name = "consul";
+          static_configs = [{
+            targets = [ "127.0.0.1:8500/v1/agent/metrics?format=prometheus" ];
+          }];
+        }
+        {
+          job_name = "consul_sd";
           consul_sd_configs = [{ server = "127.0.0.1:8500"; }];
         }
         {
