@@ -89,7 +89,8 @@
         # Never use "localhost" to avoid dns lookup latency
         {
           job_name = "nomad";
-          nomad_sd_configs = [{ server = "127.0.0.1:4646"; }];
+          static_configs =
+            [{ targets = "127.0.0.1:4646/v1/metrics?format=prometheus"; }];
         }
         {
           job_name = "node";
