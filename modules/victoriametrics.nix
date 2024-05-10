@@ -99,6 +99,10 @@
           job_name = "systemd";
           static_configs = [{ targets = [ "127.0.0.1:9558" ]; }];
         }
+        {
+          job_name = "vmetrics";
+          static_configs = [{ targets = [ "127.0.0.1:8428" ]; }];
+        }
       ];
     };
   };
