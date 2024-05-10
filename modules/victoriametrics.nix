@@ -8,8 +8,8 @@
       enable = true;
       extraFlags = [
         "--systemd.collector.enable-restart-count"
-        # "--systemd.collector.enable-file-descriptor-size" # throws unknown flag error
         "--systemd.collector.enable-ip-accounting"
+        # "--systemd.collector.enable-file-descriptor-size" # throws unknown flag error
       ];
     };
 
@@ -94,6 +94,10 @@
         {
           job_name = "node";
           static_configs = [{ targets = [ "127.0.0.1:9100" ]; }];
+        }
+        {
+          job_name = "systemd";
+          static_configs = [{ targets = [ "127.0.0.1:9558" ]; }];
         }
       ];
     };
