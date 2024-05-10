@@ -10,12 +10,12 @@
     secrets = {
       ACME_VAULT_CERT_CREDENTIALS = { };
       CLOUDFLARE_API_TOKEN = { };
-      VICTORIA_METRICS_VAULT_TOKEN = { };
-
-      "NOMAD_GOSSIP_ENCRYPTION_KEY.hcl" = {
+      VICTORIA_METRICS_VAULT_TOKEN = {
         owner = config.users.groups.vmagent.name;
         group = config.users.groups.vmagent.name;
       };
+
+      "NOMAD_GOSSIP_ENCRYPTION_KEY.hcl" = { };
 
       # VAULT_ROOT_TOKEN = { sopsFile = ../../secrets/vault.yaml; };
 
