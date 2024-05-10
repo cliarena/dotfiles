@@ -12,7 +12,10 @@
       CLOUDFLARE_API_TOKEN = { };
       VICTORIA_METRICS_VAULT_TOKEN = { };
 
-      "NOMAD_GOSSIP_ENCRYPTION_KEY.hcl" = { };
+      "NOMAD_GOSSIP_ENCRYPTION_KEY.hcl" = {
+        owner = config.users.groups.vmagent.name;
+        group = config.users.groups.vmagent.name;
+      };
 
       # VAULT_ROOT_TOKEN = { sopsFile = ../../secrets/vault.yaml; };
 
