@@ -90,7 +90,7 @@
         {
           job_name = "nomad";
           static_configs =
-            [{ targets = "127.0.0.1:4646/v1/metrics?format=prometheus"; }];
+            [{ targets = [ "127.0.0.1:4646/v1/metrics?format=prometheus" ]; }];
         }
         {
           job_name = "node";
