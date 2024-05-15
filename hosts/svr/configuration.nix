@@ -36,7 +36,7 @@ in {
     ../../modules/surrealdb.nix
 
     # Observability
-    ../../modules/victoriametrics.nix
+    # ../../modules/victoriametrics.nix
   ];
   programs.nixvim = import ../../modules/nixvim pkgs;
 
