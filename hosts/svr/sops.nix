@@ -11,8 +11,8 @@
       ACME_VAULT_CERT_CREDENTIALS = { };
       CLOUDFLARE_API_TOKEN = { };
       VICTORIA_METRICS_VAULT_TOKEN = {
-        owner = config.users.groups.vmagent.name;
-        group = config.users.groups.vmagent.name;
+        # owner = config.users.groups.vmagent.name;
+        # group = config.users.groups.vmagent.name;
       };
 
       "NOMAD_GOSSIP_ENCRYPTION_KEY.hcl" = { };
