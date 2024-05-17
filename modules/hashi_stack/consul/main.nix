@@ -1,5 +1,20 @@
-{ config, CONSUL, VAULT_ADDR, ... }: {
+{ config, system, CONSUL, VAULT_ADDR, ... }:
+let
+
+  oldPkgs = import (builtins.fetchGit {
+    # Descriptive name to make the store path easier to identify
+    name = "consul-1.17.3";
+    url = "https://github.com/NixOS/nixpkgs/";
+    ref = "refs/heads/nixpkgs-unstable";
+    rev = "336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3";
+  }) {
+    inherit system;
+    config.allowUnfree = true;
+  };
+
+in {
   services.consul = {
+    package = oldPkgs.consul;
     enable = true;
     webUi = true;
     dropPrivileges = false;

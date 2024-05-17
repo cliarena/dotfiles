@@ -50,7 +50,7 @@ let
 
 in nixosSystem {
   inherit system;
-  specialArgs = { inherit inputs nixpkgs host; };
+  specialArgs = { inherit inputs nixpkgs host system; };
   modules = [
     ./configuration.nix
 

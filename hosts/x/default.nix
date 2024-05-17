@@ -25,7 +25,7 @@ let
 
 in nixosSystem {
   inherit system;
-  specialArgs = { inherit inputs nixpkgs home-manager host; };
+  specialArgs = { inherit inputs nixpkgs home-manager host system; };
   modules = [
     ./configuration.nix
 
