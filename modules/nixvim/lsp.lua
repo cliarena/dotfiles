@@ -6,6 +6,7 @@ lspconfig.nil_ls.setup({})
 lspconfig.denols.setup({})
 lspconfig.grammarly.setup({})
 lspconfig.jsonls.setup({})
+lspconfig.zls.setup({})
 lspconfig.rust_analyzer.setup({
 	--[[ settings = { ]]
     --[[ ["rust-analyzer"] = { ]]
@@ -103,6 +104,7 @@ lspconfig.tailwindcss.setup({
 		"vue",
 		"svelte",
 		"rust"
+		"zig"
 	},
 	init_options = {
 		userLanguages = {

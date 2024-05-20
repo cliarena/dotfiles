@@ -20,6 +20,7 @@ null_ls.setup({
 		formatting.taplo,
 		formatting.nixfmt,
 		formatting.tidy, -- for html
+		formatting.zigfmt,
 
 		hover.dictionary,
 		hover.printenv,
