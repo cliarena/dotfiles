@@ -45,6 +45,8 @@ in forAllSystems (system:
           # for nix
           nixfmt
           nil
+          stylua
+          lua-language-server
         ];
 
         enterShell = ''
