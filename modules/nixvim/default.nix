@@ -1,5 +1,15 @@
 pkgs:
-let runtimePkgs = with pkgs; [ zig cargo cargo-nextest tailwindcss-language-server rust-analyzer rustfmt nil nixfmt ];
+let
+  runtimePkgs = with pkgs; [
+    zig
+    cargo
+    cargo-nextest
+    tailwindcss-language-server
+    rust-analyzer
+    rustfmt
+    nil
+    nixfmt
+  ];
 in {
   enable = true;
   # package = pkgs.neovim-nightly;
@@ -134,10 +144,10 @@ in {
       flit-nvim # # f/F/t/T motions on steroids
       # leap-spooky         ## Remote operations without leaving. eg: yank paragraph in another window TODO: add to nixpkgs
 
-
       ## Testing
       neotest
       rustaceanvim
+      neotest-zig
 
       ## DAP
       trouble-nvim # # Show Diagnostics in a window
