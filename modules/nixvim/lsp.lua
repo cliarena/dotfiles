@@ -103,7 +103,7 @@ lspconfig.tailwindcss.setup({
 		"typescriptreact",
 		"vue",
 		"svelte",
-		"rust"
+		"rust",
 		"zig"
 	},
 	init_options = {
