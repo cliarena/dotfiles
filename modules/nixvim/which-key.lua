@@ -190,9 +190,9 @@ local mappings = {
 	},
 	n = {
 		name = "Neotest",
-		n = { "<cmd>lua require('neotest').jump.next({ status = 'failed' })", "Next failing" },
-		e = { "<cmd>lua require('neotest').jump.prev({ status = 'failed' })", "Prev failing" },
-		i = { "<cmd>lua require('neotest').output.open({ enter = true })", "Info" },
+		n = { "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>", "Next failing" },
+		e = { "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>", "Prev failing" },
+		i = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "Info" },
 		w = { "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>", "Watch current file" },
 		s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Summary" },
 		o = { "<cmd>lua require('neotest').output_panel.toggle()<cr>", "Output panel" },
