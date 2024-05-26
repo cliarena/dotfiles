@@ -4,27 +4,27 @@
 provider "registry.terraform.io/hashicorp/consul" {
   version = "2.20.0"
   hashes = [
-    "h1:thfJUyuTUKnFkvT6EkO65DCtTaq/eoMQFLNLinC8Iy4=",
+    "h1:MWSi6X0T9Fv/nEpHmIfRqSiG7lEwOEun2uaPvUojmI8=",
   ]
 }
 
 provider "registry.terraform.io/hashicorp/nomad" {
-  version = "2.1.0"
+  version = "2.2.0"
   hashes = [
-    "h1:oKxseO2dEGmWzzQfK8SgdvPbOwTsXqPOBEXTnjTcfPI=",
+    "h1:JCUJOPocZrOLG5e50WeuwejbJoQ0j1h7jdWUVn06WsE=",
   ]
 }
 
 provider "registry.terraform.io/hashicorp/vault" {
-  version = "3.24.0"
+  version = "4.2.0"
   hashes = [
-    "h1:sMwRNPEsnvPyIh12AEDjQ4eoM9zCL6u21cVuPG97hQE=",
+    "h1:r55ago9IQYx4xK1lcXHjeR7vD+HlC5RW2IujJOPKf5k=",
   ]
 }
 
 provider "registry.terraform.io/tenstad/remote" {
   version = "0.1.2"
   hashes = [
-    "h1:D0QHCHsHoPSg3JjSz0XXyHXjMABYwWKHSPgsnzhftOA=",
+    "h1:eiq8zEK0Y68oKAqwJWwQmM4AsYeDRZKbZtQ/cVjxOxU=",
   ]
 }
