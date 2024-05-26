@@ -1615,18 +1615,17 @@
         "nixpkgs": "nixpkgs_12"
       },
       "locked": {
-        "lastModified": 1715116959,
-        "narHash": "sha256-eX7gCsTGkqBElZRD/Poyu9/coF+0bArlzRajX4TOmX0=",
-        "owner": "games-on-whales",
+        "lastModified": 1716736818,
+        "narHash": "sha256-3VA2CzO0v083Npk+0PyKT1bDIOYsco2qKgxjzgOMVOQ=",
+        "owner": "clxarena",
         "repo": "wolf",
-        "rev": "14deb282acefc5a13b151bd9b923d3326a4094a3",
-        "type": "github"
+        "rev": "2764a37f71fc0d01304fb363ef0be7e3c9b55b0b",
+        "type": "gitlab"
       },
       "original": {
-        "owner": "games-on-whales",
-        "ref": "dev-nix",
+        "owner": "clxarena",
         "repo": "wolf",
-        "type": "github"
+        "type": "gitlab"
       }
     },
     "xdph": {
