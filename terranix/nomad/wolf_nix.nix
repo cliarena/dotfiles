@@ -56,7 +56,7 @@ in {
       task.server = {
         driver = "raw_exec";
 
-        config = { image = "/run/current-system/sw/bin/wolf"; };
+        config = { command = "/run/current-system/sw/bin/wolf"; };
         # resources = {
         # cpu = 10;
         # memory = 50;
