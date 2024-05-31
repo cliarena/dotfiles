@@ -17,7 +17,9 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    # wolf should follow nixpkgs since it needs to use the same vaapi driver version of the host 
     wolf.url = "gitlab:clxarena/wolf";
+    wolf.inputs.nixpkgs.follows = "nixpkgs";
 
     devenv.url = "github:cachix/devenv";
 
