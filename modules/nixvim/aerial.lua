@@ -201,7 +201,7 @@ require("aerial").setup({
 	close_on_select = false,
 
 	-- The autocmds that trigger symbols update (not used for LSP backend)
-	update_events = "TextChanged,InsertLeave",
+	update_events = "TextChanged,InsertLeave,FocusGained * checktime",
 
 	-- Show box drawing characters for the tree hierarchy
 	show_guides = false,
