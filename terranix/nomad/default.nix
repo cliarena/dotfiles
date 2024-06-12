@@ -7,7 +7,7 @@ let
       ./kasm.nix
       ./echoip_nix.nix
       ./echo.nix
-      ./wolf.nix
+      ./wolf_nix.nix
       (import ./microvm.nix { inherit microvm self pkgs config; })
     ];
   };
