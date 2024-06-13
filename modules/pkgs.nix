@@ -56,6 +56,7 @@
     # ventoy-bin # multiple Bootable usb drives in one
     pavucontrol
     remmina
+    blender
 
     # appimage-run
     # bottles
