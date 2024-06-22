@@ -25,10 +25,11 @@ in {
     ../../modules/auditd.nix
     ../../modules/hashi_stack
     ../../modules/extra_containers.nix
+    ../../containers/hello.nix
+    ../../containers/desktop.nix
     ../../containers/dev_space.nix
     ../../containers/vault_unsealer.nix
     ../../containers/wolf_desktop.nix
-    ../../containers/hello.nix
     ../../microvms/test.nix
     # ../../modules/pkgs.nix
     (import ../../modules/pkgs.nix { inherit inputs pkgs; })
