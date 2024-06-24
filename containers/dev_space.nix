@@ -47,9 +47,9 @@ in {
 
     # INFO: you need to bindmount your devices and add each device to allowedDevices
     bindMounts = {
-      "/srv/secrets" = { # needed for sops
-        hostPath = "/srv/secrets";
-        isReadOnly = true;
+      "/srv" = { # needed for sops
+        hostPath = "/srv";
+        isReadOnly = false;
       };
       "/var/lib/acme" = { # needed for terraform certs consul_config_entry
         hostPath = "/var/lib/acme";
