@@ -57,6 +57,7 @@
     pavucontrol
     remmina
     blender
+    taskwarrior-tui
 
     # appimage-run
     # bottles
