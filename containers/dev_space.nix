@@ -263,44 +263,6 @@ in {
           }];
         }];
 
-        security.wrappers.sunshine = {
-          owner = "root";
-          group = "root";
-          capabilities = "cap_sys_admin+p";
-          source = "${sunshine}/bin/sunshine";
-        };
-
-        # Inspired from https://github.com/LizardByte/Sunshine/blob/5bca024899eff8f50e04c1723aeca25fc5e542ca/packaging/linux/sunshine.service.in
-        systemd.user.services.sunshine = {
-          description = "Sunshine server";
-          wantedBy = [ "graphical-session.target" ];
-          startLimitIntervalSec = 500;
-          startLimitBurst = 5;
-          partOf = [ "graphical-session.target" ];
-          wants = [ "graphical-session.target" ];
-          after = [ "graphical-session.target" ];
-
-          # preStart = "echo $XDG_SESSION_TYPE && ${pkgs.xorg.xrandr}/bin/xrandr";
-          serviceConfig = {
-            ExecStart =
-              "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf min_log_level=1 encoder=software";
-            Restart = "on-failure";
-            RestartSec = "5s";
-          };
-        };
-
-        services.avahi = {
-          enable = true;
-          reflector = true;
-          nssmdns = true;
-          publish = {
-            enable = true;
-            addresses = true;
-            userServices = true;
-            workstation = true;
-          };
-        };
-
       };
   };
 }
