@@ -106,5 +106,6 @@ in {
     enable = true;
     package = pkgs.taskwarrior3;
     colorTheme = taskwarrior_theme;
+    dataLocation = "/srv/taskwarrior";
   };
 }
