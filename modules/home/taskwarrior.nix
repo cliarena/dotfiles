@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
 
-  timewarrior_theme = builtins.toFile "catppuccin.theme" ''
+  timewarrior_theme = builtins.toFile "catppuccin" ''
     define theme:
       description = "catppuccin.theme: A soothing theme for timewarrior"
       colors:
@@ -24,7 +24,7 @@ let
         color06 = "black on yellow"
         color07 = "black on white"
   '';
-  taskwarrior_theme = builtins.toFile "catppuccin.theme" ''
+  taskwarrior_theme = builtins.toFile "catppuccin" ''
     # Theme colors for catppuccin
 
     # General decoration
