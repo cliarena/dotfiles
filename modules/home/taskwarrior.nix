@@ -29,7 +29,7 @@ let
 
     # General decoration
     color.label = "magenta";
-    # color.label.sort="magenta";
+    "color.label.sort" = "magenta";
     color.alternate = "";
     color.header = "cyan";
     color.footnote = "yellow";
@@ -62,7 +62,7 @@ let
 
     # Due
     color.due = "red";
-    # color.due.today="red";
+    "color.due.today" = "red";
     color.overdue = "bold red";
 
     # UDA
@@ -84,7 +84,7 @@ let
 
     # Command: calendar
     color.calendar.due = "red";
-    # color.calendar.due.today="underline bold red";
+    "color.calendar.due.today" = "underline bold red";
     color.calendar.holiday = "black on bright yellow";
     color.calendar.overdue = "bold white on bright red";
     color.calendar.scheduled = "green";
