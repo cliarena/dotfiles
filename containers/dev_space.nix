@@ -110,20 +110,7 @@ in {
     ];
 
     config = { config, pkgs, ... }:
-      let
-        inherit (inputs) home-manager sops-nix;
-        sunshine = pkgs.sunshine.overrideAttrs (old: {
-          runtimeDependencies = old.runtimeDependencies ++ [ pkgs.libglvnd ];
-        });
-        configFile = pkgs.writeTextDir "config/sunshine.conf" ''
-          origin_web_ui_allowed=wan
-          #output_name = 0
-          #capture = kms
-          #hevc_mode = 1
-          #min_threads = 4
-          #encoder = software
-          #adapter_name = /dev/dri/renderD128
-        '';
+      let inherit (inputs) home-manager sops-nix;
       in {
 
         nix.extraOptions = ''
@@ -149,7 +136,6 @@ in {
           # ../modules/users.nix
           ../modules/netwoking/container-network.nix
           ../modules/boot/amd.nix
-          # ../modules/sunshine.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -160,7 +146,6 @@ in {
               imports = [
                 sops-nix.homeManagerModules.sops
                 ../hosts/x/sops.nix
-                # ../modules/home/i3
                 ../modules/home/git.nix
                 ../modules/home/lazygit.nix
                 ../modules/home/ssh.nix
