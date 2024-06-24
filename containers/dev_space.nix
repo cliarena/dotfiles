@@ -168,6 +168,7 @@ in {
                 ../modules/home/direnv.nix
                 ../modules/home/kitty.nix
                 ../modules/home/bottom.nix
+                ../modules/home/taskwarrior.nix
               ];
               home = {
                 stateVersion = "22.11";
