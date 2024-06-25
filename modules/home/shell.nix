@@ -95,6 +95,9 @@
         n = "nvim";
         da = "direnv allow";
         gc = "git clone";
+
+        # Todos
+        t = "taskwarrior-tui";
       };
     };
     starship.enable = true;
