@@ -106,6 +106,14 @@ in {
     enable = true;
     package = pkgs.taskwarrior3;
     dataLocation = "/srv/taskwarrior";
-    config = taskwarrior_theme;
+    config = taskwarrior_theme // {
+      rc.context = {
+        hp = "";
+        din = "";
+        dev = "";
+        design = "";
+      };
+      urgency.user.project = { nur.coefficient = 3; };
+    };
   };
 }
