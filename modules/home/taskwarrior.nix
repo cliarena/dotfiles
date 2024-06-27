@@ -112,7 +112,7 @@ in {
         home = "-book -vlog -blog -lab -habit -work";
         reading = "+book";
         vloging = "+vlog +blog";
-        personal = "+habit";
+        personal = "+pers +hp";
         business = "+work";
       };
       urgency.user.project = {
