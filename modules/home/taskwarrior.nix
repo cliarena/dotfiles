@@ -108,12 +108,21 @@ in {
     dataLocation = "/srv/taskwarrior";
     config = taskwarrior_theme // {
       rc.context = {
-        hp = "";
-        din = "";
-        dev = "";
-        design = "";
+        lab = "+lab";
+        home = "-book -vlog -blog -lab -habit -work";
+        reading = "+book";
+        vloging = "+vlog +blog";
+        personal = "+habit";
+        business = "+work";
       };
-      urgency.user.project = { nur.coefficient = 3; };
+      urgency.user.project = {
+        din.coefficient = 4;
+        nur.coefficient = 4;
+        shop.coefficient = 5;
+        majd.coefficient = 2;
+        nixos.coefficient = 3;
+        cliarena.coefficient = 3;
+      };
     };
   };
 }
