@@ -107,13 +107,17 @@ in {
     package = pkgs.taskwarrior3;
     dataLocation = "/srv/taskwarrior";
     config = taskwarrior_theme // {
-      rc.context = {
-        lab = "+lab";
-        home = "-book -vlog -blog -lab -habit -work";
-        reading = "+book";
-        vloging = "+vlog +blog";
-        personal = "+pers +hp";
-        business = "+work";
+      context = {
+        lab.read = "+lab";
+        lab.write = "+lab";
+        home.read = "-book -vlog -blog -lab -habit -work";
+        reading.read = "+book";
+        reading.write = "+book";
+        vloging.read = "+vlog +blog";
+        personal.read = "+pers +hp";
+        personal.write = "+pers";
+        business.read = "+work";
+        business.write = "+work";
       };
       urgency.user.project = {
         din.coefficient = 4;
