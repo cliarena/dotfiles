@@ -110,7 +110,7 @@ in {
       context = {
         lab.read = "+lab";
         lab.write = "+lab";
-        home.read = "-book -vlog -blog -lab -habit -work";
+        home.read = "-book -vlog -blog -lab -pers -hp -work";
         reading.read = "+book";
         reading.write = "+book";
         vloging.read = "+vlog +blog";
