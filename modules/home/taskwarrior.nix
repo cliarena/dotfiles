@@ -114,7 +114,7 @@ in {
         reading.read = "+book";
         reading.write = "+book";
         vloging.read = "+vlog +blog";
-        personal.read = "+pers +hp";
+        personal.read = "+pers or +hp";
         personal.write = "+pers";
         business.read = "+work";
         business.write = "+work";
