@@ -20,7 +20,15 @@ in {
   #withRuby = false;
   #withPython3 = false;
 
-  imports = [ ./autocmd.nix ];
+  # TODO: move to more modular config
+  # imports = [ ./autocmd.nix ];
+
+  autoCmd = [{
+    desc = "Auto-refresh buffer if file changed externally";
+    command = "if mode() != 'c' | checktime | endif";
+    event = [ "FocusGained" "BufEnter" "CursorHold" "CursorHoldI" ];
+    pattern = [ "*" ];
+  }];
 
   extraConfigLua = builtins.foldl' (x: y: builtins.readFile y + x) "" [
     ./options.lua
