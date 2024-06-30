@@ -20,6 +20,8 @@ in {
   #withRuby = false;
   #withPython3 = false;
 
+  imports = [ ./autocmd.nix ];
+
   extraConfigLua = builtins.foldl' (x: y: builtins.readFile y + x) "" [
     ./options.lua
     ./autopairs.lua
