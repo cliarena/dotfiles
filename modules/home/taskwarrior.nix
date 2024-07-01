@@ -120,12 +120,13 @@ in {
         business.write = "+work";
       };
       urgency.user.project = {
-        din.coefficient = 4;
-        nur.coefficient = 4;
-        shop.coefficient = 5;
-        majd.coefficient = 2;
-        nixos.coefficient = 3;
-        cliarena.coefficient = 3;
+        HP.coefficient = 6;
+        Din.coefficient = 4;
+        Nur.coefficient = 4;
+        Shop.coefficient = 5;
+        Majd.coefficient = 2;
+        Nixos.coefficient = 3;
+        Cliarena.coefficient = 3;
       };
     };
   };
