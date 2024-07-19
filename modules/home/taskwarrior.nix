@@ -110,6 +110,7 @@ in {
       report.next.labels = [
         "ID"
         "Active"
+        "Time"
         "Prio"
         "Project"
         "Tags"
@@ -120,7 +121,8 @@ in {
       ];
       report.next.columns = [
         "id"
-        "start"
+        "start.age"
+        "trackwarrior"
         "priority"
         "project"
         "tags"
@@ -150,6 +152,38 @@ in {
         Nixos.coefficient = 3;
         Cliarena.coefficient = 3;
       };
+      uda = {
+        trackwarrior = {
+          type = "string";
+          label = "Total active time";
+          values = [ ];
+        };
+
+        trackwarrior_rate = {
+          type = "string";
+          label = "Rate";
+          values = [ ];
+        };
+
+        trackwarrior_total_amount = {
+          type = "string";
+          label = "Total amount";
+          values = [ ];
+        };
+      };
+      # this allow only one task to be active
+      max_active_tasks = 1;
+      # when you delete the task, the time tracking will be also be deleted from timewarrior 
+      erase_time_on_delete = false;
+      # those are tags in taskwarrior.When you add one of them the time tracking will be deleted from timewarrior
+      clear_time_tags = [ "cleartime" "ctime" "deletetime" "dtime" ];
+      update_time_tags = [ "update" "updatetime" "utime" "recalc" ];
+      create_time_when_add_task = false;
+      rate_per_hour = 10;
+      rate_per_hour_decimals = 2;
+      # rate_per_hour_project=Inbox:0,Other:10
+      rate_format_with_spaces = 10;
+      #currency_format=de-DE,EUR
     };
   };
 }
