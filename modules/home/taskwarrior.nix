@@ -107,6 +107,28 @@ in {
     package = pkgs.taskwarrior3;
     dataLocation = "/srv/taskwarrior";
     config = taskwarrior_theme // {
+      report.next.labels = [
+        "ID"
+        "Active"
+        "Prio"
+        "Project"
+        "Tags"
+        "Due"
+        "Description"
+        "Recur"
+        "Urg"
+      ];
+      report.next.columns = [
+        "id"
+        "start"
+        "priority"
+        "project"
+        "tags"
+        "due"
+        "description.truncated_count"
+        "recur"
+        "urgency"
+      ];
       context = {
         lab.read = "+lab";
         lab.write = "+lab";
