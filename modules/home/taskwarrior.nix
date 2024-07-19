@@ -183,7 +183,7 @@ in {
       rate_per_hour_decimals = 2;
       # rate_per_hour_project=Inbox:0,Other:10
       rate_format_with_spaces = 10;
-      currency_format = [ "en-US" "USD" ];
+      currency_format = "en-US,USD";
     };
   };
 }
