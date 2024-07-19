@@ -58,6 +58,7 @@
     remmina
     blender
     taskwarrior-tui
+    timewarrior
 
     # appimage-run
     # bottles
