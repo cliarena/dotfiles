@@ -169,6 +169,7 @@ in {
           }
         ];
         # modules.services.sunshine.enable = true;
+        environment.sessionVariables = { TIMEWARRIORDB = "/srv/timewarrior"; };
         environment.systemPackages = with pkgs; [ glxinfo ];
         # services.xserver.enable = true;
         services.xrdp = {
