@@ -126,7 +126,7 @@ in {
         "priority"
         "project"
         "tags"
-        "due"
+        "due.age"
         "description.truncated_count"
         "recur"
         "urgency"
