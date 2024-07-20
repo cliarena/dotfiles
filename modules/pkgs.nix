@@ -59,7 +59,8 @@
     blender
     taskwarrior-tui
     timewarrior
-    nodejs-slim # needed by trackwarrior
+    # nodejs-slim # needed by trackwarrior
+    python3 # needed by taskwarrior & timewarrior
 
     # appimage-run
     # bottles
