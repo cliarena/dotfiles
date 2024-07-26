@@ -110,7 +110,6 @@ in {
       report.next.labels = [
         "ID"
         "Active"
-        "Time"
         "Prio"
         "Project"
         "Tags"
@@ -122,7 +121,6 @@ in {
       report.next.columns = [
         "id"
         "start.age"
-        "trackwarrior"
         "priority"
         "project"
         "tags"
