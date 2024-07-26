@@ -131,6 +131,33 @@ in {
         "recur"
         "urgency"
       ];
+      report.workout = {
+        description = "Workout Report";
+        labels = [
+          "ID"
+          "Active"
+          "Description"
+          "Weight"
+          "Weight Goal"
+          "Reps"
+          "Reps Goal"
+          "Dur"
+          "Dur Goal"
+        ];
+        columns = [
+          "id"
+          "start.age"
+          "description.truncated_count"
+          "workout.weight.curr"
+          "workout.weight.goal"
+          "workout.reps.curr"
+          "workout.reps.goal"
+          "workout.duration.curr"
+          "workout.duration.goal"
+        ];
+        filter = "status:pending";
+
+      };
       context = {
         lab.read = "+lab";
         lab.write = "+lab";
@@ -153,22 +180,31 @@ in {
         Cliarena.coefficient = 3;
       };
       uda = {
-        trackwarrior = {
-          type = "string";
-          label = "Total active time";
-          values = [ ];
+        workout.weight.curr = {
+          type = "numeric";
+          label = "Weight";
         };
-
-        trackwarrior_rate = {
-          type = "string";
-          label = "Rate";
-          values = [ ];
+        workout.weight.goal = {
+          type = "numeric";
+          label = "Weight Goal";
         };
-
-        trackwarrior_total_amount = {
-          type = "string";
-          label = "Total amount";
-          values = [ ];
+        workout.reps.curr = {
+          type = "numeric";
+          label = "Reps";
+        };
+        workout.reps.goal = {
+          type = "numeric";
+          label = "Reps Goal";
+          default = 80;
+        };
+        workout.duration.curr = {
+          type = "numeric";
+          label = "Duration";
+        };
+        workout.duration.goal = {
+          type = "numeric";
+          label = "Duration Goal";
+          default = "5min";
         };
       };
       # this allow only one task to be active
