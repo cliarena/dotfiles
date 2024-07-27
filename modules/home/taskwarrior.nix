@@ -196,11 +196,11 @@ in {
           default = 80;
         };
         workout_duration_curr = {
-          type = "numeric";
+          type = "duration";
           label = "Duration";
         };
         workout_duration_goal = {
-          type = "numeric";
+          type = "duration";
           label = "Duration Goal";
           default = "5min";
         };
