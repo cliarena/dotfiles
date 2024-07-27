@@ -146,14 +146,14 @@ in {
           "id"
           "start.age"
           "description.truncated_count"
-          "workout.weight.curr"
-          "workout.weight.goal"
-          "workout.reps.curr"
-          "workout.reps.goal"
-          "workout.duration.curr"
-          "workout.duration.goal"
+          "workout_weight_curr"
+          "workout_weight_goal"
+          "workout_reps_curr"
+          "workout_reps_goal"
+          "workout_duration_curr"
+          "workout_duration_goal"
         ];
-        filter = "status:pending";
+        filter = "status:pending +workout";
 
       };
       context = {
@@ -178,28 +178,28 @@ in {
         Cliarena.coefficient = 3;
       };
       uda = {
-        workout.weight.curr = {
+        workout_weight_curr = {
           type = "numeric";
           label = "Weight";
         };
-        workout.weight.goal = {
+        workout_weight_goal = {
           type = "numeric";
           label = "Weight Goal";
         };
-        workout.reps.curr = {
+        workout_reps_curr = {
           type = "numeric";
           label = "Reps";
         };
-        workout.reps.goal = {
+        workout_reps_goal = {
           type = "numeric";
           label = "Reps Goal";
           default = 80;
         };
-        workout.duration.curr = {
+        workout_duration_curr = {
           type = "numeric";
           label = "Duration";
         };
-        workout.duration.goal = {
+        workout_duration_goal = {
           type = "numeric";
           label = "Duration Goal";
           default = "5min";
