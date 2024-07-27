@@ -139,8 +139,7 @@ in {
           "Weight Goal"
           "Reps"
           "Reps Goal"
-          "Dur"
-          "Dur Goal"
+          "Time Limit"
         ];
         columns = [
           "id"
@@ -150,8 +149,7 @@ in {
           "workout_weight_goal"
           "workout_reps_curr"
           "workout_reps_goal"
-          "workout_duration_curr"
-          "workout_duration_goal"
+          "workout_time_limit"
         ];
         filter = "status:pending +workout";
 
@@ -195,13 +193,9 @@ in {
           label = "Reps Goal";
           default = 80;
         };
-        workout_duration_curr = {
+        workout_time_limit = {
           type = "duration";
-          label = "Duration";
-        };
-        workout_duration_goal = {
-          type = "duration";
-          label = "Duration Goal";
+          label = "Time Limit";
           default = "5min";
         };
       };
