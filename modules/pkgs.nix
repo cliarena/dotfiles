@@ -23,6 +23,7 @@
     pgcli
     manix # # CLI Searcher for Nix, HM documentation
     kitty
+    redisinsight
 
     ### Search ###
     fd # # Search file names
