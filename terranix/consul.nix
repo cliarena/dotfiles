@@ -172,7 +172,7 @@ in {
               value = "/";
             };
           }];
-          services = [{ name = "microvm"; }];
+          services = [{ name = "nginx"; }];
         }
         {
           matches = [{

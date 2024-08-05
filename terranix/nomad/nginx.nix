@@ -2,10 +2,10 @@
 let
   http = {
     mode = "bridge";
-    # reservedPorts.http = {
-    # static = 8111;
-    # to = 8080;
-    # };
+    reservedPorts.http = {
+      static = 8111;
+      to = 8080;
+    };
   };
 in {
   job.nginx = {
@@ -39,7 +39,7 @@ in {
         config = {
           image = "nginxinc/nginx-unprivileged:alpine";
           #	image = "mysql"
-          # ports = [ "http" ];
+          ports = [ "http" ];
           #	volumes = [  "/vault/hdd/nomad/static-site:/usr/share/nginx/html" ]
         };
         resources = {
