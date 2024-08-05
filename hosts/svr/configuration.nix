@@ -23,6 +23,7 @@ in {
     ../../modules/sshd.nix
     ../../modules/netwoking/router.nix
     ../../modules/auditd.nix
+    ../../modules/hydra.nix
     ../../modules/hashi_stack
     ../../modules/extra_containers.nix
     ../../containers/hello.nix
