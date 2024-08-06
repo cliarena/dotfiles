@@ -1,6 +1,7 @@
 { inputs, nixpkgs, ... }:
 let
 
+  inherit (inputs) disko kmonad home-manager nixvim comin;
   user = "x";
   wan_ips = [ "10.10.0.100/24" ];
   wan_gateway = [ "10.10.0.10" ];
@@ -17,30 +18,30 @@ let
   udp_ports = with ports; [ dns ];
 
   ENV_VARS = {
-        # inherit WAYLAND_DISPLAY WOLF_RENDER_NODE PULSE_SOURCE PULSE_SINK PULSE_SERVER; #XDG_RUNTIME_DIR;
-        /* inherit WAYLAND_DISPLAY WOLF_RENDER_NODE ; */
-        WAYLAND_DISPLAY = "wayland-3";
-        WOLF_RENDER_NODE = "/dev/dri/renderD128";
-        XDG_RUNTIME_DIR = "/tmp/sockets";
-        
-        #WAYLAND_DEBUG="server";
-      };
+    # inherit WAYLAND_DISPLAY WOLF_RENDER_NODE PULSE_SOURCE PULSE_SINK PULSE_SERVER; #XDG_RUNTIME_DIR;
+    # inherit WAYLAND_DISPLAY WOLF_RENDER_NODE ;
+    WAYLAND_DISPLAY = "wayland-3";
+    WOLF_RENDER_NODE = "/dev/dri/renderD128";
+    XDG_RUNTIME_DIR = "/tmp/sockets";
+
+    #WAYLAND_DEBUG="server";
+  };
 in {
 
   containers.desktop = {
 
-   bindMounts = {
-    "/tmp" = {
-       hostPath = "/tmp";
-       isReadOnly = false;
-    };
-     "${ENV_VARS.WOLF_RENDER_NODE}" = {
+    bindMounts = {
+      "/tmp" = {
+        hostPath = "/tmp";
+        isReadOnly = false;
+      };
+      "${ENV_VARS.WOLF_RENDER_NODE}" = {
         hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
         isReadOnly = false;
-     };
-   };
+      };
+    };
 
-   allowedDevices = [
+    allowedDevices = [
       {
         modifier = "rw";
         node = "/dev/dri/card0";
@@ -57,10 +58,18 @@ in {
     # ephemeral = true;
     config = { config, pkgs, ... }: {
 
-     environment.sessionVariables = ENV_VARS;
-     environment.variables = ENV_VARS;
-     environment.systemPackages = with pkgs; [ kitty brave firefox wayland-utils weston  sway hyprland];
-     hardware = {
+      environment.sessionVariables = ENV_VARS;
+      environment.variables = ENV_VARS;
+      environment.systemPackages = with pkgs; [
+        kitty
+        brave
+        firefox
+        wayland-utils
+        weston
+        sway
+        hyprland
+      ];
+      hardware = {
         opengl = {
           enable = true;
           driSupport32Bit = true;
@@ -68,27 +77,56 @@ in {
         };
       };
 
-     programs.hyprland.enable = true;
-     nix.extraOptions = ''
-       experimental-features = nix-command flakes
-       keep-outputs = true
-       keep-derivations = true
-       warn-dirty = false
-     '';
+      nix.extraOptions = ''
+        experimental-features = nix-command flakes
+        keep-outputs = true
+        keep-derivations = true
+        warn-dirty = false
+      '';
 
-    services.getty.autologinUser = "x";
-        users.users.x = {
-          isNormalUser = true;
-          initialPassword = "nixos";
-          extraGroups = [
-            # "avahi" # needed to read /var/lib/acme files for terranix apply
-            "wheel"
-            "input"
-            "video"
-            "sound"
-          ];
-         # shell = pkgs.nushell;
-        };
+      services.getty.autologinUser = "x";
+      users.users.x = {
+        isNormalUser = true;
+        initialPassword = "nixos";
+        extraGroups = [
+          # "avahi" # needed to read /var/lib/acme files for terranix apply
+          "wheel"
+          "input"
+          "video"
+          "sound"
+        ];
+        # shell = pkgs.nushell;
+      };
+
+      imports = [
+        # ../modules/netwoking/container-network.nix
+        # ../modules/boot/amd.nix
+        ../modules/hyprland.nix
+
+        home-manager.nixosModules.home-manager
+        {
+          inherit nixpkgs;
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${user} = {
+            imports = [
+              ../modules/home/kitty.nix
+              ../modules/home/bottom.nix
+              ../modules/home/hypralt
+            ];
+            home = {
+              stateVersion = "22.11";
+              username = "x";
+              homeDirectory = "/home/${user}";
+            };
+          };
+          # Optionally, use home-manager.extraSpecialArgs to pass
+          # arguments to home.nix
+          home-manager.extraSpecialArgs = {
+            inherit inputs nixpkgs home-manager;
+          };
+        }
+      ];
     };
   };
 }
