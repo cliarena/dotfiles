@@ -1,10 +1,10 @@
 # NOTE: Exposes api-gateway port. otherwise you gateway is useless
 
-{ pkgs, ... }:
+{ pkgs, envoy_nixpkgs, ... }:
 let consul_bin = "${pkgs.consul}/bin/consul";
 in {
   systemd.services.consul_api_gateway_registerer = {
-    path = [ pkgs.getent pkgs.envoy ];
+    path = [ pkgs.getent envoy_nixpkgs.envoy ];
     description = "register consul api gateways";
     script = ''
       ${consul_bin} connect envoy -gateway api -register -service cliarena-gateway
