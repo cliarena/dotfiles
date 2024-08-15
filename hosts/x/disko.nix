@@ -61,4 +61,6 @@
       ];
     };
   };
+  fileSystems."/srv".neededForBoot = true; # needed by impermanence
+
 }
