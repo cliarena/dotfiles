@@ -9,6 +9,11 @@
         user = "hydra";
         group = "hydra";
       }
+      {
+        directory = "/run/postgresql";
+        user = "postgres";
+        group = "postgres";
+      }
     ];
   };
 }
