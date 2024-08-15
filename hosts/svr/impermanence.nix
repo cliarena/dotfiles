@@ -10,7 +10,7 @@
         group = "hydra";
       }
       {
-        directory = "/run/postgresql";
+        directory = "/var/lib/postgresql";
         user = "postgres";
         group = "postgres";
       }
