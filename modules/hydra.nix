@@ -6,6 +6,5 @@
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;
-    extraEnv = { HYDRA_DATA = "/srv/hydra"; };
   };
 }
