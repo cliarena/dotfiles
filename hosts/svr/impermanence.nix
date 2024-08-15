@@ -1,5 +1,5 @@
 { ... }: {
-  environment.persistence."/srv/var" = {
+  environment.persistence."/srv" = {
     enable = true; # NB: Defaults to true, not needed
     hideMounts = true;
     directories = [
