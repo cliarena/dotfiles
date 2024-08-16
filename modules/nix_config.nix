@@ -4,10 +4,12 @@
     settings.allowed-users = [ "@wheel" "hydra" ];
     settings.allowed-uris = [
       "github:"
+      "https://github.com/"
       "git+https://github.com/"
       "git+ssh://github.com/"
 
       "gitlab:"
+      "https://gitlab.com/"
       "git+https://gitlab.com/"
       "git+ssh://gitlab.com/"
     ];
