@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   nix = {
     # Constrain access to nix daemon
-    settings.allowed-users = [ "@wheel" ];
+    settings.allowed-users = [ "@wheel" "hydra" ];
 
     # Enable Flakes
     package = pkgs.nixFlakes;
