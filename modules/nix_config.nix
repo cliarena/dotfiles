@@ -2,6 +2,15 @@
   nix = {
     # Constrain access to nix daemon
     settings.allowed-users = [ "@wheel" "hydra" ];
+    settings.allowed-uris = [
+      "github:"
+      "git+https://github.com/"
+      "git+ssh://github.com/"
+
+      "gitlab:"
+      "git+https://gitlab.com/"
+      "git+ssh://gitlab.com/"
+    ];
 
     # Enable Flakes
     package = pkgs.nixFlakes;
