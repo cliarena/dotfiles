@@ -32,20 +32,19 @@ forAllSystems (system:
       };
     };
 
+    nomad_jobs = nix-nomad.lib.mkNomadJobs {
+      system = "x86_64-linux";
+      # system = "aarch64-linux";
+      config = [ ./nomad/nginx.nix ];
+    };
+
     terraform = pkgs.terraform.withPlugins
       (p: [ p.local p.remote p.consul p.vault p.nomad ]);
 
     terraformConfiguration = terranix.lib.terranixConfiguration {
       inherit system;
-      extraArgs = { inherit self x microvm nix-nomad; };
-      modules = [
-        ./backend.nix
-        ./providers
-        ./vault
-        ./consul.nix
-        ./nomad
-        # (import ./nomad { inherit nix-nomad; })
-      ];
+      extraArgs = { inherit self x microvm nix-nomad nomad_jobs; };
+      modules = [ ./backend.nix ./providers ./vault ./consul.nix ./nomad ];
     };
 
   in {
@@ -69,5 +68,10 @@ forAllSystems (system:
           && ${terraform}/bin/terraform init \
           && ${terraform}/bin/terraform destroy
       '');
+    };
+    build = {
+      type = "app";
+      program = toString (pkgs.writers.writeBash "build"
+        "cp -rf ${nomad_jobs} ./terranix/nomad/jobs ");
     };
   })
