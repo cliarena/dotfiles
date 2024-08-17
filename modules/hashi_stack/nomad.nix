@@ -69,7 +69,8 @@
         enabled = true;
         cni_path = "${pkgs.cni-plugins}/bin";
 
-        disable_filesystem_isolation = true;
+        artifact.disable_filesystem_isolation =
+          true; # needed for jobs to be able to download artifacts
 
         # cpu_total_compute = 4 * 2200;
         memory_total_mb = 2 * 64 * 1024; # double the ram to benefit from zram
