@@ -1,4 +1,4 @@
-{ time, ... }: {
+{ time, config, ... }: {
   job.nomoperator = {
     datacenters = [ "dc1" ];
 
@@ -10,17 +10,35 @@
 
         config = {
           command = "nomoperator";
+          # args = [
+          # "bootstrap"
+          # "git"
+          # "--url"
+          # "https://github.com/jonasvinther/nomad-state.git"
+          # "--branch"
+          # "main"
+          # "--path"
+          # "jobs/*.nomad"
+          # # "./terranix/nomad/jobs/*.json"
+          # ];
           args = [
             "bootstrap"
             "git"
             "--url"
-            "https://github.com/jonasvinther/nomad-state.git"
+            "git@github.com:jonasvinther/nomad-state.git"
             "--branch"
             "main"
             "--path"
-            "jobs/*.nomad"
-            # "./terranix/nomad/jobs/*.json"
+            "/prod-env"
+            "--username"
+            "git"
+            "--password"
+            ""
+            "--ssh-key"
+            # "${config.sops.secrets.GH_SSH_KEY.path}"
+            "SSH_KEY"
           ];
+
         };
         artifacts = [{
           source =
