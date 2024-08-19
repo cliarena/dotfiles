@@ -1,4 +1,5 @@
 { ... }: {
+
   services.hydra = {
     enable = true;
     hydraURL = "http://hydra.cliarena.com";
@@ -7,4 +8,6 @@
     buildMachinesFiles = [ ];
     useSubstitutes = true;
   };
+
+  services.nix-serve.enable = true;
 }
