@@ -2,6 +2,7 @@
   nix = {
     # Constrain access to nix daemon
     settings.allowed-users = [ "@wheel" "hydra" ];
+    settings.trusted-users = [ "@wheel" "hydra" ];
     settings.allowed-uris = [
       "github:"
       "https://github.com/"
