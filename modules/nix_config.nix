@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   nix = {
     # Constrain access to nix daemon
-    settings.allowed-users = [ "@wheel" "hydra" ];
-    settings.trusted-users = [ "@wheel" "hydra" ];
+    settings.allowed-users = [ "@wheel" "hydra" "hydra-www" ];
+    settings.trusted-users = [ "@wheel" "hydra" "hydra-www" ];
     settings.allowed-uris = [
       "github:"
       "https://github.com/"
