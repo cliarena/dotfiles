@@ -56,6 +56,7 @@
     # ventoy-bin # multiple Bootable usb drives in one
     pavucontrol
     remmina
+    obs-studio
     blender
     taskwarrior-tui
     timewarrior
