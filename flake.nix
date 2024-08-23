@@ -47,7 +47,11 @@
 
     kmonad.url = "github:kmonad/kmonad?dir=nix";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+    };
   };
 
   outputs = inputs@{ ... }:
