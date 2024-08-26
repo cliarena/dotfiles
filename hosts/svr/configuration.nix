@@ -40,7 +40,7 @@ in {
     # ../../modules/pkgs.nix
     (import ../../modules/pkgs.nix { inherit inputs pkgs; })
     # doesn't support btrfs swapfile
-    ../../modules/surrealdb.nix
+    # ../../modules/surrealdb.nix
 
     # Observability
     # ../../modules/victoriametrics.nix
