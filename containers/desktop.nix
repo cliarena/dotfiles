@@ -103,6 +103,8 @@ in {
         # ../modules/boot/amd.nix
         ../modules/hardware/amd.nix
         ../modules/hyprland.nix
+        ../modules/pkgs.nix
+        ../modules/pipewire.nix
 
         home-manager.nixosModules.home-manager
         {
