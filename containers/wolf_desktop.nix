@@ -114,8 +114,6 @@ in {
         services.openssh.enable = true;
         environment.systemPackages = with pkgs; [ glxinfo ];
 
-        # X and audio
-        sound.enable = true;
 
         services.xserver = {
           enable = true;

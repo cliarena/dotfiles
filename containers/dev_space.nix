@@ -179,8 +179,6 @@ in {
         };
         # services.resolved.enable = true;
 
-        # X and audio
-        sound.enable = true;
 
         services.xserver = {
           enable = true;
