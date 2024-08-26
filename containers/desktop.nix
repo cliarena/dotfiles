@@ -101,7 +101,7 @@ in {
       imports = [
         # ../modules/netwoking/container-network.nix
         # ../modules/boot/amd.nix
-        ../modules/hardware/amd.nix
+        # ../modules/hardware/amd.nix
         ../modules/hyprland.nix
         ../modules/pkgs.nix
         ../modules/pipewire.nix
