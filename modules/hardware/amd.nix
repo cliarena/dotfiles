@@ -4,7 +4,6 @@
   hardware = {
     uinput.enable = true;
     steam-hardware.enable = true;
-    pulseaudio.enable = true;
     cpu.amd.updateMicrocode = true; # Maybe it fixed TTY scale issue
     enableRedistributableFirmware = true; # to detect wireless interfaces
     opengl = {
