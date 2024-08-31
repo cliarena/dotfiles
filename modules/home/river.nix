@@ -6,7 +6,7 @@
       declare-mode = [ "locked" "normal" "passthrough" ];
       map = { normal = { "Alt Q" = "close"; }; };
       set-repeat = "50 300";
-      spawn = [ "brave" ];
+      spawn = [ "brave" "kitty" ];
     };
   };
 }
