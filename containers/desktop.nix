@@ -97,12 +97,11 @@ in {
         ];
         # shell = pkgs.nushell;
       };
-
+      programs.river.enable = true;
       imports = [
         # ../modules/netwoking/container-network.nix
         # ../modules/boot/amd.nix
         # ../modules/hardware/amd.nix
-        ../modules/hyprland.nix
         ../modules/pkgs.nix
         ../modules/pipewire.nix
 
@@ -115,7 +114,7 @@ in {
             imports = [
               ../modules/home/kitty.nix
               ../modules/home/bottom.nix
-              ../modules/home/hypralt
+              ../modules/home/river.nix
             ];
             home = {
               stateVersion = "22.11";
