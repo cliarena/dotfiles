@@ -1,9 +1,13 @@
 { ... }:
 let
   tags = builtins.genList (x: x) 9;
-  tag_map_list = builtins.map
-    (tag: { "Alt ${toString (tag + 1)}" = "set-focused-tags ${toString tag}"; })
-    tags;
+  tag_map_list = builtins.map (tag: {
+    "Alt ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
+    "Alt+Shift ${toString (tag + 1)}" = "set-view-tags ${toString tag}";
+    "Alt+Control ${toString (tag + 1)}" = "toggle-focused-tags ${toString tag}";
+    "Alt+Shift+Control ${toString (tag + 1)}" =
+      "toggle-view-tags ${toString tag}";
+  }) tags;
 
   tag_map = builtins.foldl' (x: y: x // y) { } tag_map_list;
 in {
