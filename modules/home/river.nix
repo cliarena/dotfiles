@@ -20,19 +20,11 @@ in {
       map = {
         normal = {
           "Alt Q" = "close";
-          # builtins.map (tag: )
+          "Alt F" = "toggle-fullscreen";
+          "Alt F11" = "enter-mode passthrough";
         } // tag_map;
-        # normal = { "Super $tag" = "set-focused-tags $tag + 1"; };
-
+        passthrough = { "Alt F11" = "enter-mode normal"; };
       };
-      # Super+[1-9] to focus tag [0-8]
-      # riverctl map normal Super $i set-focused-tags $tags
-      # # Super+Shift+[1-9] to tag focused view with tag [0-8]
-      # riverctl map normal Super+Shift $i set-view-tags $tags
-      # # Super+Control+[1-9] to toggle focus of tag [0-8]
-      # riverctl map normal Super+Control $i toggle-focused-tags $tags
-      # # Super+Shift+Control+[1-9] to toggle tag [0-8] of focused view
-      # riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
       set-repeat = "50 300";
       spawn = [ "brave" "kitty" ];
     };
