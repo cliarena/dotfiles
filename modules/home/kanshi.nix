@@ -1,6 +1,7 @@
 { ... }: {
   services.kanshi = {
     enable = true;
+    systemdTarget = "graphical.target";
     profiles = {
       stream = {
         outputs = [{
