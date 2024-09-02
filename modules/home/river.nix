@@ -13,6 +13,7 @@ let
 in {
   wayland.windowManager.river = {
     enable = true;
+    systemdTarget = "graphical.target";
     settings = {
       border-width = 1;
       default-layout = "rivertile";
