@@ -66,6 +66,7 @@ in {
         firefox
         wayland-utils
         wlr-randr
+        swww # Wallpaper Daemon
       ];
       hardware = {
         opengl = {
