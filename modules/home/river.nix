@@ -30,7 +30,7 @@ in {
         "brave"
         "kitty"
         "'wlr-randr --output WL-1 --custom-mode 1920x1080'"
-        "'rivertile -view-padding 6 -outer-padding 6'"
+        "'rivertile -view-padding 1 -outer-padding 2'"
       ];
 
     };
