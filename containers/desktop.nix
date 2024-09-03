@@ -112,7 +112,6 @@ in {
             imports = [
               ../modules/home/kitty.nix
               ../modules/home/bottom.nix
-              ../modules/home/kanshi.nix
               ../modules/home/river.nix
             ];
             home = {
