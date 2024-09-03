@@ -26,8 +26,13 @@ in {
         passthrough = { "Alt F11" = "enter-mode normal"; };
       };
       set-repeat = "50 300";
-      spawn =
-        [ "brave" "kitty" "'wlr-randr --output WL-1 --custom-mode 1920x1080'" ];
+      spawn = [
+        "brave"
+        "kitty"
+        "'wlr-randr --output WL-1 --custom-mode 1920x1080'"
+        "'rivertile -view-padding 6 -outer-padding 6'"
+      ];
+
     };
   };
 }
