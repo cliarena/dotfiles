@@ -65,9 +65,7 @@ in {
         brave
         firefox
         wayland-utils
-        weston
-        sway
-        hyprland
+        wlr-randr
       ];
       hardware = {
         opengl = {
