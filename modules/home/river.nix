@@ -27,7 +27,7 @@ in {
       };
       set-repeat = "50 300";
       spawn =
-        [ "brave" "kitty" "wlr-randr --output WL-1 --custom-mode 1920x1080" ];
+        [ "brave" "kitty" "'wlr-randr --output WL-1 --custom-mode 1920x1080'" ];
     };
   };
 }
