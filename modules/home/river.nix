@@ -26,7 +26,8 @@ in {
         passthrough = { "Alt F11" = "enter-mode normal"; };
       };
       set-repeat = "50 300";
-      spawn = [ "brave" "kitty" ];
+      spawn =
+        [ "brave" "kitty" "wlr-randr --output WL-1 --custom-mode 1920x1080" ];
     };
   };
 }
