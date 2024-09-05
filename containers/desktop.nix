@@ -114,9 +114,14 @@ in {
           home-manager.useUserPackages = true;
           home-manager.users.${user} = {
             imports = [
-              ../modules/home/kitty.nix
-              ../modules/home/bottom.nix
               ../modules/home/river.nix
+              ../modules/home/shell.nix
+              ../modules/home/ssh.nix
+              ../modules/home/git.nix
+              ../modules/home/lazygit.nix
+              ../modules/home/kitty.nix
+              ../modules/home/direnv.nix
+              ../modules/home/bottom.nix
             ];
             home = {
               stateVersion = "22.11";
