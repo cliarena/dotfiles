@@ -97,7 +97,7 @@ in {
         # shell = pkgs.nushell;
       };
       programs.river.enable = true;
-      programs.nixvim = import ../../modules/nixvim pkgs;
+      programs.nixvim = import ../modules/nixvim pkgs;
       imports = [
         nixvim.nixosModules.nixvim
         # ../modules/netwoking/container-network.nix
