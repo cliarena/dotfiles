@@ -11,7 +11,6 @@
     ./sops.nix
     hyprland.homeManagerModules.default
     ../../modules/home/hyprland
-    ../../modules/home/shell.nix
     ../../modules/home/ssh.nix
     ../../modules/home/git.nix
     ../../modules/home/lazygit.nix
