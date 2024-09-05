@@ -1,7 +1,7 @@
 { inputs, nixpkgs, ... }:
 let
 
-  inherit (inputs) home-manager nixvim;
+  inherit (inputs) sops-nix home-manager nixvim;
   user = "x";
   wan_ips = [ "10.10.0.100/24" ];
   wan_gateway = [ "10.10.0.10" ];
@@ -114,6 +114,8 @@ in {
           home-manager.useUserPackages = true;
           home-manager.users.${user} = {
             imports = [
+              sops-nix.homeManagerModules.sops
+              ../hosts/x/sops.nix
               ../modules/home/river.nix
               ../modules/home/shell.nix
               ../modules/home/ssh.nix
