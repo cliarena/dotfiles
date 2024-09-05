@@ -1,7 +1,7 @@
 { inputs, nixpkgs, ... }:
 let
 
-  inherit (inputs) disko kmonad home-manager nixvim comin;
+  inherit (inputs) home-manager nixvim;
   user = "x";
   wan_ips = [ "10.10.0.100/24" ];
   wan_gateway = [ "10.10.0.10" ];
@@ -97,12 +97,15 @@ in {
         # shell = pkgs.nushell;
       };
       programs.river.enable = true;
+      programs.nixvim = import ../../modules/nixvim pkgs;
       imports = [
+        nixvim.nixosModules.nixvim
         # ../modules/netwoking/container-network.nix
         # ../modules/boot/amd.nix
         # ../modules/hardware/amd.nix
         ../modules/pkgs.nix
         ../modules/pipewire.nix
+        ../modules/fonts
 
         home-manager.nixosModules.home-manager
         {
