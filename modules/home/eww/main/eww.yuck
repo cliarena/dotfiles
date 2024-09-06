@@ -1,0 +1,35 @@
+
+;; Time vars
+(defpoll HOUR :interval "5s" `date +\"%I\"`)
+(defpoll MIN :interval "5s" `date +\"%M\"`)
+(defpoll MER :interval "5s" `date +\"%p\"`)
+(defpoll DAY :interval "5s" `date +\"%A\"`)
+
+;; clock
+(defwidget clock []
+	(box  :orientation "v"  :space-evenly false
+    (label :class "day"
+        :style "font-family: kust; font-size: 10rem; color: #1e1e2e; margin-bottom: -1rem;
+          text-shadow: 1px 1px 0 rgba(147, 153, 178, .4), -1px 1px 0 rgba(147, 153, 178, .4), 1px -1px 0 rgba(147, 153, 178, .4), -1px -1px 0 rgba(147, 153, 178, .4);"
+        :text DAY)
+		(box :orientation "h" :spacing 20 :space-evenly true :halign "fill"
+			(label :style "font-weight: bold; font-size:1rem; color: rgba(186, 194, 222,.3); font-family: JetbrainsMono Nerd Font" :text "${HOUR}:${MIN} ${MER}"))))
+
+(defwidget ram []
+		(box :vexpand "false" :hexpand "false"
+            (circular-progress :value {(EWW_RAM.used_mem / EWW_RAM.total_mem)*100}
+                :thickness 4
+            (button
+                :limit-width 2
+                :tooltip "using ${(EWW_RAM.used_mem / EWW_RAM.total_mem)*100}% ram"
+                ;; :onclick "$HOME/.config/eww/bar/scripts/pop system"
+                :show_truncated false
+                :wrap false
+                ""))))
+
+;; clock
+(defwindow clock
+  :monitor 0
+  :stacking "bg" :focusable "false" :screen 1
+	    :geometry (geometry :anchor "center top" :x "50%" :y "15%" :width "20%" :height 15)
+  (clock))
