@@ -39,6 +39,14 @@ in {
         hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
         isReadOnly = false;
       };
+      "/srv" = { # needed for sops
+        hostPath = "/srv";
+        isReadOnly = false;
+      };
+      "/var/lib/acme" = { # needed for terraform certs consul_config_entry
+        hostPath = "/var/lib/acme";
+        isReadOnly = true;
+      };
     };
 
     allowedDevices = [
