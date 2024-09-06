@@ -132,6 +132,7 @@ in {
               ../modules/home/kitty.nix
               ../modules/home/direnv.nix
               ../modules/home/bottom.nix
+              ../modules/home/eww
             ];
             home = {
               stateVersion = "22.11";
