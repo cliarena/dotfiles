@@ -2,33 +2,17 @@
 let
 
   inherit (inputs) sops-nix home-manager nixvim;
-  user = "x";
-  wan_ips = [ "10.10.0.100/24" ];
-  wan_gateway = [ "10.10.0.10" ];
-  is_dns_server = false; # for testing hashi_stack
-  dns_server = wan_gateway;
-  dns_extra_hosts = "";
-  ports = {
-
-    dns = 53;
-    ssh = 22;
-  };
-  # open the least amount possible
-  tcp_ports = with ports; [ dns ssh 8080 ];
-  udp_ports = with ports; [ dns ];
+  host = rec { user = "x"; };
 
   ENV_VARS = {
-    # inherit WAYLAND_DISPLAY WOLF_RENDER_NODE PULSE_SOURCE PULSE_SINK PULSE_SERVER; #XDG_RUNTIME_DIR;
-    # inherit WAYLAND_DISPLAY WOLF_RENDER_NODE ;
     WAYLAND_DISPLAY = "wayland-3";
     WOLF_RENDER_NODE = "/dev/dri/renderD128";
     XDG_RUNTIME_DIR = "/tmp/sockets";
-
-    #WAYLAND_DEBUG="server";
   };
 in {
 
   containers.desktop = {
+    specialArgs = { inherit inputs nixpkgs home-manager host; };
 
     bindMounts = {
       "/tmp" = {
@@ -92,18 +76,6 @@ in {
       '';
 
       services.getty.autologinUser = "x";
-      users.users.x = {
-        isNormalUser = true;
-        initialPassword = "nixos";
-        extraGroups = [
-          # "avahi" # needed to read /var/lib/acme files for terranix apply
-          "wheel"
-          "input"
-          "video"
-          "sound"
-        ];
-        # shell = pkgs.nushell;
-      };
       programs.river.enable = true;
       programs.nixvim = import ../modules/nixvim pkgs;
       imports = [
@@ -114,13 +86,14 @@ in {
         ../modules/pkgs.nix
         ../modules/pipewire.nix
         ../modules/fonts
+        ../modules/users.nix
 
         home-manager.nixosModules.home-manager
         {
           inherit nixpkgs;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${user} = {
+          home-manager.users.${host.user} = {
             imports = [
               sops-nix.homeManagerModules.sops
               ../hosts/x/sops.nix
@@ -137,7 +110,7 @@ in {
             home = {
               stateVersion = "22.11";
               username = "x";
-              homeDirectory = "/home/${user}";
+              homeDirectory = "/home/${host.user}";
             };
           };
           # Optionally, use home-manager.extraSpecialArgs to pass
