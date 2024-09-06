@@ -95,6 +95,7 @@ in {
       users.users.x = {
         isNormalUser = true;
         initialPassword = "nixos";
+        shell = pkgs.nushell;
         extraGroups = [
           # "avahi" # needed to read /var/lib/acme files for terranix apply
           "wheel"
