@@ -33,6 +33,8 @@ in {
         "'rivertile -view-padding 1 -outer-padding 3'"
         "swww-daemon"
         "'shuf -zen1 /srv/wallpapers/* | xargs -0 swww img'"
+        "'eww daemon'"
+        "'eww open-many clock'"
       ];
 
     };
