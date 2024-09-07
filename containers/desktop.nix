@@ -92,7 +92,6 @@ in {
       '';
 
       services.getty.autologinUser = "x";
-      users.defaultUserShell = pkgs.nushell;
       users.users.x = {
         isNormalUser = true;
         initialPassword = "nixos";
