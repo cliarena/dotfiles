@@ -97,7 +97,7 @@ in {
         initialPassword = "nixos";
         shell = pkgs.nushell;
         extraGroups = [
-          # "avahi" # needed to read /var/lib/acme files for terranix apply
+          "avahi" # needed to read /var/lib/acme files for terranix apply
           "wheel"
           "input"
           "video"
