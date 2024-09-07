@@ -107,6 +107,11 @@ in {
       };
       programs.river.enable = true;
       programs.nixvim = import ../modules/nixvim pkgs;
+
+      security = {
+        sudo.wheelNeedsPassword = false;
+        sudo.execWheelOnly = true;
+      };
       imports = [
         nixvim.nixosModules.nixvim
         # ../modules/netwoking/container-network.nix
