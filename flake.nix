@@ -8,6 +8,8 @@
     flake-registry.url = "github:NixOS/flake-registry";
     flake-registry.flake = false;
 
+    flakelight.url = "github:nix-community/flakelight";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -54,16 +56,43 @@
     };
   };
 
-  outputs = inputs@{ ... }:
+  outputs = inputs@{ flakelight, ... }:
 
     let forAllSystems = import ./helpers/forAllSystems.nix;
-    in {
+
+    in flakelight ./. {
+
       nixosConfigurations = {
         x = import ./hosts/x { inherit inputs; };
         svr = import ./hosts/svr { inherit inputs; };
       };
+      nixpkgs.config = { allowUnfree = true; };
 
-      devShells = import ./devenv.nix { inherit inputs; };
+      # devShells = import ./devenv.nix { inherit inputs; };
+      devShell = pkgs: {
+        packages = with pkgs; [
+          vault
+          consul
+          nomad
+          terraform
+          sops
+          dig
+          openssl
+          libuuid
+          wander
+
+          # for nix
+          nixfmt
+          nil
+          stylua
+          lua-language-server
+        ];
+        env = {
+          NOMAD_ADDR = "http://10.10.0.10:4646";
+          CONSUL_HTTP_ADDR = "http://10.10.0.10:8500";
+          VAULT_ADDR = "https://vault.cliarena.com:8200";
+        };
+      };
 
       apps = import ./terranix { inherit inputs forAllSystems; };
 
