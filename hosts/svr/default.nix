@@ -48,7 +48,7 @@ let
     config.allowUnfree = true;
   };
 
-in nixosSystem {
+in {
   inherit system;
   specialArgs = { inherit inputs nixpkgs host system; };
   modules = [
