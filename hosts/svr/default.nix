@@ -53,6 +53,12 @@ in {
   specialArgs = { inherit inputs nixpkgs host system; };
   modules = [
     ./configuration.nix
+    # ../../nixos_modules/sunburst.nix
+    # inputs.self.nixosModules.sunburst
+
+    {
+      # services.sunburst.enable = true;
+    }
 
     # home-manager.nixosModules.home-manager
     # {
