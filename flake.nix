@@ -62,13 +62,16 @@
 
     in flakelight ./. {
 
-      nixosConfigurations = {
-        x = import ./hosts/x { inherit inputs; };
-        svr = import ./hosts/svr { inherit inputs; };
+      inherit inputs;
+      nixDir = ./.;
+      nixDirAliases = {
+        nixosConfigurations = [ "hosts" ];
+        nixosModules = [ "nixos_modules" ];
+        homeModules = [ "home_modules" ];
       };
+
       nixpkgs.config = { allowUnfree = true; };
 
-      # devShells = import ./devenv.nix { inherit inputs; };
       devShell = pkgs: {
         packages = with pkgs; [
           vault
