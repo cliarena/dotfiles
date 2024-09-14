@@ -63,12 +63,12 @@
     in flakelight ./. {
 
       inherit inputs;
-      nixDir = ./.;
-      nixDirAliases = {
-        nixosConfigurations = [ "hosts" ];
-        nixosModules = [ "nixos_modules" ];
-        homeModules = [ "home_modules" ];
-      };
+      # nixDir = ./.;
+      # nixDirAliases = {
+      # nixosConfigurations = [ "hosts" ];
+      # nixosModules = [ "nixos_modules" ];
+      # homeModules = [ "home_modules" ];
+      # };
 
       nixpkgs.config = { allowUnfree = true; };
 
