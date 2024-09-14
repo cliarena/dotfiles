@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let inherit (lib) mkEnableOption mkIf;
 in {
@@ -10,6 +10,7 @@ in {
   config = mkIf config.profiles.common.enable {
 
     swap.enable = true;
+    environment.systemPackages = with pkgs; [ wander ];
 
   };
 }
