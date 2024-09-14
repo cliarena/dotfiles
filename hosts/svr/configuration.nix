@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ lib, inputs, pkgs, ... }:
 let
   inherit (inputs) sops-nix disko black-hosts nixvim microvm comin impermanence;
 in {
@@ -18,7 +18,6 @@ in {
     ./impermanence.nix
 
     ../../modules/nix_config.nix
-    ../../modules/swap.nix
     ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
     ../../modules/corectrl.nix
@@ -44,7 +43,10 @@ in {
 
     # Observability
     # ../../modules/victoriametrics.nix
-  ];
+  ] ++ lib.fileset.toList ../../profiles;
+
+  profiles.common.enable = true;
+
   programs.nixvim = import ../../modules/nixvim pkgs;
 
   environment.systemPackages = with pkgs;

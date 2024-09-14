@@ -11,7 +11,6 @@ in {
 
     ../../modules/nix_config.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile
-    ../../modules/swap.nix
     ../../modules/boot/intel.nix
     ../../modules/users.nix
     ../../modules/comin.nix
@@ -30,7 +29,10 @@ in {
     # ../../modules/extra_containers.nix
     # ../../containers/dev_space-intel.nix
   ] ++ lib.fileset.toList ../../profiles;
+
+  profiles.common.enable = true;
   profiles.coding.enable = true;
+
   system.stateVersion = "22.11";
   programs.nixvim = import ../../modules/nixvim pkgs;
 }
