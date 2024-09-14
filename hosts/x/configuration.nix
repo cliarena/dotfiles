@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 let inherit (inputs) disko kmonad home-manager nixvim comin;
 in {
 
@@ -8,13 +8,13 @@ in {
     disko.nixosModules.disko
     kmonad.nixosModules.default
     home-manager.nixosModules.home-manager
+
     ../../modules/nix_config.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/swap.nix
     ../../modules/boot/intel.nix
     ../../modules/users.nix
     ../../modules/comin.nix
-    ../../modules/fonts
     ../../modules/hardware/intel.nix
     ../../modules/display_manager.nix
     # ../../modules/gnome.nix
@@ -29,7 +29,8 @@ in {
     ../../modules/podman.nix
     # ../../modules/extra_containers.nix
     # ../../containers/dev_space-intel.nix
-  ];
+  ] ++ lib.fileset.toList ../../profiles;
+  profiles.coding.enable = true;
   system.stateVersion = "22.11";
   programs.nixvim = import ../../modules/nixvim pkgs;
 }
