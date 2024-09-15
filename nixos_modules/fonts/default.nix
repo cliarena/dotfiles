@@ -7,11 +7,12 @@ in {
 
   config = mkIf config.fonts.enable {
 
-    fonts.packages = with pkgs; [
-      ./techy
-      ./kust
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
-    ];
+    fonts.packages = with pkgs;
+      [
+        # ./techy
+        # ./kust
+        (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+      ];
   };
 
 }
