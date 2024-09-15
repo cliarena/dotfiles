@@ -13,7 +13,6 @@ in {
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/boot/intel.nix
     ../../modules/users.nix
-    ../../modules/comin.nix
     ../../modules/hardware/intel.nix
     ../../modules/display_manager.nix
     # ../../modules/gnome.nix

@@ -22,7 +22,6 @@ in {
     ../../modules/hardware/amd.nix
     ../../modules/corectrl.nix
     ../../modules/users.nix
-    ../../modules/comin.nix
     ../../modules/i18n.nix
     ../../modules/sshd.nix
     ../../modules/netwoking/router.nix

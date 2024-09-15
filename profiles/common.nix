@@ -11,6 +11,7 @@ in {
 
     swap.enable = true;
     environment.systemPackages = with pkgs; [ wander ];
+    comin.enable = true;
 
   };
 }
