@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let inherit (lib) mkEnableOption mkIf;
 in {
@@ -9,8 +9,8 @@ in {
 
   config = mkIf config.profiles.common.enable {
 
-    swap.enable = true;
-    comin.enable = true;
+    _swap.enable = true;
+    _comin.enable = true;
     _nix.enable = true;
 
   };

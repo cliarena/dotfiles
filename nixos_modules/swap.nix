@@ -1,6 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
-  module = "swap";
+  module = "_swap";
   deskription = "swap";
   inherit (lib) mkEnableOption mkIf;
 in {

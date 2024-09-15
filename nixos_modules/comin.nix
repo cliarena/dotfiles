@@ -1,6 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
-  module = "comin";
+  module = "_comin";
   deskription = "GitOps For NixOS Machines";
   inherit (lib) mkEnableOption mkIf;
 in {
