@@ -10,7 +10,6 @@ in {
   config = mkIf config.profiles.common.enable {
 
     swap.enable = true;
-    environment.systemPackages = with pkgs; [ wander ];
     comin.enable = true;
 
   };
