@@ -9,8 +9,6 @@ in {
     nixvim.nixosModules.nixvim
     sops-nix.nixosModules.sops
     black-hosts.nixosModule
-    # microvm.nixosModules.microvm
-    microvm.nixosModules.host
 
     ./sops.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile
