@@ -126,7 +126,6 @@ in {
         imports = [
           inputs.nixvim.nixosModules.nixvim
           { programs.nixvim = import ../modules/nixvim pkgs; }
-          ../modules/fonts
           ../modules/pkgs.nix
           ../modules/sshd.nix
           ../modules/chromium.nix
@@ -178,7 +177,6 @@ in {
           defaultWindowManager = "gnome";
         };
         # services.resolved.enable = true;
-
 
         services.xserver = {
           enable = true;

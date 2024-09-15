@@ -118,7 +118,6 @@ in {
         # ../modules/hardware/amd.nix
         ../modules/pkgs.nix
         ../modules/pipewire.nix
-        ../modules/fonts
 
         home-manager.nixosModules.home-manager
         {

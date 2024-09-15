@@ -76,7 +76,6 @@ in {
         imports = [
           inputs.nixvim.nixosModules.nixvim
           { programs.nixvim = import ../modules/nixvim pkgs; }
-          ../modules/fonts
           ../modules/pkgs.nix
           ../modules/chromium.nix
           ../modules/hardware/amd.nix
@@ -113,7 +112,6 @@ in {
         ];
         services.openssh.enable = true;
         environment.systemPackages = with pkgs; [ glxinfo ];
-
 
         services.xserver = {
           enable = true;

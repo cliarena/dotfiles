@@ -122,7 +122,6 @@ in {
           # ../modules/pkgs.nix
           # ../modules/gnome.nix
           ../modules/hardware/intel.nix
-          ../modules/fonts
 
           home-manager.nixosModules.home-manager
           {
