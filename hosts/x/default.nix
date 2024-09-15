@@ -23,7 +23,7 @@ let
     config.allowUnfree = true;
   };
 
-in nixosSystem {
+in {
   inherit system;
   specialArgs = { inherit inputs nixpkgs home-manager host system; };
   modules = [
