@@ -20,7 +20,6 @@ in {
     ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
     ../../modules/corectrl.nix
-    ../../modules/users.nix
     ../../modules/sshd.nix
     ../../modules/netwoking/router.nix
     ../../modules/auditd.nix
