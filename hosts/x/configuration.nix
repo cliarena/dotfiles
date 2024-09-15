@@ -16,7 +16,6 @@ in {
     ../../modules/display_manager.nix
     # ../../modules/gnome.nix
     ../../modules/hyprland.nix
-    ../../modules/i18n.nix
     ../../modules/pipewire.nix
     ../../modules/netwoking/network.nix
     ../../modules/kmonad

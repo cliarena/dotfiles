@@ -9,9 +9,10 @@ in {
 
   config = mkIf config.profiles.common.enable {
 
+    _nix.enable = true;
     _swap.enable = true;
     _comin.enable = true;
-    _nix.enable = true;
+    _local.enable = true;
 
   };
 }
