@@ -18,7 +18,6 @@ in {
     ../../modules/kmonad
     (import ../../modules/pkgs.nix { inherit inputs pkgs; })
     ../../modules/chromium.nix
-    ../../modules/podman.nix
   ] ++ lib.fileset.toList ../../profiles;
 
   profiles.common.enable = true;
