@@ -12,17 +12,13 @@ in {
     ../../modules/boot/intel.nix
     ../../modules/hardware/intel.nix
     ../../modules/display_manager.nix
-    # ../../modules/gnome.nix
     ../../modules/hyprland.nix
     ../../modules/pipewire.nix
     ../../modules/netwoking/network.nix
     ../../modules/kmonad
-    # ../../modules/pkgs.nix
     (import ../../modules/pkgs.nix { inherit inputs pkgs; })
     ../../modules/chromium.nix
     ../../modules/podman.nix
-    # ../../modules/extra_containers.nix
-    # ../../containers/dev_space-intel.nix
   ] ++ lib.fileset.toList ../../profiles;
 
   profiles.common.enable = true;

@@ -23,13 +23,10 @@ in {
     ../../modules/auditd.nix
     ../../modules/hydra.nix
     ../../modules/hashi_stack
-    ../../modules/extra_containers.nix
-    ../../containers/hello.nix
     ../../containers/desktop.nix
     ../../containers/dev_space.nix
     ../../containers/vault_unsealer.nix
     ../../containers/wolf_desktop.nix
-    ../../microvms/test.nix
     # ../../modules/pkgs.nix
     (import ../../modules/pkgs.nix { inherit inputs pkgs; })
     # doesn't support btrfs swapfile
