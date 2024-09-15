@@ -40,5 +40,4 @@ in {
       ### Streaming ###
       inputs.wolf.packages.x86_64-linux.default
     ];
-  system.stateVersion = "22.11";
 }

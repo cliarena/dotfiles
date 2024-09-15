@@ -9,6 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
+    system.stateVersion = "22.11";
     nix = {
       # Constrain access to nix daemon
       settings.allowed-users = [ "@wheel" "hydra" "hydra-www" ];

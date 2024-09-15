@@ -24,6 +24,5 @@ in {
   profiles.common.enable = true;
   profiles.coding.enable = true;
 
-  system.stateVersion = "22.11";
   programs.nixvim = import ../../modules/nixvim pkgs;
 }
