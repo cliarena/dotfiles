@@ -9,7 +9,6 @@ in {
     kmonad.nixosModules.default
     home-manager.nixosModules.home-manager
 
-    ../../modules/nix_config.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/boot/intel.nix
     ../../modules/users.nix

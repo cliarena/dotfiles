@@ -17,7 +17,6 @@ in {
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ./impermanence.nix
 
-    ../../modules/nix_config.nix
     ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
     ../../modules/corectrl.nix

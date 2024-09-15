@@ -12,7 +12,7 @@
       # The configuration for the MicroVM.
       # Multiple definitions will be merged as expected.
       config = {
-        imports = [ ../modules/nix_config.nix ];
+        # imports = [ ../modules/nix_config.nix ];
         # microvm.hypervisor = "cloud-hypervisor";
         # microvm.mem = 200;
         # microvm.balloonMem = 512;

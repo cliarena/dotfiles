@@ -11,6 +11,7 @@ in {
 
     swap.enable = true;
     comin.enable = true;
+    _nix.enable = true;
 
   };
 }
