@@ -6,7 +6,6 @@ in {
     disko.nixosModules.disko
     impermanence.nixosModules.impermanence
 
-    comin.nixosModules.comin
     nixvim.nixosModules.nixvim
     sops-nix.nixosModules.sops
     black-hosts.nixosModule

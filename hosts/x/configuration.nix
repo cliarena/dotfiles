@@ -3,7 +3,6 @@ let inherit (inputs) disko kmonad home-manager nixvim comin;
 in {
 
   imports = [
-    comin.nixosModules.comin
     nixvim.nixosModules.nixvim
     disko.nixosModules.disko
     kmonad.nixosModules.default
