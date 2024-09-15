@@ -130,7 +130,6 @@ in {
           ../modules/sshd.nix
           ../modules/chromium.nix
           ../modules/hardware/amd.nix
-          ../modules/corectrl.nix
           # ../modules/surrealdb.nix
           # ../modules/users.nix
           ../modules/netwoking/container-network.nix
