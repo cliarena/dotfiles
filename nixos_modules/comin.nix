@@ -5,7 +5,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  # fonts that are reachable by applications. ie: figma
   options.${module}.enable = mkEnableOption deskription;
 
   config = mkIf config.${module}.enable {
