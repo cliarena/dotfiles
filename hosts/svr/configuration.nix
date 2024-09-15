@@ -27,10 +27,7 @@ in {
     ../../containers/dev_space.nix
     ../../containers/vault_unsealer.nix
     ../../containers/wolf_desktop.nix
-    # ../../modules/pkgs.nix
     (import ../../modules/pkgs.nix { inherit inputs pkgs; })
-    # doesn't support btrfs swapfile
-    # ../../modules/surrealdb.nix
 
     # Observability
     # ../../modules/victoriametrics.nix
