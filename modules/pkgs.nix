@@ -3,6 +3,7 @@
     ### Git ###
     gh
     git
+    nushell
     commitizen
 
     ### Web ###
