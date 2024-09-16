@@ -2,7 +2,7 @@
 let
   module = "_nixvim";
   deskription = "neovim the nix way";
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf fileset;
 
   runtimePkgs = with pkgs; [
     zig
@@ -15,7 +15,8 @@ let
     nixfmt
   ];
 in {
-  imports = [ inputs.nixvim.nixosModules.nixvim ];
+  imports = [ inputs.nixvim.nixosModules.nixvim ]
+    ++ fileset.toList ../nixos_atoms/nixvim;
 
   options.${module}.enable = mkEnableOption deskription;
 
@@ -31,19 +32,9 @@ in {
       #withRuby = false;
       #withPython3 = false;
 
-      # TODO: move to more modular config
-
-      autoCmd = [{
-        desc = "Auto-refresh buffer if file changed externally";
-        command = "if mode() != 'c' | checktime | endif";
-        event = [ "FocusGained" "BufEnter" "CursorHold" "CursorHoldI" ];
-        pattern = [ "*" ];
-      }];
-
       extraConfigLua = builtins.foldl' (x: y: builtins.readFile y + x) "" [
         ../nixos_atoms/nixvim/options.lua
         ../nixos_atoms/nixvim/autopairs.lua
-        ../nixos_atoms/nixvim/auto-save.lua
         ../nixos_atoms/nixvim/comment.lua
         ../nixos_atoms/nixvim/nvim-tree.lua
         ../nixos_atoms/nixvim/toggleterm.lua
@@ -74,7 +65,9 @@ in {
         ../nixos_atoms/nixvim/null-ls.lua
         ../nixos_atoms/nixvim/neotest.lua
         #./lsp_lines.lua
-        ../nixos_atoms/nixvim/aerial.lua
+
+        # Not implemented in Nixvim
+        # ../nixos_atoms/nixvim/aerial.lua 
         ../nixos_atoms/nixvim/leap.lua
         ../nixos_atoms/nixvim/flit.lua
         ../nixos_atoms/nixvim/neorg.lua
@@ -211,7 +204,6 @@ in {
           vim-repeat # # . to repeat command Functionality
           inc-rename-nvim # # Live view LSP renaming
           live-command-nvim # # Live Preview Commands effects
-          auto-save-nvim # # Auto save
           ## wilder-nvim
           hydra-nvim # # Easier Sequential commands
           urlview-nvim # # Find & Display urls

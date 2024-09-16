@@ -4,5 +4,6 @@
     command = "if mode() != 'c' | checktime | endif";
     event = [ "FocusGained" "BufEnter" "CursorHold" "CursorHoldI" ];
     pattern = [ "*" ];
+
   }];
 }
