@@ -1,9 +1,9 @@
 { config, lib, ... }:
 
-let inherit (lib) mkEnableOption mkIf;
+let inherit (lib) mkEnableOption mkIf fileset;
 in {
 
-  imports = lib.fileset.toList ../nixos_modules;
+  imports = fileset.toList ../nixos_modules;
 
   options.profiles.coding.enable = mkEnableOption "conding profile";
 

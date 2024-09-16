@@ -3,7 +3,6 @@ let inherit (inputs) disko kmonad home-manager nixvim comin;
 in {
 
   imports = [
-    nixvim.nixosModules.nixvim
     disko.nixosModules.disko
     kmonad.nixosModules.default
     home-manager.nixosModules.home-manager
@@ -20,8 +19,7 @@ in {
     ../../modules/chromium.nix
   ] ++ lib.fileset.toList ../../profiles;
 
+  profiles.host.enable = true;
   profiles.common.enable = true;
   profiles.coding.enable = true;
-
-  programs.nixvim = import ../../modules/nixvim pkgs;
 }

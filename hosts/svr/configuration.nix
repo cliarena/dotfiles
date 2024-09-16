@@ -6,7 +6,6 @@ in {
     disko.nixosModules.disko
     impermanence.nixosModules.impermanence
 
-    nixvim.nixosModules.nixvim
     sops-nix.nixosModules.sops
     black-hosts.nixosModule
 
@@ -24,16 +23,14 @@ in {
     ../../containers/desktop.nix
     ../../containers/dev_space.nix
     ../../containers/vault_unsealer.nix
-    ../../containers/wolf_desktop.nix
     (import ../../modules/pkgs.nix { inherit inputs pkgs; })
 
     # Observability
     # ../../modules/victoriametrics.nix
   ] ++ lib.fileset.toList ../../profiles;
 
+  profiles.host.enable = true;
   profiles.common.enable = true;
-
-  programs.nixvim = import ../../modules/nixvim pkgs;
 
   environment.systemPackages = with pkgs;
     [

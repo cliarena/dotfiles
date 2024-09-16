@@ -12,8 +12,14 @@ in {
     users.users.${host.user} = {
       isNormalUser = true;
       initialPassword = "nixos";
-      extraGroups = [ "wheel" "corectrl" ];
-      shell = pkgs.nushell;
+      extraGroups = [
+        "avahi" # needed to read /var/lib/acme files for terranix apply
+        "wheel"
+        "input"
+        "video"
+        "sound"
+      ];
+      # shell = pkgs.nushell;
       openssh.authorizedKeys.keys = host.ssh_authorized_keys;
     };
     # Use sudo with no password

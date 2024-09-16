@@ -1,21 +1,23 @@
-{ inputs, nixpkgs, ... }:
+{ lib, inputs, nixpkgs, ... }:
 let
 
   inherit (inputs) sops-nix home-manager nixvim;
-  user = "x";
-  wan_ips = [ "10.10.0.100/24" ];
-  wan_gateway = [ "10.10.0.10" ];
-  is_dns_server = false; # for testing hashi_stack
-  dns_server = wan_gateway;
-  dns_extra_hosts = "";
-  ports = {
+  host = rec {
 
-    dns = 53;
-    ssh = 22;
+    user = "x";
+    wan_ips = [ "10.10.0.100/24" ];
+    wan_gateway = [ "10.10.0.10" ];
+    is_dns_server = false; # for testing hashi_stack
+    dns_server = wan_gateway;
+    dns_extra_hosts = "";
+    ports = {
+      dns = 53;
+      ssh = 22;
+    };
+    # open the least amount possible
+    tcp_ports = with ports; [ dns ssh 8080 ];
+    udp_ports = with ports; [ dns ];
   };
-  # open the least amount possible
-  tcp_ports = with ports; [ dns ssh 8080 ];
-  udp_ports = with ports; [ dns ];
 
   ENV_VARS = {
     # inherit WAYLAND_DISPLAY WOLF_RENDER_NODE PULSE_SOURCE PULSE_SINK PULSE_SERVER; #XDG_RUNTIME_DIR;
@@ -30,6 +32,7 @@ in {
 
   containers.desktop = {
 
+    specialArgs = { inherit inputs nixpkgs home-manager host; };
     bindMounts = {
       "/tmp" = {
         hostPath = "/tmp";
@@ -76,43 +79,18 @@ in {
         wlr-randr
         swww # Wallpaper Daemon
       ];
-      hardware = {
-        opengl = {
-          enable = true;
-          driSupport32Bit = true;
-          extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ];
-        };
-      };
-
-      nix.extraOptions = ''
-        experimental-features = nix-command flakes
-        keep-outputs = true
-        keep-derivations = true
-        warn-dirty = false
-      '';
+      # hardware = {
+      # opengl = {
+      # enable = true;
+      # driSupport32Bit = true;
+      # extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ];
+      # };
+      # };
 
       services.getty.autologinUser = "x";
-      users.users.x = {
-        isNormalUser = true;
-        initialPassword = "nixos";
-        extraGroups = [
-          "avahi" # needed to read /var/lib/acme files for terranix apply
-          "wheel"
-          "input"
-          "video"
-          "sound"
-        ];
-        # shell = pkgs.nushell;
-      };
       programs.river.enable = true;
-      programs.nixvim = import ../modules/nixvim pkgs;
 
-      security = {
-        sudo.wheelNeedsPassword = false;
-        sudo.execWheelOnly = true;
-      };
       imports = [
-        nixvim.nixosModules.nixvim
         # ../modules/netwoking/container-network.nix
         # ../modules/boot/amd.nix
         # ../modules/hardware/amd.nix
@@ -124,7 +102,7 @@ in {
           inherit nixpkgs;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${user} = {
+          home-manager.users.${host.user} = {
             imports = [
               sops-nix.homeManagerModules.sops
               ../hosts/x/sops.nix
@@ -141,7 +119,7 @@ in {
             home = {
               stateVersion = "22.11";
               username = "x";
-              homeDirectory = "/home/${user}";
+              homeDirectory = "/home/${host.user}";
             };
           };
           # Optionally, use home-manager.extraSpecialArgs to pass
@@ -150,7 +128,10 @@ in {
             inherit inputs nixpkgs home-manager;
           };
         }
-      ];
+      ] ++ lib.fileset.toList ../profiles;
+
+      profiles.common.enable = true;
+      profiles.coding.enable = true;
     };
   };
 }
