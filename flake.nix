@@ -97,7 +97,7 @@
         };
       };
 
-      apps = import ./terranix { inherit inputs forAllSystems; };
+      apps = pkgs: import ./terranix { inherit inputs pkgs; };
 
       # TODO: Change age.key and all sops secrets since age.key is exposed
       checks = forAllSystems (system:
