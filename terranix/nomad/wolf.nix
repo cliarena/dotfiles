@@ -113,6 +113,7 @@ in {
           WOLF_PRIVATE_KEY_FILE = "${HOST_APPS_STATE_FOLDER}/cfg/key.pem";
           WOLF_PRIVATE_CERT_FILE = "${HOST_APPS_STATE_FOLDER}/cfg/cert.pem";
           WOLF_RENDER_NODE = "/dev/dri/renderD128";
+          WOLF_ENCODER_NODE = "/dev/dri/renderD129";
         };
 
         volumeMounts = [
