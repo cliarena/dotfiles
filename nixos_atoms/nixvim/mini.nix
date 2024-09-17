@@ -15,6 +15,7 @@ in {
       modules = {
         bufremove = { };
         completion = { };
+        comment = { };
       };
     };
   };
