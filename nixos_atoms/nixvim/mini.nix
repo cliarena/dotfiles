@@ -14,7 +14,7 @@ in {
       mockDevIcons = true;
       modules = {
         bufremove = { };
-
+        completion = { };
       };
     };
   };
