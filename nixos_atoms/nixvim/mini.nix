@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
-  module = "_bufdelete";
-  deskription = "escape without delay";
+  module = "_mini";
+  deskription = "mini modules";
   inherit (lib) mkEnableOption mkIf;
 in {
 
@@ -9,11 +9,12 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.better-escape = {
+    plugins.mini = {
       enable = true;
-      settings = {
-        default_mappings = false;
-        mappings = { i = { i = { i = "<Esc>"; }; }; };
+      mockDevIcons = true;
+      modules = {
+        bufremove = { };
+
       };
     };
   };
