@@ -14,6 +14,7 @@ in {
       mockDevIcons = true;
       modules = {
         bufremove = { };
+        bracketed = { };
         completion = { };
         comment = { };
         cursorword = { };
