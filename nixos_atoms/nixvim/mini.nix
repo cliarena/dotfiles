@@ -17,6 +17,25 @@ in {
         completion = { };
         comment = { };
         cursorword = { };
+        diff = {
+          view = {
+            signs = {
+              add = "▎";
+              change = "▎";
+              delete = "▎";
+            };
+          };
+          mappings = {
+            apply = "gn";
+            reset = "gN";
+            textobject = "gn";
+
+            goto_first = "[N";
+            goto_prev = "[n";
+            goto_next = "]n";
+            goto_last = "]N";
+          };
+        };
         starter = {
           content_hooks = {
             "__unkeyed-1.adding_bullet" = {
