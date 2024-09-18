@@ -17,6 +17,7 @@ in {
         completion = { };
         comment = { };
         cursorword = { };
+        clue = { };
         diff = {
           view = {
             signs = {
