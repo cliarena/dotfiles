@@ -32,6 +32,8 @@ in {
       #withRuby = false;
       #withPython3 = false;
 
+      diagnostics.virtual_text = false;
+
       extraConfigLua = builtins.foldl' (x: y: builtins.readFile y + x) "" [
         ../nixos_atoms/nixvim/options.lua
         ../nixos_atoms/nixvim/autopairs.lua
