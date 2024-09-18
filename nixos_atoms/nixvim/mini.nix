@@ -64,6 +64,7 @@ in {
         files = { };
         fuzzy = { };
         pick = { };
+        trailspace = { };
 
         starter = {
           content_hooks = {
