@@ -16,6 +16,7 @@ in {
         bufremove = { };
         completion = { };
         comment = { };
+        cursorword = { };
       };
     };
   };
