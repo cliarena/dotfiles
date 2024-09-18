@@ -36,6 +36,7 @@ in {
             goto_last = "]N";
           };
         };
+        jump2d = { };
         starter = {
           content_hooks = {
             "__unkeyed-1.adding_bullet" = {
