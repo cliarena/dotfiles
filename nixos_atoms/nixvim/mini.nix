@@ -65,6 +65,7 @@ in {
         fuzzy = { };
         pick = { };
         trailspace = { };
+        visits = { };
 
         starter = {
           content_hooks = {
