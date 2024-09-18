@@ -61,6 +61,7 @@ in {
               "require('mini.hipatterns').hipatterns.gen_highlighter.hex_color()";
           };
         };
+        pick = { };
 
         starter = {
           content_hooks = {
