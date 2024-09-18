@@ -62,6 +62,7 @@ in {
           };
         };
         files = { };
+        fuzzy = { };
         pick = { };
 
         starter = {
