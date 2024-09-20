@@ -68,6 +68,7 @@ in {
         trailspace = { };
         visits = { };
 
+        statusline = { content.active = null; };
         starter = {
           content_hooks = {
             "__unkeyed-1.adding_bullet" = {
