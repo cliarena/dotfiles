@@ -69,6 +69,7 @@ in {
         visits = { };
 
         statusline = { content.active = null; };
+        surround = { };
         starter = {
           content_hooks = {
             "__unkeyed-1.adding_bullet" = {
