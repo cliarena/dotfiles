@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   module = "_conform";
-  deskription = "light & powerful formatter";
+  deskription = "light & powerful async formatter";
   inherit (lib) mkEnableOption mkIf;
 in {
 
