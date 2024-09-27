@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.spider = {
+    programs.nixvim.plugins.spider = {
       enable = true;
 
       keymaps.motions = {
