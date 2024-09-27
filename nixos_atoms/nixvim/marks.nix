@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.marks = { enable = true; };
+    programs.nixvim.plugins.marks = { enable = true; };
   };
 
 }
