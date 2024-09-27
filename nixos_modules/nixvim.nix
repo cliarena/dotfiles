@@ -17,6 +17,8 @@ in {
 
       diagnostics.virtual_text = false;
 
+      _mini.enable = true;
+
     };
 
   };
