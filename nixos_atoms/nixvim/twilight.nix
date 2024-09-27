@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.twilight = { enable = true; };
+    programs.nixvim.plugins.twilight = { enable = true; };
 
   };
 }
