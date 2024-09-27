@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.neorg = { enable = true; };
+    programs.nixvim.plugins.neorg = { enable = true; };
   };
 
 }
