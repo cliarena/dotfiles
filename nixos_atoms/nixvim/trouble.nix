@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.trouble = {
+    programs.nixvim.plugins.trouble = {
       enable = true;
       settings = {
         auto_open = true; # auto open the list when you have diagnostics
