@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.neogit = { enable = true; };
+    programs.nixvim.plugins.neogit = { enable = true; };
   };
 
 }
