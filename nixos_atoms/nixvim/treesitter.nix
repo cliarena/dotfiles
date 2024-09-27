@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.treesitter = {
+    programs.nixvim.plugins.treesitter = {
       enable = true;
       folding = true;
       settings = {
