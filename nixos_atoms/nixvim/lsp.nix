@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.lsp = {
+    programs.nixvim.plugins.lsp = {
       enable = true;
       servers = {
         bashls.enable = true;
