@@ -21,6 +21,7 @@ in {
         jump2d = { };
         files = { };
         fuzzy = { };
+        icons = { };
         pick = { };
         trailspace = { };
         visits = { };
