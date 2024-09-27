@@ -9,6 +9,8 @@ in {
 
   config = mkIf config.${module}.enable {
 
+    programs.nixvim.diagnostics.virtual_text = false;
+
     # disable unneeded plugins for better startup
     programs.nixvim.globals.loaded_netrw = 1;
     programs.nixvim.globals.loaded_netrwPlugin = 1;
