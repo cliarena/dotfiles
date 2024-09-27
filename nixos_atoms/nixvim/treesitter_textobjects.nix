@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.treesitter-textobjects = {
+    programs.nixvim.plugins.treesitter-textobjects = {
       enable = true;
       lspInterop = {
         enable = true;
