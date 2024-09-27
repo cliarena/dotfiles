@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.hardtime.enable = true;
+    programs.nixvim.plugins.hardtime.enable = true;
 
   };
 
