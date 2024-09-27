@@ -18,27 +18,16 @@ in {
         completion = { };
         comment = { };
         cursorword = { };
-        clue = { };
-        diff = {
-          view = {
-            signs = {
-              add = "▎";
-              change = "▎";
-              delete = "▎";
-            };
-          };
-          mappings = {
-            apply = "gn";
-            reset = "gN";
-            textobject = "gn";
-
-            goto_first = "[N";
-            goto_prev = "[n";
-            goto_next = "]n";
-            goto_last = "]N";
-          };
-        };
         jump2d = { };
+        files = { };
+        fuzzy = { };
+        pick = { };
+        trailspace = { };
+        visits = { };
+
+        statusline = { content.active = null; };
+        surround = { };
+
         hipatterns = {
           highlighters = {
             fixme = {
@@ -62,14 +51,125 @@ in {
               "require('mini.hipatterns').hipatterns.gen_highlighter.hex_color()";
           };
         };
-        files = { };
-        fuzzy = { };
-        pick = { };
-        trailspace = { };
-        visits = { };
+        clue = {
+          # TODO:
+          # - Yank all
+          triggers = [
+            # Leader triggers
+            {
+              mode = "n";
+              keys = "<Leader>";
+            }
+            {
+              mode = "x";
+              keys = "<Leader>";
+            }
 
-        statusline = { content.active = null; };
-        surround = { };
+            # Built-in completion
+            {
+              mode = "i";
+              keys = "<C-x>";
+            }
+
+            # `g` key
+            {
+              mode = "n";
+              keys = "g";
+            }
+            {
+              mode = "x";
+              keys = "g";
+            }
+
+            # Marks
+            {
+              mode = "n";
+              keys = "'";
+            }
+            {
+              mode = "n";
+              keys = "`";
+            }
+            {
+              mode = "x";
+              keys = "'";
+            }
+            {
+              mode = "x";
+              keys = "`";
+            }
+
+            # Registers
+            {
+              mode = "n";
+              keys = ''"'';
+            }
+            {
+              mode = "x";
+              keys = ''"'';
+            }
+            {
+              mode = "i";
+              keys = "<C-r>";
+            }
+            {
+              mode = "c";
+              keys = "<C-r>";
+            }
+
+            # Window commands
+            {
+              mode = "n";
+              keys = "<C-w>";
+            }
+
+            # `z` key
+            {
+              mode = "n";
+              keys = "z";
+            }
+            {
+              mode = "x";
+              keys = "z";
+            }
+          ];
+
+          clues = {
+            "__unkeyed-1.builtin_completion" = {
+              __raw = "require('mini.clue').gen_clues.builtin_completion()";
+            };
+            "__unkeyed-2.g" = { __raw = "require('mini.clue').gen_clues.g()"; };
+            "__unkeyed-3.marks" = {
+              __raw = "require('mini.clue').gen_clues.marks()";
+            };
+            "__unkeyed-4.registers" = {
+              __raw = "require('mini.clue').gen_clues.registers()";
+            };
+            "__unkeyed-5.windows" = {
+              __raw = "require('mini.clue').gen_clues.windows()";
+            };
+            "__unkeyed-6.z" = { __raw = "require('mini.clue').gen_clues.z()"; };
+          };
+        };
+        diff = {
+          view = {
+            signs = {
+              add = "▎";
+              change = "▎";
+              delete = "▎";
+            };
+          };
+          mappings = {
+            apply = "gn";
+            reset = "gN";
+            textobject = "gn";
+
+            goto_first = "[N";
+            goto_prev = "[n";
+            goto_next = "]n";
+            goto_last = "]N";
+          };
+        };
         starter = {
           content_hooks = {
             "__unkeyed-1.adding_bullet" = {
