@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.inc-rename.enable = true;
+    programs.nixvim.plugins.inc-rename.enable = true;
 
   };
 
