@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.lint = {
+    programs.nixvim.plugins.lint = {
       enable = true;
 
       lintersByFt = { nix = [ "nix" "deadnix" ]; };
