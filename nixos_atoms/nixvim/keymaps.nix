@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    keymaps = [
+    programs.nixvim.keymaps = [
       # Navigation
       {
         action = "<Down>";
