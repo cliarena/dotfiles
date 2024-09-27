@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.conform-nvim = {
+    programs.nixvim.plugins.conform-nvim = {
       enable = true;
 
       formatters_by_ft = {
