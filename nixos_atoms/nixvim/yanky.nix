@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.yanky = { enable = true; };
+    programs.nixvim.plugins.yanky = { enable = true; };
 
   };
 }
