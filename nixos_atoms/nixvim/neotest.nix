@@ -9,7 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.neotest = {
+    programs.nixvim.plugins.neotest = {
       enable = true;
       adapters.zig.enable = true;
       settings = {
