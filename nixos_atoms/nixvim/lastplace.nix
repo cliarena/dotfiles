@@ -10,7 +10,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    plugins.lastplace.enable = true;
+    programs.nixvim.plugins.lastplace.enable = true;
 
   };
 
