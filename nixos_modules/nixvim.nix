@@ -14,6 +14,7 @@ in {
 
     programs.nixvim.enable = true;
 
+    _options.enable = true;
     _keymaps.enable = true;
     _mini.enable = true;
 
