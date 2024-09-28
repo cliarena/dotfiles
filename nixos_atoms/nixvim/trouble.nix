@@ -13,7 +13,7 @@ in {
       enable = true;
       settings = {
         mode = "workspace_diagnostics";
-        auto_open = true; # auto open the list when you have diagnostics
+        auto_open = false; # auto open the list when you have diagnostics
         auto_close = true; # auto close the list when you have no diagnostics
         auto_fold = false; # auto fold a file trouble list at creation
         fold_open = ""; # icon used for open folds
