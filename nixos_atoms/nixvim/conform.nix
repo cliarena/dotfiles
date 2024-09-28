@@ -12,14 +12,16 @@ in {
     programs.nixvim.plugins.conform-nvim = {
       enable = true;
 
-      formatters_by_ft = {
-        nix = [ "nixfmt" ];
-        zig = [ "zigfmt" ];
+      settings = {
+        formatters_by_ft = {
+          nix = [ "nixfmt" ];
+          zig = [ "zigfmt" ];
 
-        "*" =
-          [ "codespell" "squeeze_blanks" "trim_whitespace" "trim_newlines" ];
+          "*" =
+            [ "codespell" "squeeze_blanks" "trim_whitespace" "trim_newlines" ];
+        };
+        format_after_save.lsp_format = "fallback";
       };
-      format_after_save.lsp_format = "fallback";
     };
 
   };
