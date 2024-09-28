@@ -11,7 +11,12 @@ in {
 
     programs.nixvim.plugins.neotest = {
       enable = true;
-      adapters.zig.enable = true;
+
+      adapters.zig = {
+        enable = true;
+        settings.dap.adapter = "lldb";
+      };
+
       settings = {
         summary.mappings = {
           next_failed = "U";
