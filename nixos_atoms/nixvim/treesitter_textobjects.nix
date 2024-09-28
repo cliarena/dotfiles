@@ -22,8 +22,8 @@ in {
       };
       move = {
         enable = true;
-        set_jumps = true; # whether to set jumps in the jumplist
-        goto_next_start = {
+        setJumps = true; # whether to set jumps in the jumplist
+        gotoNextStart = {
           "]c" = {
             query = "@conditional.outer";
             desc = "Next conditional start";
@@ -56,7 +56,7 @@ in {
             desc = "Next fold";
           };
         };
-        goto_next_end = {
+        gotoNextEnd = {
           "]C" = {
             query = "@conditional.outer";
             desc = "Next conditional end";
@@ -70,7 +70,7 @@ in {
             desc = "Next class end";
           };
         };
-        goto_previous_start = {
+        gotoPreviousStart = {
           "[c" = {
             query = "@conditional.outer";
             desc = "Prev conditional start";
@@ -88,7 +88,7 @@ in {
             desc = "Prev class start";
           };
         };
-        goto_previous_end = {
+        gotoPreviousEnd = {
           "[C" = {
             query = "@conditional.outer";
             desc = "Prev conditional end";
@@ -130,22 +130,22 @@ in {
             desc = "Select language scope";
           };
         };
-        selection_modes = {
+        selectionModes = {
           "@parameter.outer" = "v"; # charwise
           "@function.outer" = "v"; # linewise
           "@class.outer" = "<c-v>"; # blockwise
         };
-        include_surrounding_whitespace = true;
+        includeSurroundingWhitespace = true;
       };
       swap = {
         enable = true;
-        swap_next = {
+        swapNext = {
           "<leader>Sp" = {
             query = "@parameter.inner";
             desc = "Swap parameter with the next";
           };
         };
-        swap_previous = {
+        swapPrevious = {
           "<leader>SP" = {
             query = "@parameter.inner";
             desc = "Swap parameter with the prev";
