@@ -15,9 +15,31 @@ in {
     programs.nixvim.enable = true;
 
     _options.enable = true;
+
     _keymaps.enable = true;
     _better_escape.enable = true;
-    _mini.enable = true;
+    _yanky.enable = true;
+    _marks.enable = true;
+    _spider.enable = true;
 
+    _auto_cmds.enable = true;
+    _auto_save.enable = true;
+    _lastplace.enable = true;
+
+    _mini.enable = true;
+    _lsp.enable = true;
+    _lint.enable = true;
+    _conform.enable = true;
+    _treesitter.enable = true;
+    _treesitter_textobjects.enable = true;
+
+    _trouble.enable = true;
+    _neotest.enable = true;
+    _neogit.enable = true;
+    _neorg.enable = true;
+    _twilight.enable = true;
+
+    _inc_rename.enable = true;
+    _hardtime.enable = true;
   };
 }
