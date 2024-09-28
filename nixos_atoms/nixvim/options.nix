@@ -10,6 +10,7 @@ in {
   config = mkIf config.${module}.enable {
 
     programs.nixvim.diagnostics.virtual_text = false;
+    programs.nixvim.colorschemes.catppuccin.enable = true;
 
     # disable unneeded plugins for better startup
     programs.nixvim.globals.loaded_netrw = 1;
