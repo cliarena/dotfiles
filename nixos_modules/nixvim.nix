@@ -16,6 +16,7 @@ in {
 
     _options.enable = true;
     _keymaps.enable = true;
+    _better_escape.enable = true;
     _mini.enable = true;
 
   };
