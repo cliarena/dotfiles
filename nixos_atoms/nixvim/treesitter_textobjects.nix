@@ -47,12 +47,12 @@ in {
           };
           "]s" = {
             query = "@scope";
-            query_group = "locals";
+            queryGroup = "locals";
             desc = "Next scope";
           };
           "]z" = {
             query = "@fold";
-            query_group = "folds";
+            queryGroup = "folds";
             desc = "Next fold";
           };
         };
@@ -126,7 +126,7 @@ in {
           };
           "as" = {
             query = "@scope";
-            query_group = "locals";
+            queryGroup = "locals";
             desc = "Select language scope";
           };
         };
