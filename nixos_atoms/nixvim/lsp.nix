@@ -17,7 +17,7 @@ in {
         yamlls.enable = true;
         taplo.enable = true;
         nixd.enable = true;
-        rust-analyser.enable = true;
+        rust-analyzer.enable = true;
         zls.enable = true;
       };
     };
