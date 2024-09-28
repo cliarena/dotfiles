@@ -149,6 +149,21 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1726952185,
+        "narHash": "sha256-l/HbsQjJMT6tlf8KCooFYi3J6wjIips3n6/aWAoLY4g=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "630b559cc1cb4c0bdd525af506935323e4ccd5d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "comin": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -1674,6 +1689,7 @@
     "root": {
       "inputs": {
         "black-hosts": "black-hosts",
+        "catppuccin": "catppuccin",
         "comin": "comin",
         "devenv": "devenv",
         "disko": "disko",
