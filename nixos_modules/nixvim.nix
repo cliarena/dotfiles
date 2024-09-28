@@ -12,12 +12,9 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    programs.nixvim = {
-      enable = true;
+    programs.nixvim.enable = true;
 
-      _mini.enable = true;
-
-    };
+    _mini.enable = true;
 
   };
 }
