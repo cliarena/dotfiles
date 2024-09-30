@@ -8,7 +8,7 @@ let
     name = "my-old-revision";
     url = "https://github.com/NixOS/nixpkgs/";
     ref = "refs/heads/nixpkgs-unstable";
-    rev = "0c19708cf035f50d28eb4b2b8e7a79d4dc52f6bb";
+    rev = "05bbf675397d5366259409139039af8077d695ce";
   }) { inherit system; };
 
   old_neotest-zig_pkg = old_pkgs.vimPlugins.neotest-zig;
