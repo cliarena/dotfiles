@@ -25,6 +25,10 @@ in {
           run = "r";
           run_marked = "R";
         };
+        watch = {
+          enable = true;
+          symbol_queries = { zig = ""; };
+        };
       };
     };
 
