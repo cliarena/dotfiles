@@ -11,7 +11,7 @@ in {
 
     programs.nixvim.plugins.mini = {
       enable = true;
-      # mockDevIcons = true; # needs to update flake but it breaks neotest
+      mockDevIcons = true;
       modules = {
         bufremove = { };
         bracketed = { };
