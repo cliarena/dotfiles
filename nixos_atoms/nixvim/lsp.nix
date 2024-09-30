@@ -17,7 +17,11 @@ in {
         yamlls.enable = true;
         taplo.enable = true;
         nixd.enable = true;
-        rust-analyzer.enable = true;
+        rust-analyzer = {
+          enable = true;
+          installRustc = true;
+          installCargo = true;
+        };
         zls.enable = true;
       };
     };
