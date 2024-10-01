@@ -11,28 +11,28 @@ in {
 
     programs.nixvim.plugins.hardtime = {
       enable = true;
-      settings = {
-        disabled_keys = { };
-        restricted_keys = {
+      # settings = {
+      disabled_keys = { };
+      restricted_keys = {
 
-          "+" = [ "n" "x" ];
-          "-" = [ "n" "x" ];
+        "+" = [ "n" "x" ];
+        "-" = [ "n" "x" ];
 
-          "<C-M>" = [ "n" "x" ];
-          "<C-N>" = [ "n" "x" ];
-          "<C-P>" = [ "n" "x" ];
-          "<CR>" = [ "n" "x" ];
+        "<C-M>" = [ "n" "x" ];
+        "<C-N>" = [ "n" "x" ];
+        "<C-P>" = [ "n" "x" ];
+        "<CR>" = [ "n" "x" ];
 
-          l = [ "n" "x" ];
-          e = [ "n" "x" ];
-          n = [ "n" "x" ];
-          a = [ "n" "x" ];
+        l = [ "n" "x" ];
+        e = [ "n" "x" ];
+        n = [ "n" "x" ];
+        a = [ "n" "x" ];
 
-          "<Left>" = [ "" "i" ];
-          "<Right>" = [ "" "i" ];
+        "<Left>" = [ "" "i" ];
+        "<Right>" = [ "" "i" ];
 
-        };
       };
+      # };
 
     };
   };
