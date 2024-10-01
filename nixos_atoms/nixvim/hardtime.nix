@@ -9,8 +9,32 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    programs.nixvim.plugins.hardtime.enable = true;
+    programs.nixvim.plugins.hardtime = {
+      enable = true;
+      settings = {
+        disabled_keys = { };
+        restricted_keys = {
 
+          "+" = [ "n" "x" ];
+          "-" = [ "n" "x" ];
+
+          "<C-M>" = [ "n" "x" ];
+          "<C-N>" = [ "n" "x" ];
+          "<C-P>" = [ "n" "x" ];
+          "<CR>" = [ "n" "x" ];
+
+          l = [ "n" "x" ];
+          e = [ "n" "x" ];
+          n = [ "n" "x" ];
+          a = [ "n" "x" ];
+
+          "<Left>" = [ "" "i" ];
+          "<Right>" = [ "" "i" ];
+
+        };
+      };
+
+    };
   };
 
 }
