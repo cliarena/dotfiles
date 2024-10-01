@@ -18,7 +18,13 @@ in {
         completion = { };
         comment = { };
         cursorword = { };
-        jump2d = { };
+        jump2d = {
+          allowed_lines.blank = false;
+          view = {
+            dim = true;
+            n_steps_ahead = 4;
+          };
+        };
         files = { };
         fuzzy = { };
         icons = { };
