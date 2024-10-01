@@ -12,8 +12,8 @@ in {
     programs.nixvim.plugins.hardtime = {
       enable = true;
       # settings = {
-      disabled_keys = { };
-      restricted_keys = {
+      disabledKeys = { };
+      restrictedKeys = {
 
         "+" = [ "n" "x" ];
         "-" = [ "n" "x" ];
