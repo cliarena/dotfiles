@@ -12,7 +12,12 @@ in {
     programs.nixvim.plugins.hardtime = {
       enable = true;
       # settings = {
-      disabledKeys = { };
+      disabledKeys = {
+        "<Down>" = [ "n" "x" ];
+        "<Left>" = [ "n" "x" ];
+        "<Right>" = [ "n" "x" ];
+        "<Up>" = [ "n" "x" ];
+      };
       restrictedKeys = {
 
         "+" = [ "n" "x" ];
