@@ -25,7 +25,6 @@ in {
 
       adapters.zig = {
         enable = true;
-        package = old_neotest-zig_pkg;
         settings.dap.adapter = "lldb";
       };
 
