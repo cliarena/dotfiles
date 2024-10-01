@@ -11,6 +11,7 @@ let
     rev = "05bbf675397d5366259409139039af8077d695ce";
   }) { inherit system; };
 
+  old_neotest_pkg = old_pkgs.vimPlugins.neotest;
   old_neotest-zig_pkg = old_pkgs.vimPlugins.neotest-zig;
 in {
 
@@ -20,6 +21,7 @@ in {
 
     programs.nixvim.plugins.neotest = {
       enable = true;
+      package = old_neotest_pkg;
 
       adapters.zig = {
         enable = true;
