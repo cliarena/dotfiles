@@ -12,15 +12,15 @@ in {
     programs.nixvim.keymaps = [
       # Navigation
       {
+        action = "<Down>";
         key = "e";
-        action = "j";
         options = {
           silent = true;
           nowait = true;
         };
       }
       {
-        action = "k";
+        action = "<Up>";
         key = "l";
         options = {
           silent = true;
@@ -28,7 +28,7 @@ in {
         };
       }
       {
-        action = "l";
+        action = "<Right>";
         key = "a";
         options = {
           silent = true;
@@ -36,7 +36,7 @@ in {
         };
       }
       {
-        action = "h";
+        action = "<Left>";
         key = "n";
         options = {
           silent = true;
