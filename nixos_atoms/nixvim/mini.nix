@@ -11,7 +11,7 @@ in {
 
     programs.nixvim.plugins.mini = {
       enable = true;
-      mockDevIcons = true;
+      # mockDevIcons = true;
       modules = {
         bufremove = { };
         bracketed = { };
