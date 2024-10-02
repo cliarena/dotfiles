@@ -13,6 +13,7 @@ in {
       enable = true;
       # settings = {
       disabledKeys = {
+        "" = [ ];
       };
       restrictedKeys = {
 
