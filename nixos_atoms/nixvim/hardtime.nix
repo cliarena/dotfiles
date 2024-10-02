@@ -13,10 +13,6 @@ in {
       enable = true;
       # settings = {
       disabledKeys = {
-        "<Down>" = [ "n" "x" ];
-        "<Left>" = [ "n" "x" ];
-        "<Right>" = [ "n" "x" ];
-        "<Up>" = [ "n" "x" ];
       };
       restrictedKeys = {
 
@@ -32,6 +28,11 @@ in {
         e = [ "n" "x" ];
         n = [ "n" "x" ];
         a = [ "n" "x" ];
+
+        "<Down>" = [ "n" "x" "i"];
+        "<Left>" = [ "n" "x" "i"];
+        "<Right>" = [ "n" "x" "i"];
+        "<Up>" = [ "n" "x" "i"];
 
       };
       # };
