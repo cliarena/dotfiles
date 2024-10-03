@@ -40,7 +40,7 @@ in {
     _twilight.enable = true;
 
     _inc_rename.enable = true;
-    _hardtime.enable = true;
+    _hardtime.enable = false;
 
     # programs.nixvim.extraConfigLua =
     # builtins.foldl' (x: y: builtins.readFile y + x) "" [
