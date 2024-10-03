@@ -160,21 +160,12 @@ in {
         };
         diff = {
           view = {
+            style = "sign";
             signs = {
               add = "▎";
               change = "▎";
               delete = "▎";
             };
-          };
-          mappings = {
-            apply = "gn";
-            reset = "gN";
-            textobject = "gn";
-
-            goto_first = "[N";
-            goto_prev = "[n";
-            goto_next = "]n";
-            goto_last = "]N";
           };
         };
         starter = {
