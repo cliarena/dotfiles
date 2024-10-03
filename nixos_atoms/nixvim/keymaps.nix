@@ -9,6 +9,8 @@ in {
 
   config = mkIf config.${module}.enable {
 
+    globals.mapleader = " ";
+
     programs.nixvim.keymaps = [
       # Navigation
       {
