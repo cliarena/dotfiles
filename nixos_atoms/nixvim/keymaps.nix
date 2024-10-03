@@ -43,6 +43,21 @@ in {
           nowait = true;
         };
       }
+      {
+        action = "<cmd>lua MiniFiles.open()<cr>";
+        key = "gte";
+        options = { desc = "Explorer"; };
+      }
+      {
+        action = "<cmd>lua vim.diagnostic.goto_next()<cr>";
+        key = "gln";
+        options = { desc = "Next Diagnostic"; };
+      }
+      {
+        action = "<cmd>lua vim.diagnostic.goto_prev()<cr>";
+        key = "glN";
+        options = { desc = "Prev Diagnostic"; };
+      }
     ];
 
   };
