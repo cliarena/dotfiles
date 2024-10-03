@@ -48,46 +48,51 @@ in {
         }
         {
           action = "<cmd>lua MiniFiles.open()<cr>";
-          key = "gte";
+          key = "<leader>te";
           options = { desc = "Explorer"; };
         }
         {
+          action = "<cmd>Neogit<cr>";
+          key = "<leader>tg";
+          options = { desc = "Git"; };
+        }
+        {
           action = "<cmd>lua vim.diagnostic.goto_next()<cr>";
-          key = "gln";
+          key = "<leader>ln";
           options = { desc = "Next Diagnostic"; };
         }
         {
           action = "<cmd>lua vim.diagnostic.goto_prev()<cr>";
-          key = "glN";
+          key = "<leader>lN";
           options = { desc = "Prev Diagnostic"; };
         }
         {
-          key = "<leader>xx";
+          key = "<leader>lx";
           action = "<cmd>Trouble diagnostics toggle<cr>";
           options.desc = "Diagnostics (Trouble)";
         }
         {
-          key = "<leader>xX";
+          key = "<leader>lX";
           action = "<cmd>Trouble diagnostics toggle filter.buf=0<cr>";
           options.desc = "Buffer Diagnostics (Trouble)";
         }
         {
-          key = "<leader>cs";
+          key = "<leader>ls";
           action = "<cmd>Trouble symbols toggle focus=false<cr>";
           options.desc = "Symbols (Trouble)";
         }
         {
-          key = "<leader>cl";
+          key = "<leader>ll";
           action = "<cmd>Trouble lsp toggle focus=false win.position=right<cr>";
           options.desc = "LSP Definitions / references / ... (Trouble)";
         }
         {
-          key = "<leader>xL";
+          key = "<leader>lL";
           action = "<cmd>Trouble loclist toggle<cr>";
           options.desc = "Location List (Trouble)";
         }
         {
-          key = "<leader>xQ";
+          key = "<leader>lq";
           action = "<cmd>Trouble qflist toggle<cr>";
           options.desc = "Quickfix List (Trouble)";
         }
