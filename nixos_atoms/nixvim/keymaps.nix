@@ -26,6 +26,11 @@ in {
         }
         ############   LSP   ############
         {
+          key = "<leader>lf";
+          action = "<cmd>lua require('conform').format()<cr>";
+          options.desc = "Format";
+        }
+        {
           key = "<leader>lx";
           action = "<cmd>Trouble diagnostics toggle<cr>";
           options.desc = "Diagnostics (Trouble)";
@@ -104,22 +109,26 @@ in {
         }
         {
           key = "[T";
-          action = "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>";
+          action =
+            "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>";
           options.desc = "Prev Test Failed";
         }
         {
           key = "]T";
-          action = "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>";
+          action =
+            "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>";
           options.desc = "Next Test Failed";
         }
         {
           key = "<leader>tto";
-          action = "<cmd>lua require('neotest').output.open({ enter = true })<cr>";
+          action =
+            "<cmd>lua require('neotest').output.open({ enter = true })<cr>";
           options.desc = "Output";
         }
         {
           key = "<leader>ttw";
-          action = "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>";
+          action =
+            "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>";
           options.desc = "Watch Current File";
         }
         {
@@ -129,7 +138,8 @@ in {
         }
         {
           key = "<leader>ttd";
-          action = "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>";
+          action =
+            "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>";
           options.desc = "Dap Debug";
         }
       ];
