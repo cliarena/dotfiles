@@ -54,9 +54,10 @@ in {
               group = "MiniHipatternsNote";
             };
 
-            hex_color =
-              "require('mini.hipatterns').hipatterns.gen_highlighter.hex_color()";
-          };
+            hex_color = {
+              __raw =
+                "require('mini.hipatterns').hipatterns.gen_highlighter.hex_color()";
+            };
         };
         clue = {
           # TODO:
