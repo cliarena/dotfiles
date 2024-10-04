@@ -157,22 +157,14 @@ in {
             }
           ];
 
-          clues = {
-            "__unkeyed-1.builtin_completion" = {
-              __raw = "require('mini.clue').gen_clues.builtin_completion()";
-            };
-            "__unkeyed-2.g" = { __raw = "require('mini.clue').gen_clues.g()"; };
-            "__unkeyed-3.marks" = {
-              __raw = "require('mini.clue').gen_clues.marks()";
-            };
-            "__unkeyed-4.registers" = {
-              __raw = "require('mini.clue').gen_clues.registers()";
-            };
-            "__unkeyed-5.windows" = {
-              __raw = "require('mini.clue').gen_clues.windows()";
-            };
-            "__unkeyed-6.z" = { __raw = "require('mini.clue').gen_clues.z()"; };
-          };
+          clues = [
+            { __raw = "require('mini.clue').gen_clues.builtin_completion()"; }
+            { __raw = "require('mini.clue').gen_clues.g()"; }
+            { __raw = "require('mini.clue').gen_clues.marks()"; }
+            { __raw = "require('mini.clue').gen_clues.registers()"; }
+            { __raw = "require('mini.clue').gen_clues.windows()"; }
+            { __raw = "require('mini.clue').gen_clues.z()"; }
+          ];
         };
         diff = {
           view = {
