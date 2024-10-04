@@ -13,39 +13,6 @@ in {
       globals.mapleader = " ";
 
       keymaps = [
-        # Navigation
-        {
-          action = "<Down>";
-          key = "e";
-          options = {
-            silent = true;
-            nowait = true;
-          };
-        }
-        {
-          action = "<Up>";
-          key = "l";
-          options = {
-            silent = true;
-            nowait = true;
-          };
-        }
-        {
-          action = "<Right>";
-          key = "a";
-          options = {
-            silent = true;
-            nowait = true;
-          };
-        }
-        {
-          action = "<Left>";
-          key = "n";
-          options = {
-            silent = true;
-            nowait = true;
-          };
-        }
         {
           action = "<cmd>lua MiniFiles.open()<cr>";
           key = "<leader>te";
