@@ -13,14 +13,15 @@ in {
       globals.mapleader = " ";
 
       keymaps = [
+        ############   Toggles   ############
         {
-          action = "<cmd>lua MiniFiles.open()<cr>";
           key = "<leader>te";
+          action = "<cmd>lua MiniFiles.open()<cr>";
           options = { desc = "Explorer"; };
         }
         {
-          action = "<cmd>Neogit<cr>";
           key = "<leader>tg";
+          action = "<cmd>Neogit<cr>";
           options = { desc = "Git"; };
         }
         ############   LSP   ############
