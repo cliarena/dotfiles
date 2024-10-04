@@ -56,6 +56,7 @@ in {
           key = "<leader>tg";
           options = { desc = "Git"; };
         }
+        ############   LSP   ############
         {
           action = "<cmd>lua vim.diagnostic.goto_next()<cr>";
           key = "<leader>ln";
@@ -95,6 +96,42 @@ in {
           key = "<leader>lq";
           action = "<cmd>Trouble qflist toggle<cr>";
           options.desc = "Quickfix List (Trouble)";
+        }
+        {
+          key = "<leader>li";
+          action = "<cmd>LspInfo<cr>";
+          options.desc = "Info";
+        }
+        ############   Split   ############
+        {
+          key = "<leader>ws";
+          action = "<cmd>vsplit<cr>";
+          options.desc = "Split Right";
+        }
+        {
+          key = "<leader>wS";
+          action = "<cmd>wincmd=<cr>";
+          options.desc = "Split Evenly";
+        }
+        {
+          key = "<leader>wh";
+          action = "<cmd>split<cr>";
+          options.desc = "Split Bottom";
+        }
+        {
+          key = "<leader>ww";
+          action = "<cmd>w!<cr>";
+          options.desc = "Save";
+        }
+        {
+          key = "<leader>wc";
+          action = "<cmd>lua MiniBufremove.delete()<cr>";
+          options.desc = "Close Buffer";
+        }
+        {
+          key = "<leader>wq";
+          action = "<cmd>q!<cr>";
+          options.desc = "Quit";
         }
       ];
     };
