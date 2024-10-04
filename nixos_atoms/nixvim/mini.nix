@@ -56,7 +56,7 @@ in {
 
             hex_color = {
               __raw =
-                "require('mini.hipatterns').hipatterns.gen_highlighter.hex_color()";
+                "require('mini.hipatterns').gen_highlighter.hex_color()";
             };
           };
         };
