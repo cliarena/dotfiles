@@ -77,7 +77,23 @@ in {
               mode = "i";
               keys = "<C-x>";
             }
-
+            # Next Prev
+            {
+              mode = "n";
+              keys = "[";
+            }
+            {
+              mode = "x";
+              keys = "[";
+            }
+            {
+              mode = "n";
+              keys = "]";
+            }
+            {
+              mode = "x";
+              keys = "]";
+            }
             # `g` key
             {
               mode = "n";
