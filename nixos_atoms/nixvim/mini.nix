@@ -158,6 +158,26 @@ in {
           ];
 
           clues = [
+            {
+              mode = "n";
+              keys = "<leader>t";
+              desc = "Toggle";
+            }
+            {
+              mode = "n";
+              keys = "<leader>tt";
+              desc = "Test";
+            }
+            {
+              mode = "n";
+              keys = "<leader>l";
+              desc = "LSP";
+            }
+            {
+              mode = "n";
+              keys = "<leader>w";
+              desc = "Window";
+            }
             { __raw = "require('mini.clue').gen_clues.builtin_completion()"; }
             { __raw = "require('mini.clue').gen_clues.g()"; }
             { __raw = "require('mini.clue').gen_clues.marks()"; }
