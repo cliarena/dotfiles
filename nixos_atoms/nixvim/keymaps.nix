@@ -123,7 +123,47 @@ in {
           action = "<cmd>q!<cr>";
           options.desc = "Quit";
         }
-        ############   Windows   ############
+        ############   Neotest   ############
+        {
+          key = "[t";
+          action = "<cmd>Neotest jump prev<cr>";
+          options.desc = "Prev Test";
+        }
+        {
+          key = "]t";
+          action = "<cmd>Neotest jump next<cr>";
+          options.desc = "Next Test";
+        }
+        {
+          key = "[T";
+          action = "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>";
+          options.desc = "Prev Test Failed";
+        }
+        {
+          key = "]T";
+          action = "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>";
+          options.desc = "Next Test Failed";
+        }
+        {
+          key = "<leader>tto";
+          action = "<cmd>lua require('neotest').output.open({ enter = true })<cr>";
+          options.desc = "Output";
+        }
+        {
+          key = "<leader>ttw";
+          action = "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>";
+          options.desc = "Watch Current File";
+        }
+        {
+          key = "<leader>tts";
+          action = "<cmd>lua require('neotest').summary.toggle()<cr>";
+          options.desc = "Summary";
+        }
+        {
+          key = "<leader>ttd";
+          action = "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>";
+          options.desc = "Dap Debug";
+        }
       ];
     };
 
