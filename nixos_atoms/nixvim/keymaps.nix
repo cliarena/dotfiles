@@ -58,16 +58,6 @@ in {
         }
         ############   LSP   ############
         {
-          action = "<cmd>lua vim.diagnostic.goto_next()<cr>";
-          key = "<leader>ln";
-          options = { desc = "Next Diagnostic"; };
-        }
-        {
-          action = "<cmd>lua vim.diagnostic.goto_prev()<cr>";
-          key = "<leader>lN";
-          options = { desc = "Prev Diagnostic"; };
-        }
-        {
           key = "<leader>lx";
           action = "<cmd>Trouble diagnostics toggle<cr>";
           options.desc = "Diagnostics (Trouble)";
@@ -102,7 +92,7 @@ in {
           action = "<cmd>LspInfo<cr>";
           options.desc = "Info";
         }
-        ############   Split   ############
+        ############   Windows   ############
         {
           key = "<leader>ws";
           action = "<cmd>vsplit<cr>";
@@ -133,6 +123,7 @@ in {
           action = "<cmd>q!<cr>";
           options.desc = "Quit";
         }
+        ############   Windows   ############
       ];
     };
 
