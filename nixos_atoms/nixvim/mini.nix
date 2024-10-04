@@ -13,6 +13,7 @@ in {
       enable = true;
       # mockDevIcons = true;
       modules = {
+        ai = { };
         bufremove = { };
         bracketed = { };
         completion = { };
@@ -33,7 +34,23 @@ in {
         visits = { };
 
         statusline = { content.active = null; };
+        sessions = { };
         surround = { };
+        move = {
+          mappings = {
+            ## Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+            left = "<M-Left>";
+            right = "<M-Right>";
+            down = "<M-Down>";
+            up = "<M-Up>";
+
+            ## Move current line in Normal mode
+            line_left = "<M-Left>";
+            line_right = "<M-Right>";
+            line_down = "<M-Down>";
+            line_up = "<M-Up>";
+          };
+        };
 
         hipatterns = {
           highlighters = {
@@ -55,8 +72,7 @@ in {
             };
 
             hex_color = {
-              __raw =
-                "require('mini.hipatterns').gen_highlighter.hex_color()";
+              __raw = "require('mini.hipatterns').gen_highlighter.hex_color()";
             };
           };
         };
