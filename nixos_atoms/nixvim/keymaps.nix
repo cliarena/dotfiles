@@ -24,6 +24,18 @@ in {
           action = "<cmd>Neogit<cr>";
           options = { desc = "Git"; };
         }
+        {
+          key = "<leader>tt";
+          action =
+            "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu<cr>";
+          options = { desc = "Terminal"; };
+        }
+        {
+          key = "<leader>tp";
+          action =
+            "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu -e devenv up<cr>";
+          options = { desc = "Processes"; };
+        }
         ############   LSP   ############
         {
           key = "<leader>lf";
