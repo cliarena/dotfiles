@@ -25,7 +25,7 @@ in {
           options = { desc = "Git"; };
         }
         {
-          key = "<leader>tt";
+          key = "<leader>ts";
           action =
             "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu<cr>";
           options = { desc = "Terminal"; };
