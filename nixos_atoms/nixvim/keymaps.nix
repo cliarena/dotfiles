@@ -28,7 +28,7 @@ in {
           key = "<leader>ts";
           action =
             "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu<cr>";
-          options = { desc = "Terminal"; };
+          options = { desc = "Shell"; };
         }
         {
           key = "<leader>tp";
