@@ -15,5 +15,6 @@ in {
     _catppuccin.enable = true;
     _nixvim.enable = true;
 
+    _pkgs_base.enable = true;
   };
 }
