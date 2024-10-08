@@ -118,7 +118,6 @@ in {
 
       imports = [
         ../modules/sshd.nix
-        ../modules/chromium.nix
         ../modules/hardware/amd.nix
         # ../modules/surrealdb.nix
         # ../modules/users.nix

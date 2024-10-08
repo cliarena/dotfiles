@@ -14,7 +14,6 @@ in {
     ../../modules/hyprland.nix
     ../../modules/netwoking/network.nix
     ../../modules/kmonad
-    ../../modules/chromium.nix
   ] ++ lib.fileset.toList ../../profiles;
 
   profiles.host.enable = true;
