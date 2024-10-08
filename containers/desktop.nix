@@ -94,7 +94,6 @@ in {
         # ../modules/netwoking/container-network.nix
         # ../modules/boot/amd.nix
         # ../modules/hardware/amd.nix
-        ../modules/pkgs.nix
         ../modules/pipewire.nix
 
         home-manager.nixosModules.home-manager
@@ -131,7 +130,7 @@ in {
       ] ++ lib.fileset.toList ../profiles;
 
       profiles.common.enable = true;
-      profiles.coding.enable = true;
+      profiles.desktop.enable = true;
     };
   };
 }

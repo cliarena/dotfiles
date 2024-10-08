@@ -19,7 +19,6 @@ in {
     ../../containers/desktop.nix
     ../../containers/dev_space.nix
     ../../containers/vault_unsealer.nix
-    (import ../../modules/pkgs.nix { inherit inputs pkgs; })
 
     # Observability
     # ../../modules/victoriametrics.nix
@@ -29,9 +28,10 @@ in {
   profiles.common.enable = true;
   profiles.hosting.enable = true;
 
-  environment.systemPackages = with pkgs;
-    [
-      ### Streaming ###
-      inputs.wolf.packages.x86_64-linux.default
-    ];
+  environment.systemPackages = with pkgs; [
+    ### Streaming ###
+    inputs.wolf.packages.x86_64-linux.default
+    ### Virtualization ###
+    virtiofsd # needed by microvm jobs to use virtiofs shares
+  ];
 }

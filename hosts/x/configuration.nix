@@ -15,11 +15,10 @@ in {
     ../../modules/pipewire.nix
     ../../modules/netwoking/network.nix
     ../../modules/kmonad
-    (import ../../modules/pkgs.nix { inherit inputs pkgs; })
     ../../modules/chromium.nix
   ] ++ lib.fileset.toList ../../profiles;
 
   profiles.host.enable = true;
   profiles.common.enable = true;
-  profiles.coding.enable = true;
+  profiles.desktop.enable = true;
 }

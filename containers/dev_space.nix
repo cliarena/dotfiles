@@ -117,7 +117,6 @@ in {
       system.stateVersion = "22.11";
 
       imports = [
-        ../modules/pkgs.nix
         ../modules/sshd.nix
         ../modules/chromium.nix
         ../modules/hardware/amd.nix
@@ -159,6 +158,7 @@ in {
       ] ++ lib.fileset.toList ../profiles;
 
       profiles.common.enable = true;
+      profiles.desktop.enable = true;
       # modules.services.sunshine.enable = true;
       environment.sessionVariables = { TIMEWARRIORDB = "/srv/timewarrior"; };
       environment.systemPackages = with pkgs; [ glxinfo ];
