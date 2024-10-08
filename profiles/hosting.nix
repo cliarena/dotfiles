@@ -1,4 +1,4 @@
-{ config, inputs, lib, ... }:
+{ config, lib, ... }:
 let
   module = "hosting";
   deskription = "hosting profile";
