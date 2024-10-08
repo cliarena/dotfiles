@@ -4,14 +4,12 @@ let
 in {
   imports = [
     disko.nixosModules.disko
-    impermanence.nixosModules.impermanence
 
     sops-nix.nixosModules.sops
     black-hosts.nixosModule
 
     ./sops.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile
-    ./impermanence.nix
 
     ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix

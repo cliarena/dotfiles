@@ -13,6 +13,7 @@ in {
 
     _hydra.enable = true;
     _auditd.enable = true;
+    _impermanence.enable = true;
 
   };
 }
