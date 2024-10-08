@@ -12,6 +12,7 @@ in {
   config = mkIf config.profiles.${module}.enable {
 
     fonts.enable = true;
+    _pipewire.enable = true;
     _pkgs_desktop.enable = true;
 
   };

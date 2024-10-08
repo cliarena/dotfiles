@@ -12,7 +12,6 @@ in {
     ../../modules/hardware/intel.nix
     ../../modules/display_manager.nix
     ../../modules/hyprland.nix
-    ../../modules/pipewire.nix
     ../../modules/netwoking/network.nix
     ../../modules/kmonad
     ../../modules/chromium.nix

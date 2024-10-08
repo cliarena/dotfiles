@@ -91,10 +91,6 @@ in {
       programs.river.enable = true;
 
       imports = [
-        # ../modules/netwoking/container-network.nix
-        # ../modules/boot/amd.nix
-        # ../modules/hardware/amd.nix
-        ../modules/pipewire.nix
 
         home-manager.nixosModules.home-manager
         {
