@@ -18,7 +18,6 @@ in {
     ../../modules/sshd.nix
     ../../modules/netwoking/router.nix
     ../../modules/auditd.nix
-    ../../modules/hydra.nix
     ../../modules/hashi_stack
     ../../containers/desktop.nix
     ../../containers/dev_space.nix
@@ -31,6 +30,7 @@ in {
 
   profiles.host.enable = true;
   profiles.common.enable = true;
+  profiles.hosting.enable = true;
 
   environment.systemPackages = with pkgs;
     [
