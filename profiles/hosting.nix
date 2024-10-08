@@ -12,6 +12,7 @@ in {
   config = mkIf config.profiles.${module}.enable {
 
     _hydra.enable = true;
+    _auditd.enable = true;
 
   };
 }
