@@ -44,7 +44,6 @@
     ./acme.nix
     ./cloudflare-dyndns.nix
     # ../podman.nix
-    ../docker.nix
     ./consul
     ./vault
     ./nomad.nix

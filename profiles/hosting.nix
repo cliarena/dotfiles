@@ -15,5 +15,6 @@ in {
     _auditd.enable = true;
     _impermanence.enable = true;
 
+    _docker.enable = true;
   };
 }
