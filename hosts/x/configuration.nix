@@ -4,7 +4,6 @@ in {
 
   imports = [
     disko.nixosModules.disko
-    kmonad.nixosModules.default
     home-manager.nixosModules.home-manager
 
     (import ./disko.nix { }) # doesn't support btrfs swapfile
@@ -13,10 +12,11 @@ in {
     ../../modules/display_manager.nix
     ../../modules/hyprland.nix
     ../../modules/netwoking/network.nix
-    ../../modules/kmonad
   ] ++ lib.fileset.toList ../../profiles;
 
   profiles.host.enable = true;
   profiles.common.enable = true;
   profiles.desktop.enable = true;
+
+  _kmonad.enable = true;
 }
