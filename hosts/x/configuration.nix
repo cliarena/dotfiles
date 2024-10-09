@@ -9,7 +9,6 @@ in {
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/boot/intel.nix
     ../../modules/hardware/intel.nix
-    ../../modules/hyprland.nix
     ../../modules/netwoking/network.nix
   ] ++ lib.fileset.toList ../../profiles;
 
@@ -19,4 +18,5 @@ in {
 
   _kmonad.enable = true;
   _sddm.enable = true;
+  _hyprland.enable = true;
 }

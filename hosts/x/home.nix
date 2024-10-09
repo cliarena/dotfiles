@@ -9,8 +9,6 @@
   imports = [
     sops-nix.homeManagerModules.sops
     ./sops.nix
-    hyprland.homeManagerModules.default
-    ../../modules/home/hyprland
     ../../modules/home/ssh.nix
     ../../modules/home/git.nix
     ../../modules/home/lazygit.nix
