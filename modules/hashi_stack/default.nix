@@ -41,7 +41,6 @@
 
   imports = [
     ./pdns
-    ./acme.nix
     ./cloudflare-dyndns.nix
     # ../podman.nix
     ./consul
