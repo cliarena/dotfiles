@@ -16,6 +16,7 @@ in {
     _impermanence.enable = true;
 
     _docker.enable = true;
+    _nomad.enable = true;
 
     _victoria_metrics.enable = false;
   };

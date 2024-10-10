@@ -46,7 +46,6 @@
     # ../podman.nix
     ./consul
     ./vault
-    ./nomad.nix
     ./envoy.nix
     ./vault_initializer.nix
     # ./consul_template.nix
