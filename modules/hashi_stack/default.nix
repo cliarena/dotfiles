@@ -46,7 +46,6 @@
     ./consul
     ./vault
     ./envoy.nix
-    ./vault_initializer.nix
     # ./consul_template.nix
   ];
 }

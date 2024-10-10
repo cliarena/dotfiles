@@ -15,9 +15,10 @@ in {
     _auditd.enable = true;
     _impermanence.enable = true;
 
+    _acme.enable = true;
     _docker.enable = true;
     _nomad.enable = true;
-    _acme.enable = true;
+    _vault_initializer.enable = true;
 
     _victoria_metrics.enable = false;
   };
