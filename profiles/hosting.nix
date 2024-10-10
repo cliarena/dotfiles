@@ -17,6 +17,7 @@ in {
 
     _docker.enable = true;
     _nomad.enable = true;
+    _acme.enable = true;
 
     _victoria_metrics.enable = false;
   };
