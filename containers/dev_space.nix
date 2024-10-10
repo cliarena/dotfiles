@@ -134,7 +134,6 @@ in {
               sops-nix.homeManagerModules.sops
               ../hosts/x/sops.nix
               ../modules/home/git.nix
-              ../modules/home/lazygit.nix
               ../modules/home/ssh.nix
               ../modules/home/shell.nix
               ../modules/home/direnv.nix

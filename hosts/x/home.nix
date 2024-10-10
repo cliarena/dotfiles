@@ -11,7 +11,6 @@
     ./sops.nix
     ../../modules/home/ssh.nix
     ../../modules/home/git.nix
-    ../../modules/home/lazygit.nix
     ../../modules/home/shell.nix
     ../../modules/home/kitty.nix
     ../../modules/home/direnv.nix

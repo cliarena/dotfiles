@@ -105,7 +105,6 @@ in {
               ../modules/home/shell.nix
               ../modules/home/ssh.nix
               ../modules/home/git.nix
-              ../modules/home/lazygit.nix
               ../modules/home/kitty.nix
               ../modules/home/direnv.nix
               ../modules/home/bottom.nix
