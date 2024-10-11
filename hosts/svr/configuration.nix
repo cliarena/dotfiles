@@ -15,13 +15,10 @@ in {
     ../../modules/hardware/amd.nix
     ../../modules/sshd.nix
     ../../modules/netwoking/router.nix
-    ../../modules/hashi_stack
     ../../containers/desktop.nix
     ../../containers/dev_space.nix
     ../../containers/vault_unsealer.nix
 
-    # Observability
-    # ../../modules/victoriametrics.nix
   ] ++ lib.fileset.toList ../../profiles;
 
   profiles.host.enable = true;

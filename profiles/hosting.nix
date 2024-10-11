@@ -18,10 +18,11 @@ in {
     _acme.enable = true;
     _docker.enable = true;
     _vault.enable = true;
-    _nomad.enable = true;
+    _vault_initializer.enable = true;
+    _envoy.enable = true;
     _consul.enable = true;
     _consul_api_gateway_registerer.enable = true;
-    _vault_initializer.enable = true;
+    _nomad.enable = true;
 
     _powerdns.enable = true;
     _cloudflare_dyndns.enable = true;
