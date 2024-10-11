@@ -40,7 +40,6 @@
   };
 
   imports = [
-    ./cloudflare-dyndns.nix
     # ../podman.nix
     ./consul
     ./vault
