@@ -42,7 +42,6 @@
   imports = [
     # ../podman.nix
     ./consul
-    ./vault
     ./envoy.nix
     # ./consul_template.nix
   ];
