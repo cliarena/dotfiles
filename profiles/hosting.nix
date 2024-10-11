@@ -19,6 +19,7 @@ in {
     _docker.enable = true;
     _nomad.enable = true;
     _vault_initializer.enable = true;
+    _powerdns.enable = true;
 
     _victoria_metrics.enable = false;
   };
