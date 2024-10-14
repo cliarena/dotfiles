@@ -139,7 +139,6 @@ in {
               ../modules/home/direnv.nix
               ../modules/home/kitty.nix
               ../modules/home/bottom.nix
-              ../modules/home/taskwarrior.nix
             ];
             home = {
               stateVersion = "22.11";
@@ -157,8 +156,8 @@ in {
 
       profiles.common.enable = true;
       profiles.desktop.enable = true;
+      _taskwarrior.enable = true;
       # modules.services.sunshine.enable = true;
-      environment.sessionVariables = { TIMEWARRIORDB = "/srv/timewarrior"; };
       environment.systemPackages = with pkgs; [ glxinfo ];
       # services.xserver.enable = true;
       services.xrdp = {
