@@ -5,10 +5,8 @@ in {
   imports = [
     disko.nixosModules.disko
 
-    sops-nix.nixosModules.sops
     black-hosts.nixosModule
 
-    ./sops.nix
     (import ./disko.nix { }) # doesn't support btrfs swapfile
 
     ../../modules/boot/amd.nix

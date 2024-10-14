@@ -11,6 +11,8 @@ in {
 
   config = mkIf config.profiles.${module}.enable {
 
+    _sops_hosting.enable = true;
+
     _hydra.enable = true;
     _auditd.enable = true;
     _impermanence.enable = true;
