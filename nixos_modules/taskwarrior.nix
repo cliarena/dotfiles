@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, host, ... }:
 let
   module = "_taskwarrior";
   description = "cli todo list";
