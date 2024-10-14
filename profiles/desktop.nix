@@ -16,5 +16,7 @@ in {
     _pkgs_desktop.enable = true;
     _chromium.enable = true;
 
+    _bottom.enable = true;
+
   };
 }

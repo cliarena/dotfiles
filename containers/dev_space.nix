@@ -138,7 +138,6 @@ in {
               ../modules/home/shell.nix
               ../modules/home/direnv.nix
               ../modules/home/kitty.nix
-              ../modules/home/bottom.nix
             ];
             home = {
               stateVersion = "22.11";
