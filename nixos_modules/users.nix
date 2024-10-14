@@ -1,11 +1,11 @@
 { config, lib, pkgs, host, ... }:
 let
   module = "_users";
-  deskription = "users config";
+  description = "users config";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

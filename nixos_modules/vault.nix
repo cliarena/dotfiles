@@ -2,7 +2,7 @@
 
 let
   module = "_vault";
-  deskription = "secret manager";
+  description = "secret manager";
   inherit (lib) mkEnableOption mkIf;
 
   VAULT_ADDR = "http://10.10.0.10:8200";
@@ -10,7 +10,7 @@ let
   vault_cfg = config.services.vault;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

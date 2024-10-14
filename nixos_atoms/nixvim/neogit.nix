@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_neogit";
-  deskription = "magit for neovim";
+  description = "magit for neovim";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

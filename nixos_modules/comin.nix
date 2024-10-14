@@ -1,12 +1,12 @@
 { config, inputs, lib, ... }:
 let
   module = "_comin";
-  deskription = "GitOps For NixOS Machines";
+  description = "GitOps For NixOS Machines";
   inherit (lib) mkEnableOption mkIf;
 in {
   imports = [ inputs.comin.nixosModules.comin ];
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

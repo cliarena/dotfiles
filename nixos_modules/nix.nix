@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 let
   module = "_nix";
-  deskription = "nix config";
+  description = "nix config";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

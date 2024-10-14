@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_inc_rename";
-  deskription = "live incremental renaming";
+  description = "live incremental renaming";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

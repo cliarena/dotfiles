@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_options";
-  deskription = "options";
+  description = "options";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

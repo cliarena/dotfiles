@@ -1,12 +1,12 @@
 { config, lib, ... }:
 let
   module = "_consul";
-  deskription = "identity-based networking";
+  description = "identity-based networking";
   inherit (lib) mkEnableOption mkIf;
   vault_addr = "http://10.10.0.10:8200";
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

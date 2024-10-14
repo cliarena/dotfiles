@@ -1,13 +1,13 @@
 { config, lib, inputs,... }:
 let
   module = "_impermanence";
-  deskription = "persistence for ephemeral systems";
+  description = "persistence for ephemeral systems";
   inherit (lib) mkEnableOption mkIf;
 in {
 
   imports = [ inputs.impermanence.nixosModules.impermanence ];
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

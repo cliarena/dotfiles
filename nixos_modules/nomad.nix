@@ -1,14 +1,14 @@
 { config, lib, pkgs, ... }:
 let
   module = "_nomad";
-  deskription = "easy orchestration";
+  description = "easy orchestration";
   inherit (lib) mkEnableOption mkIf;
   CONSUL_ADDR = "http://10.10.0.10:8500";
   #VAULT_ADDR = "https://vault.${DOMAIN}";
   VAULT_ADDR = "http://10.10.0.10:8200";
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     services.nomad = {

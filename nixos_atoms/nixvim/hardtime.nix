@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_hardtime";
-  deskription = "quit bad vim habits";
+  description = "quit bad vim habits";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

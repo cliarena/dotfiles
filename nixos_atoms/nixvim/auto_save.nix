@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_auto_save";
-  deskription = "auto save";
+  description = "auto save";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

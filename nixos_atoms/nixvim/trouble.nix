@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_trouble";
-  deskription = "prettier diagnostics, quickfix, document symbols..";
+  description = "prettier diagnostics, quickfix, document symbols..";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

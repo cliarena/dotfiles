@@ -1,12 +1,12 @@
 { config, lib, inputs, ... }:
 let
   module = "_kmonad";
-  deskription = "keyboard layouts for any keyboard";
+  description = "keyboard layouts for any keyboard";
   inherit (lib) mkEnableOption mkIf;
 in {
   imports = [ inputs.kmonad.nixosModules.default ];
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

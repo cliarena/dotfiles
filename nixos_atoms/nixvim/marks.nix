@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_marks";
-  deskription = "better mark navigations";
+  description = "better mark navigations";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

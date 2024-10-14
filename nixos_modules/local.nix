@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_local";
-  deskription = "local settings";
+  description = "local settings";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

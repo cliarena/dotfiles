@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_treesitter_textobjects";
-  deskription = "treesitter textobjects config";
+  description = "treesitter textobjects config";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_hydra";
-  deskription = "CI for nix";
+  description = "CI for nix";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

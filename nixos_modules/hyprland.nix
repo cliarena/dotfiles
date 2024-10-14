@@ -1,14 +1,14 @@
 { config, lib, inputs, host, ... }:
 let
   module = "_hyprland";
-  deskription = "dynamic tiling window manager";
+  description = "dynamic tiling window manager";
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager hyprland;
 in {
 
   imports = [ home-manager.nixosModules.home-manager ];
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     programs.hyprland.enable = true;

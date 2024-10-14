@@ -2,7 +2,7 @@
 
 let
   module = "_envoy";
-  deskription = "cloud-native edge and service proxy";
+  description = "cloud-native edge and service proxy";
   inherit (lib) mkEnableOption mkIf;
 
   envoy_nixpkgs = import (builtins.fetchGit {
@@ -23,7 +23,7 @@ let
   };
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     services.envoy = {

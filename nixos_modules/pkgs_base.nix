@@ -1,13 +1,13 @@
 { config, lib, pkgs, ... }:
 let
   module = "_pkgs_base";
-  deskription = "pkgs needed by all systems";
+  description = "pkgs needed by all systems";
   inherit (lib) mkEnableOption mkIf;
 in {
 
   # imports = [ inputs.impermanence.nixosModules.impermanence ];
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

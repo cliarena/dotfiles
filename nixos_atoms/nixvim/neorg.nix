@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_neorg";
-  deskription = "org mode for neovim";
+  description = "org mode for neovim";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

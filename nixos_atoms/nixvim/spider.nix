@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_spider";
-  deskription = "better w,e,b vim movements";
+  description = "better w,e,b vim movements";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

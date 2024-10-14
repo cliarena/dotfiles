@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 let
   module = "_pkgs_desktop";
-  deskription = "pkgs needed by desktop";
+  description = "pkgs needed by desktop";
   inherit (lib) mkEnableOption mkIf;
 in {
 
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

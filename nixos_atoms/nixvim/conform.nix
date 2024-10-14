@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_conform";
-  deskription = "light & powerful async formatter";
+  description = "light & powerful async formatter";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

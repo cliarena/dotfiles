@@ -4,7 +4,7 @@
 
 let
   module = "_consul_api_gateway_registerer";
-  deskription = "registers consul api gateway";
+  description = "registers consul api gateway";
   inherit (lib) mkEnableOption mkIf;
 
   envoy_nixpkgs = import (builtins.fetchGit {
@@ -25,7 +25,7 @@ let
   };
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     systemd.services.consul_api_gateway_registerer = {

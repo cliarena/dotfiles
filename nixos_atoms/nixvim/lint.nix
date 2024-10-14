@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_lint";
-  deskription = "light & powerful linter";
+  description = "light & powerful linter";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

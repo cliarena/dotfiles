@@ -1,7 +1,7 @@
 { config, lib, system, ... }:
 let
   module = "_neotest";
-  deskription = "instant inline tests";
+  description = "instant inline tests";
   inherit (lib) mkEnableOption mkIf;
   # old_pkgs = import (builtins.fetchGit {
   #   # Descriptive name to make the store path easier to identify
@@ -15,7 +15,7 @@ let
   # old_neotest-zig_pkg = old_pkgs.vimPlugins.neotest-zig;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

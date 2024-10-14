@@ -1,13 +1,13 @@
 { config, lib, ... }:
 let
   module = "hosting";
-  deskription = "hosting profile";
+  description = "hosting profile";
   inherit (lib) mkEnableOption mkIf fileset;
 in {
 
   imports = fileset.toList ../nixos_modules;
 
-  options.profiles.${module}.enable = mkEnableOption deskription;
+  options.profiles.${module}.enable = mkEnableOption description;
 
   config = mkIf config.profiles.${module}.enable {
 

@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 let
   module = "_sddm";
-  deskription = "display manager";
+  description = "display manager";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

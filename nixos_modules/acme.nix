@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_acme";
-  deskription = "automatic certificate management environment";
+  description = "automatic certificate management environment";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     security.acme = {

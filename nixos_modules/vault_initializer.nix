@@ -1,14 +1,14 @@
 { config, lib, pkgs, ... }:
 let
   module = "_vault_initializer";
-  deskription = "auto vault initializer";
+  description = "auto vault initializer";
   inherit (lib) mkEnableOption mkIf;
 
   VAULT_ADDR = "http://10.10.0.10:8200";
   vault_bin = "${pkgs.vault}/bin/vault";
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

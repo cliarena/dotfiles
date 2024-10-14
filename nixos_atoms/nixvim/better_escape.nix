@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
   module = "_better_escape";
-  deskription = "escape without delay";
+  description = "escape without delay";
   inherit (lib) mkEnableOption mkIf;
 in {
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

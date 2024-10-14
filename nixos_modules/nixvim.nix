@@ -1,14 +1,14 @@
 { config, inputs, lib, pkgs, ... }:
 let
   module = "_nixvim";
-  deskription = "neovim the nix way";
+  description = "neovim the nix way";
   inherit (lib) mkEnableOption mkIf fileset;
 
 in {
   imports = [ inputs.nixvim.nixosModules.nixvim ]
     ++ fileset.toList ../nixos_atoms/nixvim;
 
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 

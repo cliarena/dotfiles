@@ -1,7 +1,7 @@
 { config, lib, inputs, host, ... }:
 let
   module = "_powerdns";
-  deskription = "powerdns domain name server";
+  description = "powerdns domain name server";
   inherit (lib) mkEnableOption mkIf;
 
   inherit (inputs) self;
@@ -42,7 +42,7 @@ let
     *                 IN    A     ${host.ip_addr}
   '';
 in {
-  options.${module}.enable = mkEnableOption deskription;
+  options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     services.pdns-recursor = {
