@@ -135,7 +135,6 @@ in {
               ../hosts/x/sops.nix
               ../modules/home/git.nix
               ../modules/home/ssh.nix
-              ../modules/home/shell.nix
             ];
             home = {
               stateVersion = "22.11";

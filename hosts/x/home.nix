@@ -11,7 +11,6 @@
     ./sops.nix
     ../../modules/home/ssh.nix
     ../../modules/home/git.nix
-    ../../modules/home/shell.nix
   ];
   programs.home-manager.enable = true;
   # programs.neovim = import ../../modules/nvim pkgs;
