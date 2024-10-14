@@ -20,5 +20,6 @@ in {
     _direnv.enable = true;
     _kitty.enable = true;
 
+    _river.enable = true;
   };
 }

@@ -101,7 +101,6 @@ in {
             imports = [
               sops-nix.homeManagerModules.sops
               ../hosts/x/sops.nix
-              ../modules/home/river.nix
               ../modules/home/shell.nix
               ../modules/home/ssh.nix
               ../modules/home/git.nix
