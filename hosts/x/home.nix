@@ -13,7 +13,6 @@
     ../../modules/home/git.nix
     ../../modules/home/shell.nix
     ../../modules/home/kitty.nix
-    ../../modules/home/direnv.nix
   ];
   programs.home-manager.enable = true;
   # programs.neovim = import ../../modules/nvim pkgs;

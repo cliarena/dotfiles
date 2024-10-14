@@ -136,7 +136,6 @@ in {
               ../modules/home/git.nix
               ../modules/home/ssh.nix
               ../modules/home/shell.nix
-              ../modules/home/direnv.nix
               ../modules/home/kitty.nix
             ];
             home = {

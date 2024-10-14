@@ -106,7 +106,6 @@ in {
               ../modules/home/ssh.nix
               ../modules/home/git.nix
               ../modules/home/kitty.nix
-              ../modules/home/direnv.nix
               ../modules/home/eww
             ];
             home = {

@@ -17,6 +17,7 @@ in {
     _chromium.enable = true;
 
     _bottom.enable = true;
+    _direnv.enable = true;
 
   };
 }
