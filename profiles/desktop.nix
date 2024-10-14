@@ -18,6 +18,7 @@ in {
 
     _bottom.enable = true;
     _direnv.enable = true;
+    _kitty.enable = true;
 
   };
 }

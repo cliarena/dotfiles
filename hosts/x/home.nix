@@ -12,7 +12,6 @@
     ../../modules/home/ssh.nix
     ../../modules/home/git.nix
     ../../modules/home/shell.nix
-    ../../modules/home/kitty.nix
   ];
   programs.home-manager.enable = true;
   # programs.neovim = import ../../modules/nvim pkgs;

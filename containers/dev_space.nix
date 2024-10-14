@@ -136,7 +136,6 @@ in {
               ../modules/home/git.nix
               ../modules/home/ssh.nix
               ../modules/home/shell.nix
-              ../modules/home/kitty.nix
             ];
             home = {
               stateVersion = "22.11";
