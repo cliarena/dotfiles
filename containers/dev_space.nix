@@ -130,12 +130,7 @@ in {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${host.user} = {
-            imports = [
-              #   sops-nix.homeManagerModules.sops
-              #   ../hosts/x/sops.nix
-              # ../modules/home/git.nix
-              ../modules/home/ssh.nix
-            ];
+            imports = [ ../modules/home/ssh.nix ];
             home = {
               stateVersion = "22.11";
               username = "x";
