@@ -131,9 +131,9 @@ in {
           home-manager.useUserPackages = true;
           home-manager.users.${host.user} = {
             imports = [
-              sops-nix.homeManagerModules.sops
-              ../hosts/x/sops.nix
-              ../modules/home/git.nix
+              #   sops-nix.homeManagerModules.sops
+              #   ../hosts/x/sops.nix
+              # ../modules/home/git.nix
               ../modules/home/ssh.nix
             ];
             home = {
@@ -144,9 +144,9 @@ in {
           };
           # Optionally, use home-manager.extraSpecialArgs to pass
           # arguments to home.nix
-          home-manager.extraSpecialArgs = {
-            inherit inputs nixpkgs home-manager sops-nix;
-          };
+          # home-manager.extraSpecialArgs = {
+          # inherit inputs nixpkgs home-manager sops-nix;
+          # };
         }
       ] ++ lib.fileset.toList ../profiles;
 

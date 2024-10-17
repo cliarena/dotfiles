@@ -16,7 +16,9 @@ in {
     _pkgs_desktop.enable = true;
     _chromium.enable = true;
 
+    _sops_home.enable = true;
     _shell.enable = true;
+    _git.enable = true;
     _bottom.enable = true;
     _direnv.enable = true;
     _kitty.enable = true;

@@ -7,10 +7,10 @@
   };
 
   imports = [
-    sops-nix.homeManagerModules.sops
-    ./sops.nix
+    # sops-nix.homeManagerModules.sops
+    # ./sops.nix
     ../../modules/home/ssh.nix
-    ../../modules/home/git.nix
+    # ../../modules/home/git.nix
   ];
   programs.home-manager.enable = true;
   # programs.neovim = import ../../modules/nvim pkgs;
