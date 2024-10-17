@@ -88,7 +88,6 @@ in {
       # };
 
       services.getty.autologinUser = "x";
-      programs.river.enable = true;
 
       imports = [
 

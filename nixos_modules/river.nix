@@ -23,6 +23,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
+    programs.river.enable = true;
     home-manager.users.${host.user} = {
       wayland.windowManager.river = {
         enable = true;
