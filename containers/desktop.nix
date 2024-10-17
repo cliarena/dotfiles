@@ -71,14 +71,6 @@ in {
 
       environment.sessionVariables = ENV_VARS;
       environment.variables = ENV_VARS;
-      environment.systemPackages = with pkgs; [
-        kitty
-        brave
-        firefox
-        wayland-utils
-        wlr-randr
-        swww # Wallpaper Daemon
-      ];
       # hardware = {
       # opengl = {
       # enable = true;

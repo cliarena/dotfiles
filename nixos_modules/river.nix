@@ -1,4 +1,4 @@
-{ config, lib, inputs, host, ... }:
+{ config, lib, inputs, host, pkgs, ... }:
 let
   module = "_river";
   description = "dynamic tiling Wayland compositor";
@@ -41,16 +41,15 @@ in {
           };
           set-repeat = "50 300";
           spawn = [
-            "brave"
-            "'kitty -e nu'"
-            "'wlr-randr --output WL-1 --custom-mode 1920x1080'"
-            "'rivertile -view-padding 1 -outer-padding 3'"
-            "swww-daemon"
-            "'shuf -zen1 /srv/wallpapers/* | xargs -0 swww img'"
-            "'eww daemon'"
-            "'eww open-many clock'"
+            "${pkgs.brave}/bin/brave"
+            "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'"
+            "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode 1920x1080'"
+            "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
+            "${pkgs.swww}/bin/swww-daemon"
+            "'${pkgs.coreutils}/bin/shuf -zen1 /srv/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.swww}/bin/swww img'"
+            "'${pkgs.eww}/bin/eww daemon'"
+            "'${pkgs.eww}/bin/eww open-many clock'"
           ];
-
         };
       };
     };
