@@ -97,7 +97,6 @@ in {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${host.user} = {
-            imports = [ ../modules/home/eww ];
             home = {
               stateVersion = "22.11";
               username = "x";
