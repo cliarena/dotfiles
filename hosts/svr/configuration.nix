@@ -11,7 +11,6 @@ in {
 
     ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
-    ../../modules/sshd.nix
     ../../modules/netwoking/router.nix
     ../../containers/desktop.nix
     ../../containers/dev_space.nix
@@ -22,6 +21,8 @@ in {
   profiles.host.enable = true;
   profiles.common.enable = true;
   profiles.hosting.enable = true;
+
+  _sshd.enable = true;
 
   environment.systemPackages = with pkgs; [
     ### Streaming ###

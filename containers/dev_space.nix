@@ -117,7 +117,6 @@ in {
       system.stateVersion = "22.11";
 
       imports = [
-        ../modules/sshd.nix
         ../modules/hardware/amd.nix
         # ../modules/surrealdb.nix
         # ../modules/users.nix
@@ -146,7 +145,10 @@ in {
 
       profiles.common.enable = true;
       profiles.desktop.enable = true;
+
+      _sshd.enable = true;
       _taskwarrior.enable = true;
+
       # modules.services.sunshine.enable = true;
       environment.systemPackages = with pkgs; [ glxinfo ];
       # services.xserver.enable = true;
