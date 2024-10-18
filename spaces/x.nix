@@ -68,8 +68,6 @@ in {
       autoStart = true;
       ephemeral = true;
       privateNetwork = true;
-      hostBridge = "br0"; # Specify the bridge name
-      localAddress = "10.10.0.100/24";
 
       config = { ... }: {
 
