@@ -37,6 +37,7 @@ in {
           map = {
             normal = {
               "Super Q" = "close";
+              "Super+Shift E" = "exit";
               "Super F" = "toggle-fullscreen";
               "Super F11" = "enter-mode passthrough";
               "Super Return" = "spawn ${terminal}";
