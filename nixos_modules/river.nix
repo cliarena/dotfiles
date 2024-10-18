@@ -7,10 +7,11 @@ let
 
   tags = builtins.genList (x: x) 9;
   tag_map_list = builtins.map (tag: {
-    "Alt ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
-    "Alt+Shift ${toString (tag + 1)}" = "set-view-tags ${toString tag}";
-    "Alt+Control ${toString (tag + 1)}" = "toggle-focused-tags ${toString tag}";
-    "Alt+Shift+Control ${toString (tag + 1)}" =
+    "Super ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
+    "Super+Shift ${toString (tag + 1)}" = "set-view-tags ${toString tag}";
+    "Super+Control ${toString (tag + 1)}" =
+      "toggle-focused-tags ${toString tag}";
+    "Super+Shift+Control ${toString (tag + 1)}" =
       "toggle-view-tags ${toString tag}";
   }) tags;
 
@@ -33,11 +34,11 @@ in {
           declare-mode = [ "locked" "normal" "passthrough" ];
           map = {
             normal = {
-              "Alt Q" = "close";
-              "Alt F" = "toggle-fullscreen";
-              "Alt F11" = "enter-mode passthrough";
+              "Super Q" = "close";
+              "Super F" = "toggle-fullscreen";
+              "Super F11" = "enter-mode passthrough";
             } // tag_map;
-            passthrough = { "Alt F11" = "enter-mode normal"; };
+            passthrough = { "Super F11" = "enter-mode normal"; };
           };
           set-repeat = "50 300";
           spawn = [
