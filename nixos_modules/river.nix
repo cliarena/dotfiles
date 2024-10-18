@@ -5,6 +5,8 @@ let
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager;
 
+  terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
+
   tags = builtins.genList (x: x) 9;
   tag_map_list = builtins.map (tag: {
     "Super ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
@@ -37,13 +39,14 @@ in {
               "Super Q" = "close";
               "Super F" = "toggle-fullscreen";
               "Super F11" = "enter-mode passthrough";
+              "Super Return" = "spawn ${terminal}";
             } // tag_map;
             passthrough = { "Super F11" = "enter-mode normal"; };
           };
           set-repeat = "50 300";
           spawn = [
             "${pkgs.brave}/bin/brave"
-            "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'"
+            terminal
             "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode 1920x1080'"
             "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
             "${pkgs.swww}/bin/swww-daemon"
