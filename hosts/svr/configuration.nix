@@ -12,14 +12,16 @@ in {
     ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
     ../../modules/netwoking/router.nix
-    ../../containers/desktop.nix
-    ../../containers/dev_space.nix
+    ../../spaces/dev_space.nix
 
-  ] ++ lib.fileset.toList ../../profiles;
+  ] ++ lib.fileset.toList ../../profiles ++ lib.fileset.toList ../../spaces;
 
   profiles.host.enable = true;
   profiles.common.enable = true;
   profiles.hosting.enable = true;
+  # profiles.desk_streaming.enable = true;
+
+  spaces.x.enable = true;
 
   _sshd.enable = true;
 
