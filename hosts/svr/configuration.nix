@@ -14,7 +14,6 @@ in {
     ../../modules/netwoking/router.nix
     ../../containers/desktop.nix
     ../../containers/dev_space.nix
-    ../../containers/vault_unsealer.nix
 
   ] ++ lib.fileset.toList ../../profiles;
 
