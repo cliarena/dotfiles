@@ -1,33 +1,18 @@
-{ inputs, nixpkgs, ... }:
-let
-  host.user = "x";
-  inherit (inputs) home-manager sops-nix;
+{ lib, ... }:
+let host.user = "x";
 in {
   containers.vault-unsealer = {
+
     autoStart = true;
     ephemeral = true;
+    specialArgs = { inherit host; };
 
-    config = { config, pkgs, ... }: {
+    config = { pkgs, ... }: {
 
-      system.stateVersion = "22.11";
-      _module.args.host = host;
+      imports = lib.fileset.toList ../nixos_modules;
 
-      imports = [
-        home-manager.nixosModules.home-manager
-        {
-          inherit nixpkgs;
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${host.user} = {
-            # imports = [ sops-nix.homeManagerModules.sops ../hosts/x/sops.nix ];
-            home = {
-              stateVersion = "22.11";
-              username = host.user;
-              homeDirectory = "/home/${host.user}";
-            };
-          };
-        }
-      ];
+      _home.enable = true;
+      _sops_home.enable = true;
 
       users.users.${host.user} = { isNormalUser = true; };
       services.getty.autologinUser = host.user;

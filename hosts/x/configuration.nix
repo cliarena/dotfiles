@@ -4,7 +4,6 @@ in {
 
   imports = [
     disko.nixosModules.disko
-    home-manager.nixosModules.home-manager
 
     (import ./disko.nix { }) # doesn't support btrfs swapfile
     ../../modules/boot/intel.nix

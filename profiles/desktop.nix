@@ -16,6 +16,7 @@ in {
     _pkgs_desktop.enable = true;
     _chromium.enable = true;
 
+    _home.enable = true;
     _sops_home.enable = true;
     _ssh_home.enable = true;
 

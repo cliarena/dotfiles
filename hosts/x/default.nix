@@ -26,22 +26,5 @@ let
 in {
   inherit system;
   specialArgs = { inherit inputs nixpkgs home-manager host system; };
-  modules = [
-    ./configuration.nix
-
-    # ./sops.nix
-    # sops-nix.nixosModules.sops
-    {
-      inherit nixpkgs;
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.${host.user} = { imports = [ ./home.nix ]; };
-
-      # Optionally, use home-manager.extraSpecialArgs to pass
-      # arguments to home.nix
-      # home-manager.extraSpecialArgs = {
-      #   inherit inputs nixpkgs home-manager sops-nix hyprland;
-      # };
-    }
-  ];
+  modules = [ ./configuration.nix ];
 }

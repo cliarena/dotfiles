@@ -122,25 +122,6 @@ in {
         # ../modules/users.nix
         ../modules/netwoking/container-network.nix
         ../modules/boot/amd.nix
-
-        home-manager.nixosModules.home-manager
-        {
-          inherit nixpkgs;
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${host.user} = {
-            home = {
-              stateVersion = "22.11";
-              username = "x";
-              homeDirectory = "/home/${host.user}";
-            };
-          };
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
-          # home-manager.extraSpecialArgs = {
-          # inherit inputs nixpkgs home-manager sops-nix;
-          # };
-        }
       ] ++ lib.fileset.toList ../profiles;
 
       profiles.common.enable = true;
