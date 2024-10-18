@@ -5,13 +5,17 @@ let
   inherit (lib) mkEnableOption mkIf;
 
   host = rec {
-
     user = "x";
-    wan_ips = [ "10.10.0.100/24" ];
-    wan_gateway = [ "10.10.0.10" ];
+    hostAddress = "10.10.2.1";
+    localAddress = "10.10.2.100";
+    wan_ips = [ "${localAddress}/24" ];
+    wan_gateway = [ hostAddress ];
     is_dns_server = false; # for testing hashi_stack
     dns_server = wan_gateway;
     dns_extra_hosts = "";
+    ssh_authorized_keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDODhAGCpRb2xFiBi9tMOtegTWaze+gmYtQkaUWRqF/u dev_space"
+    ];
     ports = {
       dns = 53;
       ssh = 22;
@@ -65,6 +69,8 @@ in {
       ];
 
       specialArgs = { inherit inputs host; };
+      interfaces = [ "mv-qub0" ];
+      restartIfChanged = false;
       autoStart = true;
       ephemeral = true;
 
@@ -75,10 +81,17 @@ in {
 
         services.getty.autologinUser = "x";
 
-        imports = lib.fileset.toList ../profiles;
+        imports = [
+          ../modules/hardware/amd.nix
+          ../modules/netwoking/container-network.nix
+          ../modules/boot/amd.nix
+        ] ++ lib.fileset.toList ../profiles;
 
         profiles.common.enable = true;
         profiles.desktop.enable = true;
+
+        _sshd.enable = true;
+        _taskwarrior.enable = true;
       };
     };
   };

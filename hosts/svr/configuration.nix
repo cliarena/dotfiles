@@ -12,7 +12,6 @@ in {
     ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
     ../../modules/netwoking/router.nix
-    ../../spaces/dev_space.nix
 
   ] ++ lib.fileset.toList ../../profiles ++ lib.fileset.toList ../../spaces;
 
