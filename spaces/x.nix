@@ -67,6 +67,7 @@ in {
       specialArgs = { inherit inputs host; };
       autoStart = true;
       ephemeral = true;
+      privateNetwork = true;
 
       config = { ... }: {
 
