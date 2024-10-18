@@ -1,4 +1,4 @@
-{ config, lib, inputs, pkgs, ... }:
+{ config, lib, inputs, ... }:
 let
   module = "x";
   description = "x space";
@@ -76,27 +76,6 @@ in {
         environment.sessionVariables = ENV_VARS;
         environment.variables = ENV_VARS;
 
-        # Disable if this server is a dns server
-        services.resolved.enable = !host.is_dns_server;
-
-        networking = {
-          hostName = host.user;
-          extraHosts = "127.0.0.1 local.cliarena.com";
-          useDHCP = false;
-          useNetworkd = true;
-          # nameservers = [ "1.1.1.1" ];
-          resolvconf.enable = pkgs.lib.mkForce false;
-          useHostResolvConf = pkgs.lib.mkForce false;
-          dhcpcd.extraConfig = "nohook resolv.conf";
-          networkmanager.dns = lib.mkForce "none";
-          firewall = {
-            enable = false;
-            interfaces.wan = {
-              allowedTCPPorts = host.tcp_ports;
-              allowedUDPPorts = host.udp_ports;
-            };
-          };
-        };
         services.getty.autologinUser = "x";
 
         imports = lib.fileset.toList ../profiles;
