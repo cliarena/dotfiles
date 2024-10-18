@@ -1,13 +1,14 @@
-{ lib, ... }:
+{ lib, inputs, pkgs, ... }:
 let host.user = "x";
 in {
   containers.vault-unsealer = {
 
     autoStart = true;
     ephemeral = true;
-    specialArgs = { inherit host; };
 
-    config = { pkgs, ... }: {
+    # NOTE: needed to fix recursion error
+    specialArgs = { inherit inputs host; };
+    config = { ... }: {
 
       imports = lib.fileset.toList ../nixos_modules;
 
