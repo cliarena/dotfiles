@@ -43,6 +43,7 @@ in {
       speedtest-cli
 
       pavucontrol
+      pulseaudio
       obs-studio
       blender
       taskwarrior-tui
