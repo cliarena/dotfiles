@@ -16,6 +16,7 @@ in {
   profiles.desktop.enable = true;
 
   _kmonad.enable = true;
+  _gaming.enable = true;
   _sddm.enable = true;
   _hyprland.enable = true;
 }

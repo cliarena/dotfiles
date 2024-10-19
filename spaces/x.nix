@@ -92,6 +92,7 @@ in {
 
         _sshd.enable = true;
         _taskwarrior.enable = true;
+        _gaming.enable = true;
       };
     };
   };
