@@ -1,6 +1,5 @@
 { lib, inputs, pkgs, ... }:
-let
-  inherit (inputs) sops-nix disko black-hosts nixvim microvm comin impermanence;
+let inherit (inputs) disko black-hosts;
 in {
   imports = [
     disko.nixosModules.disko
@@ -23,11 +22,11 @@ in {
   spaces.x.enable = true;
 
   _sshd.enable = true;
+  _wolf.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    ### Streaming ###
-    inputs.wolf.packages.x86_64-linux.default
-    ### Virtualization ###
-    virtiofsd # needed by microvm jobs to use virtiofs shares
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      ### Virtualization ###
+      virtiofsd # needed by microvm jobs to use virtiofs shares
+    ];
 }
