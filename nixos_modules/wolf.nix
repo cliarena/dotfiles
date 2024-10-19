@@ -13,7 +13,7 @@ in {
       path = [ inputs.wolf.packages.x86_64-linux.default ];
       description = "stream desktops containers";
       # environment = { VAULT_ADDR = "https://vault.cliarena.com:8200"; };
-      script = "wolf";
+      script = "ls && sudo wolf";
       serviceConfig = {
         Restart = "on-failure";
         # avoid error start request repeated too quickly since RestartSec defaults to 100ms
