@@ -9,6 +9,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
+    environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
     systemd.services.wolf = {
       path = [ inputs.wolf.packages.x86_64-linux.default ];
       description = "stream desktops containers";
