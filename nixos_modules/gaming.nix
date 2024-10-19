@@ -12,6 +12,7 @@ in {
     programs.steam.enable = true;
     programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
+      wineWowPackages.waylandFull # needed to run any emulated game
       lutris # game launcher
       protonplus # Wine and Proton-based compatibility tools manager
       cartridges # GTK4 game launcher
