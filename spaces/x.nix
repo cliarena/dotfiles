@@ -82,9 +82,9 @@ in {
         services.getty.autologinUser = "x";
 
         imports = [
-          ../modules/hardware/amd.nix
+          # ../modules/boot/amd.nix
+          # ../modules/hardware/amd.nix
           ../modules/netwoking/container-network.nix
-          ../modules/boot/amd.nix
         ] ++ lib.fileset.toList ../profiles;
 
         profiles.common.enable = true;
