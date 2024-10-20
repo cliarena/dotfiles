@@ -6,8 +6,8 @@ let
   inherit (inputs) home-manager;
 
   mode = "Alt";
-  # resolution = "3840x2160";
-  resolution = "2560x1440";
+  resolution = "3840x2160";
+  # resolution = "2560x1440";
   terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
 
   tags = builtins.genList (x: x) 9;
