@@ -22,7 +22,7 @@ in {
   spaces.x.enable = true;
 
   _sshd.enable = true;
-  _wolf.enable = true;
+  _wolf.enable = false;
 
   environment.systemPackages = with pkgs;
     [
