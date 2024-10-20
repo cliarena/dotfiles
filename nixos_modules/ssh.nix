@@ -24,7 +24,7 @@ in {
           };
           svr = {
             host = "SVR";
-            hostname = "10.10.0.10";
+            hostname = "10.10.2.1";
             user = "svr";
             port = 6523;
             identityFile = config.sops.secrets.SVR_SSH_KEY.path;
