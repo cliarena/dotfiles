@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }:
+{ config, lib, inputs,pkgs, ... }:
 let
   module = "x";
   description = "x space";
@@ -68,7 +68,7 @@ in {
         }
       ];
 
-      specialArgs = { inherit inputs host; };
+      specialArgs = { inherit inputs host pkgs; };
       interfaces = [ "mv-qub0" ];
       restartIfChanged = false;
       autoStart = true;
