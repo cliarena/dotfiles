@@ -26,6 +26,7 @@ in {
             (defalias
               ext  (layer-toggle extend) ;; Bind 'ext' to the Extend Layer
               sym  (layer-switch symbols) ;; Bind 'sym' to Symbols Layer
+              dh  (layer-switch colemak-dh) ;; Bind 'sym' to Symbols Layer
             )
 
             (defalias
@@ -70,7 +71,7 @@ in {
             (deflayer symbols
               _   _    _    _    _    _    _    _    _    _    _    _    _           _    _    _
               _   _    _    _    _    _    _    _    _    _    _    _    _    _      _    _    _    _    _    _    _
-             @sym S-1  S-2  S-3  S-4  S-5  =    7    8    9    +    «    »    _      _    _    _    _    _    _    _
+             @dh  S-1  S-2  S-3  S-4  S-5  =    7    8    9    +    «    »    _      _    _    _    _    _    _    _
              @ext \_   [    {    \(   S-6  *    4    5    6    0    -    _                          _    _    _
               _   #    ]    }    \)   S-7  `    1    2    3    _    /    _               _          _    _    _    _
               _    _    _                _                _    _    _    _          _    _    _     _    _
