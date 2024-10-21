@@ -25,7 +25,7 @@ in {
           config = ''
             (defalias
               ext  (layer-toggle extend) ;; Bind 'ext' to the Extend Layer
-              sym  (layer-toggle symbols) ;; Bind 'sym' to Symbols Layer
+              sym  (layer-switch symbols) ;; Bind 'sym' to Symbols Layer
             )
 
             (defalias
