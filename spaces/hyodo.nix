@@ -1,28 +1,11 @@
 { config, lib, inputs,pkgs, ... }:
 let
-  module = "x";
-  description = "x space";
+  module = "hyodo";
+  description = "hyodo space";
   inherit (lib) mkEnableOption mkIf;
 
-  host = rec {
-    user = "x";
-    hostAddress = "10.10.2.1";
-    localAddress = "10.10.2.100";
-    wan_ips = [ "${localAddress}/24" ];
-    wan_gateway = [ hostAddress ];
-    is_dns_server = false; # for testing hashi_stack
-    dns_server = wan_gateway;
-    dns_extra_hosts = "";
-    ssh_authorized_keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDODhAGCpRb2xFiBi9tMOtegTWaze+gmYtQkaUWRqF/u dev_space"
-    ];
-    ports = {
-      dns = 53;
-      ssh = 22;
-    };
-    # open the least amount possible
-    tcp_ports = with ports; [ dns ssh 8080 ];
-    udp_ports = with ports; [ dns ];
+  host =  {
+    user = "hyodo";
   };
 
   ENV_VARS = {
@@ -47,13 +30,9 @@ in {
           hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
           isReadOnly = false;
         };
-        "/srv" = { # needed for sops
-          hostPath = "/srv";
+        "/home/${host.user}/space" = {
+          hostPath = "/srv/spaces";
           isReadOnly = false;
-        };
-        "/var/lib/acme" = { # needed for terraform certs consul_config_entry
-          hostPath = "/var/lib/acme";
-          isReadOnly = true;
         };
       };
 
@@ -69,7 +48,6 @@ in {
       ];
 
       specialArgs = { inherit inputs host pkgs; };
-      interfaces = [ "mv-qub0" ];
       restartIfChanged = false;
       autoStart = true;
       ephemeral = true;
@@ -79,19 +57,18 @@ in {
         environment.sessionVariables = ENV_VARS;
         environment.variables = ENV_VARS;
 
-        services.getty.autologinUser = "x";
+        services.getty.autologinUser = host.user;
 
-        imports = [
-          # ../modules/boot/amd.nix
-          # ../modules/hardware/amd.nix
-          ../modules/netwoking/container-network.nix
-        ] ++ lib.fileset.toList ../profiles;
+        imports = lib.fileset.toList ../profiles;
 
         profiles.common.enable = true;
         profiles.desktop.enable = true;
 
         _sshd.enable = true;
         _taskwarrior.enable = true;
+
+        _gaming.enable = true;
+        _ankama.enable = true;
       };
     };
   };
