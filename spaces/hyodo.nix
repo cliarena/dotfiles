@@ -6,6 +6,7 @@ let
 
   host =  {
     user = "hyodo";
+    ssh_authorized_keys = [];
   };
 
   ENV_VARS = {
