@@ -18,7 +18,7 @@ let
     ];
     ports = {
       dns = 53;
-      ssh = 22;
+      ssh = 10001;
     };
     # open the least amount possible
     tcp_ports = with ports; [ dns ssh 8080 ];
@@ -68,11 +68,13 @@ in {
         }
       ];
 
-      specialArgs = { inherit inputs host pkgs; };
-      interfaces = [ "mv-qub0" ];
       restartIfChanged = false;
       autoStart = true;
       ephemeral = true;
+
+      forwardPorts = [{hostPort = host.ports.ssh;}];
+
+      specialArgs = { inherit inputs host pkgs; };
 
       config = { ... }: {
 
@@ -81,11 +83,7 @@ in {
 
         services.getty.autologinUser = "x";
 
-        imports = [
-          # ../modules/boot/amd.nix
-          # ../modules/hardware/amd.nix
-          ../modules/netwoking/container-network.nix
-        ] ++ lib.fileset.toList ../profiles;
+        imports = lib.fileset.toList ../profiles;
 
         profiles.common.enable = true;
         profiles.desktop.enable = true;

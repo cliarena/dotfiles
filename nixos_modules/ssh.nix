@@ -29,11 +29,11 @@ in {
             port = 6523;
             identityFile = config.sops.secrets.SVR_SSH_KEY.path;
           };
-          dev-space = {
+          space-x = {
             host = "DS";
-            hostname = "10.10.2.100";
+            hostname = "10.10.2.1";
             user = "x";
-            port = 22;
+            port = 10001;
             identityFile = config.sops.secrets.DS_SSH_KEY.path;
           };
           gitlab = {
