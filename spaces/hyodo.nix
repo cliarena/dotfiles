@@ -65,9 +65,6 @@ in {
         profiles.common.enable = true;
         profiles.desktop.enable = true;
 
-        _sshd.enable = true;
-        _taskwarrior.enable = true;
-
         _gaming.enable = true;
         _ankama.enable = true;
       };
