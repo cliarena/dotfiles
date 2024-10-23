@@ -33,7 +33,7 @@ in {
         {
           key = "<leader>tp";
           action =
-            "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu -e devenv up<cr>";
+            "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu -e 'devenv up'<cr>";
           options = { desc = "Processes"; };
         }
         ############   LSP   ############
