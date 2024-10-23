@@ -20,6 +20,7 @@ in {
   # profiles.desk_streaming.enable = true;
 
   spaces.x.enable = true;
+  spaces.hyodo.enable = true;
 
   _sshd.enable = true;
   _wolf.enable = true;
