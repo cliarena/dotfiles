@@ -22,7 +22,7 @@ in {
     _marks.enable = true;
     _spider.enable = true;
 
-    _auto_cmds.enable = false;
+    _auto_cmds.enable = true;
     _auto_save.enable = true;
     _lastplace.enable = true;
 
