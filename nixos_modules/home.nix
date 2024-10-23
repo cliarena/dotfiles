@@ -16,7 +16,7 @@ in {
     home-manager.users.${host.user} = {
       home = {
         stateVersion = "22.11";
-        username = "x";
+        username = host.user;
         homeDirectory = "/home/${host.user}";
       };
       programs.home-manager.enable = true;
