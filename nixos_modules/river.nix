@@ -9,7 +9,7 @@ let
   # resolution = "3840x2160";
   # resolution = "2560x1440";
   resolution = "1920x1080";
-  menu = "${pkgs.bemenu}/bin/bemenu";
+  menu = "${pkgs.bemenu}/bin/bemenu-run";
   terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
 
   tags = builtins.genList (x: x) 9;
