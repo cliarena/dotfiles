@@ -31,6 +31,8 @@ in {
 
       kitty
 
+      moonlight-qt
+
       ### Tools ###
       file # shows types of files needed by yazi
       poppler # PDF rendering lib needed by yazi
