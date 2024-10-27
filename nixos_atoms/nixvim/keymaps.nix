@@ -36,6 +36,12 @@ in {
             "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu -e 'devenv up'<cr>";
           options = { desc = "Processes"; };
         }
+
+        {
+          key = "<leader>ta";
+          action = "<cmd>ASToggle<cr>";
+          options = { desc = "Auto Save"; };
+        }
         ############   LSP   ############
         {
           key = "<leader>lf";
