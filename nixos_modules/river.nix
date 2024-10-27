@@ -9,6 +9,7 @@ let
   # resolution = "3840x2160";
   # resolution = "2560x1440";
   resolution = "1920x1080";
+  menu = "${pkgs.menu}/bin/menu";
   terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
 
   tags = builtins.genList (x: x) 9;
@@ -45,6 +46,7 @@ in {
               "${mode} F" = "toggle-fullscreen";
               "${mode} F11" = "enter-mode passthrough";
 
+              "${mode} R" = "spawn ${menu}";
               "${mode} Return" = "spawn ${terminal}";
               "${mode} D" = "spawn ankama-launcher";
             } // tag_map;

@@ -31,6 +31,7 @@ in {
 
       kitty
 
+      bemenu
       moonlight-qt
 
       ### Tools ###
