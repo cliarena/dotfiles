@@ -15,4 +15,5 @@
   };
   # Native Wayland support for GPU acceleration
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.variables.LIBVA_DRIVER_NAME = "i915";
 }

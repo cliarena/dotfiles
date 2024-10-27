@@ -3,10 +3,11 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [ "video=1920x1080" ];
+
+    initrd.kernelModules = [ "i915" ];
     initrd.availableKernelModules = [ "xhci_pci" "usbhid" "uas" "usb_storage" ];
-    kernel.sysctl = {
-      "vm.swappiness" = 10;
-    };
+
+    kernel.sysctl = { "vm.swappiness" = 10; };
 
     loader = {
       timeout = 1;
