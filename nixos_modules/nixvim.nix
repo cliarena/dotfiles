@@ -36,7 +36,7 @@ in {
     _trouble.enable = true;
     _neotest.enable = true;
     _neogit.enable = true;
-    _neorg.enable = true;
+    _neorg.enable = false;
     _twilight.enable = true;
 
     _inc_rename.enable = true;
