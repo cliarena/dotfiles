@@ -20,6 +20,8 @@ in {
       mpv
       youtube-tui
 
+      kdePackages.kcachegrind
+
       jqp # # jq playground
       htmlq # # jq fo html
       httpie
