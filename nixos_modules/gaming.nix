@@ -10,6 +10,7 @@ in {
   config = mkIf config.${module}.enable {
 
     programs.steam.enable = true;
+    hardware.steam-hardware.enable = true;
     programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
       wineWowPackages.waylandFull # needed to run any emulated game
