@@ -18,6 +18,7 @@ in {
       protonplus # Wine and Proton-based compatibility tools manager
       cartridges # GTK4 game launcher
       mangohud # Performance overlay
+      linuxConsoleTools # testing joysticks & controllers
     ];
 
   };
