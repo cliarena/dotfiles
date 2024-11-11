@@ -1,4 +1,4 @@
-{ config, lib, inputs,pkgs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 let
   module = "x";
   description = "x space";
@@ -43,6 +43,10 @@ in {
           hostPath = "/tmp";
           isReadOnly = false;
         };
+        "/nix" = {
+          hostPath = "/nix";
+          isReadOnly = false;
+        };
         "${ENV_VARS.WOLF_RENDER_NODE}" = {
           hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
           isReadOnly = false;
@@ -72,7 +76,7 @@ in {
       autoStart = true;
       ephemeral = true;
 
-      forwardPorts = [{hostPort = host.ports.ssh;}];
+      forwardPorts = [{ hostPort = host.ports.ssh; }];
 
       specialArgs = { inherit inputs host pkgs; };
 
