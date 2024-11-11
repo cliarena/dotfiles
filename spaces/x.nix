@@ -45,7 +45,7 @@ in {
         };
         "/nix" = {
           hostPath = "/nix";
-          isReadOnly = false;
+          isReadOnly = true;
         };
         "${ENV_VARS.WOLF_RENDER_NODE}" = {
           hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
