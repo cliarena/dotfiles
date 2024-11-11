@@ -12,8 +12,8 @@ in {
     system.stateVersion = "22.11";
     nix = {
       # Constrain access to nix daemon
-      settings.allowed-users = [ "@wheel" "x" "hydra" "hydra-www" ];
-      settings.trusted-users = [ "@wheel" "x" "hydra" "hydra-www" ];
+      settings.allowed-users = [ "@wheel" "hydra" "hydra-www" ];
+      settings.trusted-users = [ "@wheel" "hydra" "hydra-www" ];
       settings.allowed-uris = [
         "github:"
         "https://github.com/"
