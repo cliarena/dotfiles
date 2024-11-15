@@ -19,7 +19,7 @@ in {
         "video"
         "sound"
       ];
-      # shell = pkgs.nushell;
+      shell = pkgs.nushell;
       openssh.authorizedKeys.keys = host.ssh_authorized_keys;
     };
     # Use sudo with no password
