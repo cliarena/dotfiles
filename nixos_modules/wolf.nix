@@ -13,6 +13,7 @@ in {
 
     environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
     systemd.services.wolf = {
+      enable = false;
       # path = [ inputs.wolf.packages.x86_64-linux.default ];
       description = "stream desktops containers";
       # environment = { VAULT_ADDR = "https://vault.cliarena.com:8200"; };
