@@ -13,7 +13,7 @@ in {
 
     environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
     systemd.services.wolf = {
-      # enable = false;
+      enable = false;
       description = "stream desktop containers";
       environment = {
         WOLF_CFG_FILE = "/srv/wolf/cfg/config.toml";
