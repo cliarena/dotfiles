@@ -1727,11 +1727,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717150705,
-        "narHash": "sha256-Rk7OJ8zxQnUGiI5D1PciPRrBQTrgxF2mvTEQHUAq1SQ=",
+        "lastModified": 1732129278,
+        "narHash": "sha256-KvZMht9Awbumv7FvWcmc+8nhdWKQqYT7apcgJYcwzbM=",
         "owner": "clxarena",
         "repo": "wolf",
-        "rev": "c0cdf44e1a0d2f440c868d011630844688a9f341",
+        "rev": "cd4df2b578090267385f7d31345585dd02f7ebb8",
         "type": "gitlab"
       },
       "original": {
