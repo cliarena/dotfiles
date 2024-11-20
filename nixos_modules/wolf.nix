@@ -13,10 +13,14 @@ in {
 
     environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
     systemd.services.wolf = {
-      enable = false;
-      # path = [ inputs.wolf.packages.x86_64-linux.default ];
-      description = "stream desktops containers";
-      # environment = { VAULT_ADDR = "https://vault.cliarena.com:8200"; };
+      # enable = false;
+      description = "stream desktop containers";
+      environment = {
+        WOLF_CFG_FILE = "/srv/wolf/cfg/config.toml";
+        WOLF_PRIVATE_KEY_FILE = "/srv/wolf/cfg/key.pem";
+        WOLF_PRIVATE_CERT_FILE = "/srv/wolf/cfg/cert.pem";
+        HOST_APPS_STATE_FOLDER = "/srv/wolf/state";
+      };
       script = wolf_bin;
       serviceConfig = {
         Restart = "on-failure";
