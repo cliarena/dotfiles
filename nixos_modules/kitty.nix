@@ -22,7 +22,7 @@ in {
         };
         # theme = "Catppuccin-Mocha";
         settings = {
-          shell = pkgs.nushell;
+          shell = "${pkgs.nushell}/bin/nu";
           adjust_line_height = "120%";
           tab_bar_style = "powerline";
           tab_powerline_style = "round";
