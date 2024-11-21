@@ -81,6 +81,7 @@ in {
             $env.config = {
               show_banner: false,
               edit_mode: vi,
+              shell_integration = true
             }
           '';
           envFile.text = ''
