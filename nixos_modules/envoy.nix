@@ -27,7 +27,7 @@ in {
 
   config = mkIf config.${module}.enable {
     services.envoy = {
-      package = envoy_nixpkgs.envoy;
+      # package = envoy_nixpkgs.envoy;
       enable = true;
     };
   };
