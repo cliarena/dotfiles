@@ -14,7 +14,7 @@ in {
 
     sops = {
       defaultSopsFile = ../secrets/default.yaml;
-      age.keyFile = /srv/secrets/SOPS_AGE_KEY;
+       age.keyFile = "/srv/secrets/SOPS_AGE_KEY";
       age.sshKeyPaths =
         pkgs.lib.mkForce [ ]; # Must set to empty list for age heyfile to work
       gnupg.sshKeyPaths =

@@ -17,7 +17,7 @@ in {
         imports = [ sops-nix.homeManagerModules.sops ];
         sops = {
           defaultSopsFile = ../secrets/${host.user}.yaml;
-          age.keyFile = /srv/secrets/SOPS_AGE_KEY;
+          age.keyFile = "/srv/secrets/SOPS_AGE_KEY";
 
           # Must set to empty list for age keyfile to work
           age.sshKeyPaths = mkForce [ ];
