@@ -20,7 +20,7 @@ in {
           name = "JetBrainsMono nerd font";
           size = 9;
         };
-        # theme = "Catppuccin-Mocha";
+        themeFile = "Catppuccin-Mocha";
         settings = {
           shell = "${pkgs.nushell}/bin/nu";
           adjust_line_height = "120%";
