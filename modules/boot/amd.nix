@@ -1,6 +1,12 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
 
   boot = {
+    blacklistedKernelModules = [
+      "k10temp" # conflicts with zenpower
+    ];
+    extraModulePackages = [
+      config.boot.kernelPackages.zenpower # add zenpower
+    ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [ "video=1920x1080" ];
     initrd = {
@@ -18,6 +24,7 @@
       "xt_mark"
       "xt_comment"
       "xt_multiport"
+      "zenpower" # provide cpu power usage
     ];
     kernel.sysctl = {
       "vm.swappiness" = 10;
