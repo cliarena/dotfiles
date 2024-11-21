@@ -94,6 +94,7 @@ in {
     };
     services.vmagent = {
       enable = true;
+      remoteWrite.url = "http://127.0.0.1:8428/api/v1/write";
       prometheusConfig = {
         scrape_configs = [
           # Never use "localhost" to avoid dns lookup latency
