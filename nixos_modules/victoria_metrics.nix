@@ -62,7 +62,6 @@ in {
       nextcloud.enable = false;
 
       ### Object Storage ###
-      minio.enable = false;
 
       ### DB ###
       sql.enable = false; # custom SQL queries
@@ -91,7 +90,7 @@ in {
       enable = true;
       # extraOptions = [ "-storageDataPath=/srv/victoriametrics" ];
       listenAddress = ":8428";
-      retentionPeriod = 36;
+      retentionPeriod = "6"; # 6 months
     };
     services.vmagent = {
       enable = true;
