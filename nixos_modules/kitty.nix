@@ -1,4 +1,4 @@
-{ config, lib, inputs, host, ... }:
+{ config, lib, pkgs, inputs, host, ... }:
 let
   module = "_kitty";
   description = "gpu based terminal";
@@ -20,13 +20,14 @@ in {
           name = "JetBrainsMono nerd font";
           size = 9;
         };
-        theme = "Catppuccin-Mocha";
-        extraConfig = ''
-          adjust_line_height 120%
-          tab_bar_style powerline
-          tab_powerline_style round
-          wayland_titlebar_color background
-        '';
+        # theme = "Catppuccin-Mocha";
+        settings = {
+          shell = pkgs.nushell;
+          adjust_line_height = "120%";
+          tab_bar_style = "powerline";
+          tab_powerline_style = "round";
+          wayland_titlebar_color = "background";
+        };
       };
     };
   };
