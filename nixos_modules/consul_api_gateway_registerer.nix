@@ -32,7 +32,7 @@ in {
       path = [ pkgs.getent pkgs.envoy ];
       description = "register consul api gateways";
       script = ''
-        ${pkgs.consul}/bin/consul connect envoy -gateway api -register -service cliarena-gateway
+        ${pkgs.consul}/bin/consul connect envoy -gateway api -register -service cliarena-gateway -ignore-envoy-compatibility
       '';
       serviceConfig = {
         Restart = "on-failure";
