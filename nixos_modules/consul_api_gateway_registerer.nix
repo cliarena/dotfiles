@@ -29,7 +29,7 @@ in {
 
   config = mkIf config.${module}.enable {
     systemd.services.consul_api_gateway_registerer = {
-      path = [ pkgs.getent envoy_nixpkgs.envoy ];
+      path = [ pkgs.getent pkgs.envoy ];
       description = "register consul api gateways";
       script = ''
         ${pkgs.consul}/bin/consul connect envoy -gateway api -register -service cliarena-gateway
