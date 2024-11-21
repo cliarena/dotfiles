@@ -35,6 +35,6 @@ in {
     _powerdns.enable = true;
     _cloudflare_dyndns.enable = true;
 
-    _victoria_metrics.enable = false;
+    _victoria_metrics.enable = true;
   };
 }
