@@ -6,6 +6,7 @@
     ];
     extraModulePackages = [
       config.boot.kernelPackages.zenpower # add zenpower
+      config.boot.kernelPackages.zenergy # add zenergy
     ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [ "video=1920x1080" ];
@@ -25,7 +26,7 @@
       "xt_comment"
       "xt_multiport"
       "zenpower" # provide cpu power usage
-      "amd_energy" # provide cpu power usage
+      "zenergy" # provide cpu power usage
     ];
     kernel.sysctl = {
       "vm.swappiness" = 10;
