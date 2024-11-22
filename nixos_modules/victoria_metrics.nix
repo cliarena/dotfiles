@@ -9,6 +9,11 @@ in {
 
   config = mkIf config.${module}.enable {
 
+    # system.activationScripts = {
+    #   scaphandre.text =
+    #     "chown -R scaphandre-exporter /sys/devices/virtual/powercap";
+    # };
+
     services.prometheus.exporters = {
 
       ### Linux processes ###
