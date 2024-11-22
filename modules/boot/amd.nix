@@ -25,6 +25,7 @@
       "xt_comment"
       "xt_multiport"
       "zenpower" # provide cpu power usage
+      "amd_energy" # provide cpu power usage
     ];
     kernel.sysctl = {
       "vm.swappiness" = 10;
