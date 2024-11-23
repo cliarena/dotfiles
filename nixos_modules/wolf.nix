@@ -20,6 +20,11 @@ in {
         WOLF_PRIVATE_KEY_FILE = "/srv/wolf/cfg/key.pem";
         WOLF_PRIVATE_CERT_FILE = "/srv/wolf/cfg/cert.pem";
         HOST_APPS_STATE_FOLDER = "/srv/wolf/state";
+
+        # For Debuging
+        GST_DEBUG = 4;
+        WOLF_LOG_LEVEL = "DEBUG";
+        RUST_LOG = "DEBUG";
       };
       script = wolf_bin;
       serviceConfig = {
