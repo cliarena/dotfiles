@@ -22,7 +22,7 @@ in {
         HOST_APPS_STATE_FOLDER = "/srv/wolf/state";
 
         # For Debuging
-        GST_DEBUG = 4;
+        GST_DEBUG = "4";
         WOLF_LOG_LEVEL = "DEBUG";
         RUST_LOG = "DEBUG";
       };
