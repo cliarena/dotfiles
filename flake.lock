@@ -1871,11 +1871,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732347301,
-        "narHash": "sha256-DLQnYh9YnnpbWsrRGocjugRHLjyzFxAyZnhnGJs7KaQ=",
+        "lastModified": 1732357207,
+        "narHash": "sha256-UJpD/qMVLY5d4ex20YKb8/PkaZ+FAcR23RR0pRoF3eA=",
         "owner": "games-on-whales",
         "repo": "wolf",
-        "rev": "ce37969e24185fafef2a01d96ff2ab9083e4c958",
+        "rev": "74f4b8b99cc82d18da348c3a4f4200fb0d38f543",
         "type": "github"
       },
       "original": {
