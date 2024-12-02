@@ -52,6 +52,9 @@
 
     kmonad.url = "github:kmonad/kmonad?dir=nix";
 
+    zig-overlay = { url = "github:mitchellh/zig-overlay"; };
+    zls-overlay.url = "github:zigtools/zls";
+
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
@@ -64,8 +67,15 @@
     let forAllSystems = import ./helpers/forAllSystems.nix;
 
     in flakelight ./. {
-
       inherit inputs;
+
+      withOverlays = [
+        (final: prev: {
+          zig = inputs.zig-overlay.packages.${prev.system}.master;
+          zls = inputs.zls-overlay.packages.${prev.system}.default;
+        })
+      ];
+
       nixDir = ./.;
       nixDirAliases = {
         nixosConfigurations = [ "hosts" ];
