@@ -7,10 +7,12 @@ let
   name = "ankama-launcher";
   src = builtins.fetchurl {
     # url = "https://download.ankama.com/launcher/full/linux/x64";
+    # "https://launcher.cdn.ankama.com/installers/production/Ankama+Launcher-Setup-x86_64.AppImage";
     url =
-      "https://launcher.cdn.ankama.com/installers/production/Ankama+Launcher-Setup-x86_64.AppImage";
-    sha256 =
-      "00mag1kjvqcxhs50fwvjyw5wvrkn8lagbr1lzkqg8rgac1qzb6p3"; # Change for the sha256 you get after running nix-prefetch-url https://download.ankama.com/launcher/full/linux/x64
+      "https://launcher.cdn.ankama.com/installers/production/Dofus_3.0-x86_64.AppImage";
+    # To get sha256: nix-prefetch-url <url>
+    sha256 = "16vyw20sq632nshm4fj11mv7qx6k6nwbjk9hbkcmiq1m45i1r766";
+    # "00mag1kjvqcxhs50fwvjyw5wvrkn8lagbr1lzkqg8rgac1qzb6p3";
     name = "ankama-launcher.AppImage";
   };
 
