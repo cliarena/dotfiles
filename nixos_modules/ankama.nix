@@ -11,7 +11,7 @@ let
     # Old
     url =
       "https://launcher.cdn.ankama.com/installers/production/Ankama+Launcher-Setup-x86_64.AppImage";
-    sha256 = "00mag1kjvqcxhs50fwvjyw5wvrkn8lagbr1lzkqg8rgac1qzb6p3";
+    sha256 = "0918hk2kpf1c60bs4sln626nsjlpvpri2clqafbc2zacmkz9xyib";
 
     # To get sha256: nix-prefetch-url <url>
     # url = "https://launcher.cdn.ankama.com/installers/production/Dofus_3.0-x86_64.AppImage";
