@@ -4,9 +4,9 @@ let
   description = "ankama launcher";
   inherit (lib) mkEnableOption mkIf;
 
-  name = "ankama-launcher";
+  name = "ankama_launcher";
   src = builtins.fetchurl {
-    name = "ankama-launcher.AppImage";
+    name = "ankama_launcher.AppImage";
 
     # Old
     url =
