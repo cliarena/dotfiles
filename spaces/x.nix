@@ -94,6 +94,8 @@ in {
 
         _sshd.enable = true;
         _taskwarrior.enable = true;
+
+        _tracing_pkgs.enable = true;
       };
     };
   };
