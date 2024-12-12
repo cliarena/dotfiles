@@ -37,6 +37,7 @@ in {
   config = mkIf config.spaces.${module}.enable {
 
     containers."space-${module}" = {
+      additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
       bindMounts = {
         "/tmp" = {
