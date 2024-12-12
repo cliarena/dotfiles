@@ -4,7 +4,8 @@ let
   description = "ankama launcher";
   inherit (lib) mkEnableOption mkIf;
 
-  name = "ankama_launcher";
+  pname = "ankama_launcher";
+  version = "3.0.0";
   src = builtins.fetchurl {
     name = "ankama_launcher.AppImage";
 
@@ -18,7 +19,8 @@ let
     # sha256 = "16vyw20sq632nshm4fj11mv7qx6k6nwbjk9hbkcmiq1m45i1r766";
   };
 
-  appimageContents = pkgs.appimageTools.extractType2 { inherit name src; };
+  appimageContents =
+    pkgs.appimageTools.extractType2 { inherit pname version src; };
 in {
 
   options.${module}.enable = mkEnableOption description;
@@ -27,7 +29,7 @@ in {
     environment.systemPackages = with pkgs;
       [
         (appimageTools.wrapType2 {
-          inherit name src;
+          inherit pname version src;
 
           extraInstallCommands = ''
             install -m 444 -D ${appimageContents}/zaap.desktop $out/share/applications/ankama-launcher.desktop

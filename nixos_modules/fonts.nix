@@ -9,7 +9,10 @@ in {
 
     fonts.packages = with pkgs; [
       ../nixos_atoms/fonts
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+      # (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+
     ];
   };
 
