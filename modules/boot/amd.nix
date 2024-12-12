@@ -9,7 +9,7 @@
       # config.boot.kernelPackages.zenergy # add zenergy
     ];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [ "video=1920x1080" ];
+    kernelParams = [ "video=1920x1080" "transparent_hugepage=always" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "usbhid" "uas" "usb_storage" ];
       kernelModules = [ "amdgpu" ];
