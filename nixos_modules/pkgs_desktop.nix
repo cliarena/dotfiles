@@ -50,7 +50,7 @@ in {
       pavucontrol
       pulseaudio
       obs-studio
-      blender
+      blender-hip # use hip to get gpu acceleration
       taskwarrior-tui
       timewarrior
       python3 # needed by taskwarrior & timewarrior

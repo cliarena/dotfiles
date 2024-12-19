@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  # Fix HIP for most packages
+  # Fix HIP for most packages for video acceleration
   systemd.tmpfiles.rules = let
     rocmEnv = pkgs.symlinkJoin {
       name = "rocm-combined";
