@@ -1,12 +1,12 @@
-{ config, lib, inputs,pkgs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 let
   module = "hyodo";
   description = "hyodo space";
   inherit (lib) mkEnableOption mkIf;
 
-  host =  {
+  host = {
     user = "hyodo";
-    ssh_authorized_keys = [];
+    ssh_authorized_keys = [ ];
   };
 
   ENV_VARS = {
@@ -27,10 +27,14 @@ in {
           hostPath = "/tmp";
           isReadOnly = false;
         };
-        "${ENV_VARS.WOLF_RENDER_NODE}" = {
-          hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
+        "/dev/dri" = {
+          hostPath = "/dev/dri";
           isReadOnly = false;
         };
+        # "${ENV_VARS.WOLF_RENDER_NODE}" = {
+        #   hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
+        #   isReadOnly = false;
+        # };
         "/home/${host.user}/space" = {
           hostPath = "/srv/spaces";
           isReadOnly = false;
@@ -45,6 +49,14 @@ in {
         {
           modifier = "rw";
           node = "/dev/dri/renderD128";
+        }
+        {
+          modifier = "rw";
+          node = "/dev/dri/card1";
+        }
+        {
+          modifier = "rw";
+          node = "/dev/dri/renderD129";
         }
       ];
 
