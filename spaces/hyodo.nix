@@ -27,6 +27,10 @@ in {
           hostPath = "/tmp";
           isReadOnly = false;
         };
+        "/opt" = {
+          hostPath = "/opt";
+          isReadOnly = false;
+        };
         "/dev/dri" = {
           hostPath = "/dev/dri";
           isReadOnly = false;
