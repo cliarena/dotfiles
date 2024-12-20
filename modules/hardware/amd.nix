@@ -11,7 +11,10 @@
   hardware = {
     uinput.enable = true;
     steam-hardware.enable = true;
-    cpu.amd.updateMicrocode = true; # Maybe it fixed TTY scale issue
+    cpu.amd = {
+      updateMicrocode = true; # Maybe it fixed TTY scale issue
+      ryzen-smu.enable = true; # undervorling & overclocking
+    };
     enableRedistributableFirmware = true; # to detect wireless interfaces
     amdgpu = {
       initrd.enable = true;
