@@ -40,8 +40,8 @@ in {
       additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
       bindMounts = {
-        "/nix" = {
-          hostPath = "/nix";
+        "/nix/store" = {
+          hostPath = "/nix/store";
           isReadOnly = false;
         };
         # "${ENV_VARS.WOLF_RENDER_NODE}" = {
