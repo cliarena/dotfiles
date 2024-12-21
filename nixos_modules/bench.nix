@@ -10,6 +10,10 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    environment.systemPackages = [ pkgs.phoronix-test-suite ];
+    environment.systemPackages = with pkgs; [
+      phoronix-test-suite
+      ryzen-monitor-ng
+      i2c-tools # memory timings
+    ];
   };
 }
