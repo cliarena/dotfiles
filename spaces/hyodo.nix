@@ -27,12 +27,12 @@ in {
           hostPath = "/tmp";
           isReadOnly = false;
         };
-        "/dev/kfd" = { # AMD rocm & hip: for blender gpu acceleration
-          hostPath = "/dev/kfd";
-          isReadOnly = false;
-        };
         "/dev/dri" = {
           hostPath = "/dev/dri";
+          isReadOnly = false;
+        };
+        "/dev/kfd" = { # AMD rocm & hip: for blender gpu acceleration
+          hostPath = "/dev/kfd";
           isReadOnly = false;
         };
         # "${ENV_VARS.WOLF_RENDER_NODE}" = {

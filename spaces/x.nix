@@ -40,16 +40,20 @@ in {
       additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
       bindMounts = {
-        "/tmp" = {
-          hostPath = "/tmp";
-          isReadOnly = false;
-        };
         "/nix" = {
           hostPath = "/nix";
           isReadOnly = false;
         };
-        "${ENV_VARS.WOLF_RENDER_NODE}" = {
-          hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
+        # "${ENV_VARS.WOLF_RENDER_NODE}" = {
+        #   hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
+        #   isReadOnly = false;
+        # };
+        "/dev/dri" = {
+          hostPath = "/dev/dri";
+          isReadOnly = false;
+        };
+        "/dev/kfd" = { # AMD rocm & hip: for blender gpu acceleration
+          hostPath = "/dev/kfd";
           isReadOnly = false;
         };
         "/srv" = { # needed for sops
@@ -59,6 +63,10 @@ in {
         "/var/lib/acme" = { # needed for terraform certs consul_config_entry
           hostPath = "/var/lib/acme";
           isReadOnly = true;
+        };
+        "/tmp" = {
+          hostPath = "/tmp";
+          isReadOnly = false;
         };
       };
 
