@@ -31,6 +31,10 @@ in {
           hostPath = "/opt";
           isReadOnly = false;
         };
+        "/dev/kfd" = { # AMD rocm & hip: for blender gpu acceleration
+          hostPath = "/dev/kfd";
+          isReadOnly = false;
+        };
         "/dev/dri" = {
           hostPath = "/dev/dri";
           isReadOnly = false;
