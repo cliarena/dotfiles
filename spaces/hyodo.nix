@@ -27,10 +27,6 @@ in {
           hostPath = "/tmp";
           isReadOnly = false;
         };
-        "/opt" = {
-          hostPath = "/opt";
-          isReadOnly = false;
-        };
         "/dev/kfd" = { # AMD rocm & hip: for blender gpu acceleration
           hostPath = "/dev/kfd";
           isReadOnly = false;
