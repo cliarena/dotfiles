@@ -25,9 +25,9 @@ in {
   _sshd.enable = true;
   _wolf.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    ### Virtualization ###
-    virtiofsd # needed by microvm jobs to use virtiofs shares
-    blender-hip # test hip video acceleration
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      ### Virtualization ###
+      virtiofsd # needed by microvm jobs to use virtiofs shares
+    ];
 }

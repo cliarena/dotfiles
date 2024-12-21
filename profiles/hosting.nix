@@ -35,6 +35,7 @@ in {
     _powerdns.enable = true;
     _cloudflare_dyndns.enable = true;
 
+    _bench.enable = true;
     _tracing_pkgs.enable = true;
     _victoria_metrics.enable = true;
   };
