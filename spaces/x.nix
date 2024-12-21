@@ -40,10 +40,10 @@ in {
       additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
       bindMounts = {
-        "/nix/store" = {
-          hostPath = "/nix/store";
-          isReadOnly = false;
-        };
+        # "/nix/store" = {
+        #   hostPath = "/nix/store";
+        #   isReadOnly = false;
+        # };
         # "${ENV_VARS.WOLF_RENDER_NODE}" = {
         #   hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
         #   isReadOnly = false;
