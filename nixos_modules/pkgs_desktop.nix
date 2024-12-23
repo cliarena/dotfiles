@@ -36,6 +36,10 @@ in {
       bemenu
       moonlight-qt
 
+      ### Design ###
+      gimp
+      blender-hip # use hip to get gpu acceleration
+
       ### Tools ###
       file # shows types of files needed by yazi
       poppler # PDF rendering lib needed by yazi
@@ -50,7 +54,6 @@ in {
       pavucontrol
       pulseaudio
       obs-studio
-      blender-hip # use hip to get gpu acceleration
       taskwarrior-tui
       timewarrior
       python3 # needed by taskwarrior & timewarrior
