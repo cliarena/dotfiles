@@ -38,6 +38,7 @@ in {
 
       ### Design ###
       gimp
+      inkscape
       blender-hip # use hip to get gpu acceleration
 
       ### Tools ###
