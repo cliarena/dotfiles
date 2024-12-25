@@ -25,13 +25,12 @@ in {
   _sshd.enable = true;
   _wolf.enable = true;
 
-  env.PYTORCH_ROCM_ARCH =
-    "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
-
   environment.systemPackages = with pkgs; [
     ### Virtualization ###
     virtiofsd # needed by microvm jobs to use virtiofs shares
     (opensplat.overrideAttrs (finalAttrs: previousAttrs: {
+      env.PYTORCH_ROCM_ARCH =
+        "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
       buildInputs = previousAttrs.buildInputs
         ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
       # [ python311Packages.torchWithRocm ];
