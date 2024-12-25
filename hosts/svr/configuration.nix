@@ -29,8 +29,8 @@ in {
     ### Virtualization ###
     virtiofsd # needed by microvm jobs to use virtiofs shares
     (opensplat.overrideAttrs (finalAttrs: previousAttrs: {
-      buildInputs = previousAttrs.buildInputs
-        ++ [ python311Packages.torchWithRocm ];
+      # buildInputs = previousAttrs.buildInputs
+      #   ++ [ python311Packages.torchWithRocm ];
       cmakeFlags = previousAttrs.cmakeFlags ++ [
         (lib.cmakeFeature "GPU_RUNTIME" "HIP")
         # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
