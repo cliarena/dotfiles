@@ -28,7 +28,13 @@ in {
   environment.systemPackages = with pkgs; [
     ### Virtualization ###
     virtiofsd # needed by microvm jobs to use virtiofs shares
-    opensplat
+    (opensplat.overrideAttrs (finalAttrs: previousAttrs: {
+      cmakeFlags = previousAttrs.cmakeFlags ++ [
+        (lib.cmakeFeature "GPU_RUNTIME" "HIP")
+        (lib.cmakeFeature "HIP_ROOT_DIR" "/opt/rocm")
+        (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
+      ];
+    }))
     colmap
   ];
 }
