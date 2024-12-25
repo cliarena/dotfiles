@@ -83,7 +83,10 @@
         # homeModules = [ "home_modules" ];
       };
 
-      nixpkgs.config = { allowUnfree = true; };
+      nixpkgs.config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [ "freeimage-unstable-2021-11-01" ];
+      };
 
       devShell = pkgs: {
         packages = with pkgs; [
