@@ -29,13 +29,14 @@ in {
     ### Virtualization ###
     virtiofsd # needed by microvm jobs to use virtiofs shares
     (opensplat.overrideAttrs (finalAttrs: previousAttrs: {
-      buildInputs = previousAttrs.buildInputs
-        ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
+      # buildInputs = previousAttrs.buildInputs
+      #   ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
       # [ python311Packages.torchWithRocm ];
       cmakeFlags = previousAttrs.cmakeFlags ++ [
         (lib.cmakeFeature "GPU_RUNTIME" "HIP")
         # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
         (lib.cmakeFeature "HIP_ROOT_DIR" "/opt/rocm")
+        (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
         (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
       ];
     }))
