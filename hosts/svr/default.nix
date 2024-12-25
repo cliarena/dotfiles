@@ -45,7 +45,10 @@ let
   system = "x86_64-linux";
   nixpkgs = {
     inherit system;
-    config.allowUnfree = true;
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [ "freeimage-unstable-2021-11-01" ];
+    };
   };
 
 in {
