@@ -17,6 +17,8 @@ let
       rocm-runtime
       hip-common
       llvm.compiler-rt
+      llvm.clang
+      llvm.clang-unwrapped
     ];
   };
 in {
