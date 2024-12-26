@@ -48,6 +48,7 @@ in {
         (lib.cmakeFeature "HIP_ROOT_DIR" "${rocmEnv}")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
         (lib.cmakeFeature "CMAKE_MODULE_PATH" "${rocmEnv}/lib/cmake/hip")
+        (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
         (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
       ];
     }))
