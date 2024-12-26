@@ -16,9 +16,15 @@ let
       rocm-cmake
       rocm-runtime
       hip-common
+      llvm.llvm
       llvm.compiler-rt
       llvm.clang
       llvm.clang-unwrapped
+      llvm.libunwind
+      llvm.libcxxabi
+      llvm.libcxx
+
+      clang-ocl
     ];
   };
 in {
