@@ -1,31 +1,32 @@
 { lib, inputs, pkgs, ... }:
 let
   inherit (inputs) disko black-hosts;
+  rocm_pkgs = with pkgs.rocmPackages; [
+    rocblas
+    hipblas
+    clr
+    hipcc
+    rocm-device-libs
+    rocm-comgr
+
+    # TODO: remove unneeded
+    rocm-core
+    rocm-cmake
+    rocm-runtime
+    hip-common
+    llvm.llvm
+    llvm.compiler-rt
+    llvm.clang
+    llvm.clang-unwrapped
+    llvm.libunwind
+    llvm.libcxxabi
+    llvm.libcxx
+
+    clang-ocl
+  ];
   rocmEnv = pkgs.symlinkJoin {
     name = "rocm-combined";
-    paths = with pkgs.rocmPackages; [
-      rocblas
-      hipblas
-      clr
-      hipcc
-      rocm-device-libs
-      rocm-comgr
-
-      # TODO: remove unneeded
-      rocm-core
-      rocm-cmake
-      rocm-runtime
-      hip-common
-      llvm.llvm
-      llvm.compiler-rt
-      llvm.clang
-      llvm.clang-unwrapped
-      llvm.libunwind
-      llvm.libcxxabi
-      llvm.libcxx
-
-      clang-ocl
-    ];
+    paths = rocm_pkgs;
   };
 in {
   imports = [
@@ -63,7 +64,7 @@ in {
       # env.PYTORCH_ROCM_ARCH =
       # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
 
-      # buildInputs = previousAttrs.buildInputs
+      buildInputs = previousAttrs.buildInputs ++ rocm_pkgs;
       # ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
       # [ python311Packages.torchWithRocm ];
 
@@ -77,7 +78,7 @@ in {
         # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocmEnv}/lib/cmake")
         (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocmEnv}/lib/cmake")
         (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
-        (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
+        # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
         # TODO: auto-detect
         (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx000;gfx1032;gfx90c")
         # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942")
