@@ -1,11 +1,5 @@
 { pkgs, ... }: {
   # Fix HIP for most packages for video acceleration
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-    };
-  in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
   environment.systemPackages = with pkgs; [ amdgpu_top ];
   nixpkgs.config.allowUnfree = true;
   security.rtkit.enable = true;

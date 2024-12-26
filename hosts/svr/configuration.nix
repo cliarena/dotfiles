@@ -1,5 +1,10 @@
 { lib, inputs, pkgs, ... }:
-let inherit (inputs) disko black-hosts;
+let
+  inherit (inputs) disko black-hosts;
+  rocmEnv = pkgs.symlinkJoin {
+    name = "rocm-combined";
+    paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
+  };
 in {
   imports = [
     disko.nixosModules.disko
@@ -25,19 +30,22 @@ in {
   _sshd.enable = true;
   _wolf.enable = true;
 
+  systemd.tmpfiles.rules =
+    [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+
   environment.systemPackages = with pkgs; [
     ### Virtualization ###
     virtiofsd # needed by microvm jobs to use virtiofs shares
     (opensplat.overrideAttrs (finalAttrs: previousAttrs: {
-      env.PYTORCH_ROCM_ARCH =
-        "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
-      buildInputs = previousAttrs.buildInputs
-        ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
+      # env.PYTORCH_ROCM_ARCH =
+      # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
+      # buildInputs = previousAttrs.buildInputs
+      # ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
       # [ python311Packages.torchWithRocm ];
       cmakeFlags = previousAttrs.cmakeFlags ++ [
         (lib.cmakeFeature "GPU_RUNTIME" "HIP")
         # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
-        # (lib.cmakeFeature "HIP_ROOT_DIR" "${rocmPackages.clr}")
+        (lib.cmakeFeature "HIP_ROOT_DIR" "${rocmEnv}")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH"
         #   "${rocmPackages.clr}/lib/cmake/hip")
