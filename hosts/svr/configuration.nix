@@ -13,6 +13,7 @@ let
 
       # TODO: remove unneeded
       rocm-core
+      rocm-cmake
       rocm-runtime
       hip-common
     ];
