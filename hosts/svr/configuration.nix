@@ -8,7 +8,12 @@ let
       hipblas
       clr
       hipcc
+
+      # TODO: remove unneeded
+      rocm-core
+      rocm-runtime
       rocm-device-libs
+      hip-common
     ];
   };
 in {
