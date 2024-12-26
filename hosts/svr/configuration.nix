@@ -8,12 +8,12 @@ let
       hipblas
       clr
       hipcc
+      rocm-device-libs
+      rocm-comgr
 
       # TODO: remove unneeded
       rocm-core
-      rocm-comgr
       rocm-runtime
-      rocm-device-libs
       hip-common
     ];
   };
@@ -60,7 +60,7 @@ in {
       cmakeFlags = previousAttrs.cmakeFlags ++ [
         (lib.cmakeFeature "GPU_RUNTIME" "HIP")
         # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
-        # (lib.cmakeFeature "HIP_ROOT_DIR" "${rocmEnv}")
+        (lib.cmakeFeature "HIP_ROOT_DIR" "${rocmEnv}")
         (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "${rocmEnv}/lib/cmake/hip")
