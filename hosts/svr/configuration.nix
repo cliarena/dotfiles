@@ -11,6 +11,7 @@ let
 
       # TODO: remove unneeded
       rocm-core
+      rocm-comgr
       rocm-runtime
       rocm-device-libs
       hip-common
