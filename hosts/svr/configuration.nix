@@ -3,7 +3,7 @@ let
   inherit (inputs) disko black-hosts;
   rocmEnv = pkgs.symlinkJoin {
     name = "rocm-combined";
-    paths = with pkgs.rocmPackages; [ rocblas hipblas clr hipcc llvm ];
+    paths = with pkgs.rocmPackages; [ rocblas hipblas clr hipcc ];
   };
 in {
   imports = [
