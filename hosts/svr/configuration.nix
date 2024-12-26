@@ -16,6 +16,7 @@ let
       rocm-cmake
       rocm-runtime
       hip-common
+      llvm.compiler-rt
     ];
   };
 in {
