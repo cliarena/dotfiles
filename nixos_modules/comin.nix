@@ -19,6 +19,7 @@ in {
         # auth.access_token_path = cfg.sops.secrets."gitlab/access_token".path;
         # No testing branch on this remote
         branches.testing.name = "";
+        poller.period = 5; # fetch ev x seconds
       }];
     };
   };
