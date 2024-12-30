@@ -76,8 +76,8 @@ in {
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "${rocmEnv}/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocmEnv}/lib/cmake")
-        (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocmEnv}/lib/cmake")
-        (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
+        # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocmEnv}/lib/cmake")
+        # (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
         # TODO: auto-detect
         (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx1032;gfx90c:xnack-")
