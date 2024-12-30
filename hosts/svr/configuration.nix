@@ -14,6 +14,7 @@ let
     rocm-cmake
     rocm-runtime
     hip-common
+    hipify
     llvm.llvm
     llvm.compiler-rt
     llvm.clang
