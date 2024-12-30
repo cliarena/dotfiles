@@ -55,7 +55,8 @@ in {
   _wolf.enable = true;
 
   systemd.tmpfiles.rules =
-    [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+    # [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+    [ "L+    /opt/rocm   -    svr    users     -    ${rocmEnv}" ];
 
   environment.systemPackages = with pkgs; [
     ### Virtualization ###
