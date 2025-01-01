@@ -100,6 +100,13 @@ in {
       # ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
       # [ python311Packages.torchWithRocm ];
 
+      preConfigure = ''
+        export ROCM_PATH=${rocm_toolkit}
+        export ROCM_SOURCE_DIR=${rocm_toolkit}
+        export PYTORCH_ROCM_ARCH="${gpuTargetString}"
+        export CMAKE_CXX_FLAGS="-I${rocm_toolkit}/include -I${rocm_toolkit}/include/rocblas"
+      '';
+
       cmakeFlags = previousAttrs.cmakeFlags ++ [
         (lib.cmakeFeature "GPU_RUNTIME" "HIP")
         # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
@@ -113,8 +120,8 @@ in {
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/bin")
         # TODO: auto-detect
-        (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "${gpuTargetString}")
-        (lib.cmakeFeature "ROCM_PATH" "${rocm_toolkit}")
+        # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "${gpuTargetString}")
+        # (lib.cmakeFeature "ROCM_PATH" "${rocm_toolkit}")
         # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx1032;gfx90c:xnack-")
         # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx000;gfx1032;gfx90c")
         # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942")
