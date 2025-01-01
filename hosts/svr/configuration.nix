@@ -27,7 +27,7 @@ let
     clang-ocl
 
     rccl
-    miopen
+    # miopen
     rocrand
     rocsparse
     hipsparse
