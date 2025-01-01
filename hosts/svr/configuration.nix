@@ -13,6 +13,7 @@ let
     rocm-core
     rocm-cmake
     rocm-runtime
+    rocminfo
     hip-common
     hipify
     llvm.llvm
