@@ -106,6 +106,7 @@ in {
         export PYTORCH_ROCM_ARCH="${gpuTargetString}"
         export CMAKE_CXX_FLAGS="-I${rocm_toolkit}/include -I${rocm_toolkit}/include/rocblas"
       '';
+      dontUseCmakeConfigure = true;
 
       cmakeFlags = previousAttrs.cmakeFlags ++ [
         (lib.cmakeFeature "GPU_RUNTIME" "HIP")
