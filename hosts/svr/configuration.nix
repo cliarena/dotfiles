@@ -95,8 +95,10 @@ in {
       # env.PYTORCH_ROCM_ARCH =
       # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
 
-      buildInputs = previousAttrs.buildInputs ++ [ rocm_toolkit ];
-      nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [ rocm_toolkit ];
+      buildInputs = previousAttrs.buildInputs
+        ++ [ rocm_toolkit python313Packages.torchWithRocm ];
+      nativeBuildInputs = previousAttrs.nativeBuildInputs
+        ++ [ rocm_toolkit python313Packages.torchWithRocm ];
       # ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
       # [ python311Packages.torchWithRocm ];
 
