@@ -25,6 +25,23 @@ let
     llvm.libcxx
 
     clang-ocl
+
+    rccl
+    miopen
+    miopengemm
+    rocrand
+    rocsparse
+    hipsparse
+    rocthrust
+    rocprim
+    hipcub
+    roctracer
+    rocfft
+    rocsolver
+    hipfft
+    hipsolver
+    rocm-thunk
+    clr.icd
   ];
   rocmEnv = pkgs.symlinkJoin {
     name = "rocm-combined";
