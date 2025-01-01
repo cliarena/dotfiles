@@ -36,6 +36,8 @@ let
     llvm.libcxx
     llvm.rocmClangStdenv
 
+    pkgs.libtorch-bin
+
     clang-ocl
 
     rccl
