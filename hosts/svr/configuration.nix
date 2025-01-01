@@ -42,9 +42,11 @@ let
     rocm-thunk
     clr.icd
   ];
-  rocmEnv = pkgs.symlinkJoin {
+  rocm_toolkit = pkgs.symlinkJoin {
     name = "rocm-combined";
     paths = rocm_pkgs;
+    # Fix `setuptools` not being found
+    postBuild = "rm -rf $out/nix-support";
   };
 in {
   imports = [
@@ -72,7 +74,7 @@ in {
   _wolf.enable = true;
 
   systemd.tmpfiles.rules =
-    [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+    [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];
 
   environment.systemPackages = with pkgs; [
     ### Virtualization ###
@@ -82,7 +84,8 @@ in {
       # env.PYTORCH_ROCM_ARCH =
       # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
 
-      buildInputs = previousAttrs.buildInputs ++ rocm_pkgs;
+      buildInputs = previousAttrs.buildInputs ++ rocm_toolkit;
+      nativeBuildInputs = previousAttrs.nativeBuildInputs ++ rocm_toolkit;
       # ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
       # [ python311Packages.torchWithRocm ];
 
@@ -94,7 +97,7 @@ in {
         (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "${rocmEnv}/lib/cmake/hip")
-        (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocmEnv}/lib/cmake")
+        (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocm_toolkit}/lib/cmake")
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/bin")
