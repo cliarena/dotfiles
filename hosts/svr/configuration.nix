@@ -34,6 +34,7 @@ let
     llvm.libunwind
     llvm.libcxxabi
     llvm.libcxx
+    llvm.rocmClangStdenv
 
     clang-ocl
 
