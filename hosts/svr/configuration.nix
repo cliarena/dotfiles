@@ -28,7 +28,6 @@ let
 
     rccl
     miopen
-    miopengemm
     rocrand
     rocsparse
     hipsparse
