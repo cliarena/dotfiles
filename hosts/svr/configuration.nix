@@ -11,7 +11,7 @@ let
   # else
   #   throw "No GPU targets specified");
   gpuTargetString =
-    lib.strings.concatStringsSep ";" rocmPackages.clr.gpuTargets;
+    lib.strings.concatStringsSep ";" pkgs.rocmPackages.clr.gpuTargets;
   rocm_pkgs = with pkgs.rocmPackages; [
     rocblas
     hipblas
