@@ -114,6 +114,7 @@ in {
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/bin")
         # TODO: auto-detect
         (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "${gpuTargetString}")
+        (lib.cmakeFeature "ROCM_PATH" "${rocmtoolkit_joined}")
         # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx1032;gfx90c:xnack-")
         # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx000;gfx1032;gfx90c")
         # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942")
