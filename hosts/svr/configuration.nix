@@ -39,6 +39,7 @@ let
     pkgs.libtorch-bin
 
     pkgs.llvmPackages_17.libllvm
+    pkgs.llvmPackages_17.clangUseLLVM
     clang-ocl
 
     rccl
