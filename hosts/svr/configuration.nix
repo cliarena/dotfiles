@@ -208,7 +208,7 @@ let
       rocalution
       rocrand
       hipblas
-      hipblaslt
+      # hipblaslt
       rocfft
       hipfft
       rccl
