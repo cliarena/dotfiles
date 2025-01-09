@@ -108,8 +108,8 @@ in {
         export ROCM_HOME=${rocm_toolkit}
         export ROCM_SOURCE_DIR=${rocm_toolkit}
         export PYTORCH_ROCM_ARCH="${gpuTargetString}"
-        # export CMAKE_CXX_FLAGS="-I${rocm_toolkit}/include -I${rocm_toolkit}/include/rocblas"
-        # export LD_LIBRARY_PATH="${rocm_toolkit}/include/hip/"
+        export CMAKE_CXX_FLAGS="-I${rocm_toolkit}/include -I${rocm_toolkit}/include/rocblas"
+        export LD_LIBRARY_PATH="${rocm_toolkit}/include/hip/"
       '';
       # dontUseCmakeConfigure = true;
 
