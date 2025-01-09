@@ -229,9 +229,9 @@ let
       llvm.clang
       llvm.openmp
 
-      pythonPkgs.python
-      pythonPkgs.torch
-      pythonPkgs.pip
+      # pythonPkgs.python
+      # pythonPkgs.torch
+      # pythonPkgs.pip
     ];
   };
   shellPkgs = [
