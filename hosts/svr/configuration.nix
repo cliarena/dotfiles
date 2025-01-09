@@ -216,7 +216,7 @@ let
       hipsparse
       hipsolver
       composable_kernel
-      ck4inductor
+      # ck4inductor
 
       rocm-core
       rocminfo
