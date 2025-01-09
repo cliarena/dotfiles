@@ -355,9 +355,9 @@ in {
       # [ python311Packages.torchWithRocm ];
 
       preConfigure = ''
-        export ROCM_PATH=${rocm_toolkit}
-        export ROCM_HOME=${rocm_toolkit}
-        export ROCM_SOURCE_DIR=${rocm_toolkit}
+        export ROCM_PATH=${rocm-hip-libraries}
+        export ROCM_HOME=${rocm-hip-libraries}
+        export ROCM_SOURCE_DIR=${rocm-hip-libraries}
         export PYTORCH_ROCM_ARCH="${gpuTargetString}"
         # export CMAKE_CXX_FLAGS="-I${rocm_toolkit}/include -I${rocm_toolkit}/include/rocblas"
         # export LD_LIBRARY_PATH="${rocm_toolkit}/include/hip/"
@@ -368,12 +368,12 @@ in {
         (lib.cmakeFeature "GPU_RUNTIME" "HIP")
         # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
         # (lib.cmakeFeature "HIP_PATH" "${rocmEnv}")
-        (lib.cmakeFeature "HIP_ROOT_DIR" "${rocm_toolkit}")
+        (lib.cmakeFeature "HIP_ROOT_DIR" "${rocm-hip-libraries}")
         (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_MODULE_PATH" "${rocmEnv}/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocm_toolkit}/lib/cmake")
-        (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${pkgs.libtorch-bin}")
+        # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${pkgs.libtorch-bin}")
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
         # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/bin")
