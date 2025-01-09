@@ -1,6 +1,6 @@
-{ lib, inputs, pkgs, ... }:
+{ pkgs, lib, ... }:
+# FIXME: this 
 let
-  # FIXME: this
   useMpi = false;
   pythonInterp = (pkgs.python312.override {
     #inherit libffi;
@@ -10,27 +10,23 @@ let
     self = pythonInterp;
   }).overrideAttrs (old: {
     enableParallelBuilding = true;
-    requiredSystemFeatures = (old.requiredSystemFeatures or [ ])
-      ++ [ "big-parallel" ];
+    requiredSystemFeatures = (old.requiredSystemFeatures or [ ]) ++ [ "big-parallel" ];
     dontStrip = true;
     separateDebugInfo = false;
     disallowedReferences = [ ]; # debug info does point to openssl and that's ok
-    configureFlags = old.configureFlags ++ [
-      "--disable-safety"
-      "--with-lto"
-    ]; # [ "--with-undefined-behavior-sanitizer" ];
+    configureFlags = old.configureFlags ++ [ "--disable-safety" "--with-lto" ]; # [ "--with-undefined-behavior-sanitizer" ];
     hardeningDisable = [ "all" ];
     # env.LDFLAGS = "-fsanitize=undefined";
     # env.CFLAGS = "-fsanitize=undefined -shared-libsan -frtti -frtti-data";
     # env.CXXFLAGS = "-fsanitize=undefined -shared-libsan -frtti -frtti-data";
     #env.NIX_CFLAGS_COMPILE = "-fsanitize=undefined -w -march=znver1 -mtune=znver1";
     env = old.env // {
-      CFLAGS =
-        "-O3 -DNDEBUG -g1 -gz -fno-omit-frame-pointer -momit-leaf-frame-pointer";
-      CXXFLAGS =
-        "-O3 -DNDEBUG -g1 -gz -fno-omit-frame-pointer -momit-leaf-frame-pointer";
+      CFLAGS = "-O3 -DNDEBUG -g1 -gz -fno-omit-frame-pointer -momit-leaf-frame-pointer";
+      CXXFLAGS = "-O3 -DNDEBUG -g1 -gz -fno-omit-frame-pointer -momit-leaf-frame-pointer";
     };
-    cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DCMAKE_BUILD_TYPE=Release" ];
+    cmakeFlags = (old.cmakeFlags or [ ]) ++ [
+      "-DCMAKE_BUILD_TYPE=Release"
+    ];
   });
   pythonPkgsOverridenInterp = pkgs.python312.override {
     packageOverrides = ps: prev: {
@@ -83,8 +79,7 @@ let
         # env.USE_CK_FLASH_ATTENTION = 1;
         env.USE_FLASH_ATTENTION = 1;
         enableParallelBuilding = true;
-        nativeBuildInputs = old.nativeBuildInputs
-          ++ [ pkgs.ninja pkgs.pkg-config ];
+        nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.ninja pkgs.pkg-config ];
         buildInputs = old.buildInputs ++ [
           ps.six
           pkgs.openssl
@@ -153,8 +148,8 @@ let
           export HIPCC_COMPILE_FLAGS_APPEND="-O3 -Wno-format-nonliteral -parallel-jobs=$HIPCC_JOBS"
           export HIPCC_LINK_FLAGS_APPEND="-O3 -parallel-jobs=$HIPCC_JOBS_LINK"
           ${lib.optionalString useMpi ''
-            substituteInPlace cmake/Dependencies.cmake \
-              --replace-fail 'find_package(MPI)' 'find_package(MPI)'
+          substituteInPlace cmake/Dependencies.cmake \
+            --replace-fail 'find_package(MPI)' 'find_package(MPI)'
           ''}
         '';
         #           echo HACK: always allow CK
@@ -162,15 +157,15 @@ let
         #   --replace-fail 'def use_ck_template(layout):' 'def use_ck_template(layout):
         #     return layout.dtype in [torch.float16, torch.bfloat16, torch.float32]'
 
-        preConfigure = let cflags = "-w -g1 -gz";
-        in old.preConfigure + ''
-          export PYTORCH_ROCM_ARCH="gfx908;gfx90a"
-          export CFLAGS="$cflags"
-          export CXXFLAGS="$cflags"
-          export CMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS ${cflags}"
-          export NINJA_SUMMARIZE_BUILD=1
-          export NINJA_STATUS="[%r jobs | %P %f/%t @ %o/s | %w | ETA %W ] "
-        '';
+        preConfigure = let cflags = "-w -g1 -gz"; in
+          old.preConfigure + ''
+            export PYTORCH_ROCM_ARCH="gfx908;gfx90a"
+            export CFLAGS="$cflags"
+            export CXXFLAGS="$cflags"
+            export CMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS ${cflags}"
+            export NINJA_SUMMARIZE_BUILD=1
+            export NINJA_STATUS="[%r jobs | %P %f/%t @ %o/s | %w | ETA %W ] "
+          '';
         #         echo "Setting LD_PRELOAD"
         # set -x
         # export LD_PRELOAD="${rocmPackages.clr}/llvm/lib/linux/libclang_rt.asan-x86_64.so"
@@ -191,10 +186,7 @@ let
       });
     };
   };
-  pythonPkgs = pythonPkgsOverridenInterp.pkgs // {
-    python = pythonInterp;
-    python3 = pythonInterp;
-  };
+  pythonPkgs = pythonPkgsOverridenInterp.pkgs // { python = pythonInterp; python3 = pythonInterp; };
   inherit (pkgs) rocmPackages;
 
   rocm-hip-libraries = pkgs.symlinkJoin {
@@ -249,150 +241,59 @@ let
     name = "shell-deps";
     paths = shellPkgs ++ [ rocm-hip-libraries ];
   };
-  inherit (inputs) disko black-hosts;
-  # gpuTargetString = lib.strings.concatStringsSep ";" (if gpuTargets != [ ] then
-  # # If gpuTargets is specified, it always takes priority.
-  #   gpuTargets
-  # else if cudaSupport then
-  #   gpuArchWarner supportedCudaCapabilities unsupportedCudaCapabilities
-  # else if rocmSupport then
-  #   rocmPackages.clr.gpuTargets
-  # else
-  #   throw "No GPU targets specified");
-  gpuTargetString =
-    lib.strings.concatStringsSep ";" pkgs.rocmPackages.clr.gpuTargets;
-  rocm_pkgs = with pkgs.rocmPackages; [
-    rocblas
-    hipblas
-    clr
-    hipcc
-    rocm-device-libs
-    rocm-comgr
+in
+pkgs.mkShellNoCC {
+  buildInputs = shellPkgs;
+  # ROCM_PATH = "${pkgs.rocmPackages.clr}";
+  ROCM_PATH = "${rocm-hip-libraries}";
 
-    # TODO: remove unneeded
-    rocm-core
-    rocm-cmake
-    rocm-runtime
-    rocminfo
-    hip-common
-    hipify
-    llvm.llvm
-    llvm.compiler-rt
-    llvm.clang
-    llvm.clang-unwrapped
-    llvm.libunwind
-    llvm.libcxxabi
-    llvm.libcxx
-    llvm.rocmClangStdenv
-
-    pkgs.libtorch-bin
-
-    clang-ocl
-
-    rccl
-    # miopen
-    rocrand
-    rocsparse
-    hipsparse
-    rocthrust
-    rocprim
-    hipcub
-    roctracer
-    rocfft
-    rocsolver
-    hipfft
-    hipsolver
-    rocm-thunk
-    clr.icd
+  LD_LIBRARY_PATH = lib.makeLibraryPath [
+    pkgs.rocmPackages.rocm-runtime
+    # TODO: do we need some kmods for rccl to do single node P2P?
+    # mem alloc is failing
+    # sudo modprobe -a irdma ib_core ib_cm ib_uverbs ib_umad iw_cm rdmavt siw rdma_rxe ib_srp mlx5_ib mlx4_ib
+    pkgs.rocmPackages.rccl
+    pkgs.rdma-core # RCCL needs libibverbs.so.1
+    rocm-hip-libraries
+    pkgs.ncurses
+    pythonPkgs.torch
   ];
-  rocm_toolkit = pkgs.symlinkJoin {
-    name = "rocm-combined";
-    paths = rocm_pkgs;
-    # Fix `setuptools` not being found
-    postBuild = "rm -rf $out/nix-support";
-  };
-in {
-  imports = [
-    disko.nixosModules.disko
+  passthru.pytorch = pythonPkgs.torch;
+  passthru.rocm_path = "${rocm-hip-libraries}";
+  TORCHINDUCTOR_FX_GRAPH_CACHE = 1;
+  TORCHINDUCTOR_AUTOGRAD_CACHE = 1;
+  TORCH_ROCM_FA_PREFER_CK = 0;
+  UBSAN_OPTIONS = "print_stacktrace=1";
+  ASAN_OPTIONS = "symbolize=1:print_stats=0";
+  ASAN_SYMBOLIZER_PATH = "${rocmPackages.clr}/llvm/bin/llvm-symbolizer";
+  # HSA_FORCE_FINE_GRAIN_PCIE = 1;
+  # HSA_ENABLE_IPC_MODE_LEGACY = 0;
+  HSA_TOOLS_REPORT_LOAD_FAILURE = 1;
+  # HSA_VEN_AMD_AQLPROFILE_LOG = 1;
+  # USE_CK_FLASH_ATTENTION = 1;
+  # USE_FLASH_ATTENTION = 1;
+  # HIPBLASLT_ALLOW_TF32 = 1;
+  # ROCPROFILER_LOG = 1;
+  LD = "lld";
+  TORCHINDUCTOR_CK_DIR = "${rocmPackages.ck4inductor}/lib/python3.12/site-packages/ck4inductor";
 
-    black-hosts.nixosModule
+  # nix shell/develop have this annoying behavior where they put /tmp in a transient dir
+  # https://github.com/NixOS/nix/blob/be04e68b3472f188ddd56f99fbdac0f04ce914e8/src/nix/develop.cc#L371
+  # but torch uses /tmp as a CACHE :L
+  # TODO: feedback here: https://github.com/pytorch/pytorch/issues/121122
+  shellHook = ''
+    export TRITON_CACHE_DIR=$HOME/ml-cache/triton
+    export TORCHINDUCTOR_CACHE_DIR=$HOME/ml-cache/torchinductor
+    mkdir -p $TRITON_CACHE_DIR $TORCHINDUCTOR_CACHE_DIR
+    # export LD_PRELOAD="${rocmPackages.clr}/llvm/lib/linux/libclang_rt.asan-x86_64.so ${pkgs.ncurses}/lib/libtinfo.so";
+    # export LD_PRELOAD="${rocmPackages.clr}/llvm/lib/linux/libclang_rt.ubsan_standalone-x86_64.so ${pkgs.ncurses}/lib/libtinfo.so";
+    # export LD_PRELOAD="${pkgs.ncurses}/lib/libtinfo.so";
+    export TMP=/tmp
+    export TMPDIR=/tmp
+    export TEMP=/tmp
+    export TEMPDIR=/tmp
 
-    (import ./disko.nix { }) # doesn't support btrfs swapfile
-
-    ../../modules/boot/amd.nix
-    ../../modules/hardware/amd.nix
-    ../../modules/netwoking/router.nix
-
-  ] ++ lib.fileset.toList ../../profiles ++ lib.fileset.toList ../../spaces;
-
-  profiles.host.enable = true;
-  profiles.common.enable = true;
-  profiles.hosting.enable = true;
-  # profiles.desk_streaming.enable = true;
-
-  spaces.x.enable = true;
-  spaces.hyodo.enable = true;
-
-  _sshd.enable = true;
-  _wolf.enable = true;
-
-  systemd.tmpfiles.rules =
-    [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];
-
-  environment.systemPackages = with pkgs; [
-    ### Virtualization ###
-    virtiofsd # needed by microvm jobs to use virtiofs shares
-
-    (opensplat.overrideAttrs (finalAttrs: previousAttrs: {
-      # env.PYTORCH_ROCM_ARCH =
-      # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
-
-      buildInputs = previousAttrs.buildInputs ++ [ rocm-hip-libraries ];
-      nativeBuildInputs = previousAttrs.nativeBuildInputs
-        ++ [ rocm-hip-libraries ];
-      # ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
-      # [ python311Packages.torchWithRocm ];
-
-      preConfigure = ''
-        export ROCM_PATH=${rocm_toolkit}
-        export ROCM_HOME=${rocm_toolkit}
-        export ROCM_SOURCE_DIR=${rocm_toolkit}
-        export PYTORCH_ROCM_ARCH="${gpuTargetString}"
-        # export CMAKE_CXX_FLAGS="-I${rocm_toolkit}/include -I${rocm_toolkit}/include/rocblas"
-        # export LD_LIBRARY_PATH="${rocm_toolkit}/include/hip/"
-      '';
-      # dontUseCmakeConfigure = true;
-
-      cmakeFlags = previousAttrs.cmakeFlags ++ [
-        (lib.cmakeFeature "GPU_RUNTIME" "HIP")
-        # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
-        # (lib.cmakeFeature "HIP_PATH" "${rocmEnv}")
-        (lib.cmakeFeature "HIP_ROOT_DIR" "${rocm_toolkit}")
-        (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
-        # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
-        # (lib.cmakeFeature "CMAKE_MODULE_PATH" "${rocmEnv}/lib/cmake/hip")
-        # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocm_toolkit}/lib/cmake")
-        (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${pkgs.libtorch-bin}")
-        # (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
-        # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
-        # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/bin")
-        # TODO: auto-detect
-        # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "${gpuTargetString}")
-        # (lib.cmakeFeature "ROCM_PATH" "${rocm_toolkit}")
-        # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx1032;gfx90c:xnack-")
-        # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx000;gfx1032;gfx90c")
-        # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942")
-
-      ];
-    }))
-
-    colmap
-  ];
-  nix.settings.extra-sandbox-paths = [
-    "/dev/kfd"
-    "/sys/devices/virtual/kfd"
-    "/dev/dri/renderD128"
-    "/dev/dri/renderD129"
-  ];
-
+    env | grep -E -i '(torch|hsa|rocm|rocr|ccl).*='
+    nix-store --query --requisites ${shell-deps} | cut -c 45- | sort | uniq
+  '';
 }
