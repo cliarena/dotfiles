@@ -7,6 +7,15 @@ in {
 
   options.${module}.enable = mkEnableOption description;
 
-  config =
-    mkIf config.${module}.enable { virtualisation.docker.enable = true; };
+  config = mkIf config.${module}.enable {
+    virtualisation.docker = {
+      enable = true;
+      storageDriver = "btrfs";
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+      daemon.settings = { data-root = "/srv/var/lib/docker"; };
+    };
+  };
 }
