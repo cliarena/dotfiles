@@ -11,7 +11,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    # environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
+    environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
     systemd.services.wolf = {
       # enable = false;
       description = "stream desktop containers";
