@@ -11,6 +11,8 @@ in {
 
     system.stateVersion = "22.11";
     nix = {
+      daemonCPUSchedPolicy =
+        "idle"; # Deprioritizes nix builds for more predictable latencies
       channel.enable = false; # not needed using flakes
       # Constrain access to nix daemon
       settings.allowed-users = [ "@wheel" "hydra" "hydra-www" ];
