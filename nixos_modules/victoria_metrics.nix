@@ -41,7 +41,7 @@ in {
       snmp.enable = false;
       smokeping.enable = false; # best latency monitor
       blackbox.enable = false; # HTTP, HTTPS, DNS, TCP, ICMP and gRPC prober
-      # nats.enable = false; # needs system update
+      nats.enable = false; # nats.io. needs system update
       modemmanager.enable = false; # mobile broadband (4G/5G) management system
       lnd.enable = false; # monitor Blockchain/P2P networking
       ipmi.enable = false; # monitor IPMI: remote full pc w/ bios access
@@ -56,6 +56,10 @@ in {
 
       ### DNS ###
       knot.enable = false;
+      domain.enable = false; # Domains expiration date
+      dnssec.enable = false; # DNSSEC signatures validity and expiration
+      dnsmasq.enable = false; # DNSSEC signatures validity and expiration
+      dmarc.enable = false; #  Domains reports: unauthorized use, email spoofing
 
       ### DHCP ###
       kea.enable = false;
