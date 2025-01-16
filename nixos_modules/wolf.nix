@@ -21,6 +21,7 @@ in {
         WOLF_PRIVATE_KEY_FILE = "/srv/wolf/cfg/key.pem";
         WOLF_PRIVATE_CERT_FILE = "/srv/wolf/cfg/cert.pem";
         HOST_APPS_STATE_FOLDER = "/srv/wolf/state";
+        XDG_RUNTIME_DIR = "/run/user/1000";
 
         # For Debuging
         # GST_DEBUG = "4";
