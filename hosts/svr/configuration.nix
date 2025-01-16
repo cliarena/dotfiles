@@ -87,10 +87,6 @@ in {
   spaces.hyodo.enable = true;
 
   programs.steam.enable = true;
-  services.pulseaudio = {
-    enable = true;
-    systemWide = true;
-  };
   _sshd.enable = true;
   _wolf.enable = true;
 
