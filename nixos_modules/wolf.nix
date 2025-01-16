@@ -16,6 +16,7 @@ in {
       # enable = false;
       description = "stream desktop containers";
       path = with pkgs; [ steam inputs.wolf.packages.x86_64-linux.default ];
+
       environment = {
         WOLF_CFG_FILE = "/srv/wolf/cfg/config.toml";
         WOLF_PRIVATE_KEY_FILE = "/srv/wolf/cfg/key.pem";
@@ -30,6 +31,7 @@ in {
       };
       script = wolf_bin;
       serviceConfig = {
+        Group = "pulse-access";
         Restart = "on-failure";
         TimeoutSec = 3;
         # avoid error start request repeated too quickly since RestartSec defaults to 100ms
