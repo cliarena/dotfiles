@@ -31,7 +31,7 @@ in {
       };
       script = wolf_bin;
       serviceConfig = {
-        User = "svr";
+        User = "pulse";
         Group = "pulse-access";
         Restart = "on-failure";
         TimeoutSec = 3;
