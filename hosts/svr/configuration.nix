@@ -87,6 +87,7 @@ in {
   spaces.hyodo.enable = true;
 
   programs.steam.enable = true;
+  _pipewire.enable = true;
   _sshd.enable = true;
   _wolf.enable = true;
 
