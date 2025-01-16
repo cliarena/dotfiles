@@ -32,7 +32,7 @@ in {
       script = wolf_bin;
       serviceConfig = {
         User = "svr";
-        Group = "wheel";
+        Group = "pulse-access";
         Restart = "on-failure";
         TimeoutSec = 3;
         # avoid error start request repeated too quickly since RestartSec defaults to 100ms
