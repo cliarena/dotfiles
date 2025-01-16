@@ -31,7 +31,8 @@ in {
       };
       script = wolf_bin;
       serviceConfig = {
-        Group = "pulse-access";
+        User = "svr";
+        Group = "admin";
         Restart = "on-failure";
         TimeoutSec = 3;
         # avoid error start request repeated too quickly since RestartSec defaults to 100ms

@@ -18,6 +18,7 @@ in {
         "input"
         "video"
         "sound"
+        "pulse-access"
       ];
       # shell = pkgs.nushell;
       openssh.authorizedKeys.keys = host.ssh_authorized_keys;
