@@ -12,6 +12,7 @@ let
   ENV_VARS = {
     WAYLAND_DISPLAY = "wayland-3";
     WOLF_RENDER_NODE = "/dev/dri/renderD128";
+    XDG_RUNTIME_DIR = "/run/user/1000";
     # XDG_RUNTIME_DIR = "/tmp/sockets";
   };
 in {
