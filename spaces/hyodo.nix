@@ -12,7 +12,7 @@ let
   ENV_VARS = {
     WAYLAND_DISPLAY = "wayland-3";
     WOLF_RENDER_NODE = "/dev/dri/renderD128";
-    XDG_RUNTIME_DIR = "/tmp/sockets";
+    # XDG_RUNTIME_DIR = "/tmp/sockets";
   };
 in {
 
@@ -23,8 +23,12 @@ in {
     containers."space-${module}" = {
 
       bindMounts = {
-        "/tmp" = {
-          hostPath = "/tmp";
+        # "/tmp" = {
+        #   hostPath = "/tmp";
+        #   isReadOnly = false;
+        # };
+        "/run/user/1000" = {
+          hostPath = "/run/user/1000";
           isReadOnly = false;
         };
         "/dev/dri" = {
