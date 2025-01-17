@@ -38,6 +38,7 @@ in {
 
       ### Design ###
       gimp
+      darktable
       ansel # darktable minus bloat
       inkscape
       blender-hip # use hip to get gpu acceleration
