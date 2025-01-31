@@ -33,7 +33,15 @@ in {
           consul = { ui_url = "${CONSUL_ADDR}/ui"; };
           vault = { ui_url = "${VAULT_ADDR}/ui"; };
         };
-        plugin.docker = { config = { allow_privileged = true; }; };
+        plugin.docker = {
+          config = {
+            allow_privileged = true;
+            volumes = { # needed by nomad gitops operator
+              enabled = true;
+              selinuxlabel = "z";
+            };
+          };
+        };
         plugin.raw_exec = { config = { enabled = true; }; };
 
         # vault = {
