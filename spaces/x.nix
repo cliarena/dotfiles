@@ -26,6 +26,7 @@ let
   };
 
   ENV_VARS = {
+    NIX_REMOTE = "daemon"; # needed for nix run .#apply.. for terranix
     WAYLAND_DISPLAY = "wayland-3";
     WOLF_RENDER_NODE = "/dev/dri/renderD128";
     XDG_RUNTIME_DIR = "/tmp/sockets";
@@ -40,10 +41,10 @@ in {
       additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
       bindMounts = {
-        "/nix/store" = {
-          hostPath = "/nix/store";
-          isReadOnly = false;
-        };
+        # "/nix/store" = {
+        #   hostPath = "/nix/store";
+        #   isReadOnly = false;
+        # };
         # "${ENV_VARS.WOLF_RENDER_NODE}" = {
         #   hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
         #   isReadOnly = false;
