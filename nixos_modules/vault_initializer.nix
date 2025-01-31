@@ -5,7 +5,7 @@ let
   inherit (lib) mkEnableOption mkIf;
 
   # VAULT_ADDR = "http://10.10.0.10:8200";
-  VAULT_ADDR = "https://10.10.0.10:8200";
+  VAULT_ADDR = "https://vault.cliarena.com:8200";
   vault_bin = "${pkgs.vault}/bin/vault";
 in {
 
