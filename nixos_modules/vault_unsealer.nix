@@ -12,6 +12,13 @@ in {
   config = mkIf config.${module}.enable {
     containers.vault-unsealer = {
 
+      bindMounts = {
+        "/srv/secrets" = { # needed for sops
+          hostPath = "/srv/secrets";
+          isReadOnly = true;
+        };
+      };
+
       autoStart = true;
       ephemeral = true;
 
