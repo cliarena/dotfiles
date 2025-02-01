@@ -42,6 +42,7 @@ in {
       ansel # darktable minus bloat
       inkscape
       blender-hip # use hip to get gpu acceleration
+      colmap
 
       ### Tools ###
       file # shows types of files needed by yazi
