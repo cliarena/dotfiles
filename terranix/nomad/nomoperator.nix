@@ -42,7 +42,7 @@
         };
         artifacts = [{
           source =
-            "https://github.com/jonasvinther/nomad-gitops-operator/releases/download/v0.0.2/nomad-gitops-operator_0.0.2_linux_amd64.tar.gz";
+            "https://github.com/jonasvinther/nomad-gitops-operator/releases/download/v0.1.1/nomad-gitops-operator_0.1.1_linux_amd64.tar.gz";
           destination = "local";
           mode = "any";
         }];
