@@ -1,6 +1,6 @@
 # NOTE: Exposes api-gateway port. otherwise you gateway is useless
 
-{ config, lib, pkgs, system, ... }:
+{ config, lib, pkgs, system, host, ... }:
 
 let
   module = "_consul_gateway_terminating_nomad_registerer";
@@ -32,7 +32,7 @@ in {
       path = [ pkgs.getent pkgs.envoy ];
       description = "register consul nomad terminating gateway";
       script = ''
-        ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway -address 0.0.0.0:4649 -ignore-envoy-compatibility
+        ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway -address ${host.ip_addr}:4649 -ignore-envoy-compatibility
         # ${pkgs.consul}/bin/consul connect envoy -sidecar-for nomad-client -bootstrap -ignore-envoy-compatibility
       '';
       serviceConfig = {
