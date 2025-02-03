@@ -32,7 +32,8 @@ in {
       path = [ pkgs.getent pkgs.envoy ];
       description = "register consul nomad terminating gateway";
       script = ''
-        ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway -ignore-envoy-compatibility
+        ${pkgs.consul}/bin/consul connect envoy -sidecar-for nomad-client -bootstrap -ignore-envoy-compatibility
+        # ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway -ignore-envoy-compatibility
       '';
       serviceConfig = {
         Restart = "on-failure";
