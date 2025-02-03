@@ -20,7 +20,7 @@ let
         vault.policy = "write";
         nomad.policy = "write";
         nomad-client.policy = "write";
-        nomad-client-gateway.policy = "write";
+        nomad-gateway.policy = "write";
         cliarena-gateway.policy = "write";
         kasm.policy = "write";
         nginx.policy = "write";
@@ -124,11 +124,11 @@ in {
     };
   };
 
-  resource.consul_config_entry.nomad_client_gateway = {
-    name = "nomad-client-gateway";
+  resource.consul_config_entry.nomad_gateway = {
+    name = "nomad-gateway";
     kind = "terminating-gateway";
 
-    config_json = builtins.toJSON { services = { name = "nomad-client"; }; };
+    config_json = builtins.toJSON { services = { name = "nomad"; }; };
   };
 
   resource.consul_config_entry.nginx_intentions = {
@@ -155,20 +155,21 @@ in {
       };
     };
   };
-  resource.consul_config_entry.nomad_client_intentions = {
-    name = "nomad-client";
+  resource.consul_config_entry.nomad_intentions = {
+    name = "nomad";
     kind = "service-intentions";
 
     config_json = builtins.toJSON {
       sources = {
-        name = config.resource.consul_config_entry.nomad_client_gateway.name;
+        name = config.resource.consul_config_entry.cliarena_gateway.name;
+        # name = config.resource.consul_config_entry.nomad_client_gateway.name;
         type = "consul";
         action = "allow";
       };
     };
   };
-  resource.consul_config_entry.nomad_client_gateway_intentions = {
-    name = "nomad-client-gateway";
+  resource.consul_config_entry.nomad_gateway_intentions = {
+    name = "nomad-gateway";
     kind = "service-intentions";
 
     config_json = builtins.toJSON {
@@ -204,7 +205,8 @@ in {
               value = "/";
             };
           }];
-          services = [{ name = "nomad-client-gateway"; }];
+          services = [{ name = "nomad"; }];
+          # services = [{ name = "nomad-client-gateway"; }];
         }
         {
           matches = [{
