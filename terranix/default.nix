@@ -60,6 +60,6 @@ in {
       && ${terraform}/bin/terraform destroy
   '');
   build = toString (pkgs.writers.writeBash "build"
-    "cp -rf ${nomad_jobs} ./terranix/nomad/jobs ");
+    "cp -rf ${nomad_jobs}/* ./terranix/nomad/jobs ");
 
 }
