@@ -28,7 +28,7 @@ in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    systemd.services.consul_api_gateway_registerer = {
+    systemd.services.consul_gateway_terminating_nomad_registerer = {
       path = [ pkgs.getent pkgs.envoy ];
       description = "register consul nomad terminating gateway";
       script = ''
