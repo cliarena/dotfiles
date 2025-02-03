@@ -30,9 +30,10 @@ in {
   config = mkIf config.${module}.enable {
     systemd.services.consul_api_gateway_registerer = {
       path = [ pkgs.getent pkgs.envoy ];
-      description = "register consul api gateways";
+      description = "register consul gateways";
       script = ''
         ${pkgs.consul}/bin/consul connect envoy -gateway api -register -service cliarena-gateway -ignore-envoy-compatibility
+        ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway -ignore-envoy-compatibility
       '';
       serviceConfig = {
         Restart = "on-failure";
