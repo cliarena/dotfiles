@@ -32,7 +32,7 @@ in {
       path = [ pkgs.getent pkgs.envoy ];
       description = "register consul nomad terminating gateway";
       script = ''
-        ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway  -admin-bind ${host.ip_addr}:19001 -ignore-envoy-compatibility
+        ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway  -admin-bind ${host.ip_addr}:19001 -address ${host.ip_addr}:4649 -ignore-envoy-compatibility
         # ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway  -address ${host.ip_addr}:4649 -ignore-envoy-compatibility
         # ${pkgs.consul}/bin/consul connect envoy -sidecar-for nomad-client -bootstrap -ignore-envoy-compatibility
       '';
