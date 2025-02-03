@@ -3,8 +3,8 @@
 { config, lib, pkgs, system, ... }:
 
 let
-  module = "_consul_api_gateway_registerer";
-  description = "registers consul api gateway";
+  module = "_consul_gateway_terminating_nomad_registerer";
+  description = "registers consul nomad terminating gateway";
   inherit (lib) mkEnableOption mkIf;
 
   envoy_nixpkgs = import (builtins.fetchGit {
@@ -30,9 +30,9 @@ in {
   config = mkIf config.${module}.enable {
     systemd.services.consul_api_gateway_registerer = {
       path = [ pkgs.getent pkgs.envoy ];
-      description = "register consul api gateways";
+      description = "register consul nomad terminating gateway";
       script = ''
-        ${pkgs.consul}/bin/consul connect envoy -gateway api -register -service cliarena-gateway -ignore-envoy-compatibility
+        ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-client-gateway -ignore-envoy-compatibility
       '';
       serviceConfig = {
         Restart = "on-failure";

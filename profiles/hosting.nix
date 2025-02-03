@@ -29,6 +29,7 @@ in {
     _envoy.enable = true;
     _consul.enable = true;
     _consul_api_gateway_registerer.enable = true;
+    _consul_gateway_terminating_nomad_registerer.enable = true;
 
     _nomad.enable = true;
 
