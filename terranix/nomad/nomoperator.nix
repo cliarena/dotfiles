@@ -19,7 +19,7 @@
             "--branch"
             "main"
             "--path"
-            "terranix/nomad/jobs/*.nomad"
+            "terranix/nomad/jobs/*.hcl"
             "--delete"
             "--watch"
             # "--username"
