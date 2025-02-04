@@ -10,6 +10,7 @@ let
       # ./echo.nix
       # ./wolf_nix.nix
       # ./nginx.nix
+      # ./nomad_proxy.nix
       # (import ./microvm.nix { inherit microvm self pkgs config; })
     ];
   };

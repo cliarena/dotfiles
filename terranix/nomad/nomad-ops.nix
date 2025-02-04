@@ -3,34 +3,27 @@ let
   http = {
     mode = "bridge";
     reservedPorts.http = {
-      static = 8111;
-      to = 8080;
+      static = 4646;
+      to = 443;
     };
   };
 in {
-  job.nomad_ops = {
+  job.nomad_proxy = {
     datacenters = [ "dc1" ];
-    namespace = "nomad-ops";
+    # namespace = "nomad_proxy";
 
     type = "service";
 
-    # Specify this job to have rolling updates, two-at-a-time, with
-    # 30 second intervals.
-    update = {
-      stagger = "30s";
-      max_parallel = 1;
-    };
-
-    # A group defines a series of tasks that should be co-located
-    # on the same client (host). All tasks within a group will be
-    # placed on the same host.
-    group.nomad_ops_group = {
+    group.proxy = {
       # Only 1
       count = 1;
 
       network = {
         mode = "host";
-        port.http = { static = 8080; };
+        port.http = {
+          static = 4646;
+          to = 443;
+        };
       };
 
       services = [{
