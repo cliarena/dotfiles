@@ -1,4 +1,4 @@
-job "whoami" {
+   job "whoami" {
 
   datacenters = [
   "dc1"

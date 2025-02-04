@@ -104,6 +104,8 @@
           # for nix
           nixfmt
           nil
+          nixd
+          terraform-ls
           deadnix
           stylua
           lua-language-server
