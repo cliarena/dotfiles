@@ -9,7 +9,7 @@
         driver = "raw_exec";
 
         config = {
-          command = "nomoperator";
+          command = "nomoperator-v1.0/nomoperator";
           # command =
           # "nomoperator bootstrap git --url https://gitlab.com/cliarena_dotfiles/nixos.git --branch main --path terranix/nomad/jobs/*.json";
           # args = [
@@ -46,7 +46,9 @@
         };
         artifacts = [{
           source =
-            "https://github.com/jonasvinther/nomad-gitops-operator/releases/download/v0.1.0/nomad-gitops-operator_0.1.0_linux_amd64.tar.gz";
+            # "https://github.com/jonasvinther/nomad-gitops-operator/releases/download/v0.1.0/nomad-gitops-operator_0.1.0_linux_amd64.tar.gz";
+            # "https://github.com/jonasvinther/nomad-gitops-operator/archive/refs/tags/v0.1.2.tar.gz"
+            "https://gitlab.com/clxarena/nomoperator/-/archive/v1.0/nomoperator-v1.0.tar.gz";
           # destination = "local/nomoperator";
           mode = "any";
         }];
