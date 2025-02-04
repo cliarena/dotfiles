@@ -32,6 +32,8 @@
             "main"
             "--path"
             "terranix/nomad/jobs/*.nomad"
+            "--delete"
+            "--watch"
             # "--username"
             # "git"
             # "--password"
