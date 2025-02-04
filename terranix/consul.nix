@@ -160,24 +160,50 @@ in {
     kind = "service-intentions";
 
     config_json = builtins.toJSON {
-      sources = {
-        name = config.resource.consul_config_entry.cliarena_gateway.name;
-        # name = config.resource.consul_config_entry.nomad_client_gateway.name;
-        type = "consul";
-        action = "allow";
-      };
+      sources = [
+        {
+          name = config.resource.consul_config_entry.cliarena_gateway.name;
+          type = "consul";
+          action = "allow";
+        }
+        {
+          name = config.resource.consul_config_entry.nomad_gateway.name;
+          type = "consul";
+          action = "allow";
+        }
+      ];
     };
   };
+  # resource.consul_config_entry.nomad_gateway_to_nomad_intentions = {
+  #   name = "nomad-gateway";
+  #   kind = "service-intentions";
+  #
+  #   config_json = builtins.toJSON {
+  #     sources = {
+  #       name = config.resource.consul_config_entry.nomad_intentions.name;
+  #       # name = config.resource.consul_config_entry.nomad_client_gateway.name;
+  #       type = "consul";
+  #       action = "allow";
+  #     };
+  #   };
+  # };
   resource.consul_config_entry.nomad_gateway_intentions = {
     name = "nomad-gateway";
     kind = "service-intentions";
 
     config_json = builtins.toJSON {
-      sources = {
-        name = config.resource.consul_config_entry.cliarena_gateway.name;
-        type = "consul";
-        action = "allow";
-      };
+      sources = [
+        {
+          name = config.resource.consul_config_entry.cliarena_gateway.name;
+          type = "consul";
+          action = "allow";
+        }
+        {
+          name = config.resource.consul_config_entry.nomad_intentions.name;
+          type = "consul";
+          action = "allow";
+        }
+      ];
     };
   };
   resource.consul_config_entry.microvm_intentions = {
@@ -205,6 +231,17 @@ in {
               value = "/";
             };
           }];
+          filters = {
+            headers = [{
+              add = {
+                X-Forwarded-For = "%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%";
+              };
+            }];
+            TimeoutFilter = {
+              IdleTimeout = 500000000000;
+              RequestTimeout = 500000000000;
+            };
+          };
           services = [{ name = "nomad"; }];
           # services = [{ name = "nomad-client-gateway"; }];
         }
