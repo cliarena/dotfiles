@@ -9,7 +9,25 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    programs.nixvim.plugins.neorg = { enable = true; };
+    programs.nixvim.plugins.neorg = {
+      enable = true;
+      settings = {
+        lazy_loading = true;
+        load = {
+          "core.concealer" = { config = { icon_preset = "diamond"; }; };
+          "core.defaults" = { __empty = null; };
+          # "core.dirman" = {
+          #   config = {
+          #     workspaces = {
+          #       home = "~/notes/home";
+          #       work = "~/notes/work";
+          #     };
+          #   };
+          # };
+        };
+      };
+
+    };
   };
 
 }
