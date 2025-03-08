@@ -117,8 +117,8 @@ in {
             }
             load-env {
             STARSHIP_SHELL : "nu",
-            MANPAGER='nvim +Man!',
-            MANWIDTH=999,
+            MANPAGER : "nvim +Man!",
+            MANWIDTH : 999,
             # Use nushell functions to define your right and left prompt
             PROMPT_COMMAND : { || create_left_prompt },
             PROMPT_COMMAND_RIGHT : "",
