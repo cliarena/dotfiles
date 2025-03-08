@@ -14,7 +14,7 @@ in {
 
     programs.nixvim.enable = true;
 
-    _options.enable = false;
+    _options.enable = true;
 
     _keymaps.enable = true;
     _better_escape.enable = true;
