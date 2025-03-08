@@ -18,7 +18,7 @@ in {
       globals.loaded_netrw = 1;
       globals.loaded_netrwPlugin = 1;
       globals.editorconfig = false;
-      # globals.loaded_man = 1;
+      globals.loaded_man = 1;
       globals.loaded_matchit = 1;
       # globals.loaded_matchparen = 1;
       globals.loaded_remote_plugins = 1;
