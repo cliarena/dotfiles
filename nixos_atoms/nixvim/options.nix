@@ -21,7 +21,7 @@ in {
       # globals.loaded_man = 1;
       globals.loaded_matchit = 1;
       # globals.loaded_matchparen = 1;
-      # globals.loaded_remote_plugins = 1;
+      globals.loaded_remote_plugins = 1;
       globals.loaded_shada_plugin = 1;
       globals.loaded_spellfile_plugin = 1;
       globals.loaded_gzip = 1;
