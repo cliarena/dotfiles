@@ -18,7 +18,7 @@ in {
       globals.loaded_netrw = 1;
       globals.loaded_netrwPlugin = 1;
       globals.editorconfig = false;
-      globals.loaded_man = true;
+      globals.loaded_man = 1;
       globals.loaded_matchit = 1;
       globals.loaded_matchparen = 1;
       globals.loaded_remote_plugins = 1;
@@ -40,7 +40,7 @@ in {
         clipboard =
           "unnamedplus"; # allows neovim to access the system clipboard
         laststatus = 3; # one status bar for all splits
-        conceallevel = 0; # so that `` is visible in markdown files
+        # conceallevel = 0; # so that `` is visible in markdown files
         fileencoding = "utf-8"; # the encoding written to a file
         foldmethod =
           "manual"; # folding set to "expr" for treesitter based folding
