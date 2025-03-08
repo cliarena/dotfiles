@@ -13,6 +13,9 @@ in {
 
     environment.systemPackages = with pkgs; [
 
+      man-pages
+      man-pages-posix
+
       ### Search ###
       fd # # Search file names
       fzy # # fzf but better
