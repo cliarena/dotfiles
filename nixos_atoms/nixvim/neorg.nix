@@ -12,7 +12,6 @@ in {
     programs.nixvim.plugins.neorg = {
       enable = true;
       settings = {
-        lazy_loading = true;
         load = {
           "core.concealer" = { config = { icon_preset = "diamond"; }; };
           "core.defaults" = { __empty = null; };
