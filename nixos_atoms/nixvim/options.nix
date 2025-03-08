@@ -15,26 +15,26 @@ in {
       colorschemes.catppuccin.enable = true;
 
       # disable unneeded plugins for better startup
-      globals.loaded_netrw = 1;
-      globals.loaded_netrwPlugin = 1;
-      globals.editorconfig = false;
+      # globals.loaded_netrw = 1;
+      # globals.loaded_netrwPlugin = 1;
+      # globals.editorconfig = false;
       # globals.loaded_man = 1;
-      globals.loaded_matchit = 1;
-      globals.loaded_matchparen = 1;
-      globals.loaded_remote_plugins = 1;
-      globals.loaded_shada_plugin = 1;
-      globals.loaded_spellfile_plugin = 1;
-      globals.loaded_gzip = 1;
-      globals.loaded_tar = 1;
-      globals.loaded_tarPlugin = 1;
-      globals.loaded_zip = 1;
-      globals.loaded_zipPlugin = 1;
-      globals.loaded_2html_plugin = 1;
-      globals.loaded_tutor_mode_plugin = 1;
-      globals.loaded_python3_provider = 0;
-      globals.loaded_ruby_provider = 0;
-      globals.loaded_perl_provider = 0;
-      globals.loaded_node_provider = 0;
+      # globals.loaded_matchit = 1;
+      # globals.loaded_matchparen = 1;
+      # globals.loaded_remote_plugins = 1;
+      # globals.loaded_shada_plugin = 1;
+      # globals.loaded_spellfile_plugin = 1;
+      # globals.loaded_gzip = 1;
+      # globals.loaded_tar = 1;
+      # globals.loaded_tarPlugin = 1;
+      # globals.loaded_zip = 1;
+      # globals.loaded_zipPlugin = 1;
+      # globals.loaded_2html_plugin = 1;
+      # globals.loaded_tutor_mode_plugin = 1;
+      # globals.loaded_python3_provider = 0;
+      # globals.loaded_ruby_provider = 0;
+      # globals.loaded_perl_provider = 0;
+      # globals.loaded_node_provider = 0;
 
       opts = {
         clipboard =
