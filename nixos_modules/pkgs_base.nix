@@ -23,6 +23,7 @@ in {
       # ripgrep-all # # Better rg #BUG: there is a bug in source code
 
       ### Tools ###
+      wezterm
       git
       bat
       jq # # CLI JSON processor
