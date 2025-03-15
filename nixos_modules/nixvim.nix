@@ -16,6 +16,8 @@ in {
 
     _options.enable = true;
 
+    _wezterm.enable = true;
+
     _keymaps.enable = true;
     _better_escape.enable = true;
     _yanky.enable = true;
