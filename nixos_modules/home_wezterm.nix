@@ -16,12 +16,14 @@ in {
       programs.wezterm = {
         enable = true;
 
+        # ===
         extraConfig = ''
           return {
             font_size = 9.0,
             line_height = 1.2,
+            bold_brightens_ansi_colors = "BrightAndBold",
             color_scheme = 'Catppuccin Mocha',
-            config.window_padding = {
+            window_padding = {
               left = 0,
               right = 0,
               top = 0,
