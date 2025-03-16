@@ -26,6 +26,11 @@ in {
             source = "/srv/library/audio";
           }
         ];
+        users = [{
+          name = "cliarena";
+          admin = true;
+          initial_password = "admin";
+        }];
       };
     };
 
