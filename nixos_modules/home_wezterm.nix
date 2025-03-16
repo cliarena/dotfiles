@@ -19,18 +19,23 @@ in {
         # ===
         extraConfig = ''
           return {
-            font_size = 8.0,
+            font_size = 8.6,
             line_height = 1.2,
+
             bold_brightens_ansi_colors = "BrightAndBold",
             color_scheme = 'Catppuccin Mocha',
+
             window_padding = {
               left = 0,
               right = 0,
               top = 0,
               bottom = 0,
             },
+
+            tab_bar_at_bottom = true,
             use_fancy_tab_bar = false,
             hide_tab_bar_if_only_one_tab = true,
+
             -- default_prog = { "zsh", "--login", "-c", "tmux attach -t dev || tmux new -s dev" },
             keys = {
               {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
