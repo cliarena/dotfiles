@@ -19,7 +19,7 @@ in {
         # ===
         extraConfig = ''
           return {
-            font_size = 9.0,
+            font_size = 8.0,
             line_height = 1.2,
             bold_brightens_ansi_colors = "BrightAndBold",
             color_scheme = 'Catppuccin Mocha',
