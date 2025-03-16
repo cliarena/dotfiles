@@ -19,14 +19,14 @@ in {
         extraConfig = ''
           return {
             line_height = 1.2,
-            font_size = 8.8, -- 8.6 fixes ===
+            font_size = 8.9, -- 8.6 fixes ===
 
             bold_brightens_ansi_colors = "BrightAndBold",
             color_scheme = 'Catppuccin Mocha',
 
             window_padding = {
-              left = 0,
-              right = 0,
+              left = "1cell",
+              right = "1cell",
               top = 0,
               bottom = 0,
             },
