@@ -18,9 +18,8 @@ in {
 
         extraConfig = ''
           return {
-            -- dpi = 46,
             line_height = 1.2,
-            font_size = 8.6, -- 8.6 fixes ===
+            font_size = 8.7, -- 8.6 fixes ===
 
             bold_brightens_ansi_colors = "BrightAndBold",
             color_scheme = 'Catppuccin Mocha',
