@@ -27,9 +27,9 @@ in {
           }
         ];
         users = [{
-          name = "cliarena";
           admin = true;
-          initial_password = "admin";
+          name = "cliarena";
+          password = "cliarena";
         }];
       };
     };
