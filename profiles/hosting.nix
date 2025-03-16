@@ -20,7 +20,7 @@ in {
     _acme.enable = true;
     _docker.enable = true;
 
-    _nats_system.enable = true;
+    # _nats_system.enable = true;
 
     _vault.enable = true;
     _vault_initializer.enable = true;
