@@ -22,7 +22,7 @@ in {
             color_scheme = 'Catppuccin Mocha',
             use_fancy_tab_bar = false,
             hide_tab_bar_if_only_one_tab = true,
-            # default_prog = { "zsh", "--login", "-c", "tmux attach -t dev || tmux new -s dev" },
+            -- default_prog = { "zsh", "--login", "-c", "tmux attach -t dev || tmux new -s dev" },
             keys = {
               {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
             }
