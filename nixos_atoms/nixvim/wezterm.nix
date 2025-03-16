@@ -8,8 +8,7 @@ in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
-    plugins.wezterm = { enable = true; };
+    programs.nixvim.plugins.wezterm = { enable = true; };
 
   };
 }
