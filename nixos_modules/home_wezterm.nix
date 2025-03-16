@@ -27,7 +27,7 @@ in {
             window_padding = {
               left = "0.3cell",
               right = "0.3cell",
-              top = 0,
+              top = "0.3cell",
               bottom = 0,
             },
 
