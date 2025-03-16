@@ -11,7 +11,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    # home-manager.useGlobalPkgs = true; # breaks nixvim
+    home-manager.useGlobalPkgs = true; # breaks nixvim
     home-manager.useUserPackages = true;
     home-manager.users.${host.user} = {
       home = {
