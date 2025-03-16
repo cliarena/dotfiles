@@ -21,6 +21,12 @@ in {
             font_size = 9.0,
             line_height = 1.2,
             color_scheme = 'Catppuccin Mocha',
+            config.window_padding = {
+              left = 0,
+              right = 0,
+              top = 0,
+              bottom = 0,
+            },
             use_fancy_tab_bar = false,
             hide_tab_bar_if_only_one_tab = true,
             -- default_prog = { "zsh", "--login", "-c", "tmux attach -t dev || tmux new -s dev" },
