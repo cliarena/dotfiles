@@ -19,6 +19,7 @@ in {
         extraConfig = ''
           return {
             font_size = 9.0,
+            line_height = 1.2,
             color_scheme = 'Catppuccin Mocha',
             use_fancy_tab_bar = false,
             hide_tab_bar_if_only_one_tab = true,
