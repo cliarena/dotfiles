@@ -20,6 +20,7 @@ in {
       fd # # Search file names
       fzy # # fzf but better
       ripgrep # # Fastest Sercher
+      ytmdl # # youtube audio downloader w/ plugin..
       # ripgrep-all # # Better rg #BUG: there is a bug in source code
 
       ### Tools ###
