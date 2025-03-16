@@ -18,7 +18,7 @@ in {
 
         extraConfig = ''
           return {
-            dpi = 46,
+            -- dpi = 46,
             line_height = 1.2,
             font_size = 8.6, -- 8.6 fixes ===
 
