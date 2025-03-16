@@ -40,6 +40,6 @@ in {
     _tracing_pkgs.enable = true;
     _victoria_metrics.enable = true;
 
-    _paularis.enable = true;
+    _polaris.enable = true;
   };
 }
