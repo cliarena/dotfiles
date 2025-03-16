@@ -19,8 +19,11 @@ in {
         # ===
         extraConfig = ''
           return {
-            font_size = 8.6,
             line_height = 1.2,
+            font_size = 8.6,
+            font = wezterm.font_with_fallback {
+              { family = 'JetBrainsMono Nerd Font Mono', weight = 'Light' },
+            },
 
             bold_brightens_ansi_colors = "BrightAndBold",
             color_scheme = 'Catppuccin Mocha',
