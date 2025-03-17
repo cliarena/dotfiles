@@ -35,10 +35,63 @@ in {
             use_fancy_tab_bar = false,
             hide_tab_bar_if_only_one_tab = true,
 
-            -- default_prog = { "zsh", "--login", "-c", "tmux attach -t dev || tmux new -s dev" },
+            default_prog = { "nu" },
+
             keys = {
-              {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
+              -- Switch to the default workspace
+              {
+                key = 'd',
+                mods = 'CTRL|SHIFT',
+                action = act.SwitchToWorkspace {
+                  name = 'default',
+                },
+              },
+              -- Switch to a monitoring workspace, which will have `top` launched into it
+              {
+                key = 'm',
+                mods = 'CTRL|SHIFT',
+                action = act.SwitchToWorkspace {
+                  name = 'monitoring',
+                  spawn = {
+                    args = { 'btm' },
+                  },
+                },
+              },
+              {
+                key = 'n',
+                mods = 'CTRL|SHIFT',
+                action = act.SwitchToWorkspace {
+                  name = 'notes',
+                  spawn = {
+                    cwd = '~/notes',
+                    args = { 'nvim' },
+                  },
+                },
+              },
+              {
+                key = 'd',
+                mods = 'CTRL|SHIFT',
+                action = act.SwitchToWorkspace {
+                  name = 'dotfiles',
+                  spawn = {
+                    cwd = '~/nixos',
+                    args = { 'nvim' },
+                  },
+                },
+              },
+              -- Create a new workspace with a random name and switch to it
+              { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
+              -- Show the launcher in fuzzy selection mode and have it list all workspaces
+              -- and allow activating one.
+              {
+                key = '9',
+                mods = 'ALT',
+                action = act.ShowLauncherArgs {
+                  flags = 'FUZZY|WORKSPACES',
+                },
+              },
             }
+
           }
         '';
       };
