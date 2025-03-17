@@ -139,6 +139,9 @@ in {
             n = "nvim";
             da = "direnv allow";
             gc = "git clone";
+            # download 1h of youtube as audio
+            yt-1h-audio =
+              "yt-dlp -x --audio-quality 0 --write-thumbnail --download-sections '*0-3600'";
 
             # Todos
             t = "taskwarrior-tui";
