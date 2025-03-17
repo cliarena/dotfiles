@@ -42,7 +42,7 @@ in {
               {
                 key = 'd',
                 mods = 'CTRL|SHIFT',
-                action = act.SwitchToWorkspace {
+                action = SwitchToWorkspace {
                   name = 'default',
                 },
               },
@@ -50,7 +50,7 @@ in {
               {
                 key = 'm',
                 mods = 'CTRL|SHIFT',
-                action = act.SwitchToWorkspace {
+                action = SwitchToWorkspace {
                   name = 'monitoring',
                   spawn = {
                     args = { 'btm' },
@@ -60,7 +60,7 @@ in {
               {
                 key = 'n',
                 mods = 'CTRL|SHIFT',
-                action = act.SwitchToWorkspace {
+                action = SwitchToWorkspace {
                   name = 'notes',
                   spawn = {
                     cwd = '~/notes',
@@ -71,7 +71,7 @@ in {
               {
                 key = 'd',
                 mods = 'CTRL|SHIFT',
-                action = act.SwitchToWorkspace {
+                action = SwitchToWorkspace {
                   name = 'dotfiles',
                   spawn = {
                     cwd = '~/nixos',
@@ -80,13 +80,13 @@ in {
                 },
               },
               -- Create a new workspace with a random name and switch to it
-              { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
+              { key = 'i', mods = 'CTRL|SHIFT', action = SwitchToWorkspace },
               -- Show the launcher in fuzzy selection mode and have it list all workspaces
               -- and allow activating one.
               {
                 key = '9',
                 mods = 'ALT',
-                action = act.ShowLauncherArgs {
+                action = ShowLauncherArgs {
                   flags = 'FUZZY|WORKSPACES',
                 },
               },
