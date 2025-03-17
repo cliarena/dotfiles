@@ -43,6 +43,7 @@ in {
             -- Create a new workspace with a random name and switch to it
             -- { key = 'i', mods = 'CTRL|SHIFT', action = "SwitchToWorkspace" },
              {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
+             {key="i", mods="SHIFT|CTRL", action="SwitchToWorkspace"},
             }
 
           }
