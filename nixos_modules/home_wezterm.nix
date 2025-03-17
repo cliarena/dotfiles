@@ -37,13 +37,60 @@ in {
 
             default_prog = { "nu" },
 
-            -- {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
-
             keys = {
             -- Create a new workspace with a random name and switch to it
-            -- { key = 'i', mods = 'CTRL|SHIFT', action = "SwitchToWorkspace" },
              {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
-             {key="i", mods="SHIFT|CTRL", action="SwitchToWorkspace"},
+            -- { key = 'i', mods = 'CTRL|SHIFT', action = SwitchToWorkspace },
+              -- Switch to the default workspace
+            -- {
+            --   key = 'd',
+            --   mods = 'CTRL|SHIFT',
+            --   action = "SwitchToWorkspace {
+            --     name = 'default',
+            --   }"
+            -- },
+            -- -- Switch to a monitoring workspace, which will have `top` launched into it
+            -- {
+            --   key = 'm',
+            --   mods = 'CTRL|SHIFT',
+            --   action = SwitchToWorkspace {
+            --     name = 'monitoring',
+            --     spawn = {
+            --       args = { 'btm' },
+            --     },
+            --   },
+            -- },
+            -- {
+            --   key = 'n',
+            --   mods = 'CTRL|SHIFT',
+            --   action = SwitchToWorkspace {
+            --     name = 'notes',
+            --     spawn = {
+            --       cwd = '~/notes',
+            --       args = { 'nvim' },
+            --     },
+            --   },
+            -- },
+            -- {
+            --   key = 'd',
+            --   mods = 'CTRL|SHIFT',
+            --   action = SwitchToWorkspace {
+            --     name = 'dotfiles',
+            --     spawn = {
+            --       cwd = '~/nixos',
+            --       args = { 'nvim' },
+            --     },
+            --   },
+            -- },
+            -- -- Show the launcher in fuzzy selection mode and have it list all workspaces
+            -- -- and allow activating one.
+            -- {
+            --   key = '9',
+            --   mods = 'ALT',
+            --   action = ShowLauncherArgs {
+            --     flags = 'FUZZY|WORKSPACES',
+            --   },
+            -- },
             }
 
           }
