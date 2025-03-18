@@ -88,7 +88,7 @@ in {
 
   programs.steam.enable = true;
   _sshd.enable = true;
-  _wolf.enable = true;
+  _wolf.enable = false;
 
   systemd.tmpfiles.rules =
     [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];
