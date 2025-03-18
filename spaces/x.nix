@@ -103,7 +103,7 @@ in {
         profiles.desktop.enable = true;
 
         _sshd.enable = true;
-        _taskwarrior.enable = true;
+        # _taskwarrior.enable = true;
 
         _tracing_pkgs.enable = true;
       };

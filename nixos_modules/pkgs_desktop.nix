@@ -58,9 +58,9 @@ in {
       pavucontrol
       pulseaudio
       obs-studio
-      taskwarrior-tui
-      timewarrior
-      python3 # needed by taskwarrior & timewarrior
+      # taskwarrior-tui
+      # timewarrior
+      # python3 # needed by taskwarrior & timewarrior
 
     ];
   };
