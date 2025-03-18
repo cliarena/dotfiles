@@ -6,16 +6,28 @@ job "wolf" {
   type = "service"
 
   group "backend" {
+
     count = 1
+
+    network {
+      port "http" {}
+      port "https" {}
+      port "rtsp" {}
+      port "video" {}
+      port "audio" {}
+    }
 
     task "server" {
       driver = "docker"
+
       env {
         XDG_RUNTIME_DIR        = "/tmp/sockets"
         HOST_APPS_STATE_FOLDER = "/etc/wolf"
       }
 
       config {
+        ports = ["http", "https", "rtsp", "video", "audio"]
+
         volumes = [
           "wolf/:/etc/wolf",
           "/tmp/sockets:/tmp/sockets:rw",
@@ -23,6 +35,7 @@ job "wolf" {
           "/dev/:/dev/:rw",
           "/run/udev:/run/udev:rw",
         ]
+
         devices = [
           {
             host_path = "/dev/dri"
