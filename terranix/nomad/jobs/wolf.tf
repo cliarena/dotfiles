@@ -12,7 +12,7 @@ job "wolf" {
       driver = "docker"
       env {
         XDG_RUNTIME_DIR        = "/tmp/sockets"
-        HOST_APPS_STATE_FOLDER = "/srv/volumes/wolf"
+        HOST_APPS_STATE_FOLDER = "/etc/wolf"
       }
 
       config {
