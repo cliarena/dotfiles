@@ -17,6 +17,7 @@ in {
         yamlls.enable = true;
         taplo.enable = true;
         nixd.enable = true;
+        nushell.enable = true;
         terraformls.enable = true;
         rust_analyzer = {
           enable = true;
