@@ -18,6 +18,7 @@ in {
 
         extraConfig = # lua
           ''
+            local act = wezterm.action;
             return {
               line_height = 1.2,
               font_size = 8.7, -- 8.6 fixes ===
@@ -37,8 +38,6 @@ in {
               hide_tab_bar_if_only_one_tab = true,
 
               default_prog = { "nu" },
-
-              local act = wezterm.action
 
               keys = {
               -- Create a new workspace with a random name and switch to it
