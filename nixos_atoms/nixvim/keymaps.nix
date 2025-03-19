@@ -100,27 +100,32 @@ in {
           options.desc = "Quit";
         }
         {
-          key = "<leader>wn";
+          # key = "<leader>wn";
+          key = "<C-Left>";
           action = "<cmd>SmartCursorMoveLeft<cr>";
           options.desc = "Move left";
         }
         {
-          key = "<leader>we";
+          # key = "<leader>we";
+          key = "<C-Down>";
           action = "<cmd>SmartCursorMoveDown<cr>";
           options.desc = "Move Down";
         }
         {
-          key = "<leader>wu";
+          # key = "<leader>wu";
+          key = "<C-Up>";
           action = "<cmd>SmartCursorMoveUp<cr>";
           options.desc = "Move up";
         }
         {
-          key = "<leader>wi";
+          # key = "<leader>wi";
+          key = "<C-Right>";
           action = "<cmd>SmartCursorMoveRight<cr>";
           options.desc = "Move right";
         }
         {
-          key = "<leader>wo";
+          # key = "<leader>wo";
+          key = "<C-\\>";
           action = "<cmd>lua require('smart-splits').move_cursor_previous<cr>";
           options.desc = "Move prev";
         }
@@ -160,22 +165,26 @@ in {
           options.desc = "Split Bottom";
         }
         {
-          key = "<leader>wrn";
+          # key = "<leader>wrn";
+          key = "<A-Left>";
           action = "<cmd>SmartResizeLeft<cr>";
           options.desc = "Left";
         }
         {
-          key = "<leader>wre";
+          # key = "<leader>wre";
+          key = "<A-Down>";
           action = "<cmd>SmartResizeDown<cr>";
           options.desc = "Down";
         }
         {
-          key = "<leader>wru";
+          # key = "<leader>wru";
+          key = "<A-Up>";
           action = "<cmd>SmartResizeUp<cr>";
           options.desc = "Up";
         }
         {
-          key = "<leader>wri";
+          # key = "<leader>wri";
+          key = "<A-Right>";
           action = "<cmd>SmartResizeRight<cr>";
           options.desc = "Right";
         }
