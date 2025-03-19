@@ -38,10 +38,12 @@ in {
 
               default_prog = { "nu" },
 
+              local act = wezterm.action
+
               keys = {
               -- Create a new workspace with a random name and switch to it
                {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
-              -- { key = 'i', mods = 'CTRL|SHIFT', action = SwitchToWorkspace },
+               { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
                 -- Switch to the default workspace
               -- {
               --   key = 'd',
