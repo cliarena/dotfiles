@@ -58,6 +58,11 @@ job "wolf" {
     task "server" {
       driver = "docker"
 
+      resources {
+        cpu    = 2000
+        memory = 4096
+      }
+
       env {
         XDG_RUNTIME_DIR            = "/tmp/sockets"
         HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
