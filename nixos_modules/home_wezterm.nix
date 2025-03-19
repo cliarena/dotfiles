@@ -35,12 +35,12 @@ in {
             local function split_nav(resize_or_move, key)
               return {
                 key = key,
-                mods = resize_or_move == 'resize' and 'LEADER' or 'CTRL',
+                mods = resize_or_move == 'resize' and 'Space' or 'CTRL',
                 action = wezterm.action_callback(function(win, pane)
                   if is_vim(pane) then
                     -- pass the keys through to vim/nvim
                     win:perform_action({
-                      SendKey = { key = key, mods = resize_or_move == 'resize' and 'LEADER' or 'CTRL' },
+                      SendKey = { key = key, mods = resize_or_move == 'resize' and 'Space' or 'CTRL' },
                     }, pane)
                   else
                     if resize_or_move == 'resize' then
@@ -54,7 +54,7 @@ in {
             end
 
             return {
-              leader = { key = 'Space', mods = "" },
+              -- leader = { key = 'Space', mods = "" },
               line_height = 1.2,
               font_size = 8.7, -- 8.6 fixes ===
 
