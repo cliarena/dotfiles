@@ -59,8 +59,9 @@ job "wolf" {
       driver = "docker"
 
       env {
-        XDG_RUNTIME_DIR        = "/tmp/sockets"
-        HOST_APPS_STATE_FOLDER = "/etc/wolf"
+        XDG_RUNTIME_DIR            = "/tmp/sockets"
+        HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
+        WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
       }
 
       config {
