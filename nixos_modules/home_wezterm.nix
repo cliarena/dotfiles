@@ -25,7 +25,7 @@ in {
               return pane:get_user_vars().IS_NVIM == 'true'
             end
 
-            local direction_keys =
+            local direction_keys = {
               LeftArrow = 'Left',
               DownArrow = 'Down',
               UpArrow = 'Up',
