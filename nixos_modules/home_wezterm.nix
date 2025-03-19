@@ -57,7 +57,7 @@ in {
               -- leader = { key = 'Space', mods = "" },
               line_height = 1.2,
               font_size = 8.7, -- 8.6 fixes ===
-              font = wezterm.font 'JetBrains Mono DemiBold',
+              font = wezterm.font('JetBrains Mono', { weight = 'DemiBold' }),
 
               bold_brightens_ansi_colors = "BrightAndBold",
               color_scheme = 'Catppuccin Mocha',
