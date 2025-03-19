@@ -64,7 +64,7 @@ job "wolf" {
       }
 
       env {
-        XDG_RUNTIME_DIR            = "/run/user/1000"
+        XDG_RUNTIME_DIR            = "/tmp/sockets"
         HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
         WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
       }
@@ -75,7 +75,7 @@ job "wolf" {
 
         volumes = [
           "/srv/volumes/wolf:/etc/wolf",
-          "/run/user/1000:/run/user/1000:rw",
+          "/tmp/sockets:/tmp/sockets:rw",
           "/var/run/docker.sock:/var/run/docker.sock:rw",
           "/dev/:/dev/:rw",
           "/run/udev:/run/udev:rw",
