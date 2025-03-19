@@ -41,7 +41,7 @@ in {
                     -- pass the keys through to vim/nvim
                     win:perform_action({
                       -- SendKey = { key = key, mods = resize_or_move == 'resize' and 'LEADER' or 'CTRL' },
-                      SendKey = { key = 'LEADER'},
+                      SendKey = { key = 'g',mods=""},
                     }, pane)
                   else
                     if resize_or_move == 'resize' then
