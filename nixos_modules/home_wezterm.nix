@@ -18,7 +18,7 @@ in {
 
         extraConfig = # lua
           ''
-            local act = wezterm.action;
+            local act = wezterm.action
 
             local function is_vim(pane)
               -- this is set by the plugin, and unset on ExitPre in Neovim
@@ -35,12 +35,12 @@ in {
             local function split_nav(resize_or_move, key)
               return {
                 key = key,
-                mods = resize_or_move == 'resize' and 'META' or 'CTRL',
+                mods = resize_or_move == 'resize' and 'Leader' or 'CTRL',
                 action = wezterm.action_callback(function(win, pane)
                   if is_vim(pane) then
                     -- pass the keys through to vim/nvim
                     win:perform_action({
-                      SendKey = { key = key, mods = resize_or_move == 'resize' and 'META' or 'CTRL' },
+                      SendKey = { key = key, mods = resize_or_move == 'resize' and 'Leader' or 'CTRL' },
                     }, pane)
                   else
                     if resize_or_move == 'resize' then
@@ -54,6 +54,7 @@ in {
             end
 
             return {
+              leader = { key = 'Space', mods = "" }
               line_height = 1.2,
               font_size = 8.7, -- 8.6 fixes ===
 
