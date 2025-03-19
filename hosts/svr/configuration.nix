@@ -88,7 +88,7 @@ in {
 
   programs.steam.enable = true;
   _sshd.enable = true;
-  _wolf.enable = false;
+  _wolf.enable = true;
   _wolf_pulse_audio.enable = true;
 
   systemd.tmpfiles.rules =
