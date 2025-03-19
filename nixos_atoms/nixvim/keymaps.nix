@@ -101,22 +101,22 @@ in {
         }
         {
           key = "<leader>wn";
-          action = "<cmd>lua require('smart-splits').move_cursor_left<cr>";
+          action = "<cmd>SmartCursorMoveLeft<cr>";
           options.desc = "Move left";
         }
         {
           key = "<leader>we";
-          action = "<cmd>lua require('smart-splits').move_cursor_down<cr>";
+          action = "<cmd>SmartCursorMoveDown<cr>";
           options.desc = "Move Down";
         }
         {
           key = "<leader>wu";
-          action = "<cmd>lua require('smart-splits').move_cursor_up<cr>";
+          action = "<cmd>SmartCursorMoveUp<cr>";
           options.desc = "Move up";
         }
         {
           key = "<leader>wi";
-          action = "<cmd>lua require('smart-splits').move_cursor_right<cr>";
+          action = "<cmd>SmartCursorMoveRight<cr>";
           options.desc = "Move right";
         }
         {
@@ -126,22 +126,22 @@ in {
         }
         {
           key = "<leader>wSn";
-          action = "<cmd>lua require('smart-splits').swap_buf_left<cr>";
+          action = "<cmd>SmartSwapLeft<cr>";
           options.desc = "Left";
         }
         {
           key = "<leader>wSe";
-          action = "<cmd>lua require('smart-splits').swap_buf_down<cr>";
+          action = "<cmd>SmartSwapDown<cr>";
           options.desc = "Down";
         }
         {
           key = "<leader>wSu";
-          action = "<cmd>lua require('smart-splits').swap_buf_up<cr>";
+          action = "<cmd>SmartSwapUp<cr>";
           options.desc = "Up";
         }
         {
           key = "<leader>wSi";
-          action = "<cmd>lua require('smart-splits').swap_buf_right<cr>";
+          action = "<cmd>SmartSwapRight<cr>";
           options.desc = "Right";
         }
         {
@@ -161,22 +161,22 @@ in {
         }
         {
           key = "<leader>wrn";
-          action = "<cmd>lua require('smart-splits').resize_left<cr>";
+          action = "<cmd>SmartResizeLeft<cr>";
           options.desc = "Left";
         }
         {
           key = "<leader>wre";
-          action = "<cmd>lua require('smart-splits').resize_down<cr>";
+          action = "<cmd>SmartResizeDown<cr>";
           options.desc = "Down";
         }
         {
           key = "<leader>wru";
-          action = "<cmd>lua require('smart-splits').resize_up<cr>";
+          action = "<cmd>SmartResizeUp<cr>";
           options.desc = "Up";
         }
         {
           key = "<leader>wri";
-          action = "<cmd>lua require('smart-splits').resize_right<cr>";
+          action = "<cmd>SmartResizeRight<cr>";
           options.desc = "Right";
         }
 
