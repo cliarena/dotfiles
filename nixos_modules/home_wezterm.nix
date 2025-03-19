@@ -54,7 +54,7 @@ in {
             end
 
             return {
-              leader = { key = 'Space', mods = "" }
+              leader = { key = 'Space', mods = "" },
               line_height = 1.2,
               font_size = 8.7, -- 8.6 fixes ===
 
