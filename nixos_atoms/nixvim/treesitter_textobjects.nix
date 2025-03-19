@@ -140,13 +140,13 @@ in {
       swap = {
         enable = true;
         swapNext = {
-          "<leader>Sp" = {
+          "<leader>pp" = {
             query = "@parameter.inner";
             desc = "Swap parameter with the next";
           };
         };
         swapPrevious = {
-          "<leader>SP" = {
+          "<leader>pP" = {
             query = "@parameter.inner";
             desc = "Swap parameter with the prev";
           };

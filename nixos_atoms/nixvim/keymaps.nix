@@ -85,21 +85,6 @@ in {
         }
         ############   Windows   ############
         {
-          key = "<leader>ws";
-          action = "<cmd>vsplit<cr>";
-          options.desc = "Split Right";
-        }
-        {
-          key = "<leader>wS";
-          action = "<cmd>wincmd=<cr>";
-          options.desc = "Split Evenly";
-        }
-        {
-          key = "<leader>wh";
-          action = "<cmd>split<cr>";
-          options.desc = "Split Bottom";
-        }
-        {
           key = "<leader>ww";
           action = "<cmd>w!<cr>";
           options.desc = "Save";
@@ -114,6 +99,87 @@ in {
           action = "<cmd>q!<cr>";
           options.desc = "Quit";
         }
+        {
+          key = "<leader>wn";
+          action = "<cmd>lua require('smart-splits').move_cursor_left<cr>";
+          options.desc = "Move left";
+        }
+        {
+          key = "<leader>we";
+          action = "<cmd>lua require('smart-splits').move_cursor_down<cr>";
+          options.desc = "Move Down";
+        }
+        {
+          key = "<leader>wu";
+          action = "<cmd>lua require('smart-splits').move_cursor_up<cr>";
+          options.desc = "Move up";
+        }
+        {
+          key = "<leader>wi";
+          action = "<cmd>lua require('smart-splits').move_cursor_right<cr>";
+          options.desc = "Move right";
+        }
+        {
+          key = "<leader>wo";
+          action = "<cmd>lua require('smart-splits').move_cursor_previous<cr>";
+          options.desc = "Move prev";
+        }
+        {
+          key = "<leader>wSn";
+          action = "<cmd>lua require('smart-splits').swap_buf_left<cr>";
+          options.desc = "Left";
+        }
+        {
+          key = "<leader>wSe";
+          action = "<cmd>lua require('smart-splits').swap_buf_down<cr>";
+          options.desc = "Down";
+        }
+        {
+          key = "<leader>wSu";
+          action = "<cmd>lua require('smart-splits').swap_buf_up<cr>";
+          options.desc = "Up";
+        }
+        {
+          key = "<leader>wSi";
+          action = "<cmd>lua require('smart-splits').swap_buf_right<cr>";
+          options.desc = "Right";
+        }
+        {
+          key = "<leader>wss";
+          action = "<cmd>vsplit<cr>";
+          options.desc = "Split Right";
+        }
+        {
+          key = "<leader>wsS";
+          action = "<cmd>wincmd=<cr>";
+          options.desc = "Split Evenly";
+        }
+        {
+          key = "<leader>wsh";
+          action = "<cmd>split<cr>";
+          options.desc = "Split Bottom";
+        }
+        {
+          key = "<leader>wrn";
+          action = "<cmd>lua require('smart-splits').resize_left<cr>";
+          options.desc = "Left";
+        }
+        {
+          key = "<leader>wre";
+          action = "<cmd>lua require('smart-splits').resize_down<cr>";
+          options.desc = "Down";
+        }
+        {
+          key = "<leader>wru";
+          action = "<cmd>lua require('smart-splits').resize_up<cr>";
+          options.desc = "Up";
+        }
+        {
+          key = "<leader>wri";
+          action = "<cmd>lua require('smart-splits').resize_right<cr>";
+          options.desc = "Right";
+        }
+
         ############   Neotest   ############
         {
           key = "[t";

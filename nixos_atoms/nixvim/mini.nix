@@ -183,6 +183,16 @@ in {
             }
             {
               mode = "n";
+              keys = "<leader>s";
+              desc = "Select";
+            }
+            {
+              mode = "n";
+              keys = "<leader>p";
+              desc = "Parameter";
+            }
+            {
+              mode = "n";
               keys = "<leader>tt";
               desc = "Test";
             }
@@ -195,6 +205,21 @@ in {
               mode = "n";
               keys = "<leader>w";
               desc = "Window";
+            }
+            {
+              mode = "n";
+              keys = "<leader>wS";
+              desc = "Swap";
+            }
+            {
+              mode = "n";
+              keys = "<leader>ws";
+              desc = "Split";
+            }
+            {
+              mode = "n";
+              keys = "<leader>wr";
+              desc = "Resize";
             }
             { __raw = "require('mini.clue').gen_clues.builtin_completion()"; }
             { __raw = "require('mini.clue').gen_clues.g()"; }
