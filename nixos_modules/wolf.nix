@@ -13,11 +13,6 @@ in {
 
     environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
 
-    services.pulseaudio = { # Needed to get audio
-      enable = true;
-      systemWide = true;
-    };
-
     systemd.services.wolf = {
       # enable = false;
       description = "stream desktop containers";
