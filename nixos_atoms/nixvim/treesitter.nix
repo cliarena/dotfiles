@@ -29,6 +29,15 @@ in {
         };
       };
 
+      extraFiles = {
+        "queries/zig/injections.scm".text =
+          # scheme
+          ''
+            ((((comment) @injection.language) .
+              (indented_string_expression (string_fragment) @injection.content))
+              (#set! injection.combined))
+          '';
+      };
     };
   };
 }
