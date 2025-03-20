@@ -34,8 +34,8 @@ in {
           # scheme
           ''
             ((((comment) @injection.language) .
-              (indented_string_expression (string_fragment) @injection.content))
-              (#set! injection.combined))
+            (string (string_content) @injection.content))
+            (#set! injection.combined))
           '';
       };
     };
