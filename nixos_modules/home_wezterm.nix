@@ -35,12 +35,12 @@ in {
             local function split_nav(resize_or_move, key)
               return {
                 key = key,
-                mods = resize_or_move == 'resize' and 'META' or 'CTRL',
+                mods = resize_or_move == 'resize' and 'ALT' or 'CTRL',
                 action = wezterm.action_callback(function(win, pane)
                   if is_vim(pane) then
                     -- pass the keys through to vim/nvim
                     win:perform_action({
-                      SendKey = { key = key, mods = resize_or_move == 'resize' and 'META' or 'CTRL' },
+                      SendKey = { key = key, mods = resize_or_move == 'resize' and 'ALT' or 'CTRL' },
                     }, pane)
                   else
                     if resize_or_move == 'resize' then
@@ -79,7 +79,7 @@ in {
               -- Create a new workspace with a random name and switch to it
                { key = 's', mods = 'CTRL|SHIFT', action = act.SplitHorizontal { domain = "CurrentPaneDomain"} },
                { key = 'h', mods = 'CTRL|SHIFT', action = act.SplitVertical { domain = "CurrentPaneDomain"} },
-               { key = 'q', mods = 'META|SHIFT', action = act.CloseCurrentPane { confirm = false } },
+               { key = 'q', mods = 'ALT|SHIFT', action = act.CloseCurrentPane { confirm = false } },
 
                { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
 
