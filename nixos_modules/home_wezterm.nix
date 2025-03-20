@@ -77,10 +77,11 @@ in {
 
               keys = {
               -- Create a new workspace with a random name and switch to it
-               {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
-               { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
                { key = 's', mods = 'CTRL|SHIFT', action = act.SplitHorizontal { domain = "CurrentPaneDomain"} },
                { key = 'h', mods = 'CTRL|SHIFT', action = act.SplitVertical { domain = "CurrentPaneDomain"} },
+               { key = 'q', mods = 'META|SHIFT', action = act.CloseCurrentPane { confirm = false } },
+
+               { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
 
                 -- move between split panes
                 split_nav('move', 'LeftArrow'),
