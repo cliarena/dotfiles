@@ -78,7 +78,8 @@ in {
               keys = {
               -- Create a new workspace with a random name and switch to it
                { key = 's', mods = 'CTRL|SHIFT', action = act.SplitHorizontal { domain = "CurrentPaneDomain"} },
-               { key = 'h', mods = 'CTRL|SHIFT', action = act.SplitVertical { domain = "CurrentPaneDomain"} },
+               -- { key = 'h', mods = 'CTRL|SHIFT', action = act.SplitVertical { domain = "CurrentPaneDomain"} },
+               { key = 'h', mods = 'CTRL|SHIFT', action = act. action = wezterm.action.SplitPane { direction = 'Right', size = { Percent = 30 },}, },
                { key = 'q', mods = 'ALT|SHIFT', action = act.CloseCurrentPane { confirm = false } },
 
                { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
