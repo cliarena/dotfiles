@@ -39,8 +39,15 @@ in {
           text = # scheme
             ''
               ;; extends
-              (string (string_content) @injection.content
-              (#set! injection.language "html"))
+              ((comment) @injection.language
+                . ; this is to make sure only adjacent comments are accounted for the injections
+                [
+                  (string
+                    (string_content) @injection.content)
+                    ((multiline_string) @injection.content)
+                ]
+                (#gsub! @injection.language "//%s*([%w%p]+)%s*" "%1")
+                (#set! injection.combined))
             '';
         };
         "queries/nix/injections.scm" = {
