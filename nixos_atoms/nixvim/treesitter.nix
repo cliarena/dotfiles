@@ -48,7 +48,6 @@ in {
           text = # scheme
             ''
               ;; extends
-
               (binding
                 attrpath: (attrpath
                   (identifier) @_path)
