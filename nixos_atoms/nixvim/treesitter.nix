@@ -33,9 +33,7 @@ in {
         "queries/zig/injections.scm".text =
           # scheme
           ''
-            ; ((((comment) @injection.language) .
-            ; (string (string_content) @injection.content))
-            ; (#set! injection.combined))
+            ;; extends
             (string (string_content) @injection.content
             (#set! injection.language "html"))
           '';
