@@ -60,6 +60,32 @@ in {
                       (#set! injection.language "lua")))
                 ]
                 (#match? @_path "(^(extraConfigLuax(Pre|Post)?|__raw))$"))
+
+              (binding
+                attrpath: (attrpath
+                  (identifier) @_path)
+                expression: [
+                  (string_expression
+                    ((string_fragment) @injection.content
+                      (#set! injection.language "html")))
+                  (indented_string_expression
+                    ((string_fragment) @injection.content
+                      (#set! injection.language "html")))
+                ]
+                (#match? @_path "(^(extraConfigHtml(Pre|Post)?|__raw))$"))
+
+              (binding
+                attrpath: (attrpath
+                  (identifier) @_path)
+                expression: [
+                  (string_expression
+                    ((string_fragment) @injection.content
+                      (#set! injection.language "css")))
+                  (indented_string_expression
+                    ((string_fragment) @injection.content
+                      (#set! injection.language "css")))
+                ]
+                (#match? @_path "(^(extraConfigCss(Pre|Post)?|__raw))$"))
             '';
         };
       };
