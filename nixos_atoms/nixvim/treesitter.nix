@@ -30,6 +30,9 @@ in {
       };
 
       extraFiles = {
+        #  ((((comment) @injection.language) .
+        #  (string (string_content) @injection.content))
+        #  (#set! injection.combined))
         "queries/zig/injections.scm" = {
           enable = true;
           text =
