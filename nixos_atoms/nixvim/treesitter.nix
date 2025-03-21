@@ -35,12 +35,31 @@ in {
         #  (#set! injection.combined))
         "queries/zig/injections.scm" = {
           enable = true;
-          text =
-            # scheme
+          text = # scheme
             ''
               ;; extends
               (string (string_content) @injection.content
               (#set! injection.language "html"))
+            '';
+        };
+        "queries/nix/injections.scm" = {
+          enable = true;
+          text = # scheme
+            ''
+              ;; extends
+
+              (binding
+                attrpath: (attrpath
+                  (identifier) @_path)
+                expression: [
+                  (string_expression
+                    ((string_fragment) @injection.content
+                      (#set! injection.language "lua")))
+                  (indented_string_expression
+                    ((string_fragment) @injection.content
+                      (#set! injection.language "lua")))
+                ]
+                (#match? @_path "(^(extraConfigLuax(Pre|Post)?|__raw))$"))
             '';
         };
       };
