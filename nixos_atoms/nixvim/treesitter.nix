@@ -30,13 +30,16 @@ in {
       };
 
       extraFiles = {
-        "queries/zig/injections.scm".text =
-          # scheme
-          ''
-            ;; extends
-            (string (string_content) @injection.content
-            (#set! injection.language "html"))
-          '';
+        "queries/zig/injections.scm" = {
+          enable = true;
+          text =
+            # scheme
+            ''
+              ;; extends
+              (string (string_content) @injection.content
+              (#set! injection.language "html"))
+            '';
+        };
       };
     };
   };
