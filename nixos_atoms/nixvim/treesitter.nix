@@ -46,8 +46,10 @@ in {
                     (string_content) @injection.content)
                     ((multiline_string) @injection.content)
                 ]
-                (#gsub! @injection.language "//%s*([%w%p]+)%s*" "%1")
-                (#set! injection.combined))
+                (#set! injection.language "html"))
+
+                ; (#gsub! @injection.language "//%s*([%w%p]+)%s*" "%1")
+                ; (#set! injection.combined))
             '';
         };
         "queries/nix/injections.scm" = {
