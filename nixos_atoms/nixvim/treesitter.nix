@@ -41,6 +41,10 @@ in {
           text = # scheme
             ''
               ;; extends
+              ((string) @injection.content
+                (#set! injection.include-children)
+                (#set! injection.language "lua"))
+
               ((comment) @injection.language
                 . ; this is to make sure only adjacent comments are accounted for the injections
                 [
