@@ -99,15 +99,15 @@ in {
               {
                 key = 'd',
                 mods = 'CTRL|SHIFT',
-                action = "SwitchToWorkspace {
+                action = act.SwitchToWorkspace {
                   name = 'default',
-                }"
+                }
               },
               -- Switch to a monitoring workspace, which will have `top` launched into it
               {
                 key = 'm',
                 mods = 'CTRL|SHIFT',
-                action = SwitchToWorkspace {
+                action = act.SwitchToWorkspace {
                   name = 'monitoring',
                   spawn = {
                     args = { 'btm' },
@@ -117,7 +117,7 @@ in {
               {
                 key = 'n',
                 mods = 'CTRL|SHIFT',
-                action = SwitchToWorkspace {
+                action = act.SwitchToWorkspace {
                   name = 'notes',
                   spawn = {
                     cwd = '~/notes',
@@ -129,7 +129,7 @@ in {
               {
                 key = 'd',
                 mods = 'CTRL|SHIFT',
-                action = SwitchToWorkspace {
+                action = act.SwitchToWorkspace {
                   name = 'dotfiles',
                   spawn = {
                     cwd = '~/nixos',
@@ -143,7 +143,7 @@ in {
               {
                 key = 'f',
                 mods = 'ALT',
-                action = ShowLauncherArgs {
+                action = act.ShowLauncherArgs {
                   flags = 'FUZZY|WORKSPACES',
                 },
               },
