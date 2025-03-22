@@ -46,10 +46,22 @@ in {
                     (string_content) @injection.content)
                     ((multiline_string) @injection.content)
                 ]
+                (#set! injection.include-children)
                 (#set! injection.language "html"))
 
                 ; (#gsub! @injection.language "//%s*([%w%p]+)%s*" "%1")
                 ; (#set! injection.combined))
+
+              (variable_declaration
+                ((identifier) @_path)
+                [
+                  (string
+                    ((string_content) @injection.content
+                      (#set! injection.language "lua")))
+                  ((multiline_string) @injection.content
+                        (#set! injection.language "lua"))
+                ]
+                (#match? @_path "(^(config_lua(Pre|Post)?|__raw))$"))
             '';
         };
         "queries/nix/injections.scm" = {
