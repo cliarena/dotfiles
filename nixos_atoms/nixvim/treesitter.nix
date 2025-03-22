@@ -30,6 +30,8 @@ in {
         };
       };
 
+      # extraConfigLuax = "-- comment";
+
       extraFiles = {
         #  ((((comment) @injection.language) .
         #  (string (string_content) @injection.content))
@@ -55,13 +57,12 @@ in {
               (variable_declaration
                 ((identifier) @_path)
                 [
-                  (string
-                    ((string_content) @injection.content
-                      (#set! injection.language "lua")))
-                  ((multiline_string) @injection.content
-                        (#set! injection.language "lua"))
+                  ((string) @injection.content
+                    (#set! injection.language "lua"))
+                  ; ((multiline_string) @injection.content
+                  ;       (#set! injection.language "lua"))
                 ]
-                (#match? @_path "(^(config_lua(Pre|Post)?|__raw))$"))
+                (#match? @_path "(^(configLua(Pre|Post)?|__raw))$"))
             '';
         };
         "queries/nix/injections.scm" = {
