@@ -96,55 +96,57 @@ in {
                 split_nav('resize', 'UpArrow'),
                 split_nav('resize', 'RightArrow'),
                 -- Switch to the default workspace
-              -- {
-              --   key = 'd',
-              --   mods = 'CTRL|SHIFT',
-              --   action = "SwitchToWorkspace {
-              --     name = 'default',
-              --   }"
-              -- },
-              -- -- Switch to a monitoring workspace, which will have `top` launched into it
-              -- {
-              --   key = 'm',
-              --   mods = 'CTRL|SHIFT',
-              --   action = SwitchToWorkspace {
-              --     name = 'monitoring',
-              --     spawn = {
-              --       args = { 'btm' },
-              --     },
-              --   },
-              -- },
-              -- {
-              --   key = 'n',
-              --   mods = 'CTRL|SHIFT',
-              --   action = SwitchToWorkspace {
-              --     name = 'notes',
-              --     spawn = {
-              --       cwd = '~/notes',
-              --       args = { 'nvim' },
-              --     },
-              --   },
-              -- },
-              -- {
-              --   key = 'd',
-              --   mods = 'CTRL|SHIFT',
-              --   action = SwitchToWorkspace {
-              --     name = 'dotfiles',
-              --     spawn = {
-              --       cwd = '~/nixos',
-              --       args = { 'nvim' },
-              --     },
-              --   },
-              -- },
-              -- -- Show the launcher in fuzzy selection mode and have it list all workspaces
-              -- -- and allow activating one.
-              -- {
-              --   key = '9',
-              --   mods = 'ALT',
-              --   action = ShowLauncherArgs {
-              --     flags = 'FUZZY|WORKSPACES',
-              --   },
-              -- },
+              {
+                key = 'd',
+                mods = 'CTRL|SHIFT',
+                action = "SwitchToWorkspace {
+                  name = 'default',
+                }"
+              },
+              -- Switch to a monitoring workspace, which will have `top` launched into it
+              {
+                key = 'm',
+                mods = 'CTRL|SHIFT',
+                action = SwitchToWorkspace {
+                  name = 'monitoring',
+                  spawn = {
+                    args = { 'btm' },
+                  },
+                },
+              },
+              {
+                key = 'n',
+                mods = 'CTRL|SHIFT',
+                action = SwitchToWorkspace {
+                  name = 'notes',
+                  spawn = {
+                    cwd = '~/notes',
+                    args = { 'nvim' },
+                    domain = { DomainName = 'DS' },
+                  },
+                },
+              },
+              {
+                key = 'd',
+                mods = 'CTRL|SHIFT',
+                action = SwitchToWorkspace {
+                  name = 'dotfiles',
+                  spawn = {
+                    cwd = '~/nixos',
+                    args = { 'nvim' },
+                    domain = { DomainName = 'DS' },
+                  },
+                },
+              },
+              -- Show the launcher in fuzzy selection mode and have it list all workspaces
+              -- and allow activating one.
+              {
+                key = 'f',
+                mods = 'ALT',
+                action = ShowLauncherArgs {
+                  flags = 'FUZZY|WORKSPACES',
+                },
+              },
               }
 
             }
