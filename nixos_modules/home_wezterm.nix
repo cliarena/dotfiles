@@ -149,7 +149,7 @@ in {
               -- and allow activating one.
               {
                 key = 'f',
-                mods = 'ALT',
+                mods = 'CTRL|SHIFT',
                 action = act.ShowLauncherArgs {
                   flags = 'FUZZY|WORKSPACES',
                 },
