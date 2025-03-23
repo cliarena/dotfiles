@@ -122,7 +122,7 @@ in {
                   spawn = {
                     cwd = '~/notes',
                     args = { 'nvim' },
-                    domain = { DomainName = 'DS' },
+                    domain = { DomainName = 'SSHMUX:DS' },
                   },
                 },
               },
@@ -134,7 +134,7 @@ in {
                   spawn = {
                     cwd = '~/nixos',
                     args = { 'nvim' },
-                    domain = { DomainName = 'DS' },
+                    domain = { DomainName = 'SSHMUX:DS' },
                   },
                 },
               },
