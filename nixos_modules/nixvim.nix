@@ -15,6 +15,7 @@ in {
     programs.nixvim.enable = true;
 
     _options.enable = true;
+    _direnv.enable = true;
 
     _wezterm.enable = true; # needs update
 
