@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  module = "_direnv";
+  module = "_nvim_direnv";
   description = "setup environment";
   inherit (lib) mkEnableOption mkIf;
 in {
