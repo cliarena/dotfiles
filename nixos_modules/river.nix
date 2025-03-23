@@ -10,7 +10,8 @@ let
   # resolution = "2560x1440";
   resolution = "1920x1080";
   menu = "${pkgs.bemenu}/bin/bemenu-run";
-  terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
+  terminal = "${pkgs.wezterm}/bin/wezterm";
+  # terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
 
   tags = builtins.genList (x: x) 9;
   tag_map_list = builtins.map (tag: {
