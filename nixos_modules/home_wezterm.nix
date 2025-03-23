@@ -120,7 +120,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'notes',
                   spawn = {
-                    cwd = '~/notes',
+                    cwd = '/home/x/notes',
                     args = { 'nvim' },
                     domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -132,7 +132,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'dotfiles',
                   spawn = {
-                    cwd = '$HOME/nixos',
+                    cwd = '/home/x/nixos',
                     args = { 'nvim' },
                     domain = { DomainName = 'SSHMUX:DS' },
                   },
