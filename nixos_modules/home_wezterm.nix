@@ -118,6 +118,7 @@ in {
                   name = 'monitoring',
                   spawn = {
                     args = { 'btm' },
+                    domain = { DomainName = 'SSHMUX:DS' },
                   },
                 },
               },
@@ -140,6 +141,30 @@ in {
                   name = 'dotfiles',
                   spawn = {
                     cwd = '/home/x/nixos',
+                    args = { 'nvim' },
+                    domain = { DomainName = 'SSHMUX:DS' },
+                  },
+                },
+              },
+              {
+                key = 'F10',
+                mods = 'CTRL|SHIFT',
+                action = act.SwitchToWorkspace {
+                  name = 'project_main',
+                  spawn = {
+                    cwd = '/home/x/project_main',
+                    args = { 'nvim' },
+                    domain = { DomainName = 'SSHMUX:DS' },
+                  },
+                },
+              },
+              {
+                key = 'F11',
+                mods = 'CTRL|SHIFT',
+                action = act.SwitchToWorkspace {
+                  name = 'project_secondary',
+                  spawn = {
+                    cwd = '/home/x/project_secondary',
                     args = { 'nvim' },
                     domain = { DomainName = 'SSHMUX:DS' },
                   },
