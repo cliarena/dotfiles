@@ -2,6 +2,13 @@
   description = "Nixos configuration";
 
   inputs = {
+    # Cloned on boot
+    # Update project urls when needed
+    # home_notes.url = "gitlab:persona_code/notes";
+    # home_dotfiles.url = "gitlab:cliarena_dotfiles/nixos";
+    # home_project_main.url = "gitlab:mallx/products";
+    # home_project_scondary.url = "gitlab:mallx/products";
+
     # nixpkgs.url = "github:NixOS/nixpkgs/9957cd48326fe8dbd52fdc50dd2502307f188b0d";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -52,7 +59,7 @@
 
     kmonad.url = "github:kmonad/kmonad?dir=nix";
 
-    zig-overlay = { url = "github:mitchellh/zig-overlay"; };
+    zig-overlay.url = "github:mitchellh/zig-overlay";
     zls-overlay.url = "github:zigtools/zls";
 
     hyprland = {
