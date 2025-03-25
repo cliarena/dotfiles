@@ -3,6 +3,7 @@ let
   module = "_direnv";
   description = "auto load environments";
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.home) homeDirectory;
 in {
 
   options.${module}.enable = mkEnableOption description;
@@ -14,6 +15,13 @@ in {
         direnv = {
           enable = true;
           nix-direnv.enable = true;
+          config = {
+            whitelist.prefix = [
+              "${homeDirectory}/dotfiles"
+              "${homeDirectory}/project_main"
+              "${homeDirectory}/project_seconday"
+            ];
+          };
         };
       };
     };
