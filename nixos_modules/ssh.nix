@@ -4,6 +4,11 @@ let
   description = "ssh client config";
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager;
+
+  gitlab_pub_key_file = (pkgs.writeText "gitlab"
+    "gitlab.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf");
+  github_pub_key_file = (pkgs.writeText "github"
+    "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl");
 in {
 
   imports = [ home-manager.nixosModules.home-manager ];
@@ -49,15 +54,9 @@ in {
               extraOptions = { PreferredAuthentications = "publickey"; };
             };
           };
-          userKnownHostsFile = [
-            "${homeDirectory}/.ssh/known_hosts"
-
-            # This to avoid fingerprints verification prompt on git clone
-            (pkgs.writeText "gitlab"
-              "gitlab.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf")
-            (pkgs.writeText "github"
-              "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl")
-          ];
+          # This to avoid fingerprints verification prompt on git clone
+          userKnownHostsFile =
+            "${homeDirectory}/.ssh/known_hosts ${gitlab_pub_key_file}  ${github_pub_key_file}";
         };
       };
   };
