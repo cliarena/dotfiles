@@ -14,10 +14,15 @@ in {
 
     home-manager.users.${host.user} = {
 
-      home.file = {
-        notes.source = inputs.home_notes.outPath;
-        notes.recursive = true;
+      home.activation = {
+        makePotato = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          git clone git@gitlab.com:persona_code/notes ~/potato
+        '';
       };
+      # home.file = {
+      #   notes.source = inputs.home_notes.outPath;
+      #   notes.recursive = true;
+      # };
     };
   };
 }
