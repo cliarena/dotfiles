@@ -801,12 +801,14 @@
         "ref": "refs/heads/main",
         "rev": "6a1ffb7b8a09039ea2bbef0fa0ff05a104a27e42",
         "revCount": 531,
+        "submodules": true,
         "type": "git",
-        "url": "ssh://git@gitlab.com/persona_code/notes"
+        "url": "git+ssh://git@gitlab.com/persona_code/notes"
       },
       "original": {
+        "submodules": true,
         "type": "git",
-        "url": "ssh://git@gitlab.com/persona_code/notes"
+        "url": "git+ssh://git@gitlab.com/persona_code/notes"
       }
     },
     "hyprcursor": {
