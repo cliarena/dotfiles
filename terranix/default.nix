@@ -28,18 +28,28 @@ let
   };
 
   system = "x86_64-linux";
-  nomad_jobs = nix-nomad.lib.mkNomadJobs {
-    inherit system;
-    config = [ ./nomad/nginx.nix ];
-  };
+  # nomad_jobs = nix-nomad.lib.mkNomadJobs {
+  #   inherit system;
+  #   config = [ ./nomad/nginx.nix ];
+  # };
 
   terraform = pkgs.terraform.withPlugins
     (p: [ p.local p.remote p.consul p.vault p.nomad ]);
 
   terraformConfiguration = terranix.lib.terranixConfiguration {
     inherit system;
-    extraArgs = { inherit self x microvm nix-nomad nomad_jobs; };
-    modules = [ ./backend.nix ./providers ./vault ./consul.nix ./nomad ];
+    extraArgs = {
+      inherit self x microvm nix-nomad
+        # nomad_jobs
+      ;
+    };
+    modules = [
+      ./backend.nix
+      ./providers
+      ./vault
+      ./consul.nix
+      # ./nomad
+    ];
   };
 
 in {
@@ -59,7 +69,7 @@ in {
       && ${terraform}/bin/terraform init \
       && ${terraform}/bin/terraform destroy
   '');
-  build = toString (pkgs.writers.writeBash "build"
-    "cp -rf ${nomad_jobs}/* ./terranix/nomad/jobs ");
+  # build = toString (pkgs.writers.writeBash "build"
+  # "cp -rf ${nomad_jobs}/* ./terranix/nomad/jobs ");
 
 }
