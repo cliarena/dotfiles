@@ -793,6 +793,22 @@
         "type": "github"
       }
     },
+    "home_notes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742859733,
+        "narHash": "sha256-D0IWCPMdCOqml3Uk/T8lmA3A3XCQLUNrAg5631gmqDE=",
+        "ref": "refs/heads/main",
+        "rev": "6a1ffb7b8a09039ea2bbef0fa0ff05a104a27e42",
+        "revCount": 531,
+        "type": "git",
+        "url": "ssh://git@gitlab.com/persona_code/notes"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@gitlab.com/persona_code/notes"
+      }
+    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -1722,6 +1738,7 @@
         "flake-registry": "flake-registry",
         "flakelight": "flakelight",
         "home-manager": "home-manager",
+        "home_notes": "home_notes",
         "hyprland": "hyprland",
         "impermanence": "impermanence",
         "kmonad": "kmonad",

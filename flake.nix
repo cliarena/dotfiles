@@ -5,8 +5,8 @@
     # Cloned on boot
     # Update project urls when needed
     # home_notes.url = "gitlab:persona_code/notes";
-    # home_notes.url = "git+ssh://git@gitlab.com/persona_code/notes";
-    # home_notes.flake = false;
+    home_notes.url = "git+ssh://git@gitlab.com/persona_code/notes";
+    home_notes.flake = false;
 
     # home_dotfiles.url = "gitlab:cliarena_dotfiles/nixos";
     # home_project_main.url = "gitlab:mallx/products";
