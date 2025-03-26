@@ -16,7 +16,7 @@ in {
 
       home.activation = {
         makePotato = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          run ${pkgs.git}/bin/git clone git@gitlab.com:persona_code/notes ~/potato \
+          ${pkgs.git}/bin/git clone git@gitlab.com:persona_code/notes ~/potato \
             --config core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.GL_SSH_KEY.path}"
         '';
       };
