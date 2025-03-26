@@ -16,7 +16,7 @@ in {
 
       home.activation = {
         makePotato = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          git clone git@gitlab.com:persona_code/notes ~/potato
+          ${pkgs.git}/bin/git clone git@gitlab.com:persona_code/notes ~/potato
         '';
       };
       # home.file = {
