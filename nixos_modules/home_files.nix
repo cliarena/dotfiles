@@ -27,7 +27,7 @@ in {
     systemd.services.gitter = {
       # enable = false;
       description = "clone git repos";
-      # path = with pkgs; [ git ];
+      path = with pkgs; [ openssh ];
 
       # environment = {
       #   WOLF_CFG_FILE = "/srv/wolf/cfg/config.toml";
