@@ -12,7 +12,7 @@ in {
 
   config = mkIf config.${module}.enable {
 
-    home-manager.users.${host.user} = {
+    home-manager.users.${host.user} = { config, lib, ... }: {
 
       home.activation = {
         makePotato = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
