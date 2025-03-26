@@ -14,16 +14,22 @@ in {
 
     home-manager.users.${host.user} = { config, lib, ... }: {
 
-      home.activation = {
-        makePotato = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          ${pkgs.git}/bin/git clone git@gitlab.com:persona_code/notes ~/potato \
-            --config core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.GL_SSH_KEY.path}"
-        '';
-      };
+      # home.activation = {
+      #   makePotato = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      #     ${pkgs.git}/bin/git clone git@gitlab.com:persona_code/notes ~/potato \
+      #       --config core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.GL_SSH_KEY.path}"
+      #   '';
+      # };
       # home.file = {
       #   notes.source = inputs.home_notes.outPath;
       #   notes.recursive = true;
       # };
+      home.file = {
+        notes = builtins.fetchGit {
+          url = "git@gitlab.com:persona_code/notes";
+          ref = "main";
+        };
+      };
     };
   };
 }
