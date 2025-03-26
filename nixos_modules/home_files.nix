@@ -14,7 +14,10 @@ in {
 
     home-manager.users.${host.user} = {
 
-      home.file = { notes.source = inputs.home_notes.outPath; };
+      home.file = {
+        notes.source = inputs.home_notes.outPath;
+        notes.recursive = true;
+      };
     };
   };
 }
