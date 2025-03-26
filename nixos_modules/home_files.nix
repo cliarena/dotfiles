@@ -14,7 +14,7 @@ in {
 
     home-manager.users.${host.user} = {
 
-      home.file = { notes.source = inputs.home_notes; };
+      home.file = { notes.source = inputs.home_notes.sourceInfo.outPath; };
     };
   };
 }
