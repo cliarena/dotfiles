@@ -27,7 +27,8 @@ in {
       home.file = {
         notes = builtins.fetchGit {
           url = "git@gitlab.com:persona_code/notes";
-          ref = "main";
+          # ref = "main";
+          shallow = true;
         };
       };
     };
