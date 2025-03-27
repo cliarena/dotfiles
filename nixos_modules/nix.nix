@@ -39,7 +39,7 @@ in {
       '';
 
       # Garbage Collection
-      settings.auto-optimise-store = true;
+      # settings.auto-optimise-store = true; # slows ev build by alot
       gc = {
         automatic = true;
         dates = "weekly";
