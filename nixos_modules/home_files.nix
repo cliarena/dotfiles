@@ -35,7 +35,7 @@ in {
           Install = { WantedBy = [ "default.target" ]; };
 
           Service.ExecStart = pkgs.writeShellScript "watch-store" ''
-            ${pkgs.git}/bin/git --config ${git_config} clone git@gitlab.com:persona_code/notes ~/notes
+            ${pkgs.git}/bin/git  clone --config ${git_config} git@gitlab.com:persona_code/notes ~/notes
           '';
           #!/run/current-system/sw/bin/bash
           # enable = false;
