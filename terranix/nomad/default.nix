@@ -4,7 +4,7 @@ let
     system = "x86_64-linux";
     # system = "aarch64-linux";
     config = [
-      ./nomoperator.nix
+      # ./nomoperator.nix
       # ./kasm.nix
       # # ./echoip_nix.nix
       # ./echo.nix
@@ -15,8 +15,8 @@ let
     ];
   };
 in {
-  resource.nomad_job.nomoperator = {
-    jobspec = ''''${file("${jobs}/nomoperator.json")}'';
-    json = true;
-  };
+  # resource.nomad_job.nomoperator = {
+  #   jobspec = ''''${file("${jobs}/nomoperator.json")}'';
+  #   json = true;
+  # };
 }
