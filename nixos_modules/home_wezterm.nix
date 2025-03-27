@@ -55,10 +55,10 @@ in {
 
             -- this is called by the mux server when it starts up.
             -- It makes a window split top/bottom
-            wezterm.on('mux-startup', function()
-              local tab, pane, window = wezterm.mux.spawn_window {}
-              pane:split { direction = 'Top' }
-            end)
+            -- wezterm.on('mux-startup', function()
+            --   local tab, pane, window = wezterm.mux.spawn_window {}
+            --   pane:split { direction = 'Top' }
+            -- end)
 
             return {
               -- leader = { key = 'Space', mods = "" },
