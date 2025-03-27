@@ -14,6 +14,7 @@ in {
 
     home-manager.users.${host.user} = { config, ... }:
       let
+        gc = "${pkgs.git}/bin/git  clone --config ${git_config}";
         git_config =
           "core.sshCommand='${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.GL_SSH_KEY.path}'";
       in {
@@ -35,7 +36,7 @@ in {
           Install = { WantedBy = [ "default.target" ]; };
 
           Service.ExecStart = pkgs.writeShellScript "watch-store" ''
-            ${pkgs.git}/bin/git  clone --config ${git_config} git@gitlab.com:persona_code/notes ~/notes
+            ${gc}  git@gitlab.com:persona_code/notes ~/notes
           '';
           #!/run/current-system/sw/bin/bash
           # enable = false;
