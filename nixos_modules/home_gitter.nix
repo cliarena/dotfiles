@@ -28,6 +28,8 @@ in {
             ${gc}  git@gitlab.com:cliarena_dotfiles/nixos ~/dotfiles
 
             ${gc}  git@gitlab.com:mallx/products ~/project_main
+            cd ~/dotfiles
+            # cd ~/project_main
           '';
         };
       };
