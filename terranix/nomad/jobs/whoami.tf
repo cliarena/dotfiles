@@ -6,7 +6,7 @@ job "whoami" {
   type = "service"
 
   group "backend" {
-    count = 4
+    count = 3
 
     task "whoami" {
       driver = "docker"
