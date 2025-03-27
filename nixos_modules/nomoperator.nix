@@ -7,7 +7,7 @@ let
   nomoperator = pkgs.buildGoModule {
     pname = "nomoperator";
     version = "0.1.2";
-    vendorHash = "";
+    vendorHash = "sha256-p4MAPHh/mUjN4KANc1OtGRMOv897ISfeVM3IPc7rcYs=";
     src = pkgs.fetchFromGitHub {
       owner = "jonasvinther";
       repo = "nomad-gitops-operator";
