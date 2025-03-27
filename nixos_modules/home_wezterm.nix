@@ -141,7 +141,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'dotfiles',
                   spawn = {
-                    cwd = '/home/x/nixos',
+                    cwd = '/home/x/dotfiles',
                     args = { 'nvim' },
                     domain = { DomainName = 'SSHMUX:DS' },
                   },
