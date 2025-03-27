@@ -23,12 +23,12 @@ in {
   config = mkIf config.${module}.enable {
 
     systemd.services.nomoperator = {
-      # enable = false;
+      enable = true;
       description = "nomad gitops operator";
       # path = with pkgs; [ steam inputs.wolf.packages.x86_64-linux.default ];
 
       script = ''
-        ${nomoperator}/bin/nomoperator bootstrap \
+        ${nomoperator}/bin/nomad-gitops-operator bootstrap \
            git --url https://gitlab.com/cliarena_dotfiles/nixos.git \
            --branch main \
            --path terranix/nomad/jobs/*.tf \
