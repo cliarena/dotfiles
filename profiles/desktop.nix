@@ -25,7 +25,6 @@ in {
     _git.enable = true;
     _bottom.enable = true;
     _direnv.enable = true;
-    _kitty.enable = true;
 
     _eww.enable = true;
     _river.enable = true;
