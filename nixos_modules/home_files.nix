@@ -29,10 +29,10 @@ in {
           Description = "Push nix store changes to attic binary cache.";
         };
         Install = { WantedBy = [ "default.target" ]; };
-        Service.ExecStart = "${pkgs.writeShellScript "watch-store" ''
+        Service.ExecStart = pkgs.writeShellScript "watch-store" ''
           ${pkgs.git}/bin/git clone git@gitlab.com:persona_code/notes ~/notes \
-            --config core.sshCommand=${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.GL_SSH_KEY.path}
-        ''}";
+            --config core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.GL_SSH_KEY.path}"
+        '';
         #!/run/current-system/sw/bin/bash
         # enable = false;
         # description = "clone git repos";
