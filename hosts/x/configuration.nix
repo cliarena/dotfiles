@@ -15,7 +15,7 @@ in {
   profiles.common.enable = true;
   profiles.desktop.enable = true;
 
-  _home_files.enable = true;
+  _home_gitter.enable = true;
   _kmonad.enable = true;
   _sddm.enable = true;
 
