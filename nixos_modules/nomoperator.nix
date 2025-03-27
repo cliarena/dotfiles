@@ -12,6 +12,7 @@ let
       owner = "jonasvinther";
       repo = "nomad-gitops-operator";
       rev = "4d852f7ba1ed1404ca3d1836685c49fabed7c00c";
+      hash = "sha256-opUHc5mbHxMZn2r1fq3n7QOu6vjIvlFrBqOZe/Df6/Q=";
       # hash = lib.fakeHash;
     };
   };
