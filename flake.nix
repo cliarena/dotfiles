@@ -2,23 +2,6 @@
   description = "Nixos configuration";
 
   inputs = {
-    # Cloned on boot
-    # Update project urls when needed
-    # home_notes.url = "gitlab:persona_code/notes";
-    # home_notes.url = "git+ssh://git@gitlab.com/persona_code/notes";
-    # home_notes.flake = false;
-    # home_notes.submodules = true;
-    home_notes = {
-      type = "git";
-      url = "git+ssh://git@gitlab.com/persona_code/notes";
-      flake = false;
-      submodules = true;
-    };
-
-    # home_dotfiles.url = "gitlab:cliarena_dotfiles/nixos";
-    # home_project_main.url = "gitlab:mallx/products";
-    # home_project_scondary.url = "gitlab:mallx/products";
-
     # nixpkgs.url = "github:NixOS/nixpkgs/9957cd48326fe8dbd52fdc50dd2502307f188b0d";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
