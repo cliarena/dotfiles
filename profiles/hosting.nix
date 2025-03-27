@@ -32,6 +32,7 @@ in {
     _consul_gateway_terminating_nomad_registerer.enable = true;
 
     _nomad.enable = true;
+    _nomoperator.enable = true;
 
     _powerdns.enable = true;
     _cloudflare_dyndns.enable = true;
