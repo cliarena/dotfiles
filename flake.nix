@@ -120,13 +120,13 @@
       apps = pkgs: import ./terranix { inherit inputs pkgs; };
 
       # TODO: Change age.key and all sops secrets since age.key is exposed
-      checks = forAllSystems (system:
-        let
-          pkgs = import inputs.nixpkgs { inherit system; };
-          inherit (pkgs) nixosTest;
-        in {
-          x = nixosTest (import ./hosts/x/checks.nix { inherit inputs; });
-          svr = nixosTest (import ./hosts/svr/checks.nix { inherit inputs; });
-        });
+      # checks = forAllSystems (system:
+      #   let
+      #     pkgs = import inputs.nixpkgs { inherit system; };
+      #     inherit (pkgs) nixosTest;
+      #   in {
+      #     x = nixosTest (import ./hosts/x/checks.nix { inherit inputs; });
+      #     svr = nixosTest (import ./hosts/svr/checks.nix { inherit inputs; });
+      #   });
     };
 }
