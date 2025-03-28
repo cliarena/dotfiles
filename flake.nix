@@ -34,10 +34,10 @@
 
     terranix.url = "github:terranix/terranix";
 
-    microvm.url = "github:astro/microvm.nix";
-    microvm.inputs.nixpkgs.follows = "nixpkgs";
+    # microvm.url = "github:astro/microvm.nix";
+    # microvm.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-nomad.url = "github:tristanpemble/nix-nomad";
+    # nix-nomad.url = "github:tristanpemble/nix-nomad";
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
@@ -45,8 +45,8 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    lanzaboote.url = "github:nix-community/lanzaboote";
-    lanzaboote.inputs.flake-compat.follows = "";
+    # lanzaboote.url = "github:nix-community/lanzaboote";
+    # lanzaboote.inputs.flake-compat.follows = "";
 
     black-hosts.url = "github:StevenBlack/hosts";
 
@@ -55,11 +55,11 @@
     zig-overlay.url = "github:mitchellh/zig-overlay";
     zls-overlay.url = "github:zigtools/zls";
 
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-    };
+    # hyprland = {
+    #   type = "git";
+    #   url = "https://github.com/hyprwm/Hyprland";
+    #   submodules = true;
+    # };
   };
 
   outputs = inputs@{ flakelight, ... }:
