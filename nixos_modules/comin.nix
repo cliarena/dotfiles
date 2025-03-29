@@ -12,7 +12,7 @@ in {
 
     services.comin = {
       enable = true;
-      flakeSubdirectory = "./flake";
+      flakeSubdirectory = "flake";
       remotes = [{
         name = "origin";
         url = "https://gitlab.com/cliarena_dotfiles/nixos";
