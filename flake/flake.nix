@@ -76,7 +76,7 @@
         })
       ];
 
-      nixDir = ./.;
+      nixDir = ../.;
       nixDirAliases = {
         nixosConfigurations = [ "hosts" ];
         # nixosModules = [ "nixos_modules" ];
