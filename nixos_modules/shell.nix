@@ -169,7 +169,7 @@ in {
             gc = "git clone";
             # download 1h of youtube as audio
             yt-1h-audio =
-              "yt-dlp -x --audio-quality 0 --write-thumbnail --download-sections '*0-3600'";
+              "yt-dlp -x --audio-quality 0 --write-thumbnail --download-sections '*0-3600' --downloader-arg 'ffmpeg_i1:-extension_picky 0' --downloader-arg 'ffmpeg_i2:-extension_picky 0'";
 
             # Todos
             t = "taskwarrior-tui";
