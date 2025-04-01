@@ -41,6 +41,7 @@ in {
           "unnamedplus"; # allows neovim to access the system clipboard
         laststatus = 3; # one status bar for all splits
         # conceallevel = 0; # so that `` is visible in markdown files
+        conceallevel = 1; # Conceal neorg links
         fileencoding = "utf-8"; # the encoding written to a file
         foldmethod =
           "manual"; # folding set to "expr" for treesitter based folding
