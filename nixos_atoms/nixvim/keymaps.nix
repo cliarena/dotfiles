@@ -43,19 +43,7 @@ in {
         }
         {
           key = "<leader>tv";
-          action = # vim
-            ''
-              <cmd>
-                       lua local venn_enabled = vim.inspect(vim.b.venn_enabled)
-                       if venn_enabled == "nil" then
-                           vim.b.venn_enabled = true
-                           vim.cmd[[setlocal ve=all]]
-                         else
-                           vim.cmd[[setlocal ve=]]
-                           vim.b.venn_enabled = nil
-                         end
-              <cr>
-            '';
+          action = "<cmd>lua Toggle_vertualEdit()<CR><cr>";
           options = { desc = "Virtual Edit"; };
         }
         ############   LSP   ############
