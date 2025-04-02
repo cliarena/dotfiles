@@ -36,11 +36,25 @@ in {
             "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu -e 'devenv up'<cr>";
           options = { desc = "Processes"; };
         }
-
         {
           key = "<leader>ta";
           action = "<cmd>ASToggle<cr>";
           options = { desc = "Auto Save"; };
+        }
+        {
+          key = "<leader>tv";
+          action = # lua
+            ''
+              lua local venn_enabled = vim.inspect(vim.b.venn_enabled)
+              if venn_enabled == "nil" then
+                  vim.b.venn_enabled = true
+                  vim.cmd[[setlocal ve=all]]
+                else
+                  vim.cmd[[setlocal ve=]]
+                  vim.b.venn_enabled = nil
+                end
+            '';
+          options = { desc = "Virtual Edit"; };
         }
         ############   LSP   ############
         {
