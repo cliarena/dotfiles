@@ -239,6 +239,37 @@ in {
             "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>";
           options.desc = "Dap Debug";
         }
+        ############   Venn ASCII   ############
+        {
+          key = "<S-Left>";
+          action = "<C-v>h:VBox<cr>";
+          mode = "n";
+          options.desc = "Draw Left";
+        }
+        {
+          key = "<S-Down>";
+          action = "<C-v>j:VBox<cr>";
+          mode = "n";
+          options.desc = "Draw Down";
+        }
+        {
+          key = "<S-Up>";
+          action = "<C-v>k:VBox<cr>";
+          mode = "n";
+          options.desc = "Draw Up";
+        }
+        {
+          key = "<S-Right>";
+          action = "<C-v>l:VBox<cr>";
+          mode = "n";
+          options.desc = "Draw Right";
+        }
+        {
+          key = "<S-Home>";
+          action = "<cmd>VBox<cr>";
+          mode = "v";
+          options.desc = "Draw Box";
+        }
       ];
     };
 
