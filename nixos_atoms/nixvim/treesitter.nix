@@ -29,8 +29,6 @@ in {
         };
       };
 
-      # extraConfigLuax = "-- comment";
-
       extraFiles = {
         #  ((((comment) @injection.language) .
         #  (string (string_content) @injection.content))
@@ -66,51 +64,6 @@ in {
                   ;       (#set! injection.language "lua"))
                 ]
                 (#match? @_path "(^(configLua(Pre|Post)?|__raw))$"))
-            '';
-        };
-        "queries/nix/injections.scm" = {
-          enable = true;
-          text = # scheme
-            ''
-              ;; extends
-              (binding
-                attrpath: (attrpath
-                  (identifier) @_path)
-                expression: [
-                  (string_expression
-                    ((string_fragment) @injection.content
-                      (#set! injection.language "lua")))
-                  (indented_string_expression
-                    ((string_fragment) @injection.content
-                      (#set! injection.language "lua")))
-                ]
-                (#match? @_path "(^(extraConfigLuax(Pre|Post)?|__raw))$"))
-
-              (binding
-                attrpath: (attrpath
-                  (identifier) @_path)
-                expression: [
-                  (string_expression
-                    ((string_fragment) @injection.content
-                      (#set! injection.language "html")))
-                  (indented_string_expression
-                    ((string_fragment) @injection.content
-                      (#set! injection.language "html")))
-                ]
-                (#match? @_path "(^(extraConfigHtml(Pre|Post)?|__raw))$"))
-
-              (binding
-                attrpath: (attrpath
-                  (identifier) @_path)
-                expression: [
-                  (string_expression
-                    ((string_fragment) @injection.content
-                      (#set! injection.language "css")))
-                  (indented_string_expression
-                    ((string_fragment) @injection.content
-                      (#set! injection.language "css")))
-                ]
-                (#match? @_path "(^(extraConfigCss(Pre|Post)?|__raw))$"))
             '';
         };
       };
