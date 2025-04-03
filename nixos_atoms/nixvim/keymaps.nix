@@ -266,7 +266,7 @@ in {
         }
         {
           key = "<S-Home>";
-          action = "<cmd>VBox<cr>";
+          action = ":VBox<cr>";
           mode = "v";
           options.desc = "Draw Box";
         }
