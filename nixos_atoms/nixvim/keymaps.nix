@@ -43,8 +43,13 @@ in {
         }
         {
           key = "<leader>tv";
-          action = "<cmd>lua Toggle_vertualEdit()<CR><cr>";
+          action = "<cmd>lua Toggle_vertualEdit()<cr>";
           options = { desc = "Virtual Edit"; };
+        }
+        {
+          key = "<leader>tc";
+          action = "<cmd>set cursorline!<cr>";
+          options = { desc = "Cursorline Highlight"; };
         }
         ############   LSP   ############
         {

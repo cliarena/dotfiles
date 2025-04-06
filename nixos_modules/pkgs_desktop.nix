@@ -54,6 +54,7 @@ in {
       s-tui
       sysbench
       speedtest-cli
+      grim
 
       pavucontrol
       pulseaudio
