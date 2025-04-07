@@ -171,6 +171,18 @@ in {
                   },
                 },
               },
+              {
+                key = 'F1',
+                mods = 'CTRL|SHIFT',
+                action = act.SwitchToWorkspace {
+                  name = 'local',
+                  spawn = {
+                    cwd = '/home/x',
+                    -- args = { 'nvim' },
+                    -- domain = { DomainName = 'SSHMUX:DS' },
+                  },
+                },
+              },
               -- Show the launcher in fuzzy selection mode and have it list all workspaces
               -- and allow activating one.
               {
@@ -178,8 +190,8 @@ in {
                 mods = 'CTRL|SHIFT',
                 action = act.ShowLauncherArgs {
                   flags = 'FUZZY|WORKSPACES',
+                  },
                 },
-              },
               }
 
             }
