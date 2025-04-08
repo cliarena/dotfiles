@@ -113,6 +113,17 @@ in {
               },
               -- Switch to a monitoring workspace, which will have `top` launched into it
               {
+                key = 'F1',
+                mods = 'CTRL|SHIFT',
+                action = act.SwitchToWorkspace {
+                  name = 'SVR',
+                  spawn = {
+                    -- args = { 'btm' },
+                    domain = { DomainName = 'SSHMUX:SVR' },
+                  },
+                },
+              },
+              {
                 key = 'm',
                 mods = 'CTRL|SHIFT',
                 action = act.SwitchToWorkspace {
@@ -171,18 +182,18 @@ in {
                   },
                 },
               },
-              {
-                key = 'F1',
-                mods = 'CTRL|SHIFT',
-                action = act.SwitchToWorkspace {
-                  name = 'local',
-                  spawn = {
-                    cwd = '/home/x',
-                    -- args = { 'nvim' },
-                    -- domain = { DomainName = 'SSHMUX:DS' },
-                  },
-                },
-              },
+              -- {
+              --   key = 'F1',
+              --   mods = 'CTRL|SHIFT',
+              --   action = act.SwitchToWorkspace {
+              --     name = 'local',
+              --     spawn = {
+              --       cwd = '/home/x',
+              --       -- args = { 'nvim' },
+              --       -- domain = { DomainName = 'SSHMUX:DS' },
+              --     },
+              --   },
+              -- },
               -- Show the launcher in fuzzy selection mode and have it list all workspaces
               -- and allow activating one.
               {
