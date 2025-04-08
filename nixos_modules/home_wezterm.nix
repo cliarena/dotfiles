@@ -118,7 +118,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'SVR',
                   spawn = {
-                    -- args = { 'btm' },
+                    args = { 'nu' },
                     domain = { DomainName = 'SSHMUX:SVR' },
                   },
                 },
