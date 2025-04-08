@@ -17,6 +17,7 @@ in {
             enable = true;
             nix-direnv.enable = true;
             config = {
+              hide_env_diff = true;
               whitelist.prefix = [
                 "${homeDirectory}/dotfiles"
                 "${homeDirectory}/project_main"
