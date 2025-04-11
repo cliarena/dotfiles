@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, inputs, ... }:
 let
   module = "_lsp";
   description = "lsp";
@@ -24,7 +24,14 @@ in {
           installRustc = true;
           installCargo = true;
         };
-        zls.enable = true;
+        zls = {
+          enable = true;
+          package = inputs.zls-overlay.packages.x86_64-linux.zls.overrideAttrs
+            (old: {
+              nativeBuildInputs =
+                [ inputs.zig-overlay.packages.x86_64-linux.master ];
+            });
+        };
       };
     };
   };
