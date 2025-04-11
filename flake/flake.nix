@@ -72,7 +72,12 @@
       withOverlays = [
         (final: prev: {
           zig = inputs.zig-overlay.packages.${prev.system}.master;
-          zls = inputs.zls-overlay.packages.${prev.system}.default;
+          # zls = inputs.zls-overlay.packages.${prev.system}.default;
+          zls = inputs.zls-overlay.packages.x86_64-linux.zls.overrideAttrs
+            (old: {
+              nativeBuildInputs =
+                [ inputs.zig-overlay.packages.${prev.system}.master ];
+            });
         })
       ];
 
