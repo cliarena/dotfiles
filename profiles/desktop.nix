@@ -18,6 +18,7 @@ in {
 
     _home.enable = true;
     _home_wezterm.enable = true;
+    _home_qutebrowser.enable = true;
     _sops_home.enable = true;
     _ssh_home.enable = true;
 

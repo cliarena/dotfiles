@@ -107,7 +107,7 @@
           wander
 
           # for nix
-          nixfmt
+          nixfmt-rfc-style
           nil
           nixd
           terraform-ls
