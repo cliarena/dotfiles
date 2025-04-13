@@ -55,7 +55,8 @@ in {
           };
           set-repeat = "50 300";
           spawn = [
-            "${pkgs.brave}/bin/brave"
+            # "${pkgs.brave}/bin/brave"
+            "${pkgs.qutebrowser}/bin/qutebrowser"
             terminal
             "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution}'"
             "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
