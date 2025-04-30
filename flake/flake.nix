@@ -26,7 +26,7 @@
     # wolf should follow nixpkgs since it needs to use the same vaapi driver version of the host
     # wolf.url = "gitlab:clxarena/wolf";
     wolf.url = "github:games-on-whales/wolf/dev-nix";
-    # wolf.inputs.nixpkgs.follows = "nixpkgs"; # follow may break pkg dependencies
+    wolf.inputs.nixpkgs.follows = "nixpkgs"; # follow may break pkg dependencies
 
     devenv.url = "github:cachix/devenv";
 
@@ -62,22 +62,23 @@
     # };
   };
 
-  outputs = inputs@{ flakelight, ... }:
+  outputs =
+    inputs@{ flakelight, ... }:
 
-    let forAllSystems = import ./helpers/forAllSystems.nix;
+    let
+      forAllSystems = import ./helpers/forAllSystems.nix;
 
-    in flakelight ./. {
+    in
+    flakelight ./. {
       inherit inputs;
 
       withOverlays = [
         (final: prev: {
           zig = inputs.zig-overlay.packages.${prev.system}.master;
           # zls = inputs.zls-overlay.packages.${prev.system}.default;
-          zls = inputs.zls-overlay.packages.x86_64-linux.zls.overrideAttrs
-            (old: {
-              nativeBuildInputs =
-                [ inputs.zig-overlay.packages.${prev.system}.master ];
-            });
+          zls = inputs.zls-overlay.packages.x86_64-linux.zls.overrideAttrs (old: {
+            nativeBuildInputs = [ inputs.zig-overlay.packages.${prev.system}.master ];
+          });
         })
       ];
 
