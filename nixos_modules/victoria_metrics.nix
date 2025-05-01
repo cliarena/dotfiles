@@ -3,15 +3,15 @@ let
   module = "_victoria_metrics";
   description = "monitoring that scales";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
 
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 
     system.activationScripts = {
-      scaphandre.text =
-        "chown -R scaphandre-exporter /sys/devices/virtual/powercap";
+      scaphandre.text = "chown -R scaphandre-exporter /sys/devices/virtual/powercap";
     };
 
     services.prometheus.exporters = {
@@ -28,13 +28,16 @@ in {
         ];
       };
 
-      script = { # custom scripts checks
+      script = {
+        # custom scripts checks
         enable = false;
-        settings.scripts = [{
-          name = "sleep";
-          script = "sleep 5";
-          timeout = 5;
-        }];
+        settings.scripts = [
+          {
+            name = "sleep";
+            script = "sleep 5";
+            timeout = 5;
+          }
+        ];
       };
 
       ### Networking ###
@@ -48,8 +51,7 @@ in {
 
       ### Mail ###
       mail.enable = false; # monitor mail servers
-      imap-mailstat.enable =
-        false; # shows how many mails in inbox & each folder
+      imap-mailstat.enable = false; # shows how many mails in inbox & each folder
 
       ### API ###
       json.enable = false; # scrapes remote JSON
@@ -59,7 +61,7 @@ in {
       domain.enable = false; # Domains expiration date
       dnssec.enable = false; # DNSSEC signatures validity and expiration
       dnsmasq.enable = false; # DNSSEC signatures validity and expiration
-      dmarc.enable = false; #  Domains reports: unauthorized use, email spoofing
+      dmarc.enable = false; # Domains reports: unauthorized use, email spoofing
 
       ### DHCP ###
       kea.enable = false;
@@ -85,7 +87,7 @@ in {
 
       ### Hardware ###
       smartctl.enable = true; # HDD health monitor
-      scaphandre.enable = true; # Electricity consumption for bare metal & vms
+      # scaphandre.enable = true; # Electricity consumption for bare metal & vms
       nut.enable = false; # Network UPS monitor
 
       ### Reverse Proxies ###
@@ -109,49 +111,54 @@ in {
           # Never use "localhost" to avoid dns lookup latency
           {
             job_name = "vault";
-            static_configs = [{
-              targets = [
-                "https://vault.cliarena.com:8200/v1/sys/metrics?format=prometheus"
-              ];
-            }];
-            authorization.credentials_file =
-              config.sops.secrets.VICTORIA_METRICS_VAULT_TOKEN.path;
+            static_configs = [
+              {
+                targets = [
+                  "https://vault.cliarena.com:8200/v1/sys/metrics?format=prometheus"
+                ];
+              }
+            ];
+            authorization.credentials_file = config.sops.secrets.VICTORIA_METRICS_VAULT_TOKEN.path;
           }
           {
             job_name = "nomad";
-            static_configs = [{
-              targets = [ "127.0.0.1:4646/v1/metrics?format=prometheus" ];
-            }];
+            static_configs = [
+              {
+                targets = [ "127.0.0.1:4646/v1/metrics?format=prometheus" ];
+              }
+            ];
           }
           {
             job_name = "nomad_sd";
-            consul_sd_configs = [{ server = "127.0.0.1:4646"; }];
+            consul_sd_configs = [ { server = "127.0.0.1:4646"; } ];
           }
           {
             job_name = "consul";
-            static_configs = [{
-              targets = [ "127.0.0.1:8500/v1/agent/metrics?format=prometheus" ];
-            }];
+            static_configs = [
+              {
+                targets = [ "127.0.0.1:8500/v1/agent/metrics?format=prometheus" ];
+              }
+            ];
           }
           {
             job_name = "consul_sd";
-            consul_sd_configs = [{ server = "127.0.0.1:8500"; }];
+            consul_sd_configs = [ { server = "127.0.0.1:8500"; } ];
           }
           {
             job_name = "envoy";
-            static_configs = [{ targets = [ "127.0.0.1:8484" ]; }];
+            static_configs = [ { targets = [ "127.0.0.1:8484" ]; } ];
           }
           {
             job_name = "node";
-            static_configs = [{ targets = [ "127.0.0.1:9100" ]; }];
+            static_configs = [ { targets = [ "127.0.0.1:9100" ]; } ];
           }
           {
             job_name = "systemd";
-            static_configs = [{ targets = [ "127.0.0.1:9558" ]; }];
+            static_configs = [ { targets = [ "127.0.0.1:9558" ]; } ];
           }
           {
             job_name = "vmetrics";
-            static_configs = [{ targets = [ "127.0.0.1:8428" ]; }];
+            static_configs = [ { targets = [ "127.0.0.1:8428" ]; } ];
           }
         ];
       };
