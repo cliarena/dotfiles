@@ -97,8 +97,8 @@ in
 
   programs.steam.enable = true;
   _sshd.enable = true;
-  _wolf.enable = true;
-  _wolf_pulse_audio.enable = true;
+  # _wolf.enable = true;
+  # _wolf_pulse_audio.enable = true;
 
   # systemd.tmpfiles.rules = [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];
 
