@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   module = "_pkgs_desktop";
   description = "pkgs needed by desktop";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
 
   options.${module}.enable = mkEnableOption description;
 
@@ -39,7 +45,7 @@ in {
       ### Design ###
       gimp-with-plugins
       darktable
-      ansel # darktable minus bloat
+      # ansel # darktable minus bloat
       inkscape
       blender-hip # use hip to get gpu acceleration
       # colmap
