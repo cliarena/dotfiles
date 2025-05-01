@@ -1,11 +1,18 @@
-{ config, lib, inputs, pkgs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 let
   module = "_wolf";
   description = "stream desktops containers";
   inherit (lib) mkEnableOption mkIf;
   wolf_bin = "${inputs.wolf.packages.x86_64-linux.default}/bin/wolf";
 
-in {
+in
+{
 
   options.${module}.enable = mkEnableOption description;
 
@@ -14,9 +21,12 @@ in {
     environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
 
     systemd.services.wolf = {
-      # enable = false;
+      enable = false;
       description = "stream desktop containers";
-      path = with pkgs; [ steam inputs.wolf.packages.x86_64-linux.default ];
+      path = with pkgs; [
+        steam
+        inputs.wolf.packages.x86_64-linux.default
+      ];
 
       environment = {
         WOLF_CFG_FILE = "/srv/wolf/cfg/config.toml";
