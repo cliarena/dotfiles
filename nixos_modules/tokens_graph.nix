@@ -16,7 +16,7 @@ let
       owner = "tokens-studio";
       repo = "graph-engine";
       rev = "d651ccc3ceb1e5600c564f7783d534e100a26aa5";
-      hash = "sha256-xSJ8ff+np7Nnd21voESMHmyTa3yNYazSaVoRgZ1fXBM="
+      hash = "sha256-xSJ8ff+np7Nnd21voESMHmyTa3yNYazSaVoRgZ1fXBM=";
       # hash = lib.fakeHash;
     };
     # inherit version src;
