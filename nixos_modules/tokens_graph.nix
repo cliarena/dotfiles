@@ -32,7 +32,7 @@ let
     ];
 
     dontNpmPrune = true;
-    yarnBuildScript = "build:ui";
+    yarnBuildScript = "build:engine";
     postInstall = ''
       mkdir -p $out/dist
       cp -r dist/** $out/dist
