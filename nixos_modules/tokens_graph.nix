@@ -27,8 +27,9 @@ let
 
     nativeBuildInputs = with pkgs; [
       yarnConfigHook
-      # yarnBuildHook
+      yarnBuildHook
       nodejs
+      turbo
     ];
 
     # dontNpmPrune = true;
