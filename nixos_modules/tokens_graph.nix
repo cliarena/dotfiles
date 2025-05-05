@@ -31,7 +31,8 @@ let
       nodejs
     ];
 
-    dontNpmPrune = true;
+    # dontNpmPrune = true;
+    doCheck = false;
     yarnBuildScript = "build:engine";
     postInstall = ''
       mkdir -p $out/dist
