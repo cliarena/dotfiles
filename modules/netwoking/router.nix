@@ -1,10 +1,21 @@
 { pkgs, host, ... }:
 let
   inherit (host)
-    user wan_mac lan_mac tcp_ports udp_ports wan_ips lan_ips wlan_ips
-    wan_gateway dns_server is_dns_server;
+    user
+    wan_mac
+    lan_mac
+    tcp_ports
+    udp_ports
+    wan_ips
+    lan_ips
+    wlan_ips
+    wan_gateway
+    dns_server
+    is_dns_server
+    ;
 
-in {
+in
+{
   # Rename network interface to wan
   services.udev.extraRules = ''
     SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="c8:4d:44:23:95:db", NAME="wan0"
@@ -34,7 +45,7 @@ in {
         countryCode = "US";
         wifi6 = {
           enable = true;
-          operatingChannelWidth = "80";
+          operatingChannelWidth = "40";
           multiUserBeamformer = true;
         };
         channel = 52;
@@ -88,10 +99,12 @@ in {
       0.0.0.0 hidive.com
       0.0.0.0 retrocrush.tv
     '';
-    bridges.br0.interfaces = [ "wan0" "wlan0" ];
+    bridges.br0.interfaces = [
+      "wan0"
+      "wlan0"
+    ];
     # nameservers = [ "1.1.1.1" ];
-    resolvconf.enable =
-      pkgs.lib.mkForce true; # must be true. for nixos-containers to work
+    resolvconf.enable = pkgs.lib.mkForce true; # must be true. for nixos-containers to work
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
 
@@ -161,7 +174,9 @@ in {
             Name = "mv-lan0";
             Kind = "macvlan";
           };
-          macvlanConfig = { Mode = "bridge"; };
+          macvlanConfig = {
+            Mode = "bridge";
+          };
         };
         "22-mv-qub0" = {
           enable = true;
@@ -169,7 +184,9 @@ in {
             Name = "mv-qub0";
             Kind = "macvlan";
           };
-          macvlanConfig = { Mode = "bridge"; };
+          macvlanConfig = {
+            Mode = "bridge";
+          };
         };
       };
       networks = {
@@ -197,7 +214,10 @@ in {
           # EmitDNS = true;
           # DNS = "8.8.8.8";
           # };
-          macvlan = [ "mv-lan0" "mv-qub0" ];
+          macvlan = [
+            "mv-lan0"
+            "mv-qub0"
+          ];
         };
         "21-mv-lan0" = {
           enable = true;
@@ -207,7 +227,9 @@ in {
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
-          networkConfig = { DHCPServer = true; };
+          networkConfig = {
+            DHCPServer = true;
+          };
           dhcpServerConfig = {
             PoolOffset = 100;
             PoolSize = 100;
@@ -243,7 +265,9 @@ in {
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
-          networkConfig = { DHCPServer = true; };
+          networkConfig = {
+            DHCPServer = true;
+          };
           dhcpServerConfig = {
             PoolOffset = 100;
             PoolSize = 100;
