@@ -41,15 +41,14 @@ in
     radios = {
       # Simple 2.4GHz AP
       wlan0 = {
-        band = "2g"; # 5g radio
+        band = "5g"; # 5g radio
         # countryCode = "US";
         wifi6 = {
           enable = true;
-          operatingChannelWidth = "20or40";
+          operatingChannelWidth = "80";
           multiUserBeamformer = true;
         };
-        # channel = 48;
-        channel = 11;
+        channel = 48;
         networks.wlan0 = {
           ssid = "AVX_test";
           authentication = {
