@@ -49,7 +49,7 @@ in
           multiUserBeamformer = true;
         };
         # channel = 48;
-        channel = 13;
+        channel = 11;
         networks.wlan0 = {
           ssid = "AVX_test";
           authentication = {
