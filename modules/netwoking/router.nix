@@ -48,7 +48,7 @@ in
           operatingChannelWidth = "20or40";
           multiUserBeamformer = true;
         };
-        channel = 52;
+        channel = 48;
         networks.wlan0 = {
           ssid = "AVX_test";
           authentication = {
