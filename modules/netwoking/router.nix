@@ -45,7 +45,7 @@ in
         countryCode = "US";
         wifi6 = {
           enable = true;
-          operatingChannelWidth = "20or40";
+          operatingChannelWidth = "80";
           multiUserBeamformer = true;
         };
         channel = 48;
