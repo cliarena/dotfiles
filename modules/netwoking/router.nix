@@ -42,14 +42,14 @@ in
       # Simple 2.4GHz AP
       wlan0 = {
         band = "2g"; # 5g radio
-        # countryCode = "US";
+        countryCode = "JP";
         wifi6 = {
           enable = true;
           operatingChannelWidth = "20or40";
           multiUserBeamformer = true;
         };
         # channel = 48;
-        channel = 11;
+        channel = 14;
         networks.wlan0 = {
           ssid = "AVX_test";
           authentication = {
