@@ -29,7 +29,8 @@ let
     NIX_REMOTE = "daemon"; # needed for nix run .#apply.. for terranix
     WAYLAND_DISPLAY = "wayland-3";
     WOLF_RENDER_NODE = "/dev/dri/renderD128";
-    XDG_RUNTIME_DIR = "/tmp/sockets";
+    XDG_RUNTIME_DIR = "/run/user/1000";
+#    XDG_RUNTIME_DIR = "/tmp/sockets";
   };
 in {
 
@@ -48,7 +49,11 @@ in {
         # "${ENV_VARS.WOLF_RENDER_NODE}" = {
         #   hostPath = "${ENV_VARS.WOLF_RENDER_NODE}";
         #   isReadOnly = false;
-        # };
+        "/run/user/1000" = {
+          hostPath = "/run/user/1000";
+          isReadOnly = false;
+        };
+        
         "/dev/dri" = {
           hostPath = "/dev/dri";
           isReadOnly = false;
