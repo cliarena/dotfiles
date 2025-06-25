@@ -13,7 +13,7 @@ in {
 
     fonts.enable = true;
     _pipewire.enable = true;
-#    _pkgs_desktop.enable = true;
+    _pkgs_desktop.enable = true;
     _chromium.enable = true;
 
     _home.enable = true;
