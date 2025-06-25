@@ -5,7 +5,7 @@ in {
   imports = [
     disko.nixosModules.disko
 
-    (import ./disko.nix { }) # doesn't support btrfs swapfile
+    (import ./disko.nix {inherit  pkgs; }) # doesn't support btrfs swapfile
 #    ../../modules/boot/intel.nix
 #    ../../modules/hardware/intel.nix
     ../../modules/netwoking/network.nix
