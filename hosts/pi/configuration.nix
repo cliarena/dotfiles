@@ -11,6 +11,8 @@ in {
     ../../modules/netwoking/network.nix
   ] ++ lib.fileset.toList ../../profiles;
 
+environment.systemPackages = with pkgs [ cowsay];
+
   boot.loader.grub.enable= false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
