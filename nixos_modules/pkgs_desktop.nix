@@ -18,36 +18,36 @@ in
     environment.systemPackages = with pkgs; [
 
       ### Git ###
-      gh
-      commitizen
+   #   gh
+   #   commitizen
 
       ### Web ###
       w3m
       mpv
-      youtube-tui
+   #   youtube-tui
 
-      kdePackages.kcachegrind
+   #   kdePackages.kcachegrind
 
-      jqp # # jq playground
-      htmlq # # jq fo html
-      httpie
-      pgcli
-      manix # # CLI Searcher for Nix, HM documentation
+   #   jqp # # jq playground
+   #   htmlq # # jq fo html
+   #   httpie
+   #   pgcli
+   #   manix # # CLI Searcher for Nix, HM documentation
 
       brave
       chromium
 
       kitty
 
-      bemenu
-      moonlight-qt
+   #   bemenu
+   #   moonlight-qt
 
       ### Design ###
-      gimp-with-plugins
-      darktable
+   #   gimp-with-plugins
+   #   darktable
       # ansel # darktable minus bloat
-      inkscape
-      blender-hip # use hip to get gpu acceleration
+   #   inkscape
+   #   blender-hip # use hip to get gpu acceleration
       # colmap
 
       ### Tools ###
@@ -57,14 +57,14 @@ in
       wl-clipboard # cli wayland clipboard utility needed by yazi
       wlr-randr
       wayland-utils
-      s-tui
-      sysbench
+   #   s-tui
+   #   sysbench
       speedtest-cli
       grim
 
       pavucontrol
       pulseaudio
-      obs-studio
+   #   obs-studio
       # taskwarrior-tui
       # timewarrior
       # python3 # needed by taskwarrior & timewarrior
