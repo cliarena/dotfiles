@@ -6,7 +6,8 @@ let
   inherit (inputs) home-manager;
 
   mode = "Alt";
-  resolution = "3840x2160";
+  resolution = "4096x2160";
+#  resolution = "3840x2160";
   # resolution = "2560x1440";
   #resolution = "1920x1080";
   menu = "${pkgs.bemenu}/bin/bemenu-run";
