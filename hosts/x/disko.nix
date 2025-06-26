@@ -6,10 +6,12 @@ let
     kernel=u-boot-rpi4.bin
     enable_gic=1
     disable_overscan=1
+
     [all]
     arm_64bit=1
     enable_uart=1
     avoid_warnings=1
+    dtoverlay=vc4-kms-v3d
   '';
 in
  {
