@@ -37,36 +37,36 @@ in {
     home-manager.users.${host.user} = {
       wayland.windowManager.river = {
         enable = true;
-        settings = {
-          border-width = 1;
-          default-layout = "rivertile";
-          declare-mode = [ "locked" "normal" "passthrough" ];
-          map = {
-            normal = {
-              "${mode} Q" = "close";
-              "${mode}+Shift E" = "exit";
-              "${mode} F" = "toggle-fullscreen";
-              "${mode} F11" = "enter-mode passthrough";
+     #   settings = {
+     #     border-width = 1;
+     #     default-layout = "rivertile";
+     #     declare-mode = [ "locked" "normal" "passthrough" ];
+     #     map = {
+     #       normal = {
+     #         "${mode} Q" = "close";
+     #         "${mode}+Shift E" = "exit";
+     #         "${mode} F" = "toggle-fullscreen";
+     #         "${mode} F11" = "enter-mode passthrough";
 
-              "${mode} R" = "spawn ${menu}";
-              "${mode} Return" = "spawn ${terminal}";
-              "${mode} D" = "spawn ankama-launcher";
-            } // tag_map;
-            passthrough = { "${mode} F11" = "enter-mode normal"; };
-          };
-          set-repeat = "50 300";
-          spawn = [
+     #         "${mode} R" = "spawn ${menu}";
+     #         "${mode} Return" = "spawn ${terminal}";
+     #         "${mode} D" = "spawn ankama-launcher";
+     #       } // tag_map;
+     #       passthrough = { "${mode} F11" = "enter-mode normal"; };
+     #     };
+     #     set-repeat = "50 300";
+     #     spawn = [
             # "${pkgs.brave}/bin/brave"
           #  "${pkgs.qutebrowser}/bin/qutebrowser"
           #  terminal
-            "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution}'"
-            "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
+    #        "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution}'"
+    #        "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
           #  "${pkgs.swww}/bin/swww-daemon"
           #  "'${pkgs.coreutils}/bin/shuf -zen1 /srv/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.swww}/bin/swww img'"
           #  "'${pkgs.eww}/bin/eww daemon'"
           #  "'${pkgs.eww}/bin/eww open-many clock'"
-          ];
-        };
+    #      ];
+    #    };
       };
     };
   };
