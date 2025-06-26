@@ -21,7 +21,7 @@ environment.systemPackages = with pkgs; [ libraspberrypi stress];
   profiles.desktop.enable = true;
 
 #  _kmonad.enable = true;
-  _sddm.enable = true;
+#  _sddm.enable = true;
 
   # _gaming.enable = true;
   # _ankama.enable = true;

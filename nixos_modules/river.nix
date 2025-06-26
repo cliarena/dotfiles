@@ -33,6 +33,18 @@ in {
 
   config = mkIf config.${module}.enable {
 
+   services.greetd = {
+    enable =true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = host.user;
+      };
+      default_session = initial_session;
+
+};
+};
+
     programs.river.enable = true;
     home-manager.users.${host.user} = {
       wayland.windowManager.river = {
