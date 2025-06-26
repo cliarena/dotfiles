@@ -6,9 +6,9 @@ let
   inherit (inputs) home-manager;
 
   mode = "Alt";
-  # resolution = "3840x2160";
+  resolution = "3840x2160";
   # resolution = "2560x1440";
-  resolution = "1920x1080";
+  #resolution = "1920x1080";
   menu = "${pkgs.bemenu}/bin/bemenu-run";
   terminal = "${pkgs.wezterm}/bin/wezterm";
   # terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
@@ -56,14 +56,14 @@ in {
           set-repeat = "50 300";
           spawn = [
             # "${pkgs.brave}/bin/brave"
-            "${pkgs.qutebrowser}/bin/qutebrowser"
-            terminal
+          #  "${pkgs.qutebrowser}/bin/qutebrowser"
+          #  terminal
             "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution}'"
             "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
-            "${pkgs.swww}/bin/swww-daemon"
-            "'${pkgs.coreutils}/bin/shuf -zen1 /srv/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.swww}/bin/swww img'"
-            "'${pkgs.eww}/bin/eww daemon'"
-            "'${pkgs.eww}/bin/eww open-many clock'"
+          #  "${pkgs.swww}/bin/swww-daemon"
+          #  "'${pkgs.coreutils}/bin/shuf -zen1 /srv/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.swww}/bin/swww img'"
+          #  "'${pkgs.eww}/bin/eww daemon'"
+          #  "'${pkgs.eww}/bin/eww open-many clock'"
           ];
         };
       };
