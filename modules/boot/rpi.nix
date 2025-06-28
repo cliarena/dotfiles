@@ -4,6 +4,7 @@
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [ "video=1920x1080" ];
     initrd.availableKernelModules = [ "xhci_pci" "usbhid" "uas" "usb_storage" ];
+    initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
     kernelModules = [
     ];
     kernel.sysctl = {
