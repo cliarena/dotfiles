@@ -1,6 +1,6 @@
 { pkgs, ... }: 
 let
-  raspberrypifw  = pks.raspberrypifw.overrideAttrs {
+  raspberrypifw  = pkgs.raspberrypifw.overrideAttrs {
     version = "pinned-2023.05.12";
     src = pkgs.fetchFromGitHub {
       owner = "raspberrypi";
