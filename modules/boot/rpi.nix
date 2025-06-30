@@ -1,5 +1,10 @@
 { pkgs, ... }: {
-  hardware.deviceTree.enable = true;
+  hardware.deviceTree = {
+    enable = true;
+    dtbSource = pkgs.device-tree_rpi;
+    filter = "*rpi-4-*.dtb";
+  };
+  hardware.graphics.enable = true;
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
    # kernelParams = [ "video=1920x1080" ];
