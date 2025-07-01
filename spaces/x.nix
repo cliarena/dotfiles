@@ -74,6 +74,17 @@ in {
           hostPath = "/tmp";
           isReadOnly = false;
         };
+      
+
+       #hdmi passthrough
+        "/dev/fb0" = {
+          hostPath = "/dev/fb0";
+          isReadOnly = false;
+        };
+
+
+
+
       };
 
       allowedDevices = [
@@ -84,6 +95,10 @@ in {
         {
           modifier = "rw";
           node = "/dev/dri/renderD128";
+        }
+        {
+          modifier = "rw";
+          node = "/dev/fb0";
         }
       ];
 
