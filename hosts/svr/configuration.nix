@@ -97,7 +97,7 @@ in
 
   programs.steam.enable = true;
   _sshd.enable = true;
-  _wolf.enable = true;
+ # _wolf.enable = true;
   _wolf_pulse_audio.enable = true;
 
   # _tokens_graph.enable = true;
