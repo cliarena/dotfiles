@@ -57,6 +57,7 @@ job "wolf" {
 
     task "server" {
       driver = "docker"
+      user = "svr"
 
       resources {
         cpu    = 2000
