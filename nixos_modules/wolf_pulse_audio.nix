@@ -11,7 +11,7 @@ in {
 
     services.pulseaudio = { # Needed by wolf to get audio
       enable = true;
-     # systemWide = true;
+      systemWide = true;
     };
   };
 }
