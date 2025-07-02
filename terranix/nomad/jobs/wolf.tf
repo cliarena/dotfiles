@@ -81,7 +81,7 @@ job "wolf" {
           "/srv/volumes/wolf:/etc/wolf",
           "/tmp/sockets:/tmp/sockets:rw",
           "/var/run/pulse:/tmp/sockets/pulse:rw",
-          "/var/run/pulse/native:/tmp/sockets/pulse/pulse-socket:rw",
+        #  "/var/run/pulse/native:/tmp/sockets/pulse/pulse-socket:rw",
         #  "/run/user/1000:/run/user/1000:rw",
           "/var/run/docker.sock:/var/run/docker.sock:rw",
           "/dev/:/dev/:rw",
