@@ -36,7 +36,7 @@ in {
         plugin.docker = {
           config = {
             allow_privileged = true;
-            allow_caps = "all";
+            allow_caps = [ "all" ];
             volumes = { # needed by nomad gitops operator
               enabled = true;
               selinuxlabel = "z";
