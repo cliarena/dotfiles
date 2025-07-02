@@ -74,13 +74,14 @@ job "wolf" {
       config {
         privileged = true
         group_add = [ "audio", ]       
+        cap_add = [ "all" ]
 
         ports      = ["http", "https", "control", "rtsp", "audio_0", "audio_1", "audio_2", "audio_3", "video_0", "video_1", "video_2", "video_3", ]
 
         volumes = [
           "/srv/volumes/wolf:/etc/wolf",
           "/tmp/sockets:/tmp/sockets:rw",
-          "/var/run/pulse:/tmp/sockets/pulse:rw",
+        #  "/var/run/pulse:/tmp/sockets/pulse:rw",
         #  "/var/run/pulse/native:/tmp/sockets/pulse/pulse-socket:rw",
         #  "/run/user/1000:/run/user/1000:rw",
           "/var/run/docker.sock:/var/run/docker.sock:rw",
