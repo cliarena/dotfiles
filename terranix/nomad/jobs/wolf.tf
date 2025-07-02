@@ -73,7 +73,7 @@ job "wolf" {
 
       config {
         privileged = true
-        group_add = [ "audio", "pulse-access" ]       
+        group_add = [ "audio", "985" ]       
 
         ports      = ["http", "https", "control", "rtsp", "audio_0", "audio_1", "audio_2", "audio_3", "video_0", "video_1", "video_2", "video_3", ]
 
