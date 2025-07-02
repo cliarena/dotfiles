@@ -65,22 +65,24 @@ job "wolf" {
       }
 
       env {
-      #  XDG_RUNTIME_DIR            = "/tmp/sockets"
-        XDG_RUNTIME_DIR            = "/run/user/1000"
+        XDG_RUNTIME_DIR            = "/tmp/sockets"
+      #  XDG_RUNTIME_DIR            = "/run/user/1000"
         HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
         WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
       }
 
       config {
         privileged = true
-        group_add = [ "audio", "985" ]       
+        group_add = [ "audio", "pulse" ]       
 
         ports      = ["http", "https", "control", "rtsp", "audio_0", "audio_1", "audio_2", "audio_3", "video_0", "video_1", "video_2", "video_3", ]
 
         volumes = [
           "/srv/volumes/wolf:/etc/wolf",
-        #  "/tmp/sockets:/tmp/sockets:rw",
-          "/run/user/1000:/run/user/1000:rw",
+          "/tmp/sockets:/tmp/sockets:rw",
+          "/var/run/pulse:/tmp/sockets/pulse:rw",
+          "/var/run/pulse/native:/tmp/sockets/pulse/pulse-socket:rw",
+        #  "/run/user/1000:/run/user/1000:rw",
           "/var/run/docker.sock:/var/run/docker.sock:rw",
           "/dev/:/dev/:rw",
           "/run/udev:/run/udev:rw",
