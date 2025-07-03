@@ -15,36 +15,36 @@ in {
     };
    # virtualisation.oci-containers.backend = "docker";
 
-    virtualisation.oci-containers.containers.wolf = {
-      privileged = true;
-      image = "ghcr.io/games-on-whales/wolf:stable";
+ #   virtualisation.oci-containers.containers.wolf = {
+  #    privileged = true;
+  #    image = "ghcr.io/games-on-whales/wolf:stable";
 
-      ports = [
-        "0.0.0.0::47984/tcp"
-        "0.0.0.0::47989/tcp"
-        "0.0.0.0::47999/udp"
-        "0.0.0.0::48010/tcp"
-        "0.0.0.0::48100/udp"
-        "0.0.0.0::48200/udp"
-      ];
+  #    ports = [
+  #      "0.0.0.0::47984/tcp"
+  #      "0.0.0.0::47989/tcp"
+  #      "0.0.0.0::47999/udp"
+  #      "0.0.0.0::48010/tcp"
+  #      "0.0.0.0::48100/udp"
+  #      "0.0.0.0::48200/udp"
+  #    ];
       
-      environment = {
+  #    environment = {
        # HOST_APPS_STAT_FOLDER = "/etc/wolf";
        ## WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
        # WOLF_PRIVATE_KEY_FILE = "/etc/wolf/cfg/";
        # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
-        WOLF_PULSE_CONTAINER_TIMEOUT_MS = "5000";
-      };
+ #       WOLF_PULSE_CONTAINER_TIMEOUT_MS = "5000";
+ #     };
 
-      volumes = [
-        "/srv/volumes/wolf/:/etc/wolf" 
-        "/tmp/sockets:/tmp/sockets:rw"
+  #    volumes = [
+  #      "/srv/volumes/wolf/:/etc/wolf" 
+  #      "/tmp/sockets:/tmp/sockets:rw"
        # "/run/user/1000/:/tmp/sockets:rw"
        # "/var/run/docker.sock:/var/run/docker.sock:rw"
-        "/var/run/podman/podman.sock:/var/run/docker.sock:rw"
-        "/dev/:/dev/:rw"
-        "/run/udev:/run/udev:rw"
-     ];
-    };
+  #      "/var/run/podman/podman.sock:/var/run/docker.sock:rw"
+  #      "/dev/:/dev/:rw"
+  #      "/run/udev:/run/udev:rw"
+  #   ];
+  #  };
   };
 }
