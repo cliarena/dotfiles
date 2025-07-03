@@ -13,9 +13,10 @@ in {
       enable = true;
       systemWide = true;
     };
+    virtualisation.oci-containers.backend = "docker";
+
     virtualisation.oci-containers.containers.wolf = {
       privileged = true;
-      backend = "docker";
       image = "ghcr.io/games-on-whales/wolf:stable";
 
       ports = [
