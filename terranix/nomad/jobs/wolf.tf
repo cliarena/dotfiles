@@ -11,8 +11,6 @@ job "wolf" {
 
     network {
 
-      mode = "host"
-
       port "http" {
         static = 47989
       }
@@ -59,7 +57,6 @@ job "wolf" {
 
     task "server" {
       driver = "docker"
-     # user = "svr"
 
       resources {
         cpu    = 2000
@@ -68,28 +65,18 @@ job "wolf" {
 
       env {
         XDG_RUNTIME_DIR            = "/tmp/sockets"
-      #  XDG_RUNTIME_DIR            = "/run/user/1000"
         HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
         WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
-        WOLF_LOG_LEVEL = "DEBUG"
-        WOLF_PULSE_CONTAINER_TIMEOUT = "5000"
+        WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000
       }
 
       config {
         privileged = true
-        group_add = [ "audio", ]       
-        cap_add = [ "all" ]
-
-        network_mode = "host"
-        ipc_mode = "host"
         ports      = ["http", "https", "control", "rtsp", "audio_0", "audio_1", "audio_2", "audio_3", "video_0", "video_1", "video_2", "video_3", ]
 
         volumes = [
           "/srv/volumes/wolf:/etc/wolf",
           "/tmp/sockets:/tmp/sockets:rw",
-        #  "/var/run/pulse:/tmp/sockets/pulse:rw",
-        #  "/var/run/pulse/native:/tmp/sockets/pulse/pulse-socket:rw",
-        #  "/run/user/1000:/run/user/1000:rw",
           "/var/run/docker.sock:/var/run/docker.sock:rw",
           "/dev/:/dev/:rw",
           "/run/udev:/run/udev:rw",
