@@ -80,7 +80,7 @@ job "wolf" {
         cap_add = [ "all" ]
 
         network_mode = "host"
-      #  ipc_mode = "host"
+        ipc_mode = "host"
         ports      = ["http", "https", "control", "rtsp", "audio_0", "audio_1", "audio_2", "audio_3", "video_0", "video_1", "video_2", "video_3", ]
 
         volumes = [
