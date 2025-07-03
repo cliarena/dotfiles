@@ -20,12 +20,12 @@ in {
       image = "ghcr.io/games-on-whales/wolf:stable";
 
       ports = [
-        "47984/tcp"
-        "47989/tcp"
-        "47999/udp"
-        "48010/tcp"
-        "48100/udp"
-        "48200/udp"
+        "0.0.0.0::47984/tcp"
+        "0.0.0.0::47989/tcp"
+        "0.0.0.0::47999/udp"
+        "0.0.0.0::48010/tcp"
+        "0.0.0.0::48100/udp"
+        "0.0.0.0::48200/udp"
       ];
       
       environment = {
