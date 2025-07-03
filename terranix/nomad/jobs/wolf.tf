@@ -67,7 +67,8 @@ job "wolf" {
         XDG_RUNTIME_DIR            = "/tmp/sockets"
         HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
         WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
-        WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000
+        # Must remove pulse container if already running + increase timeout if needed
+        WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000 
       }
 
       config {
