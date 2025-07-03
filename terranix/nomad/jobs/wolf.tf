@@ -11,6 +11,8 @@ job "wolf" {
 
     network {
 
+      mode = "host"
+
       port "http" {
         static = 47989
       }
