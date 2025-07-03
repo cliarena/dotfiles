@@ -33,7 +33,7 @@ in {
        ## WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
        # WOLF_PRIVATE_KEY_FILE = "/etc/wolf/cfg/";
        # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
-        WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000;
+        WOLF_PULSE_CONTAINER_TIMEOUT_MS = "5000";
       };
 
       volumes = [
