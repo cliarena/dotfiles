@@ -33,12 +33,13 @@ in {
        ## WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
        # WOLF_PRIVATE_KEY_FILE = "/etc/wolf/cfg/";
        # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
+        WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000;
       };
 
       volumes = [
         "/srv/volumes/wolf/:/etc/wolf" 
-       # "/tmp/sockets:/tmp/sockets:rw"
-        "/run/user/1000/:/tmp/sockets:rw"
+        "/tmp/sockets:/tmp/sockets:rw"
+       # "/run/user/1000/:/tmp/sockets:rw"
        # "/var/run/docker.sock:/var/run/docker.sock:rw"
         "/var/run/podman/podman.sock:/var/run/docker.sock:rw"
         "/dev/:/dev/:rw"
