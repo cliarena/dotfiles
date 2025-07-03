@@ -13,5 +13,34 @@ in {
       enable = true;
 #      systemWide = true;
     };
+    virtualisation.oci-containers.containers.wolf = {
+      privileged = true;
+
+      image = "ghcr.io/games-on-whales/wolf:stable";
+
+      ports = [
+        "47984/tcp"
+        "47989/tcp"
+        "47999/udp"
+        "48010/tcp"
+        "48100/udp"
+        "48200/udp"
+      ];
+      
+      environment = {
+       # HOST_APPS_STAT_FOLDER = "/etc/wolf";
+       ## WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
+       # WOLF_PRIVATE_KEY_FILE = "/etc/wolf/cfg/";
+       # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
+      };
+
+      volumes = [
+        "/srv/volumes/wolf/:/etc/wolf" 
+        "/tmp/sockets:/tmp/sockets:rw"
+        "/var/run/docker.sock:/var/run/docker.sock:rw"
+        "/dev/:/dev/:rw"
+        "/run/udev:/run/udev:rw"
+     ];
+    };
   };
 }
