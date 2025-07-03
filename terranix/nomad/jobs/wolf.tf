@@ -71,7 +71,8 @@ job "wolf" {
       #  XDG_RUNTIME_DIR            = "/run/user/1000"
         HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
         WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
-        WOLF_LOG_LEVEL = "TRACE"
+        WOLF_LOG_LEVEL = "DEBUG"
+        WOLF_PULSE_CONTAINER_TIMEOUT = "5000"
       }
 
       config {
