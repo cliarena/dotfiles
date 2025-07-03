@@ -13,7 +13,7 @@ in {
       enable = true;
       systemWide = true;
     };
-    virtualisation.oci-containers.backend = "docker";
+   # virtualisation.oci-containers.backend = "docker";
 
     virtualisation.oci-containers.containers.wolf = {
       privileged = true;
@@ -39,7 +39,8 @@ in {
         "/srv/volumes/wolf/:/etc/wolf" 
        # "/tmp/sockets:/tmp/sockets:rw"
         "/run/user/1000/:/tmp/sockets:rw"
-        "/var/run/docker.sock:/var/run/docker.sock:rw"
+       # "/var/run/docker.sock:/var/run/docker.sock:rw"
+        "/var/run/podman/podman.sock:/var/run/docker.sock:rw"
         "/dev/:/dev/:rw"
         "/run/udev:/run/udev:rw"
      ];
