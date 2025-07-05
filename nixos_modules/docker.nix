@@ -8,8 +8,15 @@ in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
+
+    virtualisation.podman = {
+      enable = true;
+      autoPrune.enable = true;
+    };
+
     virtualisation.docker = {
       enable = true;
+      autoPrune.enable = true;
       storageDriver = "btrfs";
       rootless = {
         enable = true;
