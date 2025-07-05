@@ -23,6 +23,9 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+
     # wolf should follow nixpkgs since it needs to use the same vaapi driver version of the host
     # wolf.url = "gitlab:clxarena/wolf";
     wolf.url = "github:games-on-whales/wolf/dev-nix";
@@ -63,7 +66,7 @@
   };
 
   outputs =
-    inputs@{ flakelight, ... }:
+    inputs@{ flakelight,  ... }:
 
     let
       forAllSystems = import ./helpers/forAllSystems.nix;
@@ -124,6 +127,73 @@
       };
 
       apps = pkgs: import ../terranix { inherit inputs pkgs; };
+
+      packages.x86_64-linux = {
+        retro = inputs.nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          format = "docker";
+          
+          modules = lib: [
+            ../modules/hardware/amd.nix
+            {
+                 environment.systemPackages = pkgs : with pkgs; [
+                  cacert
+
+                  fuse
+                  libnss_nis
+                  wget
+                  curl
+                  jq
+                  gosu
+
+                  pulseaudioFull
+                  noto-fonts
+                  kitty nano 
+                  psmisc
+
+                ];
+                xdg.portal = {
+                  enable =true;
+                  extraPortals = pkgs: with pkgs; [ xdg-desktop-portal xdg-desktop-portal-gtk];
+                };
+              }    
+            ] ++ lib.fileset.toList ../profiles;
+          
+          _pipewire.enable = true;
+          _local.enable = true;
+ 
+
+          programs.sway = {
+            enable = true;
+            extraSessionCommands = ''
+              export SWAYSOCK=/tmp/sway.sock
+              export XDG_CURRENT_DESKTOP=sway
+              export XDG_SESSIONN_DESKTOP=sway
+              export XDG_SESSION_TYPE=wayland
+            '';
+          };    
+          services.getty = {
+            autologinUser = "retro";
+            autologinOnce = true;
+          };
+          environment.loginShellInit = ''
+            [[ "$(tty)" == /dev/tty1 ]] && sway
+          '';
+           
+          users.users.retro = {
+            uid = 1000;
+            isNormalUser= true;
+            initialPassword = true;
+            extraGroups = [
+              "wheel"
+              "video"
+              "sound"
+              "input"
+              "uinput"              
+            ];             
+          };
+        };
+      };
 
       # TODO: Change age.key and all sops secrets since age.key is exposed
       # checks = forAllSystems (system:
