@@ -67,6 +67,7 @@ job "wolf" {
         XDG_RUNTIME_DIR            = "/tmp/sockets"
         HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
         WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
+        WOLF_DOCKER_SOCKET = "/var/run/podman/podman.sock"
         # Must remove pulse container if already running + increase timeout if needed
         WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000 
       }
@@ -78,7 +79,8 @@ job "wolf" {
         volumes = [
           "/srv/volumes/wolf:/etc/wolf",
           "/tmp/sockets:/tmp/sockets:rw",
-          "/var/run/docker.sock:/var/run/docker.sock:rw",
+        #  "/var/run/docker.sock:/var/run/docker.sock:rw",
+          "/var/run/podman/podman.sock:/var/run/podman/podman.sock:rw",
           "/dev/:/dev/:rw",
           "/run/udev:/run/udev:rw",
         ]
