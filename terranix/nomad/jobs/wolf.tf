@@ -62,7 +62,7 @@ job "wolf" {
 
       config {
         command = "/run/current-system/sw/bin/sh"
-        args = [ "-c", "sudo podman rm -f WolfPulseAudio" ]
+        args = [ "-c", "/run/current-system/sw/bin/sudo /run/current-system/sw/bin/podman rm -f WolfPulseAudio" ]
       }
 
     }
