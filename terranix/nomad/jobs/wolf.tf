@@ -53,7 +53,19 @@ job "wolf" {
       }
 
     }
+    
+    task "pulse_cleaner" {
+      lifecycle {
+        hook = "prestart"
+      }
+      driver = "exec"
 
+      config {
+        command = "sh"
+        args = [ "-c" "sudo podman rm -f WolfPulseAudio" ]
+      }
+
+    }
 
     task "server" {
       driver = "docker"
@@ -70,6 +82,8 @@ job "wolf" {
         WOLF_DOCKER_SOCKET = "/var/run/podman/podman.sock"
         # Must remove pulse container if already running + increase timeout if needed
         WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000 
+        
+        WOLF_LOG_LEVEL = "DEBUG"
       }
 
       config {
