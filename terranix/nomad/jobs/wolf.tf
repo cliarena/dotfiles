@@ -58,7 +58,7 @@ job "wolf" {
       lifecycle {
         hook = "prestart"
       }
-      driver = "exec"
+      driver = "raw_exec"
 
       config {
         command = "/run/cuurrent-system/sw/bin/sh"
