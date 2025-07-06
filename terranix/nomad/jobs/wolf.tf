@@ -61,7 +61,7 @@ job "wolf" {
       driver = "exec"
 
       config {
-        command = "sh"
+        command = "/run/cuurrent-system/sw/bin/sh"
         args = [ "-c", "sudo podman rm -f WolfPulseAudio" ]
       }
 
