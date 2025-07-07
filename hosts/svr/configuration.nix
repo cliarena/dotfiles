@@ -69,6 +69,11 @@ let
   #   # Fix `setuptools` not being found
   #   postBuild = "rm -rf $out/nix-support";
   # };
+  sway_cfg = pkgs.writeText "sway_cfg" ''
+     set $mod Mod1
+     bindsym $mod+Return exec ${pkgs.kitty}/bin/kitty
+     bindsym $mod+Shift+q kill
+  '';
 in
 {
   imports =
@@ -86,6 +91,17 @@ in
     ]
     ++ lib.fileset.toList ../../profiles
     ++ lib.fileset.toList ../../spaces;
+
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway -c ${sway_cfg};
+        user = "svr"; 
+      };
+      default_session = initial_session;
+    };
+  };
 
   profiles.host.enable = true;
   profiles.common.enable = true;
