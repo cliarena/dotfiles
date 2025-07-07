@@ -96,7 +96,7 @@ in
     enable = true;
     settings = rec {
       initial_session = {
-        command = "${pkgs.sway}/bin/sway -c ${sway_cfg};
+        command = "${pkgs.sway}/bin/sway -c ${sway_cfg}";
         user = "svr"; 
       };
       default_session = initial_session;
