@@ -83,7 +83,7 @@ job "wolf" {
         # Must remove pulse container if already running + increase timeout if needed
         WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000 
         
-        WOLF_LOG_LEVEL = "DEBUG"
+        WOLF_LOG_LEVEL = "TRACE"
       }
 
       config {
