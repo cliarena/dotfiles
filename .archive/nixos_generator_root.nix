@@ -230,7 +230,7 @@
                   #   script = "${pkgs.kitty}/bin/kitty";
                   serviceConfig = {
                     PassEnvironment =
-                      "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE";
+                      "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
                     User = "root";
                     #   Group = "pulse-access";
                     Restart = "on-failure";
