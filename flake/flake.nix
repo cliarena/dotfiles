@@ -66,14 +66,25 @@
   };
 
   outputs =
-    inputs@{ flakelight,  ... }:
+    inputs@{ flakelight, ... }:
 
     let
       forAllSystems = import ./helpers/forAllSystems.nix;
 
+      flakelight_extended = flakelight.lib.mkFlake.extend [
+        {
+          options.hydraJobs = inputs.nixpkgs.lib.mkOption {
+
+            type = flakelight.lib.types.nullable flakelight.lib.types.packageDef;
+            default = null;
+          };
+        }
+      ];
     in
-    flakelight ./. {
+
+    flakelight_extended ./. ({ lib, types, ... }: {
       inherit inputs;
+
 
       withOverlays = [
         (final: prev: {
@@ -128,75 +139,80 @@
 
       apps = pkgs: import ../terranix { inherit inputs pkgs; };
 
-#      packages.x86_64-linux = {
-#      packages = {
-#        packages.retro = inputs.nixos-generators.nixosGenerate {
-#          system = "x86_64-linux";
-#          format = "docker";
-          
-#          modules = lib: [
-#            ../modules/hardware/amd.nix
-#            {
-#                 environment.systemPackages = pkgs : with pkgs; [
-#                  cacert
-#
-#                  fuse
-#                  libnss_nis
-#                  wget
-#                  curl
-#                  jq
-#                  gosu
-#
-#                  pulseaudioFull
-#                  noto-fonts
-#                  kitty nano 
-#                  psmisc
-#
-#                ];
-#                xdg.portal = {
-#                  enable =true;
-#                  extraPortals = pkgs: with pkgs; [ xdg-desktop-portal xdg-desktop-portal-gtk];
-#                };
+      package = pkgs: pkgs.hello;
+      hydraJobs = pkgs: {
+        inherit (pkgs) cowsay;
+      };
 
-#          programs.sway = {
-#            enable = true;
-#            extraSessionCommands = ''
-#              export SWAYSOCK=/tmp/sway.sock
-#              export XDG_CURRENT_DESKTOP=sway
-#              export XDG_SESSIONN_DESKTOP=sway
-#              export XDG_SESSION_TYPE=wayland
-#            '';
-#          };    
-#          services.getty = {
-#            autologinUser = "retro";
-#            autologinOnce = true;
-#          };
-#          environment.loginShellInit = ''
-#            [[ "$(tty)" == /dev/tty1 ]] && sway
-#          '';
-#           
-#          users.users.retro = {
-#            uid = 1000;
-#            isNormalUser= true;
-#            initialPassword = true;
-#            extraGroups = [
-#              "wheel"
-#              "video"
-#              "sound"
-#              "input"
-#              "uinput"              
-#            ];             
-#           };
-#          _pipewire.enable = true;
-#          _local.enable = true;
-#              }    
-#            ] ++ lib.fileset.toList ../profiles;
-          
- 
+      #      packages.x86_64-linux = {
+      #      packages = {
+      #        packages.retro = inputs.nixos-generators.nixosGenerate {
+      #          system = "x86_64-linux";
+      #          format = "docker";
+
+      #          modules = lib: [
+      #            ../modules/hardware/amd.nix
+      #            {
+      #                 environment.systemPackages = pkgs : with pkgs; [
+      #                  cacert
+      #
+      #                  fuse
+      #                  libnss_nis
+      #                  wget
+      #                  curl
+      #                  jq
+      #                  gosu
+      #
+      #                  pulseaudioFull
+      #                  noto-fonts
+      #                  kitty nano 
+      #                  psmisc
+      #
+      #                ];
+      #                xdg.portal = {
+      #                  enable =true;
+      #                  extraPortals = pkgs: with pkgs; [ xdg-desktop-portal xdg-desktop-portal-gtk];
+      #                };
+
+      #          programs.sway = {
+      #            enable = true;
+      #            extraSessionCommands = ''
+      #              export SWAYSOCK=/tmp/sway.sock
+      #              export XDG_CURRENT_DESKTOP=sway
+      #              export XDG_SESSIONN_DESKTOP=sway
+      #              export XDG_SESSION_TYPE=wayland
+      #            '';
+      #          };    
+      #          services.getty = {
+      #            autologinUser = "retro";
+      #            autologinOnce = true;
+      #          };
+      #          environment.loginShellInit = ''
+      #            [[ "$(tty)" == /dev/tty1 ]] && sway
+      #          '';
+      #           
+      #          users.users.retro = {
+      #            uid = 1000;
+      #            isNormalUser= true;
+      #            initialPassword = true;
+      #            extraGroups = [
+      #              "wheel"
+      #              "video"
+      #              "sound"
+      #              "input"
+      #              "uinput"              
+      #            ];             
+      #           };
+      #          _pipewire.enable = true;
+      #          _local.enable = true;
+      #              }    
+      #            ] ++ lib.fileset.toList ../profiles;
 
 
-#        };
-#      };
+
+
+      #        };
+      #      };
 
       # TODO: Change age.key and all sops secrets since age.key is exposed
       # checks = forAllSystems (system:
@@ -207,5 +223,6 @@
       #     x = nixosTest (import ./hosts/x/checks.nix { inherit inputs; });
       #     svr = nixosTest (import ./hosts/svr/checks.nix { inherit inputs; });
       #   });
-    };
+    });
+
 }
