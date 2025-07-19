@@ -15,7 +15,7 @@
   outputs = inputs@{ ... }:
 
     {
-      packages.x86_64-linux = {
+      hydraJobs.x86_64-linux = {
         dox = inputs.nixos-generators.nixosGenerate {
           system = "x86_64-linux";
           format = "docker";
