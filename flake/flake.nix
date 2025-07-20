@@ -82,7 +82,7 @@
 #      ];
     in
 
-    flakelight ./. ({ lib, types, ... }: {
+    flakelight ./. ({ lib, types, outputs, ... }: {
       inherit inputs;
 
 
@@ -140,7 +140,7 @@
       apps = pkgs: import ../terranix { inherit inputs pkgs; };
 
       package = pkgs: pkgs.hello;
-      outputs.hydraJobs ={ x =  { inherit (self) packages;}; };
+      perSystem = pkgs: { hydraJobs ={ x = { inherit (pkgs) cowsay;}; };};
    
 
       #      packages.x86_64-linux = {
