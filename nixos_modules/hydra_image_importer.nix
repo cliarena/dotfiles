@@ -18,7 +18,6 @@ in
 
   config = mkIf config.${module}.enable {
 
-    environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
 
 systemd.timers."hydra-image-importer" = {
   wantedBy = [ "timers.target" ];
