@@ -14,6 +14,7 @@ in {
     _sops_hosting.enable = true;
 
     _hydra.enable = true;
+    _hydra_image_importer.enable = true;
     _auditd.enable = true;
     _impermanence.enable = true;
 
