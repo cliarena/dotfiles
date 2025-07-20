@@ -53,10 +53,23 @@ job "wolf" {
       }
 
     }
+
+    task "image_importer" {
+      lifecycle {
+        hook = "prestart"
+      }
+      driver = "raw_exec"
+
+      config {
+        command = "/run/current-system/sw/bin/nu"
+        args = [ "-c", "/run/current-system/sw/bin/wget http://10.10.0.10:9999/job/nixos/main/x86_64-linux.dev/latest/download/nixos-system-x86_64-linux.tar.xz; /run/current-system/sw/bin/unxz  nixos-system-x86_64-linux.tar.xz; /run/current-system/sw/bin/sudo /run/current-system/sw/bin/podman import nixos-system-x86_64-linux.tar nixos" ]
+      }
+
+    }
     
     task "pulse_cleaner" {
       lifecycle {
-        hook = "prestart"
+        hook = "poststop"
       }
       driver = "raw_exec"
 
