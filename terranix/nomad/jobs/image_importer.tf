@@ -30,6 +30,6 @@ job "image_importer" {
 #        args = [ "import", "http://10.10.0.10:9999/job/nixos/main/x86_64-linux.dev/latest/download/nixos-system-x86_64-linux.tar.xz", "nixos" ]
         args = [ "-c", "/run/current-system/sw/bin/wget http://10.10.0.10:9999/job/nixos/main/x86_64-linux.dev/latest/download/nixos-system-x86_64-linux.tar.xz; /run/current-system/sw/bin/unxz -T 4 nixos-system-x86_64-linux.tar.xz; /run/current-system/sw/bin/ls; /run/current-system/sw/bin/sudo /run/current-system/sw/bin/podman import nixos-system-x86_64-linux.tar nixos; /run/current-system/sw/bin/rm -f nixos-system-x86_64-linux.tar nixos-system-x86_64-linux.tar.xz" ]
       }
-
+   }
   }
 }
