@@ -61,7 +61,7 @@ job "wolf" {
       driver = "raw_exec"
 
       resources {
-      #  cpu    = 50000
+        cpu    = 4096
         memory = 4096
         memory_max = 16348
       }
