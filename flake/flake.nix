@@ -66,25 +66,25 @@
   };
 
   outputs =
-    inputs@{self, flakelight, ... }:
+    inputs@{ self, flakelight, ... }:
 
     let
       forAllSystems = import ./helpers/forAllSystems.nix;
 
-#      flakelight_extended = flakelight.lib.mkFlake.extend [
-#        {
-#          options.hydraJobs = inputs.nixpkgs.lib.mkOption {
+      #      flakelight_extended = flakelight.lib.mkFlake.extend [
+      #        {
+      #          options.hydraJobs = inputs.nixpkgs.lib.mkOption {
 
-#            type = flakelight.lib.types.nullable flakelight.lib.types.packageDef;
-#            default = null;
-#          };
-#        }
-#      ];
+      #            type = flakelight.lib.types.nullable flakelight.lib.types.packageDef;
+      #            default = null;
+      #          };
+      #        }
+      #      ];
     in
 
     flakelight ./. ({ lib, types, outputs, ... }: {
       inherit inputs;
-
+      systems = [ "x86_64-linux" ];
 
       withOverlays = [
         (final: prev: {
@@ -140,8 +140,9 @@
       apps = pkgs: import ../terranix { inherit inputs pkgs; };
 
       package = pkgs: pkgs.hello;
-      perSystem = pkgs: { hydraJobs ={ x = { inherit (pkgs) cowsay;}; };};
-   
+      # perSystem = pkgs: { hydraJobs ={ x = { inherit (pkgs) cowsay;}; };};
+      perSystem = pkgs: { hydraJobs = { dev = import ../images/dev.nix { inherit lib pkgs inputs; }; }; };
+
 
       #      packages.x86_64-linux = {
       #      packages = {
