@@ -6,8 +6,8 @@ let
   inherit (inputs) home-manager;
 
   mode = "Alt";
-  resolution = "4096x2160";
-#  resolution = "3840x2160";
+ # resolution = "4096x2160";
+  resolution = "3840x2160";
   # resolution = "2560x1440";
   #resolution = "1920x1080";
   menu = "${pkgs.bemenu}/bin/bemenu-run";
@@ -33,52 +33,53 @@ in {
 
   config = mkIf config.${module}.enable {
 
-   services.greetd = {
-    enable =true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.sway}/bin/sway";
-        user = host.user;
-      };
-      default_session = initial_session;
+#   services.greetd = {
+#    enable =true;
+#    settings = rec {
+#      initial_session = {
+#        command = "${pkgs.sway}/bin/sway";
+#        user = host.user;
+#      };
+#      default_session = initial_session;
 
-};
-};
+#};
+#};
 
     programs.river.enable = true;
     home-manager.users.${host.user} = {
       wayland.windowManager.river = {
         enable = true;
-     #   settings = {
-     #     border-width = 1;
-     #     default-layout = "rivertile";
-     #     declare-mode = [ "locked" "normal" "passthrough" ];
-     #     map = {
-     #       normal = {
-     #         "${mode} Q" = "close";
-     #         "${mode}+Shift E" = "exit";
-     #         "${mode} F" = "toggle-fullscreen";
-     #         "${mode} F11" = "enter-mode passthrough";
+        settings = {
+          border-width = 1;
+          default-layout = "rivertile";
+          declare-mode = [ "locked" "normal" "passthrough" ];
+          map = {
+          normal = {
+             "${mode} Q" = "close";
+              "${mode}+Shift E" = "exit";
+              "${mode} F" = "toggle-fullscreen";
+             "${mode} F11" = "enter-mode passthrough";
 
-     #         "${mode} R" = "spawn ${menu}";
-     #         "${mode} Return" = "spawn ${terminal}";
+              "${mode} R" = "spawn ${menu}";
+              "${mode} Return" = "spawn ${terminal}";
      #         "${mode} D" = "spawn ankama-launcher";
-     #       } // tag_map;
-     #       passthrough = { "${mode} F11" = "enter-mode normal"; };
-     #     };
-     #     set-repeat = "50 300";
-     #     spawn = [
+           } // tag_map;
+            passthrough = { "${mode} F11" = "enter-mode normal"; };
+          };
+          set-repeat = "50 300";
+          spawn = [
             # "${pkgs.brave}/bin/brave"
           #  "${pkgs.qutebrowser}/bin/qutebrowser"
-          #  terminal
-    #        "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution}'"
-    #        "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
+            terminal
+            "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution}'"
+            "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
+"'${pkgs.coreutils}/bin/shuf -zen1 /srv/library/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.wbg}/bin/wbg'"         
+ #  "'${pkgs.coreutils}/bin/shuf -zen1 /srv/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.swww}/bin/swww img'"
           #  "${pkgs.swww}/bin/swww-daemon"
-          #  "'${pkgs.coreutils}/bin/shuf -zen1 /srv/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.swww}/bin/swww img'"
           #  "'${pkgs.eww}/bin/eww daemon'"
           #  "'${pkgs.eww}/bin/eww open-many clock'"
-    #      ];
-    #    };
+          ];
+        };
       };
     };
   };

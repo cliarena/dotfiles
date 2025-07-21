@@ -139,9 +139,10 @@
 
       apps = pkgs: import ../terranix { inherit inputs pkgs; };
 
-      package = pkgs: pkgs.hello;
+      package = pkgs: import ../images/main.nix { inherit lib pkgs inputs; };
+     # package = pkgs: pkgs.hello;
       # perSystem = pkgs: { hydraJobs ={ x = { inherit (pkgs) cowsay;}; };};
-      perSystem = pkgs: { hydraJobs = { dev = import ../images/dev.nix { inherit lib pkgs inputs; }; }; };
+      perSystem = pkgs: { hydraJobs = { main = import ../images/main.nix { inherit lib pkgs inputs; }; }; };
 
 
       #      packages.x86_64-linux = {

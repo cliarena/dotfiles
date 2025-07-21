@@ -27,7 +27,7 @@ in {
     _bottom.enable = true;
     _direnv.enable = true;
 
-    _eww.enable = true;
+  #  _eww.enable = true;
     _river.enable = true;
   };
 }

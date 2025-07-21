@@ -13,7 +13,6 @@ in {
   config = mkIf config.profiles.${module}.enable {
 
     _swap.enable = true;
-    _local.enable = true;
     _comin.enable = true;
 
   };

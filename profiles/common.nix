@@ -12,6 +12,8 @@ in {
 
     _nix.enable = true;
     _users.enable = true;
+    _local.enable = true;
+
     _catppuccin.enable = true;
     _nixvim.enable = true;
 
