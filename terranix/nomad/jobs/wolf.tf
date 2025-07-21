@@ -57,7 +57,7 @@ job "wolf" {
     
     task "pulse_cleaner" {
       lifecycle {
-        hook = "poststop"
+        hook = "prestart"
       }
       driver = "raw_exec"
 
