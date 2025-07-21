@@ -21,13 +21,13 @@ in {
       mpv
       #   youtube-tui
 
-      #   kdePackages.kcachegrind
+      kdePackages.kcachegrind
 
-      #   jqp # # jq playground
-      #   htmlq # # jq fo html
-      #   httpie
+      jqp # # jq playground
+      htmlq # # jq fo html
+      httpie
       #   pgcli
-      #   manix # # CLI Searcher for Nix, HM documentation
+      manix # # CLI Searcher for Nix, HM documentation
 
       brave
       chromium
@@ -38,12 +38,12 @@ in {
       #   moonlight-qt
 
       ### Design ###
-      #   gimp-with-plugins
+      gimp-with-plugins
       #   darktable
-      # ansel # darktable minus bloat
-      #   inkscape
-      #   blender-hip # use hip to get gpu acceleration
-      # colmap
+      ansel # darktable minus bloat
+      inkscape
+      blender-hip # use hip to get gpu acceleration
+      colmap
 
       ### Tools ###
       file # shows types of files needed by yazi
