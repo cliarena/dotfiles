@@ -81,7 +81,7 @@ in {
               use_fancy_tab_bar = false,
               hide_tab_bar_if_only_one_tab = true,
 
-              default_prog = { "nu" },
+            --  default_prog = { "nu" },
 
               keys = {
               -- Create a new workspace with a random name and switch to it
@@ -112,17 +112,17 @@ in {
                 }
               },
               -- Switch to a monitoring workspace, which will have `top` launched into it
-              {
-                key = 'F1',
-                mods = 'CTRL|SHIFT',
-                action = act.SwitchToWorkspace {
-                  name = 'SVR',
-                  spawn = {
-                    -- args = { 'nu' },
-                    domain = { DomainName = 'SSHMUX:SVR' },
-                  },
-                },
-              },
+            --  {
+            --    key = 'F1',
+            --    mods = 'CTRL|SHIFT',
+            --    action = act.SwitchToWorkspace {
+            --     name = 'SVR',
+            --      spawn = {
+            --        -- args = { 'nu' },
+            --        domain = { DomainName = 'SSHMUX:SVR' },
+            --      },
+            --    },
+            --  },
               {
                 key = 'm',
                 mods = 'CTRL|SHIFT',
@@ -130,7 +130,7 @@ in {
                   name = 'monitoring',
                   spawn = {
                     args = { 'btm' },
-                    domain = { DomainName = 'SSHMUX:DS' },
+            --        domain = { DomainName = 'SSHMUX:DS' },
                   },
                 },
               },
@@ -142,7 +142,7 @@ in {
                   spawn = {
                     cwd = '/home/x/notes',
                     args = { 'nvim' },
-                    domain = { DomainName = 'SSHMUX:DS' },
+             --       domain = { DomainName = 'SSHMUX:DS' },
                   },
                 },
               },
@@ -154,7 +154,7 @@ in {
                   spawn = {
                     cwd = '/home/x/dotfiles',
                     args = { 'nvim' },
-                    domain = { DomainName = 'SSHMUX:DS' },
+             --       domain = { DomainName = 'SSHMUX:DS' },
                   },
                 },
               },
@@ -166,7 +166,7 @@ in {
                   spawn = {
                     cwd = '/home/x/project_main',
                     args = { 'nvim' },
-                    domain = { DomainName = 'SSHMUX:DS' },
+             --       domain = { DomainName = 'SSHMUX:DS' },
                   },
                 },
               },
@@ -178,7 +178,7 @@ in {
                   spawn = {
                     cwd = '/home/x/project_secondary',
                     args = { 'nvim' },
-                    domain = { DomainName = 'SSHMUX:DS' },
+             --       domain = { DomainName = 'SSHMUX:DS' },
                   },
                 },
               },
