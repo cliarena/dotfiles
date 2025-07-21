@@ -78,12 +78,13 @@ specialArgs = { inherit inputs;
                   isSystemUser = lib.mkForce true;
                   isNormalUser = lib.mkForce false;
                   initialPassword = "nixos";
+                  shell = pkgs.nushell;
                   extraGroups =
                     [ "wheel" "video" "sound" "input" "uinput" "root" ];
                 };
 
 
-
+ _home_gitter.enable = true;
   profiles.common.enable = true;
   profiles.desktop.enable = true;
 
