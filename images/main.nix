@@ -48,8 +48,8 @@ specialArgs = { inherit inputs;
 
                 systemd.services.desktop = {
                   # enable = false;
-                  # description = "desktop runner";
-                 # path = with pkgs; [ kitty river ];
+                  description = "desktop runner";
+                  path = with pkgs; [ river ];
 
                   environment = {
                     DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/0/bus";
