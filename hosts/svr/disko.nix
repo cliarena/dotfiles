@@ -1,4 +1,4 @@
-{ disks ? [ "/dev/sda" ], ... }: {
+{disks ? ["/dev/sda"], ...}: {
   disko.devices = {
     disk = {
       main = {
@@ -15,7 +15,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                extraArgs = [ "-n boot" ];
+                extraArgs = ["-n boot"];
                 device = "/dev/disk/by-partlabel/ESP";
               };
             };
@@ -24,21 +24,21 @@
               end = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "--label nixos" ]; # Override existing partition
+                extraArgs = ["--label nixos"]; # Override existing partition
                 device = "/dev/disk/by-partlabel/nixos";
                 subvolumes = {
                   # Mountpoints inferred from subvolume name
                   "/nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/log" = {
                     mountpoint = "/var/log";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                    mountOptions = ["compress=zstd" "noatime" "noexec"];
                   };
                   "/acme" = {
                     mountpoint = "/var/lib/acme";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                    mountOptions = ["compress=zstd" "noatime" "noexec"];
                   };
                   # "/nomad" = {
                   # mountpoint = "/var/lib/nomad";
@@ -46,11 +46,11 @@
                   # };
                   "/srv" = {
                     mountpoint = "/srv";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/swap" = {
                     mountpoint = "/swap";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                    mountOptions = ["compress=zstd" "noatime" "noexec"];
                   };
                 };
               };

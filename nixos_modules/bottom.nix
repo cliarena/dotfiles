@@ -1,14 +1,16 @@
-{ config, lib, host, ... }:
-let
+{
+  config,
+  lib,
+  host,
+  ...
+}: let
   module = "_bottom";
   description = "process & system monitoring";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     home-manager.users.${host.user} = {
       programs.bottom = {
         enable = true;

@@ -1,5 +1,10 @@
-{ config, lib, inputs, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}: let
   module = "x";
   description = "x space";
   inherit (lib) mkEnableOption mkIf;
@@ -8,8 +13,8 @@ let
     user = "x";
     hostAddress = "10.10.2.1";
     localAddress = "10.10.2.100";
-    wan_ips = [ "${localAddress}/24" ];
-    wan_gateway = [ hostAddress ];
+    wan_ips = ["${localAddress}/24"];
+    wan_gateway = [hostAddress];
     is_dns_server = false; # for testing hashi_stack
     dns_server = wan_gateway;
     dns_extra_hosts = "";
@@ -21,8 +26,8 @@ let
       ssh = 10001;
     };
     # open the least amount possible
-    tcp_ports = with ports; [ dns ssh 8080 ];
-    udp_ports = with ports; [ dns ];
+    tcp_ports = with ports; [dns ssh 8080];
+    udp_ports = with ports; [dns];
   };
 
   ENV_VARS = {
@@ -30,16 +35,14 @@ let
     WAYLAND_DISPLAY = "wayland-3";
     WOLF_RENDER_NODE = "/dev/dri/renderD128";
     XDG_RUNTIME_DIR = "/run/user/1000";
-#    XDG_RUNTIME_DIR = "/tmp/sockets";
+    #    XDG_RUNTIME_DIR = "/tmp/sockets";
   };
 in {
-
   options.spaces.${module}.enable = mkEnableOption description;
 
   config = mkIf config.spaces.${module}.enable {
-
     containers."space-${module}" = {
-      additionalCapabilities = [ "CAP_SYS_ADMIN" ];
+      additionalCapabilities = ["CAP_SYS_ADMIN"];
 
       bindMounts = {
         # "/nix/store" = {
@@ -53,20 +56,23 @@ in {
           hostPath = "/run/user/1000";
           isReadOnly = false;
         };
-        
+
         "/dev/dri" = {
           hostPath = "/dev/dri";
           isReadOnly = false;
         };
-        "/dev/kfd" = { # AMD rocm & hip: for blender gpu acceleration
+        "/dev/kfd" = {
+          # AMD rocm & hip: for blender gpu acceleration
           hostPath = "/dev/kfd";
           isReadOnly = false;
         };
-        "/srv" = { # needed for sops
+        "/srv" = {
+          # needed for sops
           hostPath = "/srv";
           isReadOnly = false;
         };
-        "/var/lib/acme" = { # needed for terraform certs consul_config_entry
+        "/var/lib/acme" = {
+          # needed for terraform certs consul_config_entry
           hostPath = "/var/lib/acme";
           isReadOnly = true;
         };
@@ -74,17 +80,12 @@ in {
           hostPath = "/tmp";
           isReadOnly = false;
         };
-      
 
-       #hdmi passthrough
+        #hdmi passthrough
         "/dev/fb0" = {
           hostPath = "/dev/fb0";
           isReadOnly = false;
         };
-
-
-
-
       };
 
       allowedDevices = [
@@ -106,12 +107,11 @@ in {
       autoStart = true;
       ephemeral = true;
 
-      forwardPorts = [{ hostPort = host.ports.ssh; }];
+      forwardPorts = [{hostPort = host.ports.ssh;}];
 
-      specialArgs = { inherit inputs host pkgs; };
+      specialArgs = {inherit inputs host pkgs;};
 
-      config = { ... }: {
-
+      config = {...}: {
         environment.sessionVariables = ENV_VARS;
         environment.variables = ENV_VARS;
 

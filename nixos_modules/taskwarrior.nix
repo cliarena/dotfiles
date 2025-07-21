@@ -1,5 +1,10 @@
-{ config, lib, pkgs, host, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  host,
+  ...
+}: let
   module = "_taskwarrior";
   description = "cli todo list";
   inherit (lib) mkEnableOption mkIf;
@@ -105,124 +110,123 @@ let
     color.undo.before = "red";
   };
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
-    environment.sessionVariables = { TIMEWARRIORDB = "/srv/timewarrior"; };
+    environment.sessionVariables = {TIMEWARRIORDB = "/srv/timewarrior";};
     home-manager.users.${host.user} = {
       programs.taskwarrior = {
         enable = true;
         package = pkgs.taskwarrior3;
         dataLocation = "/srv/taskwarrior";
-        config = taskwarrior_theme // {
-          report.next.labels = [
-            "ID"
-            "Active"
-            "Prio"
-            "Project"
-            "Tags"
-            "Due"
-            "Description"
-            "Recur"
-            "Urg"
-          ];
-          report.next.columns = [
-            "id"
-            "start.age"
-            "priority"
-            "project"
-            "tags"
-            "due.age"
-            "description.truncated_count"
-            "recur"
-            "urgency"
-          ];
-          report.workout = {
-            description = "Workout Report";
-            labels = [
+        config =
+          taskwarrior_theme
+          // {
+            report.next.labels = [
               "ID"
               "Active"
+              "Prio"
+              "Project"
+              "Tags"
+              "Due"
               "Description"
-              "Weight"
-              "Weight Goal"
-              "Reps"
-              "Reps Goal"
-              "Time Limit"
+              "Recur"
+              "Urg"
             ];
-            columns = [
+            report.next.columns = [
               "id"
               "start.age"
+              "priority"
+              "project"
+              "tags"
+              "due.age"
               "description.truncated_count"
-              "workout_weight_curr"
-              "workout_weight_goal"
-              "workout_reps_curr"
-              "workout_reps_goal"
-              "workout_time_limit"
+              "recur"
+              "urgency"
             ];
-            filter = "status:pending +workout";
-
+            report.workout = {
+              description = "Workout Report";
+              labels = [
+                "ID"
+                "Active"
+                "Description"
+                "Weight"
+                "Weight Goal"
+                "Reps"
+                "Reps Goal"
+                "Time Limit"
+              ];
+              columns = [
+                "id"
+                "start.age"
+                "description.truncated_count"
+                "workout_weight_curr"
+                "workout_weight_goal"
+                "workout_reps_curr"
+                "workout_reps_goal"
+                "workout_time_limit"
+              ];
+              filter = "status:pending +workout";
+            };
+            context = {
+              lab.read = "+lab";
+              lab.write = "+lab";
+              home.read = "-book -vlog -blog -lab -pers -hp -work";
+              reading.read = "+book";
+              reading.write = "+book";
+              vloging.read = "+vlog +blog";
+              personal.read = "+pers or +hp";
+              personal.write = "+pers";
+              business.read = "+work";
+              business.write = "+work";
+            };
+            urgency.user.project = {
+              HP.coefficient = 6;
+              Din.coefficient = 4;
+              Nur.coefficient = 4;
+              Shop.coefficient = 5;
+              Majd.coefficient = 2;
+              Nixos.coefficient = 3;
+              Cliarena.coefficient = 3;
+            };
+            uda = {
+              workout_weight_curr = {
+                type = "numeric";
+                label = "Weight";
+              };
+              workout_weight_goal = {
+                type = "numeric";
+                label = "Weight Goal";
+              };
+              workout_reps_curr = {
+                type = "numeric";
+                label = "Reps";
+              };
+              workout_reps_goal = {
+                type = "numeric";
+                label = "Reps Goal";
+                default = 80;
+              };
+              workout_time_limit = {
+                type = "duration";
+                label = "Time Limit";
+                default = "5min";
+              };
+            };
+            # this allow only one task to be active
+            max_active_tasks = 1;
+            # when you delete the task, the time tracking will be also be deleted from timewarrior
+            erase_time_on_delete = false;
+            # those are tags in taskwarrior.When you add one of them the time tracking will be deleted from timewarrior
+            clear_time_tags = ["cleartime" "ctime" "deletetime" "dtime"];
+            update_time_tags = ["update" "updatetime" "utime" "recalc"];
+            create_time_when_add_task = false;
+            rate_per_hour = 10;
+            rate_per_hour_decimals = 2;
+            # rate_per_hour_project=Inbox:0,Other:10
+            rate_format_with_spaces = 10;
+            currency_format = "en-US,USD";
           };
-          context = {
-            lab.read = "+lab";
-            lab.write = "+lab";
-            home.read = "-book -vlog -blog -lab -pers -hp -work";
-            reading.read = "+book";
-            reading.write = "+book";
-            vloging.read = "+vlog +blog";
-            personal.read = "+pers or +hp";
-            personal.write = "+pers";
-            business.read = "+work";
-            business.write = "+work";
-          };
-          urgency.user.project = {
-            HP.coefficient = 6;
-            Din.coefficient = 4;
-            Nur.coefficient = 4;
-            Shop.coefficient = 5;
-            Majd.coefficient = 2;
-            Nixos.coefficient = 3;
-            Cliarena.coefficient = 3;
-          };
-          uda = {
-            workout_weight_curr = {
-              type = "numeric";
-              label = "Weight";
-            };
-            workout_weight_goal = {
-              type = "numeric";
-              label = "Weight Goal";
-            };
-            workout_reps_curr = {
-              type = "numeric";
-              label = "Reps";
-            };
-            workout_reps_goal = {
-              type = "numeric";
-              label = "Reps Goal";
-              default = 80;
-            };
-            workout_time_limit = {
-              type = "duration";
-              label = "Time Limit";
-              default = "5min";
-            };
-          };
-          # this allow only one task to be active
-          max_active_tasks = 1;
-          # when you delete the task, the time tracking will be also be deleted from timewarrior
-          erase_time_on_delete = false;
-          # those are tags in taskwarrior.When you add one of them the time tracking will be deleted from timewarrior
-          clear_time_tags = [ "cleartime" "ctime" "deletetime" "dtime" ];
-          update_time_tags = [ "update" "updatetime" "utime" "recalc" ];
-          create_time_when_add_task = false;
-          rate_per_hour = 10;
-          rate_per_hour_decimals = 2;
-          # rate_per_hour_project=Inbox:0,Other:10
-          rate_format_with_spaces = 10;
-          currency_format = "en-US,USD";
-        };
       };
     };
   };

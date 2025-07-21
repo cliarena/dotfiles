@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   module = "_vault";
   description = "secret manager";
   inherit (lib) mkEnableOption mkIf;
@@ -9,12 +12,10 @@ let
   DOMAIN = "cliarena.com";
   vault_cfg = config.services.vault;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
-    environment.variables = { inherit VAULT_ADDR; };
+    environment.variables = {inherit VAULT_ADDR;};
     services.vault = {
       enable = true;
       package = pkgs.vault-bin;
@@ -26,11 +27,13 @@ in {
           leader_tls_servername = "vault"
         }
       '';
-      storagePath = if vault_cfg.storageBackend == "file"
-      || vault_cfg.storageBackend == "raft" then
-        "/srv/vault/data"
-      else
-        null;
+      storagePath =
+        if
+          vault_cfg.storageBackend
+          == "file"
+          || vault_cfg.storageBackend == "raft"
+        then "/srv/vault/data"
+        else null;
       extraConfig = ''
         ui = true
         api_addr= "https://vault.${DOMAIN}"
@@ -54,7 +57,6 @@ in {
       '';
     };
 
-    systemd.services.vault.after = [ "acme-vault.${DOMAIN}.service" ];
-
+    systemd.services.vault.after = ["acme-vault.${DOMAIN}.service"];
   };
 }

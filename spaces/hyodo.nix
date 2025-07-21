@@ -1,12 +1,17 @@
-{ config, lib, inputs, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}: let
   module = "hyodo";
   description = "hyodo space";
   inherit (lib) mkEnableOption mkIf;
 
   host = {
     user = "hyodo";
-    ssh_authorized_keys = [ ];
+    ssh_authorized_keys = [];
   };
 
   ENV_VARS = {
@@ -16,13 +21,10 @@ let
     # XDG_RUNTIME_DIR = "/tmp/sockets";
   };
 in {
-
   options.spaces.${module}.enable = mkEnableOption description;
 
   config = mkIf config.spaces.${module}.enable {
-
     containers."space-${module}" = {
-
       bindMounts = {
         # "/tmp" = {
         #   hostPath = "/tmp";
@@ -36,7 +38,8 @@ in {
           hostPath = "/dev/dri";
           isReadOnly = false;
         };
-        "/dev/kfd" = { # AMD rocm & hip: for blender gpu acceleration
+        "/dev/kfd" = {
+          # AMD rocm & hip: for blender gpu acceleration
           hostPath = "/dev/kfd";
           isReadOnly = false;
         };
@@ -69,13 +72,12 @@ in {
         }
       ];
 
-      specialArgs = { inherit inputs host pkgs; };
+      specialArgs = {inherit inputs host pkgs;};
       restartIfChanged = false;
       autoStart = true;
       ephemeral = true;
 
-      config = { ... }: {
-
+      config = {...}: {
         environment.sessionVariables = ENV_VARS;
         environment.variables = ENV_VARS;
 

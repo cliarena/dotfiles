@@ -1,13 +1,16 @@
-{ lib, inputs, nixpkgs, ... }:
-let
-
+{
+  lib,
+  inputs,
+  nixpkgs,
+  ...
+}: let
   inherit (inputs) home-manager sops-nix;
   host = rec {
     user = "x";
     hostAddress = "10.10.2.1";
     localAddress = "10.10.2.100";
-    wan_ips = [ "${localAddress}/24" ];
-    wan_gateway = [ hostAddress ];
+    wan_ips = ["${localAddress}/24"];
+    wan_gateway = [hostAddress];
     is_dns_server = false; # for testing hashi_stack
     dns_server = wan_gateway;
     dns_extra_hosts = "";
@@ -19,8 +22,8 @@ let
       ssh = 22;
     };
     # open the least amount possible
-    tcp_ports = with ports; [ dns ssh 8080 ];
-    udp_ports = with ports; [ dns ];
+    tcp_ports = with ports; [dns ssh 8080];
+    udp_ports = with ports; [dns];
   };
 in {
   # networking.macvlans.mv-lan0-host = {
@@ -35,11 +38,10 @@ in {
   # }];
   # };
   containers.dev-space = {
-
-    specialArgs = { inherit inputs nixpkgs home-manager host; };
+    specialArgs = {inherit inputs nixpkgs home-manager host;};
 
     autoStart = true;
-    interfaces = [ "mv-qub0" ];
+    interfaces = ["mv-qub0"];
     # TODO: Test if it's needed BY SUNSHIN
     # additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
@@ -50,11 +52,13 @@ in {
 
     # INFO: you need to bindmount your devices and add each device to allowedDevices
     bindMounts = {
-      "/srv" = { # needed for sops
+      "/srv" = {
+        # needed for sops
         hostPath = "/srv";
         isReadOnly = false;
       };
-      "/var/lib/acme" = { # needed for terraform certs consul_config_entry
+      "/var/lib/acme" = {
+        # needed for terraform certs consul_config_entry
         hostPath = "/var/lib/acme";
         isReadOnly = true;
       };
@@ -112,17 +116,22 @@ in {
       }
     ];
 
-    config = { config, pkgs, ... }: {
-
+    config = {
+      config,
+      pkgs,
+      ...
+    }: {
       system.stateVersion = "22.11";
 
-      imports = [
-        ../modules/hardware/amd.nix
-        # ../modules/surrealdb.nix
-        # ../modules/users.nix
-        ../modules/netwoking/container-network.nix
-        ../modules/boot/amd.nix
-      ] ++ lib.fileset.toList ../profiles;
+      imports =
+        [
+          ../modules/hardware/amd.nix
+          # ../modules/surrealdb.nix
+          # ../modules/users.nix
+          ../modules/netwoking/container-network.nix
+          ../modules/boot/amd.nix
+        ]
+        ++ lib.fileset.toList ../profiles;
 
       profiles.common.enable = true;
       profiles.desktop.enable = true;
@@ -131,7 +140,7 @@ in {
       _taskwarrior.enable = true;
 
       # modules.services.sunshine.enable = true;
-      environment.systemPackages = with pkgs; [ glxinfo ];
+      environment.systemPackages = with pkgs; [glxinfo];
       # services.xserver.enable = true;
       services.xrdp = {
         enable = true;
@@ -205,7 +214,6 @@ in {
       # options = [ "NOPASSWD" ];
       # }];
       # }];
-
     };
   };
 }

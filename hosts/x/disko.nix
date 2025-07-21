@@ -1,4 +1,4 @@
-{ disks ? [ "/dev/sda" ], ... }: {
+{disks ? ["/dev/sda"], ...}: {
   disko.devices = {
     disk = {
       main = {
@@ -13,36 +13,36 @@
               content = {
                 type = "filesystem";
                 format = "vfat";
-               # label = "ESP";
+                # label = "ESP";
                 mountpoint = "/boot";
-              #  extraArgs = [ "-n ESP" ];
-              #  device = "/dev/disk/by-partlabel/ESP";
+                #  extraArgs = [ "-n ESP" ];
+                #  device = "/dev/disk/by-partlabel/ESP";
               };
             };
             nixos = {
               size = "100%";
               content = {
                 type = "btrfs";
-               # label = "NIXOS";
-               # extraArgs = [ "-n NIXOS" ]; # Override existing partition
-               # device = "/dev/disk/by-partlabel/NIXOS";
+                # label = "NIXOS";
+                # extraArgs = [ "-n NIXOS" ]; # Override existing partition
+                # device = "/dev/disk/by-partlabel/NIXOS";
                 subvolumes = {
                   # Mountpoints inferred from subvolume name
                   "/nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/log" = {
                     mountpoint = "/var/log";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                    mountOptions = ["compress=zstd" "noatime" "noexec"];
                   };
                   "/srv" = {
                     mountpoint = "/srv";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/swap" = {
                     mountpoint = "/swap";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                    mountOptions = ["compress=zstd" "noatime" "noexec"];
                   };
                 };
               };

@@ -1,19 +1,21 @@
-{ config, x, ... }:
-let
+{
+  config,
+  x,
+  ...
+}: let
   inherit (config.resource) consul_acl_role;
   inherit (x) host_name consul;
 
   dns_policies = {
     base = {
       # fixes DNS error and enable consul-template to write certs
-      agent.${host_name} = { policy = "write"; };
+      agent.${host_name} = {policy = "write";};
       # fixes DNS agent: Coordinate update warning
-      node.${host_name} = { policy = "write"; };
-
+      node.${host_name} = {policy = "write";};
     };
     consul_template = {
       # reload consul for consul-template to work
-      agent.${host_name} = { policy = "write"; };
+      agent.${host_name} = {policy = "write";};
     };
     nomad = {
       service = {
@@ -36,15 +38,14 @@ let
         count-dashboard-sidecar-proxy.policy = "write";
       };
       # facilitate cross-Consul datacenter requests of Connect services registered by Nomad
-      agent_prefix."" = { policy = "read"; };
-      service_prefix."" = { policy = "read"; };
-      node_prefix."" = { policy = "read"; };
+      agent_prefix."" = {policy = "read";};
+      service_prefix."" = {policy = "read";};
+      node_prefix."" = {policy = "read";};
       acl = "write";
       mesh = "write";
     };
   };
 in {
-
   resource.consul_acl_policy = {
     dns_base_policy = {
       name = "dns_base_policy";
@@ -77,13 +78,12 @@ in {
   # roles = [ consul_acl_role.dns_role.name ];
   # };
 
-  resource.consul_acl_token_role_attachment.default_token_dns_role_attachement =
-    {
-      depends_on = [ "consul_acl_role.dns_role" ];
-      token_id = consul.default_token_id;
-      # token_id = config.sops.secrets."CONSUL_ACL_DEFAULT_TOKEN".path;
-      role = consul_acl_role.dns_role.name;
-    };
+  resource.consul_acl_token_role_attachment.default_token_dns_role_attachement = {
+    depends_on = ["consul_acl_role.dns_role"];
+    token_id = consul.default_token_id;
+    # token_id = config.sops.secrets."CONSUL_ACL_DEFAULT_TOKEN".path;
+    role = consul_acl_role.dns_role.name;
+  };
 
   # Service Mesh
   resource.consul_config_entry.proxy_defaults = {
@@ -110,17 +110,21 @@ in {
     kind = "api-gateway";
     name = "cliarena-gateway";
     config_json = builtins.toJSON {
-      listeners = [{
-        port = 443;
-        name = "cliarena-http-listener";
-        protocol = "http";
-        tls = {
-          certificates = [{
-            kind = "inline-certificate";
-            name = "cliarena-cert";
-          }];
-        };
-      }];
+      listeners = [
+        {
+          port = 443;
+          name = "cliarena-http-listener";
+          protocol = "http";
+          tls = {
+            certificates = [
+              {
+                kind = "inline-certificate";
+                name = "cliarena-cert";
+              }
+            ];
+          };
+        }
+      ];
     };
   };
 
@@ -128,7 +132,7 @@ in {
     name = "nomad-gateway";
     kind = "terminating-gateway";
 
-    config_json = builtins.toJSON { services = { name = "nomad"; }; };
+    config_json = builtins.toJSON {services = {name = "nomad";};};
   };
 
   resource.consul_config_entry.nginx_intentions = {
@@ -225,42 +229,52 @@ in {
     config_json = builtins.toJSON {
       rules = [
         {
-          matches = [{
-            path = {
-              match = "prefix";
-              value = "/";
-            };
-          }];
-          filters = {
-            headers = [{
-              add = {
-                X-Forwarded-For = "%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%";
+          matches = [
+            {
+              path = {
+                match = "prefix";
+                value = "/";
               };
-            }];
+            }
+          ];
+          filters = {
+            headers = [
+              {
+                add = {
+                  X-Forwarded-For = "%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%";
+                };
+              }
+            ];
             TimeoutFilter = {
               IdleTimeout = 500000000000;
               RequestTimeout = 500000000000;
             };
           };
-          services = [{ name = "nomad"; }];
+          services = [{name = "nomad";}];
           # services = [{ name = "nomad-client-gateway"; }];
         }
         {
-          matches = [{
-            path = {
-              match = "prefix";
-              value = "/echo";
-            };
-          }];
-          services = [{ name = "echo"; }];
+          matches = [
+            {
+              path = {
+                match = "prefix";
+                value = "/echo";
+              };
+            }
+          ];
+          services = [{name = "echo";}];
         }
       ];
-      parents = [{
-        inherit (config.resource.consul_config_entry.cliarena_gateway)
-          kind name;
-        sectionName = "cliarena-http-listener";
-      }];
+      parents = [
+        {
+          inherit
+            (config.resource.consul_config_entry.cliarena_gateway)
+            kind
+            name
+            ;
+          sectionName = "cliarena-http-listener";
+        }
+      ];
     };
   };
-
 }

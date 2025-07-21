@@ -2,14 +2,16 @@
   programs.lazygit = {
     enable = true;
     settings = {
-      customCommands = [{
-        key = "c";
-        command = "git cz c";
-        description = "commit with commitizen";
-        context = "files";
-        loadingText = "opening commitizen commit tool";
-        subprocess = true;
-      }];
+      customCommands = [
+        {
+          key = "c";
+          command = "git cz c";
+          description = "commit with commitizen";
+          context = "files";
+          loadingText = "opening commitizen commit tool";
+          subprocess = true;
+        }
+      ];
       gui = {
         sidePanelWidth = 0.3; # number from 0 to 1
         nerdFontsVersion = "3";
@@ -30,7 +32,8 @@
           selectedLineBgColor = [
             "#313244" # Surface0
           ];
-          selectedRangeBgColor = [ # diff lines BG colors
+          selectedRangeBgColor = [
+            # diff lines BG colors
             # "#313244" # Surface0
             "default"
           ];

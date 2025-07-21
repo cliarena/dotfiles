@@ -1,7 +1,11 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let cfg = config.modules.services.sunshine;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.services.sunshine;
 in {
   # TODO: Review systemd ? https://github.com/NixOS/nixpkgs/blob/e6272819a169325163735314cf796166943d5d75/nixos/modules/services/networking/syncthing.nix
   # TODO: Check https://github.com/francocalvo/nixos-eris/blob/main/modules/gaming/default.nix
@@ -25,8 +29,8 @@ in {
 
     # https://docs.lizardbyte.dev/projects/sunshine/en/latest/about/advanced_usage.html#port
     networking.firewall = {
-      allowedTCPPorts = [ 47984 47989 47990 48010 ];
-      allowedUDPPorts = [ 47998 47999 48000 48002 ];
+      allowedTCPPorts = [47984 47989 47990 48010];
+      allowedUDPPorts = [47998 47999 48000 48002];
     };
 
     # Make it work for KMS.
@@ -39,18 +43,18 @@ in {
     };
 
     # Requires to simulate input
-    boot.kernelModules = [ "uinput" ];
+    boot.kernelModules = ["uinput"];
     services.udev.extraRules = ''
       KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
     '';
 
-    environment.systemPackages = with pkgs; [ sunshine ];
-    systemd.packages = with pkgs; [ sunshine ];
+    environment.systemPackages = with pkgs; [sunshine];
+    systemd.packages = with pkgs; [sunshine];
 
     systemd.user.services.sunshine-temp-v5 = {
       enable = true;
       description = "Starts Sunshine";
-      wantedBy = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
       startLimitIntervalSec = 500;
       startLimitBurst = 5;
       serviceConfig = {

@@ -3,18 +3,14 @@
   lib,
   inputs,
   ...
-}:
-let
+}: let
   module = "_lsp";
   description = "lsp";
   inherit (lib) mkEnableOption mkIf;
-in
-{
-
+in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     programs.nixvim.plugins.lsp = {
       enable = true;
       servers = {
@@ -41,5 +37,4 @@ in
       };
     };
   };
-
 }

@@ -1,5 +1,8 @@
-{ config, pkgs, ... }: {
-
+{
+  config,
+  pkgs,
+  ...
+}: {
   boot = {
     # blacklistedKernelModules = [
     #   "k10temp" # conflicts with zenpower
@@ -9,9 +12,9 @@
       # config.boot.kernelPackages.zenergy # add zenergy
     ];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [ "video=1920x1080" "transparent_hugepage=always" ];
+    kernelParams = ["video=1920x1080" "transparent_hugepage=always"];
     initrd = {
-      availableKernelModules = [ "xhci_pci" "usbhid" "uas" "usb_storage" ];
+      availableKernelModules = ["xhci_pci" "usbhid" "uas" "usb_storage"];
     };
     kernelModules = [
       "uinput"
@@ -37,12 +40,11 @@
 
     loader = {
       timeout = 1;
-      efi = { canTouchEfiVariables = true; };
+      efi = {canTouchEfiVariables = true;};
       systemd-boot.enable = true;
     };
   };
   services.udev.extraRules = ''
     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
   '';
-
 }

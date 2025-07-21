@@ -1,14 +1,17 @@
-{ config, lib, pkgs, host, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  host,
+  ...
+}: let
   module = "_users";
   description = "users config";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     users.users.${host.user} = {
       isNormalUser = true;
       initialPassword = "nixos";
@@ -29,5 +32,4 @@ in {
       sudo.execWheelOnly = true;
     };
   };
-
 }

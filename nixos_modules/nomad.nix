@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   module = "_nomad";
   description = "easy orchestration";
   inherit (lib) mkEnableOption mkIf;
@@ -7,7 +11,6 @@ let
   #VAULT_ADDR = "https://vault.${DOMAIN}";
   VAULT_ADDR = "http://10.10.0.10:8200";
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
@@ -24,26 +27,26 @@ in {
       ];
 
       # extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
-      extraSettingsPaths =
-        [ config.sops.secrets."NOMAD_GOSSIP_ENCRYPTION_KEY.hcl".path ];
+      extraSettingsPaths = [config.sops.secrets."NOMAD_GOSSIP_ENCRYPTION_KEY.hcl".path];
       settings = {
         data_dir = "/srv/nomad/data";
         ui = {
           enabled = true;
-          consul = { ui_url = "${CONSUL_ADDR}/ui"; };
-          vault = { ui_url = "${VAULT_ADDR}/ui"; };
+          consul = {ui_url = "${CONSUL_ADDR}/ui";};
+          vault = {ui_url = "${VAULT_ADDR}/ui";};
         };
         plugin.docker = {
           config = {
             allow_privileged = true;
-            allow_caps = [ "all" ];
-            volumes = { # needed by nomad gitops operator
+            allow_caps = ["all"];
+            volumes = {
+              # needed by nomad gitops operator
               enabled = true;
               selinuxlabel = "z";
             };
           };
         };
-        plugin.raw_exec = { config = { enabled = true; }; };
+        plugin.raw_exec = {config = {enabled = true;};};
 
         # vault = {
         # enabled = true;

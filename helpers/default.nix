@@ -1,1 +1,1 @@
-{ mkNixosSys = args: import (./mkNixosSys.nix) args; }
+{mkNixosSys = args: import (./mkNixosSys.nix) args;}

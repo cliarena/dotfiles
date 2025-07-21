@@ -1,19 +1,23 @@
-{ config, lib, pkgs, inputs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
   module = "_vault_unsealer";
   description = "auto unseal vault";
   inherit (lib) mkEnableOption mkIf;
 
   host.user = "x";
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     containers.vault-unsealer = {
-
       bindMounts = {
-        "/srv/secrets" = { # needed for sops
+        "/srv/secrets" = {
+          # needed for sops
           hostPath = "/srv/secrets";
           isReadOnly = true;
         };
@@ -23,22 +27,21 @@ in {
       ephemeral = true;
 
       # NOTE: needed to fix recursion error
-      specialArgs = { inherit inputs host; };
+      specialArgs = {inherit inputs host;};
 
-      config = { ... }: {
-
+      config = {...}: {
         imports = lib.fileset.toList ../nixos_modules;
 
         _home.enable = true;
         _sops_home.enable = true;
 
-        users.users.${host.user} = { isNormalUser = true; };
+        users.users.${host.user} = {isNormalUser = true;};
         services.getty.autologinUser = host.user;
 
         systemd.services.vault_unsealer = {
-          path = [ pkgs.getent pkgs.vault-bin ];
+          path = [pkgs.getent pkgs.vault-bin];
           description = "Vault unsealer";
-          environment = { VAULT_ADDR = "https://vault.cliarena.com:8200"; };
+          environment = {VAULT_ADDR = "https://vault.cliarena.com:8200";};
           script = ''
             for i in {1..3}
             do
@@ -50,7 +53,7 @@ in {
             # avoid error start request repeated too quickly since RestartSec defaults to 100ms
             RestartSec = 3;
           };
-          wantedBy = [ "multi-user.target" ];
+          wantedBy = ["multi-user.target"];
         };
       };
     };

@@ -1,12 +1,16 @@
-{ config, lib, inputs, host, ... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  host,
+  ...
+}: let
   module = "_hyprland";
   description = "dynamic tiling window manager";
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager hyprland;
 in {
-
-  imports = [ home-manager.nixosModules.home-manager ];
+  imports = [home-manager.nixosModules.home-manager];
 
   options.${module}.enable = mkEnableOption description;
 
@@ -16,7 +20,7 @@ in {
     home-manager.users.${host.user} = {
       wayland.windowManager.hyprland = {
         enable = true;
-        xwayland = { enable = true; };
+        xwayland = {enable = true;};
         extraConfig = ''
           # EWW
           bind = CTRL SHIFT, R, exec, bash ~/.config/eww/scripts/init
@@ -190,5 +194,4 @@ in {
       };
     };
   };
-
 }

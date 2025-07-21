@@ -1,11 +1,14 @@
-{ self, host }:
+{
+  self,
+  host,
+}:
 builtins.toFile "bind_m7an-zone" ''
   $TTL 2d
   $ORIGIN m7an.com.
   @                 IN    SOA   ns.m7an.com.   mail.m7an.com. (
                                 ${
-                                  builtins.toString self.sourceInfo.lastModified
-                                }
+    builtins.toString self.sourceInfo.lastModified
+  }
                                 12h
                                 15m
                                 3w

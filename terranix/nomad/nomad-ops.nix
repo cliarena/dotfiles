@@ -1,5 +1,4 @@
-{ time, ... }:
-let
+{time, ...}: let
   http = {
     mode = "bridge";
     reservedPorts.http = {
@@ -9,7 +8,7 @@ let
   };
 in {
   job.nomad_proxy = {
-    datacenters = [ "dc1" ];
+    datacenters = ["dc1"];
     # namespace = "nomad_proxy";
 
     type = "service";
@@ -26,19 +25,23 @@ in {
         };
       };
 
-      services = [{
-        name = "nomad_ops";
-        tags = [ "http" "view" ];
+      services = [
+        {
+          name = "nomad_ops";
+          tags = ["http" "view"];
 
-        port = "http";
+          port = "http";
 
-        checks = [{
-          type = "http";
-          path = "/api/health";
-          interval = "10s";
-          timeout = "2s";
-        }];
-      }];
+          checks = [
+            {
+              type = "http";
+              path = "/api/health";
+              interval = "10s";
+              timeout = "2s";
+            }
+          ];
+        }
+      ];
 
       # Create an individual task (unit of work). This particular
       # task utilizes a Docker container to front a web application.
@@ -58,7 +61,6 @@ in {
         };
 
         env = {
-
           NOMAD_OPS_LOCAL_REPO_DIR = "/data/repos";
 
           # Adjust accordingly
@@ -80,13 +82,15 @@ in {
             "/data/pb_data"
           ];
 
-          ports = [ "http" ];
+          ports = ["http"];
 
-          mounts = [{
-            type = "volume";
-            target = "/data";
-            source = "nomad-ops-data";
-          }];
+          mounts = [
+            {
+              type = "volume";
+              target = "/data";
+              source = "nomad-ops-data";
+            }
+          ];
         };
 
         # Specify the maximum resources required to run the task,

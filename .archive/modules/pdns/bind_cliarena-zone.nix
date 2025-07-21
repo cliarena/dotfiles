@@ -1,11 +1,14 @@
-{ self, host }:
+{
+  self,
+  host,
+}:
 builtins.toFile "bind_cliarena-zone" ''
   $TTL 2d
   $ORIGIN cliarena.com.
   @                 IN    SOA   ns.cliarena.com.   reporter.cliarena.com. (
                                 ${
-                                  builtins.toString self.sourceInfo.lastModified
-                                }
+    builtins.toString self.sourceInfo.lastModified
+  }
                                 12h
                                 15m
                                 3w

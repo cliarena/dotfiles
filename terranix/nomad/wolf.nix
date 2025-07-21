@@ -1,5 +1,4 @@
-{ time, ... }:
-let
+{time, ...}: let
   http = {
     mode = "bridge";
     reservedPorts = {
@@ -47,7 +46,7 @@ let
   };
 in {
   job.wolf = {
-    datacenters = [ "dc1" ];
+    datacenters = ["dc1"];
 
     group.servers = {
       count = 1;
@@ -94,15 +93,16 @@ in {
           readOnly = false;
         };
       };
-      networks = [ http ];
+      networks = [http];
       # networks = [ http { mode = "bridge"; } ];
-      services = [{
-        name = "wolf";
-        # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "47989";
-        # connect = { sidecarService = { }; };
-
-      }];
+      services = [
+        {
+          name = "wolf";
+          # WARN: Don't use named ports ie: port ="http". use literal ones
+          port = "47989";
+          # connect = { sidecarService = { }; };
+        }
+      ];
       task.server = {
         driver = "docker";
 
@@ -156,8 +156,7 @@ in {
           # ports = [ "http" ];
           #	volumes = [  "/vault/hdd/nomad/static-site:/usr/share/nginx/html" ]
           privileged = true;
-          devices =
-            [ { host_path = "/dev/dri"; } { host_path = "/dev/uinput"; } ];
+          devices = [{host_path = "/dev/dri";} {host_path = "/dev/uinput";}];
         };
         # resources = {
         # cpu = 10;

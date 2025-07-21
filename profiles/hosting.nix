@@ -1,16 +1,17 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "hosting";
   description = "hosting profile";
   inherit (lib) mkEnableOption mkIf fileset;
 in {
-
   imports = fileset.toList ../nixos_modules;
 
   options.profiles.${module}.enable = mkEnableOption description;
 
   config = mkIf config.profiles.${module}.enable {
-
     _sops_hosting.enable = true;
 
     _hydra.enable = true;

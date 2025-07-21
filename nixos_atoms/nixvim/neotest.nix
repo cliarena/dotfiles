@@ -1,5 +1,9 @@
-{ config, lib, system, ... }:
-let
+{
+  config,
+  lib,
+  system,
+  ...
+}: let
   module = "_neotest";
   description = "instant inline tests";
   inherit (lib) mkEnableOption mkIf;
@@ -14,11 +18,9 @@ let
   # old_neotest_pkg = old_pkgs.vimPlugins.neotest;
   # old_neotest-zig_pkg = old_pkgs.vimPlugins.neotest-zig;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     programs.nixvim.plugins.neotest = {
       enable = true;
       # package = old_neotest_pkg;
@@ -38,10 +40,9 @@ in {
         };
         watch = {
           enable = true;
-          symbol_queries = { zig = ""; };
+          symbol_queries = {zig = "";};
         };
       };
     };
-
   };
 }

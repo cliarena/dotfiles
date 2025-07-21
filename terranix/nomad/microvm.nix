@@ -1,6 +1,10 @@
-{ pkgs, self, config, microvm, ... }:
-
-let
+{
+  pkgs,
+  self,
+  config,
+  microvm,
+  ...
+}: let
   inherit (pkgs) lib;
   # inherit (time) second;
   second = 1000000000;
@@ -30,9 +34,8 @@ let
     };
   };
 in {
-
   job.microvm = {
-    datacenters = [ "dc1" ];
+    datacenters = ["dc1"];
     type = "service";
 
     group.servers = {
@@ -59,24 +62,26 @@ in {
           readOnly = false;
         };
       };
-      networks = [ http ];
-      services = [{
-        name = "microvm";
-        # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "8080";
-        # connect = { sidecarService = { }; };
-        # address = "192.168.249.1";
-        # task = "hypervisor";
-        # checks = [{
-        # type = "http";
-        # path = "/";
-        # # protocol = "https";
-        # # expose = true;
-        # # tlsSkipVerify = true;
-        # interval = 3 * second;
-        # timeout = 2 * second;
-        # }];
-      }];
+      networks = [http];
+      services = [
+        {
+          name = "microvm";
+          # WARN: Don't use named ports ie: port ="http". use literal ones
+          port = "8080";
+          # connect = { sidecarService = { }; };
+          # address = "192.168.249.1";
+          # task = "hypervisor";
+          # checks = [{
+          # type = "http";
+          # path = "/";
+          # # protocol = "https";
+          # # expose = true;
+          # # tlsSkipVerify = true;
+          # interval = 3 * second;
+          # timeout = 2 * second;
+          # }];
+        }
+      ];
       # task."add-interface-${id}" = {
       # lifecycle = { hook = "prestart"; };
       # driver = "raw_exec";
@@ -134,44 +139,48 @@ in {
         };
         driver = "raw_exec";
         user = "root";
-        config = { command = "local/virtiofsd-${tag}.sh"; };
-        templates = [{
-          destination = "local/virtiofsd-${tag}.sh";
-          perms = "755";
-          data = ''
-            #! /run/current-system/sw/bin/bash -e
-            mkdir -p ${workDir}
-            chown microvm:kvm ${workDir}
-            cd ${workDir}
-            mkdir -p ${source}
-            exec /run/current-system/sw/bin/virtiofsd \
-            --socket-path=${socket} \
-            --socket-group=kvm \
-            --shared-dir=${source} \
-            --sandbox=none \
-            --thread-pool-size `nproc` \
-            --cache=always
-          '';
-        }];
+        config = {command = "local/virtiofsd-${tag}.sh";};
+        templates = [
+          {
+            destination = "local/virtiofsd-${tag}.sh";
+            perms = "755";
+            data = ''
+              #! /run/current-system/sw/bin/bash -e
+              mkdir -p ${workDir}
+              chown microvm:kvm ${workDir}
+              cd ${workDir}
+              mkdir -p ${source}
+              exec /run/current-system/sw/bin/virtiofsd \
+              --socket-path=${socket} \
+              --socket-group=kvm \
+              --shared-dir=${source} \
+              --sandbox=none \
+              --thread-pool-size `nproc` \
+              --cache=always
+            '';
+          }
+        ];
         killTimeout = 5 * second;
       };
 
       #TODO: Make it work with exec
       task.copy_system = {
         driver = "raw_exec";
-        lifecycle = { hook = "prestart"; };
-        config = { command = "local/copy-system.sh"; };
-        templates = [{
-          destination = "local/copy-system.sh";
-          perms = "755";
-          data = ''
-            #! /run/current-system/sw/bin/bash -e
-            if ! [ -e ${runner} ] ; then
-            #TODO: Make it work with exec
-            /run/current-system/sw/bin/nix copy --from file://@binaryCachePath@?trusted=1 --no-check-sigs ${runner}
-            fi
-          '';
-        }];
+        lifecycle = {hook = "prestart";};
+        config = {command = "local/copy-system.sh";};
+        templates = [
+          {
+            destination = "local/copy-system.sh";
+            perms = "755";
+            data = ''
+              #! /run/current-system/sw/bin/bash -e
+              if ! [ -e ${runner} ] ; then
+              #TODO: Make it work with exec
+              /run/current-system/sw/bin/nix copy --from file://@binaryCachePath@?trusted=1 --no-check-sigs ${runner}
+              fi
+            '';
+          }
+        ];
       };
 
       # task.volume-dirs = {
@@ -209,42 +218,44 @@ in {
         config = {
           # command = "local/hypervisor.sh";
           command = "${pkgs.bash}/bin/sh";
-          args = [ "./hypervisor.sh" ];
+          args = ["./hypervisor.sh"];
         };
-        templates = [{
-          destination = "hypervisor.sh";
-          perms = "755";
-          data = ''
-            #! /run/current-system/sw/bin/bash -e
+        templates = [
+          {
+            destination = "hypervisor.sh";
+            perms = "755";
+            data = ''
+              #! /run/current-system/sw/bin/bash -e
 
-            ${pkgs.kmod}/bin/modprobe kvm
+              ${pkgs.kmod}/bin/modprobe kvm
 
-            mkdir -p ${workDir}
-            cd ${workDir}
+              mkdir -p ${workDir}
+              cd ${workDir}
 
-            # start hypervisor
-            ${runner}/bin/microvm-run &
-            # e2:f5:78:c9:82:3d
-            # ip a >&2
-            # ${pkgs.toybox}/bin/netstat -nlp >&2
-            # ${pkgs.nmap}/bin/nping --tcp --ttl 255 -p 8080 192.168.246.1 >&2
-            # ${pkgs.nmap}/bin/nping --tcp --ttl 255 -p 8081 192.168.246.1 >&2
-            # ${pkgs.nmap}/bin/nping --tcp --ttl 255 -p 8088 192.168.246.1 >&2
-            # ${pkgs.curl}/bin/curl 192.168.246.1:8080 >&2
+              # start hypervisor
+              ${runner}/bin/microvm-run &
+              # e2:f5:78:c9:82:3d
+              # ip a >&2
+              # ${pkgs.toybox}/bin/netstat -nlp >&2
+              # ${pkgs.nmap}/bin/nping --tcp --ttl 255 -p 8080 192.168.246.1 >&2
+              # ${pkgs.nmap}/bin/nping --tcp --ttl 255 -p 8081 192.168.246.1 >&2
+              # ${pkgs.nmap}/bin/nping --tcp --ttl 255 -p 8088 192.168.246.1 >&2
+              # ${pkgs.curl}/bin/curl 192.168.246.1:8080 >&2
 
-            # stop hypervisor on signal
-            function handle_signal() {
-              echo "Received signal, shutting down" >&2
-              date >&2
-              ${runner}/bin/microvm-shutdown
-              echo "Done" >&2
-              date >&2
-              exit
-            }
-            trap handle_signal CONT
-            wait
-          '';
-        }];
+              # stop hypervisor on signal
+              function handle_signal() {
+                echo "Received signal, shutting down" >&2
+                date >&2
+                ${runner}/bin/microvm-shutdown
+                echo "Done" >&2
+                date >&2
+                exit
+              }
+              trap handle_signal CONT
+              wait
+            '';
+          }
+        ];
 
         leader = true;
         # don't get killed immediately but get shutdown by wait-shutdown

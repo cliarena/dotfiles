@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   hardware = {
     cpu.intel.updateMicrocode = true; # Maybe it fixed TTY scale issue
     enableRedistributableFirmware = true; # to detect wireless interfaces
@@ -15,7 +15,7 @@
   };
   # Enable Intel hybrid driver
   nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
   };
   # Native Wayland support for GPU acceleration
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

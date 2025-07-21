@@ -1,5 +1,5 @@
-{ ... }: {
-  terraform.required_providers = { remote = { source = "tenstad/remote"; }; };
+{...}: {
+  terraform.required_providers = {remote = {source = "tenstad/remote";};};
   provider.remote = {
     alias = "PI";
     max_sessions = 2;

@@ -1,14 +1,16 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   module = "_gaming";
   description = "gaming config";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     programs.steam.enable = true;
     hardware.steam-hardware.enable = true;
     programs.gamemode.enable = true;
@@ -20,6 +22,5 @@ in {
       mangohud # Performance overlay
       linuxConsoleTools # testing joysticks & controllers
     ];
-
   };
 }

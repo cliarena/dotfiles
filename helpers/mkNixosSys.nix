@@ -1,13 +1,18 @@
-{ inputs, user, system, modules, ... }:
-let
+{
+  inputs,
+  user,
+  system,
+  modules,
+  ...
+}: let
   inherit (inputs) nixpkgs;
   pkgs = import nixpkgs {
     inherit system;
-    config = { allowUnfree = true; };
+    config = {allowUnfree = true;};
   };
 in {
   ${user} = nixpkgs.lib.nixosSystem {
     inherit system modules;
-    specialArgs = { inherit inputs nixpkgs pkgs user; };
+    specialArgs = {inherit inputs nixpkgs pkgs user;};
   };
 }

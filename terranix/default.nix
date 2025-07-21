@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
-let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   inherit (inputs) terranix nix-nomad microvm self;
 
   x = {
@@ -33,15 +36,20 @@ let
   #   config = [ ./nomad/nginx.nix ];
   # };
 
-  terraform = pkgs.terraform.withPlugins
-    (p: [ p.local p.remote p.consul p.vault p.nomad ]);
+  terraform =
+    pkgs.terraform.withPlugins
+    (p: [p.local p.remote p.consul p.vault p.nomad]);
 
   terraformConfiguration = terranix.lib.terranixConfiguration {
     inherit system;
     extraArgs = {
-      inherit self x microvm nix-nomad
+      inherit
+        self
+        x
+        microvm
+        nix-nomad
         # nomad_jobs
-      ;
+        ;
     };
     modules = [
       ./backend.nix
@@ -51,9 +59,7 @@ let
       # ./nomad
     ];
   };
-
 in {
-
   # TODO: write files in terranix folder
   # nix run ".#apply"
   apply = toString (pkgs.writers.writeBash "apply" ''
@@ -71,5 +77,4 @@ in {
   '');
   # build = toString (pkgs.writers.writeBash "build"
   # "cp -rf ${nomad_jobs}/* ./terranix/nomad/jobs ");
-
 }

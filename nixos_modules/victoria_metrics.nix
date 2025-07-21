@@ -1,21 +1,20 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_victoria_metrics";
   description = "monitoring that scales";
   inherit (lib) mkEnableOption mkIf;
-in
-{
-
+in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     system.activationScripts = {
       scaphandre.text = "chown -R scaphandre-exporter /sys/devices/virtual/powercap";
     };
 
     services.prometheus.exporters = {
-
       ### Linux processes ###
       node.enable = true;
       process.enable = false; # monitor specefic process
@@ -95,7 +94,6 @@ in
 
       ### Spam ###
       rspamd.enable = false; # Email/messages spam fileterer
-
     };
     services.victoriametrics = {
       enable = true;
@@ -124,45 +122,44 @@ in
             job_name = "nomad";
             static_configs = [
               {
-                targets = [ "127.0.0.1:4646/v1/metrics?format=prometheus" ];
+                targets = ["127.0.0.1:4646/v1/metrics?format=prometheus"];
               }
             ];
           }
           {
             job_name = "nomad_sd";
-            consul_sd_configs = [ { server = "127.0.0.1:4646"; } ];
+            consul_sd_configs = [{server = "127.0.0.1:4646";}];
           }
           {
             job_name = "consul";
             static_configs = [
               {
-                targets = [ "127.0.0.1:8500/v1/agent/metrics?format=prometheus" ];
+                targets = ["127.0.0.1:8500/v1/agent/metrics?format=prometheus"];
               }
             ];
           }
           {
             job_name = "consul_sd";
-            consul_sd_configs = [ { server = "127.0.0.1:8500"; } ];
+            consul_sd_configs = [{server = "127.0.0.1:8500";}];
           }
           {
             job_name = "envoy";
-            static_configs = [ { targets = [ "127.0.0.1:8484" ]; } ];
+            static_configs = [{targets = ["127.0.0.1:8484"];}];
           }
           {
             job_name = "node";
-            static_configs = [ { targets = [ "127.0.0.1:9100" ]; } ];
+            static_configs = [{targets = ["127.0.0.1:9100"];}];
           }
           {
             job_name = "systemd";
-            static_configs = [ { targets = [ "127.0.0.1:9558" ]; } ];
+            static_configs = [{targets = ["127.0.0.1:9558"];}];
           }
           {
             job_name = "vmetrics";
-            static_configs = [ { targets = [ "127.0.0.1:8428" ]; } ];
+            static_configs = [{targets = ["127.0.0.1:8428"];}];
           }
         ];
       };
     };
   };
-
 }

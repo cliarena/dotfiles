@@ -1,1 +1,1 @@
-{ ... }: { programs.extra-container.enable = true; }
+{...}: {programs.extra-container.enable = true;}

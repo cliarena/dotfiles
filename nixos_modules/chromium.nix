@@ -1,10 +1,12 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_chromium";
   description = "chromium oss";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
@@ -28,6 +30,5 @@ in {
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock origin
       ];
     };
-
   };
 }

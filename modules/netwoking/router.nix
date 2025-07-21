@@ -1,6 +1,10 @@
-{ pkgs, host, ... }:
-let
-  inherit (host)
+{
+  pkgs,
+  host,
+  ...
+}: let
+  inherit
+    (host)
     user
     wan_mac
     lan_mac
@@ -13,9 +17,7 @@ let
     dns_server
     is_dns_server
     ;
-
-in
-{
+in {
   # Rename network interface to wan
   services.udev.extraRules = ''
     SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="c8:4d:44:23:95:db", NAME="wan0"
@@ -72,7 +74,6 @@ in
       # };
       # };
     };
-
   };
 
   networking = {
@@ -241,9 +242,9 @@ in
         "22-mv-qub0" = {
           enable = false;
           name = "mv-qub0";
-          address = [ "10.10.2.100/24" ];
-          gateway = [ "10.10.2.1" ];
-          dns = [ "10.10.2.1" ];
+          address = ["10.10.2.100/24"];
+          gateway = ["10.10.2.1"];
+          dns = ["10.10.2.1"];
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
@@ -279,5 +280,4 @@ in
       };
     };
   };
-
 }

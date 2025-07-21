@@ -1,15 +1,16 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_consul";
   description = "identity-based networking";
   inherit (lib) mkEnableOption mkIf;
   vault_addr = "http://10.10.0.10:8200";
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     services.consul = {
       enable = true;
       webUi = true;
@@ -93,7 +94,6 @@ in {
           prometheus_retention_time = "60s";
           disable_hostname = true;
         };
-
       };
     };
   };

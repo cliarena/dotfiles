@@ -1,26 +1,27 @@
-{ config, lib, inputs, ... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  ...
+}: let
   module = "_kmonad";
   description = "keyboard layouts for any keyboard";
   inherit (lib) mkEnableOption mkIf;
 in {
-  imports = [ inputs.kmonad.nixosModules.default ];
+  imports = [inputs.kmonad.nixosModules.default];
 
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     services.kmonad = {
       enable = true;
       keyboards = {
         hp = {
-          device =
-            "/dev/input/by-id/usb-CHICONY_HP_Basic_USB_Keyboard-event-kbd";
+          device = "/dev/input/by-id/usb-CHICONY_HP_Basic_USB_Keyboard-event-kbd";
           defcfg = {
             enable = true;
             fallthrough = true;
             allowCommands = true;
-
           };
           config = ''
             (defalias
@@ -88,6 +89,5 @@ in {
         };
       };
     };
-
   };
 }

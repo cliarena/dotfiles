@@ -1,5 +1,4 @@
-{ time, ... }:
-let
+{time, ...}: let
   http = {
     mode = "bridge";
     reservedPorts.wizard = {
@@ -13,7 +12,7 @@ let
   };
 in {
   job.kasm = {
-    datacenters = [ "dc1" ];
+    datacenters = ["dc1"];
 
     group.servers = {
       count = 1;
@@ -31,23 +30,25 @@ in {
         };
       };
 
-      networks = [ http ];
+      networks = [http];
       #      mode = "bridge"
 
-      services = [{
-        name = "kasm";
-        # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "3000";
-        connect = {
-          sidecarService = {
-            # port = "20000";
+      services = [
+        {
+          name = "kasm";
+          # WARN: Don't use named ports ie: port ="http". use literal ones
+          port = "3000";
+          connect = {
+            sidecarService = {
+              # port = "20000";
+            };
           };
-        };
-      }];
+        }
+      ];
       task.server = {
         driver = "docker";
 
-        env = { KASM_PORT = "4000"; };
+        env = {KASM_PORT = "4000";};
 
         volumeMounts = [
           {
@@ -63,7 +64,7 @@ in {
         config = {
           image = "lscr.io/linuxserver/kasm:latest";
           privileged = true;
-          ports = [ "http" "https" ];
+          ports = ["http" "https"];
           #	volumes = [  "/vault/hdd/nomad/static-site:/usr/share/nginx/html" ]
         };
 

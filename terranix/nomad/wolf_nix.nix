@@ -1,5 +1,4 @@
-{ time, ... }:
-let
+{time, ...}: let
   http = {
     mode = "bridge";
     reservedPorts = {
@@ -39,24 +38,25 @@ let
   };
 in {
   job.wolf = {
-    datacenters = [ "dc1" ];
+    datacenters = ["dc1"];
 
     group.servers = {
       count = 1;
 
-      networks = [ http ];
+      networks = [http];
       # networks = [ http { mode = "bridge"; } ];
-      services = [{
-        name = "wolf";
-        # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "47989";
-        # connect = { sidecarService = { }; };
-
-      }];
+      services = [
+        {
+          name = "wolf";
+          # WARN: Don't use named ports ie: port ="http". use literal ones
+          port = "47989";
+          # connect = { sidecarService = { }; };
+        }
+      ];
       task.server = {
         driver = "raw_exec";
 
-        config = { command = "/run/current-system/sw/bin/wolf"; };
+        config = {command = "/run/current-system/sw/bin/wolf";};
         # resources = {
         # cpu = 10;
         # memory = 50;

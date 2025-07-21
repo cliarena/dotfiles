@@ -1,4 +1,8 @@
-{ pkgs, host, ... }: {
+{
+  pkgs,
+  host,
+  ...
+}: {
   services.kmscon = {
     enable = true;
     autologinUser = host.user;

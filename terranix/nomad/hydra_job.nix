@@ -1,5 +1,8 @@
-{ time, pkgs, ... }:
-let
+{
+  time,
+  pkgs,
+  ...
+}: let
   http = {
     mode = "bridge";
     # reservedPorts.http = {
@@ -9,7 +12,7 @@ let
   };
 in {
   job.echo = {
-    datacenters = [ "dc1" ];
+    datacenters = ["dc1"];
 
     group.servers = {
       count = 1;
@@ -21,25 +24,27 @@ in {
           readOnly = true;
         };
       };
-      networks = [ http ];
+      networks = [http];
       # networks = [ http { mode = "bridge"; } ];
-      services = [{
-        name = "echo";
-        # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "8080";
-        connect = { sidecarService = { }; };
+      services = [
+        {
+          name = "echo";
+          # WARN: Don't use named ports ie: port ="http". use literal ones
+          port = "8080";
+          connect = {sidecarService = {};};
 
-        # FIX: check throws error connection refused
-        # checks = with time; [{
-        # type = "http";
-        # path = "/";
-        # # protocol = "https";
-        # # expose = true;
-        # # tlsSkipVerify = true;
-        # interval = 3 * second;
-        # timeout = 2 * second;
-        # }];
-      }];
+          # FIX: check throws error connection refused
+          # checks = with time; [{
+          # type = "http";
+          # path = "/";
+          # # protocol = "https";
+          # # expose = true;
+          # # tlsSkipVerify = true;
+          # interval = 3 * second;
+          # timeout = 2 * second;
+          # }];
+        }
+      ];
       task.server = {
         driver = "raw_exec";
 
@@ -56,16 +61,18 @@ in {
           # ports = [ "http" ];
           #	volumes = [  "/vault/hdd/nomad/static-site:/usr/share/nginx/html" ]
         };
-        templates = [{
-          destination = "local/build.sh";
-          perms = "755";
-          data = ''
-            #! /run/current-system/sw/bin/bash -e
-            ${pkgs.curl}/bin/curl --location   --header "Accept: application/json"  http://10.10.2.1:9999/job/battle_snake/main/x86_64-linux.main/latest-finished | ${pkgs.jq}/bin/jq -r .buildoutputs.out.path | ${pkgs.findutils}/bin/xargs ${pkgs.nix}/bin/nix build
-            ls ./result/bin >&2
-            ./result/bin/snake
-          '';
-        }];
+        templates = [
+          {
+            destination = "local/build.sh";
+            perms = "755";
+            data = ''
+              #! /run/current-system/sw/bin/bash -e
+              ${pkgs.curl}/bin/curl --location   --header "Accept: application/json"  http://10.10.2.1:9999/job/battle_snake/main/x86_64-linux.main/latest-finished | ${pkgs.jq}/bin/jq -r .buildoutputs.out.path | ${pkgs.findutils}/bin/xargs ${pkgs.nix}/bin/nix build
+              ls ./result/bin >&2
+              ./result/bin/snake
+            '';
+          }
+        ];
         resources = {
           cpu = 10;
           memory = 50;

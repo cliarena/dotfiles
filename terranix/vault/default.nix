@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./pki.nix ./tokens ]; }
+{...}: {imports = [./pki.nix ./tokens];}

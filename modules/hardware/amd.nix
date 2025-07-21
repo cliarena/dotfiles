@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Fix HIP for most packages for video acceleration
-  environment.systemPackages = with pkgs; [ amdgpu_top ];
+  environment.systemPackages = with pkgs; [amdgpu_top];
   nixpkgs.config.allowUnfree = true;
   security.rtkit.enable = true;
   hardware = {

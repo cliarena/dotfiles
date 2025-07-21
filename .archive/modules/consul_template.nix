@@ -1,8 +1,15 @@
-{ config, pkgs, NOMAD, CONSUL, VAULT_ADDR, CONSUL_ADDR, agent_certs_dir, ... }:
-let
+{
+  config,
+  pkgs,
+  NOMAD,
+  CONSUL,
+  VAULT_ADDR,
+  CONSUL_ADDR,
+  agent_certs_dir,
+  ...
+}: let
   # svr.global
   # server.global.nomad
-
   inherit (builtins) toFile toJSON;
   date = "${pkgs.coreutils}/bin/date";
   consul_bin = "${pkgs.consul}/bin/consul";
@@ -20,7 +27,7 @@ let
   };
 
   consul_template_cfg =
-    toFile "consul-template.hcl" (toJSON { inherit consul vault; });
+    toFile "consul-template.hcl" (toJSON {inherit consul vault;});
   consul_certs = rec {
     agent_crt_tpl = toFile "agent.crt.tpl" ''
       {{ with secret "pki_int/issue/dc1.consul" "common_name=server.dc1.consul" "ttl=24h" "alt_names=localhost" "ip_sans=127.0.0.1"}}
@@ -64,17 +71,16 @@ let
     ca_crt = "${ca_crt_tpl}:${NOMAD.ca_file}";
   };
 in {
-
   systemd.services.consul-template = {
-    path = [ pkgs.getent ];
-    environment = { inherit VAULT_ADDR; };
+    path = [pkgs.getent];
+    environment = {inherit VAULT_ADDR;};
     description = "consul-template";
     script = ''
       ${consul-template_bin} -config ${consul_template_cfg} -template ${consul_certs.agent_crt} -template ${consul_certs.agent_key} -template ${consul_certs.ca_crt} -exec ${date} && ${consul_bin} reload
       ${consul-template_bin} -config ${consul_template_cfg} -template ${nomad_certs.agent_crt} -template ${nomad_certs.agent_key} -template ${nomad_certs.ca_crt} -exec ${date} && ${consul_bin} reload
     '';
-    wantedBy = [ "nomad.service" "vault.service" "consul.service" ];
-    partOf = [ "nomad.service" "vault.service" "consul.service" ];
+    wantedBy = ["nomad.service" "vault.service" "consul.service"];
+    partOf = ["nomad.service" "vault.service" "consul.service"];
     after = [
       "vault.service"
       "consul.service"

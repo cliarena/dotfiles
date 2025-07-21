@@ -1,14 +1,15 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_local";
   description = "local settings";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     # Set your time zone.
     time.timeZone = "Africa/Casablanca";
 
@@ -26,6 +27,5 @@ in {
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
     };
-
   };
 }

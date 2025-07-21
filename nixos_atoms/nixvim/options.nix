@@ -1,14 +1,15 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_options";
   description = "options";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     programs.nixvim = {
       diagnostics.virtual_text = false;
 
@@ -37,16 +38,13 @@ in {
       globals.loaded_node_provider = 0;
 
       opts = {
-        clipboard =
-          "unnamedplus"; # allows neovim to access the system clipboard
+        clipboard = "unnamedplus"; # allows neovim to access the system clipboard
         laststatus = 3; # one status bar for all splits
         # conceallevel = 0; # so that `` is visible in markdown files
         conceallevel = 1; # Conceal neorg links
         fileencoding = "utf-8"; # the encoding written to a file
-        foldmethod =
-          "manual"; # folding set to "expr" for treesitter based folding
-        foldexpr =
-          "nvim_treesitter#foldexpr()"; # set to "nvim_treesitter#foldexpr()" for treesitter based folding
+        foldmethod = "manual"; # folding set to "expr" for treesitter based folding
+        foldexpr = "nvim_treesitter#foldexpr()"; # set to "nvim_treesitter#foldexpr()" for treesitter based folding
         hidden =
           true; # required to keep multiple buffers and open multiple buffers
         hlsearch = false; # keep highlighting matches of the previous search
@@ -67,9 +65,8 @@ in {
         timeoutlen =
           500; # time to wait for a mapped sequence to complete (in milliseconds)
         title = true; # set the title of window to the value of the titlestring
-        titlestring =
-          "%<%F%=%l/%L - nvim"; # what the title of the window will be set to
-        undodir = { __raw = "vim.fn.stdpath('cache') .. '/undo'"; };
+        titlestring = "%<%F%=%l/%L - nvim"; # what the title of the window will be set to
+        undodir = {__raw = "vim.fn.stdpath('cache') .. '/undo'";};
         undofile = true; # enable persistent undo
         updatetime = 300; # faster completion
         writebackup =
@@ -81,8 +78,7 @@ in {
         number = true; # set numbered lines
         relativenumber = true; # set relative numbered lines
         numberwidth = 3; # set number column width to 2 {default 4}
-        signcolumn =
-          "yes"; # always show the sign column otherwise it would shift the text each time
+        signcolumn = "yes"; # always show the sign column otherwise it would shift the text each time
         wrap = false; # display lines as one long line
         linebreak = true;
         breakindent = true;

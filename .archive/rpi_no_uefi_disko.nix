@@ -1,6 +1,8 @@
-
-{ disks ? [ "/dev/sda" ], pkgs, ... }:
-let 
+{
+  disks ? ["/dev/sda"],
+  pkgs,
+  ...
+}: let
   config_txt = pkgs.writeText "config.txt" ''
     [pi4]
     kernel=u-boot-rpi4.bin
@@ -13,8 +15,7 @@ let
     avoid_warnings=1
     dtoverlay=vc4-kms-v3d
   '';
-in
- {
+in {
   disko.devices = {
     disk = {
       main = {
@@ -24,9 +25,9 @@ in
           type = "gpt";
           partitions = {
             firmware = {
-             # start = "2M";
-             size = "30M";
-              priority =1;
+              # start = "2M";
+              size = "30M";
+              priority = 1;
               type = "0700";
               content = {
                 type = "filesystem";
@@ -36,49 +37,49 @@ in
                   (cd ${pkgs.raspberrypifw}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf *.dtb /mnt/firmware)
                   cp ${pkgs.ubootRaspberryPi4_64bit}/u-boot.bin /mnt/firmware/u-boot-rpi4.bin
                   cp ${config_txt} /mnt/firmware/config.txt
-                ''); 
-              #  extraArgs = [ "-n boot" ];
-              #  device = "/dev/sda1";
+                '');
+                #  extraArgs = [ "-n boot" ];
+                #  device = "/dev/sda1";
               };
             };
             boot = {
-             # start = "2M";
-             size = "1G";
-             # priority =1;
+              # start = "2M";
+              size = "1G";
+              # priority =1;
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-              #  extraArgs = [ "-n boot" ];
-              #  device = "/dev/sda1";
+                #  extraArgs = [ "-n boot" ];
+                #  device = "/dev/sda1";
               };
             };
             nixos = {
-             # start = "512M";
-            #  end = "100%";
+              # start = "512M";
+              #  end = "100%";
               size = "100%";
               content = {
                 type = "btrfs";
-            #    extraArgs = [ "--label nixos" ]; # Override existing partition
-            #    device = "/dev/sda2";
+                #    extraArgs = [ "--label nixos" ]; # Override existing partition
+                #    device = "/dev/sda2";
                 subvolumes = {
                   # Mountpoints inferred from subvolume name
                   "/nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/log" = {
                     mountpoint = "/var/log";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                    mountOptions = ["compress=zstd" "noatime" "noexec"];
                   };
                   "/srv" = {
                     mountpoint = "/srv";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/swap" = {
                     mountpoint = "/swap";
-                    mountOptions = [ "compress=zstd" "noatime" "noexec" ];
+                    mountOptions = ["compress=zstd" "noatime" "noexec"];
                   };
                 };
               };

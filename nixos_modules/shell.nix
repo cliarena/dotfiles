@@ -1,17 +1,20 @@
-{ config, lib, inputs, host, ... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  host,
+  ...
+}: let
   module = "_shell";
   description = "shell config";
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager;
 in {
-
-  imports = [ home-manager.nixosModules.home-manager ];
+  imports = [home-manager.nixosModules.home-manager];
 
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     home-manager.users.${host.user} = {
       programs = {
         carapace = {
@@ -21,13 +24,13 @@ in {
         atuin = {
           enable = true;
           enableNushellIntegration = true;
-          settings = { };
+          settings = {};
         };
         yazi = {
           enable = true;
           enableNushellIntegration = true;
           settings = {
-            log = { enabled = false; };
+            log = {enabled = false;};
             manager = {
               show_hidden = false;
               # sort_by = "modified";
@@ -77,7 +80,8 @@ in {
 
         nushell = {
           enable = true;
-          configFile.text = # nu
+          configFile.text =
+            # nu
             ''
               let carapace_completer = {|spans|
               carapace $spans.0 nushell ...$spans | from json
@@ -168,8 +172,7 @@ in {
             da = "direnv allow";
             gc = "git clone";
             # download 1h of youtube as audio
-            yt-1h-audio =
-              "yt-dlp -x --audio-quality 0 --write-thumbnail --download-sections '*0-3600' --downloader-arg 'ffmpeg_i1:-extension_picky 0' --downloader-arg 'ffmpeg_i2:-extension_picky 0'";
+            yt-1h-audio = "yt-dlp -x --audio-quality 0 --write-thumbnail --download-sections '*0-3600' --downloader-arg 'ffmpeg_i1:-extension_picky 0' --downloader-arg 'ffmpeg_i2:-extension_picky 0'";
 
             # Todos
             t = "taskwarrior-tui";

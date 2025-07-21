@@ -1,5 +1,8 @@
-{ time, pkgs, ... }:
-let
+{
+  time,
+  pkgs,
+  ...
+}: let
   http = {
     mode = "bridge";
     # reservedPorts.http = {
@@ -9,7 +12,7 @@ let
   };
 in {
   job.nginx = {
-    datacenters = [ "dc1" ];
+    datacenters = ["dc1"];
 
     group.servers = {
       count = 1;
@@ -21,32 +24,36 @@ in {
           readOnly = true;
         };
       };
-      networks = [ http ];
+      networks = [http];
       # networks = [ http { mode = "bridge"; } ];
-      services = [{
-        name = "nginx";
-        # WARN: Don't use named ports ie: port ="http". use literal ones
-        port = "8080";
-        connect = { sidecarService = { }; };
+      services = [
+        {
+          name = "nginx";
+          # WARN: Don't use named ports ie: port ="http". use literal ones
+          port = "8080";
+          connect = {sidecarService = {};};
 
-        # FIX: check throws error connection refused
-        # checks = with time; [{
-        # type = "http";
-        # path = "/";
-        # # protocol = "https";
-        # # expose = true;
-        # # tlsSkipVerify = true;
-        # interval = 3 * second;
-        # timeout = 2 * second;
-        # }];
-      }];
+          # FIX: check throws error connection refused
+          # checks = with time; [{
+          # type = "http";
+          # path = "/";
+          # # protocol = "https";
+          # # expose = true;
+          # # tlsSkipVerify = true;
+          # interval = 3 * second;
+          # timeout = 2 * second;
+          # }];
+        }
+      ];
       task.server = {
         driver = "exec";
 
-        volumeMounts = [{
-          volume = "nix_store";
-          destination = "/nix/store";
-        }];
+        volumeMounts = [
+          {
+            volume = "nix_store";
+            destination = "/nix/store";
+          }
+        ];
         config = {
           # image = "nginxinc/nginx-unprivileged:alpine";
           command = "${pkgs.echoip}/bin/echoip";

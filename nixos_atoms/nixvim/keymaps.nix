@@ -1,14 +1,15 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_keymaps";
   description = "keymaps";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     programs.nixvim = {
       globals.mapleader = " ";
 
@@ -17,39 +18,37 @@ in {
         {
           key = "<leader>te";
           action = "<cmd>lua MiniFiles.open()<cr>";
-          options = { desc = "Explorer"; };
+          options = {desc = "Explorer";};
         }
         {
           key = "<leader>tg";
           action = "<cmd>Neogit<cr>";
-          options = { desc = "Git"; };
+          options = {desc = "Git";};
         }
         {
           key = "<leader>ts";
-          action =
-            "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu<cr>";
-          options = { desc = "Shell"; };
+          action = "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu<cr>";
+          options = {desc = "Shell";};
         }
         {
           key = "<leader>tp";
-          action =
-            "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu -e 'devenv up'<cr>";
-          options = { desc = "Processes"; };
+          action = "<cmd>60 vs |:set signcolumn=no nonumber norelativenumber |:te nu -e 'devenv up'<cr>";
+          options = {desc = "Processes";};
         }
         {
           key = "<leader>ta";
           action = "<cmd>ASToggle<cr>";
-          options = { desc = "Auto Save"; };
+          options = {desc = "Auto Save";};
         }
         {
           key = "<leader>tv";
           action = "<cmd>lua Toggle_vertualEdit()<cr>";
-          options = { desc = "Virtual Edit"; };
+          options = {desc = "Virtual Edit";};
         }
         {
           key = "<leader>tc";
           action = "<cmd>set cursorline!<cr>";
-          options = { desc = "Cursorline Highlight"; };
+          options = {desc = "Cursorline Highlight";};
         }
         ############   LSP   ############
         {
@@ -211,26 +210,22 @@ in {
         }
         {
           key = "[T";
-          action =
-            "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>";
+          action = "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>";
           options.desc = "Prev Test Failed";
         }
         {
           key = "]T";
-          action =
-            "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>";
+          action = "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>";
           options.desc = "Next Test Failed";
         }
         {
           key = "<leader>tto";
-          action =
-            "<cmd>lua require('neotest').output.open({ enter = true })<cr>";
+          action = "<cmd>lua require('neotest').output.open({ enter = true })<cr>";
           options.desc = "Output";
         }
         {
           key = "<leader>ttw";
-          action =
-            "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>";
+          action = "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>";
           options.desc = "Watch Current File";
         }
         {
@@ -240,8 +235,7 @@ in {
         }
         {
           key = "<leader>ttd";
-          action =
-            "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>";
+          action = "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>";
           options.desc = "Dap Debug";
         }
         ############   Venn ASCII   ############
@@ -277,7 +271,5 @@ in {
         }
       ];
     };
-
   };
-
 }

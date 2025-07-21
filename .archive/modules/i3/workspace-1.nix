@@ -1,4 +1,4 @@
-{ ... }:
+{...}:
 builtins.toFile "workspace-1.json" ''
   // vim:ts=4:sw=4:et
   {

@@ -1,7 +1,19 @@
-{ lib, pkgs, host, ... }:
-let
-  inherit (host)
-    user tcp_ports udp_ports wan_ips wan_gateway dns_server is_dns_server;
+{
+  lib,
+  pkgs,
+  host,
+  ...
+}: let
+  inherit
+    (host)
+    user
+    tcp_ports
+    udp_ports
+    wan_ips
+    wan_gateway
+    dns_server
+    is_dns_server
+    ;
 in {
   # Disable if this server is a dns server
   services.resolved.enable = !is_dns_server;
@@ -41,5 +53,4 @@ in {
       };
     };
   };
-
 }

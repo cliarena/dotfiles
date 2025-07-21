@@ -1,4 +1,10 @@
-{ config, lib, pkgs, microvm, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  microvm,
+  ...
+}: {
   microvm.vms = {
     my-microvm = {
       # The package set to use for the microvm. This also determines the microvm's architecture.
@@ -18,13 +24,15 @@
         # microvm.balloonMem = 512;
         # It is highly recommended to share the host's nix-store
         # with the VMs to prevent building huge images.
-        microvm.shares = [{
-          source = "/nix/store";
-          mountPoint = "/nix/.ro-store";
-          tag = "ro-store";
-          proto = "virtiofs";
-          socket = "/tmp/test.sock";
-        }];
+        microvm.shares = [
+          {
+            source = "/nix/store";
+            mountPoint = "/nix/.ro-store";
+            tag = "ro-store";
+            proto = "virtiofs";
+            socket = "/tmp/test.sock";
+          }
+        ];
         # services.nginx.enable = true;
         # environment.systemPackages = with pkgs; [ socat dig curl bottom ];
         # networking.firewall.enable = false;

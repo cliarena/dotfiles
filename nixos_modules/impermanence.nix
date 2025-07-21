@@ -1,16 +1,18 @@
-{ config, lib, inputs,... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  ...
+}: let
   module = "_impermanence";
   description = "persistence for ephemeral systems";
   inherit (lib) mkEnableOption mkIf;
 in {
-
-  imports = [ inputs.impermanence.nixosModules.impermanence ];
+  imports = [inputs.impermanence.nixosModules.impermanence];
 
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     environment.persistence."/srv" = {
       enable = true; # NB: Defaults to true, not needed
       hideMounts = true;
@@ -28,6 +30,5 @@ in {
         }
       ];
     };
-
   };
 }

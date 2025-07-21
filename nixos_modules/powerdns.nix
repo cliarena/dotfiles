@@ -1,5 +1,10 @@
-{ config, lib, inputs, host, ... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  host,
+  ...
+}: let
   module = "_powerdns";
   description = "powerdns domain name server";
   inherit (lib) mkEnableOption mkIf;
@@ -9,9 +14,9 @@ let
     $TTL 2d
     0.0.127.in-addr.arpa.   IN    SOA   ns.cliarena.com.   reporter.cliarena.com. (
                                   ${
-                                    builtins.toString
-                                    self.sourceInfo.lastModified
-                                  }
+      builtins.toString
+      self.sourceInfo.lastModified
+    }
                                   12h
                                   15m
                                   3w
@@ -27,9 +32,9 @@ let
     $ORIGIN cliarena.com.
     @                 IN    SOA   ns.cliarena.com.   reporter.cliarena.com. (
                                   ${
-                                    builtins.toString
-                                    self.sourceInfo.lastModified
-                                  }
+      builtins.toString
+      self.sourceInfo.lastModified
+    }
                                   12h
                                   15m
                                   3w

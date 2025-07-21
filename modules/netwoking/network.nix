@@ -1,7 +1,18 @@
-{ pkgs, host, ... }:
-let
-  inherit (host)
-    user tcp_ports udp_ports wan_ips wan_gateway dns_server is_dns_server;
+{
+  pkgs,
+  host,
+  ...
+}: let
+  inherit
+    (host)
+    user
+    tcp_ports
+    udp_ports
+    wan_ips
+    wan_gateway
+    dns_server
+    is_dns_server
+    ;
 in {
   # Rename network interface to wan
   services.udev.extraRules = ''
@@ -44,5 +55,4 @@ in {
       };
     };
   };
-
 }

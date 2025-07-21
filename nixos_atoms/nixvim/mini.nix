@@ -1,24 +1,25 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_mini";
   description = "mini modules";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     programs.nixvim.plugins.mini = {
       enable = true;
       mockDevIcons = true;
       modules = {
-        ai = { };
-        bufremove = { };
-        bracketed = { };
-        completion = { };
-        comment = { };
-        cursorword = { };
+        ai = {};
+        bufremove = {};
+        bracketed = {};
+        completion = {};
+        comment = {};
+        cursorword = {};
         jump2d = {
           allowed_lines.blank = false;
           view = {
@@ -26,16 +27,16 @@ in {
             n_steps_ahead = 4;
           };
         };
-        files = { };
-        fuzzy = { };
-        icons = { };
-        pick = { };
-        trailspace = { };
-        visits = { };
+        files = {};
+        fuzzy = {};
+        icons = {};
+        pick = {};
+        trailspace = {};
+        visits = {};
 
-        statusline = { content.active = null; };
-        sessions = { };
-        surround = { };
+        statusline = {content.active = null;};
+        sessions = {};
+        surround = {};
         move = {
           mappings = {
             ## Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
@@ -221,12 +222,12 @@ in {
               keys = "<leader>wr";
               desc = "Resize";
             }
-            { __raw = "require('mini.clue').gen_clues.builtin_completion()"; }
-            { __raw = "require('mini.clue').gen_clues.g()"; }
-            { __raw = "require('mini.clue').gen_clues.marks()"; }
-            { __raw = "require('mini.clue').gen_clues.registers()"; }
-            { __raw = "require('mini.clue').gen_clues.windows()"; }
-            { __raw = "require('mini.clue').gen_clues.z()"; }
+            {__raw = "require('mini.clue').gen_clues.builtin_completion()";}
+            {__raw = "require('mini.clue').gen_clues.g()";}
+            {__raw = "require('mini.clue').gen_clues.marks()";}
+            {__raw = "require('mini.clue').gen_clues.registers()";}
+            {__raw = "require('mini.clue').gen_clues.windows()";}
+            {__raw = "require('mini.clue').gen_clues.z()";}
           ];
         };
         diff = {
@@ -245,12 +246,10 @@ in {
               __raw = "require('mini.starter').gen_hook.adding_bullet()";
             };
             "__unkeyed-2.indexing" = {
-              __raw =
-                "require('mini.starter').gen_hook.indexing('all', { 'Builtin actions' })";
+              __raw = "require('mini.starter').gen_hook.indexing('all', { 'Builtin actions' })";
             };
             "__unkeyed-3.padding" = {
-              __raw =
-                "require('mini.starter').gen_hook.aligning('center', 'center')";
+              __raw = "require('mini.starter').gen_hook.aligning('center', 'center')";
             };
           };
           evaluate_single = true;
@@ -267,8 +266,7 @@ in {
               __raw = "require('mini.starter').sections.builtin_actions()";
             };
             "__unkeyed-2.recent_files_current_directory" = {
-              __raw =
-                "require('mini.starter').sections.recent_files(10, false)";
+              __raw = "require('mini.starter').sections.recent_files(10, false)";
             };
             "__unkeyed-3.recent_files" = {
               __raw = "require('mini.starter').sections.recent_files(10, true)";
@@ -281,5 +279,4 @@ in {
       };
     };
   };
-
 }

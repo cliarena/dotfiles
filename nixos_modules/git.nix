@@ -1,17 +1,21 @@
-{ config, lib, inputs, host, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  host,
+  pkgs,
+  ...
+}: let
   module = "_git";
   description = "version control config";
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager sops-nix;
 in {
-
-  imports = [ home-manager.nixosModules.home-manager ];
+  imports = [home-manager.nixosModules.home-manager];
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
-    home-manager.users.${host.user} = { config, ... }: {
+    home-manager.users.${host.user} = {config, ...}: {
       programs.git = {
         enable = true;
         userName = "CLI Arena";
@@ -23,11 +27,11 @@ in {
           init.defaultBranch = "main";
           gpg.format = "ssh";
           url = {
-            "git@gitlab.com:cliarena_dotfiles/nixos" = { insteadOf = "nixos"; };
-            "git@gitlab.com:persona_code/notes" = { insteadOf = "notes"; };
-            "git@gitlab.com:clxarena/" = { insteadOf = "arena:"; };
-            "git@gitlab.com" = { insteadOf = "gl"; };
-            "git@github.com" = { insteadOf = "gh"; };
+            "git@gitlab.com:cliarena_dotfiles/nixos" = {insteadOf = "nixos";};
+            "git@gitlab.com:persona_code/notes" = {insteadOf = "notes";};
+            "git@gitlab.com:clxarena/" = {insteadOf = "arena:";};
+            "git@gitlab.com" = {insteadOf = "gl";};
+            "git@github.com" = {insteadOf = "gh";};
           };
         };
       };

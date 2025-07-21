@@ -1,14 +1,15 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_treesitter";
   description = "treesitter config";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     programs.nixvim = {
       plugins.hmts.enable = true; # highlight home-manager strings
       plugins.treesitter = {
@@ -35,7 +36,8 @@ in {
         #  (#set! injection.combined))
         "queries/zig/injections.scm" = {
           enable = true;
-          text = # scheme
+          text =
+            # scheme
             ''
               ;; extends
               ((string) @injection.content

@@ -1,5 +1,10 @@
-{ config, lib, inputs, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}: let
   module = "_nomoperator";
   description = "nomad gitops operator";
   inherit (lib) mkEnableOption mkIf;
@@ -17,11 +22,9 @@ let
     };
   };
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     systemd.services.nomoperator = {
       enable = true;
       description = "nomad gitops operator";
@@ -40,9 +43,9 @@ in {
         # avoid error start request repeated too quickly since RestartSec defaults to 100ms
         RestartSec = 3;
       };
-      wantedBy = [ "vault.service" "consul.service" "nomad.service" ];
-      partOf = [ "vault.service" "consul.service" "nomad.service" ];
-      after = [ "vault.service" "consul.service" "nomad.service" ];
+      wantedBy = ["vault.service" "consul.service" "nomad.service"];
+      partOf = ["vault.service" "consul.service" "nomad.service"];
+      after = ["vault.service" "consul.service" "nomad.service"];
     };
   };
 }

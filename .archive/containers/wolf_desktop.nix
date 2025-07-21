@@ -1,7 +1,10 @@
-{ lib, inputs, nixpkgs, ... }:
-let
-
-  host = rec { user = "x"; };
+{
+  lib,
+  inputs,
+  nixpkgs,
+  ...
+}: let
+  host = rec {user = "x";};
 in {
   containers.wolf-desktop = {
     autoStart = false;
@@ -59,87 +62,94 @@ in {
       }
     ];
 
-    config = { config, pkgs, ... }:
-      let inherit (inputs) home-manager sops-nix;
-      in {
+    config = {
+      config,
+      pkgs,
+      ...
+    }: let
+      inherit (inputs) home-manager sops-nix;
+    in {
+      nix.extraOptions = ''
+        experimental-features = nix-command flakes
+        keep-outputs = true
+        keep-derivations = true
+        warn-dirty = false
+      '';
+      system.stateVersion = "22.11";
 
-        nix.extraOptions = ''
-          experimental-features = nix-command flakes
-          keep-outputs = true
-          keep-derivations = true
-          warn-dirty = false
-        '';
-        system.stateVersion = "22.11";
+      _module.args.host = host;
 
-        _module.args.host = host;
+      imports = [
+        inputs.nixvim.nixosModules.nixvim
+        {programs.nixvim = import ../modules/nixvim pkgs;}
+        ../modules/pkgs.nix
+        ../modules/chromium.nix
+        ../modules/hardware/amd.nix
+        ../modules/boot/amd.nix
 
-        imports = [
-          inputs.nixvim.nixosModules.nixvim
-          { programs.nixvim = import ../modules/nixvim pkgs; }
-          ../modules/pkgs.nix
-          ../modules/chromium.nix
-          ../modules/hardware/amd.nix
-          ../modules/boot/amd.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            inherit nixpkgs;
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${host.user} = {
-              imports = [
-                sops-nix.homeManagerModules.sops
-                ../hosts/x/sops.nix
-                ../modules/home/git.nix
-                ../modules/home/lazygit.nix
-                ../modules/home/ssh.nix
-                ../modules/home/shell.nix
-                ../modules/home/direnv.nix
-                ../modules/home/kitty.nix
-                ../modules/home/bottom.nix
-              ];
-              home = {
-                stateVersion = "22.11";
-                username = "x";
-                homeDirectory = "/home/${host.user}";
-              };
+        home-manager.nixosModules.home-manager
+        {
+          inherit nixpkgs;
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${host.user} = {
+            imports = [
+              sops-nix.homeManagerModules.sops
+              ../hosts/x/sops.nix
+              ../modules/home/git.nix
+              ../modules/home/lazygit.nix
+              ../modules/home/ssh.nix
+              ../modules/home/shell.nix
+              ../modules/home/direnv.nix
+              ../modules/home/kitty.nix
+              ../modules/home/bottom.nix
+            ];
+            home = {
+              stateVersion = "22.11";
+              username = "x";
+              homeDirectory = "/home/${host.user}";
             };
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-            home-manager.extraSpecialArgs = {
-              inherit inputs nixpkgs home-manager sops-nix;
-            };
-          }
-        ];
-        services.openssh.enable = true;
-        environment.systemPackages = with pkgs; [ glxinfo ];
+          };
+          # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+          home-manager.extraSpecialArgs = {
+            inherit inputs nixpkgs home-manager sops-nix;
+          };
+        }
+      ];
+      services.openssh.enable = true;
+      environment.systemPackages = with pkgs; [glxinfo];
 
-        services.xserver = {
-          enable = true;
-          displayManager.gdm.enable = true;
-          desktopManager.gnome.enable = true;
+      services.xserver = {
+        enable = true;
+        displayManager.gdm.enable = true;
+        desktopManager.gnome.enable = true;
 
-          displayManager.autoLogin.enable = true;
-          displayManager.autoLogin.user = host.user;
-          displayManager.defaultSession = "gnome";
-        };
-        # Needed for auto login
-        systemd.services."getty@tty1".enable = false;
-        systemd.services."autovt@tty1".enable = false;
-
-        users.users.${host.user} = {
-          isNormalUser = true;
-          initialPassword = "nixos";
-          extraGroups = [ "wheel" "input" "video" "sound" ];
-          shell = pkgs.nushell;
-        };
-
-        security.sudo.extraRules = [{
-          users = [ host.user ];
-          commands = [{
-            command = "ALL";
-            options = [ "NOPASSWD" ];
-          }];
-        }];
+        displayManager.autoLogin.enable = true;
+        displayManager.autoLogin.user = host.user;
+        displayManager.defaultSession = "gnome";
       };
+      # Needed for auto login
+      systemd.services."getty@tty1".enable = false;
+      systemd.services."autovt@tty1".enable = false;
+
+      users.users.${host.user} = {
+        isNormalUser = true;
+        initialPassword = "nixos";
+        extraGroups = ["wheel" "input" "video" "sound"];
+        shell = pkgs.nushell;
+      };
+
+      security.sudo.extraRules = [
+        {
+          users = [host.user];
+          commands = [
+            {
+              command = "ALL";
+              options = ["NOPASSWD"];
+            }
+          ];
+        }
+      ];
+    };
   };
 }

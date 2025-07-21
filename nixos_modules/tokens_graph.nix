@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   module = "_tokens_graph";
   description = "tokens studio graph tool for fluid tokens";
   inherit (lib) mkEnableOption mkIf;
@@ -40,14 +39,11 @@ let
       cp -r dist/** $out/dist
     '';
   };
-in
-{
-
+in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
-    environment.systemPackages = [ tokens_graph ];
+    environment.systemPackages = [tokens_graph];
     #   services.pulseaudio = {
     #     # Needed by wolf to get audio
     #     enable = true;

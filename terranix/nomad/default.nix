@@ -1,5 +1,4 @@
-{ nix-nomad, ... }:
-let
+{nix-nomad, ...}: let
   jobs = nix-nomad.lib.mkNomadJobs {
     system = "x86_64-linux";
     # system = "aarch64-linux";

@@ -1,14 +1,15 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   module = "_trouble";
   description = "prettier diagnostics, quickfix, document symbols..";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     programs.nixvim.plugins.trouble = {
       enable = true;
       settings = {
@@ -62,6 +63,5 @@ in {
         # };
       };
     };
-
   };
 }

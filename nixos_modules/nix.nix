@@ -1,22 +1,23 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   module = "_nix";
   description = "nix config";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     system.stateVersion = "22.11";
     nix = {
-      daemonCPUSchedPolicy =
-        "idle"; # Deprioritizes nix builds for more predictable latencies
+      daemonCPUSchedPolicy = "idle"; # Deprioritizes nix builds for more predictable latencies
       channel.enable = false; # not needed using flakes
       # Constrain access to nix daemon
-      settings.allowed-users = [ "@wheel" "hydra" "hydra-www" ];
-      settings.trusted-users = [ "@wheel" "hydra" "hydra-www" ];
+      settings.allowed-users = ["@wheel" "hydra" "hydra-www"];
+      settings.trusted-users = ["@wheel" "hydra" "hydra-www"];
       settings.allowed-uris = [
         "github:"
         "https://github.com/"
@@ -46,6 +47,5 @@ in {
         options = "--delete-older-than 7d";
       };
     };
-
   };
 }

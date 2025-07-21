@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   module = "_ankama";
   description = "ankama launcher";
   inherit (lib) mkEnableOption mkIf;
@@ -10,8 +14,7 @@ let
     name = "ankama_launcher.AppImage";
 
     # Old
-    url =
-      "https://launcher.cdn.ankama.com/installers/production/Ankama+Launcher-Setup-x86_64.AppImage";
+    url = "https://launcher.cdn.ankama.com/installers/production/Ankama+Launcher-Setup-x86_64.AppImage";
     sha256 = "0918hk2kpf1c60bs4sln626nsjlpvpri2clqafbc2zacmkz9xyib";
 
     # To get sha256: nix-prefetch-url <url>
@@ -20,24 +23,21 @@ let
   };
 
   appimageContents =
-    pkgs.appimageTools.extractType2 { inherit pname version src; };
+    pkgs.appimageTools.extractType2 {inherit pname version src;};
 in {
-
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    environment.systemPackages = with pkgs;
-      [
-        (appimageTools.wrapType2 {
-          inherit pname version src;
+    environment.systemPackages = with pkgs; [
+      (appimageTools.wrapType2 {
+        inherit pname version src;
 
-          extraInstallCommands = ''
-            install -m 444 -D ${appimageContents}/zaap.desktop $out/share/applications/ankama-launcher.desktop
-            sed -i 's/.*Exec.*/Exec=ankama-launcher/' $out/share/applications/ankama-launcher.desktop
-            install -m 444 -D ${appimageContents}/zaap.png $out/share/icons/hicolor/256x256/apps/zaap.png
-          '';
-        })
-
-      ];
+        extraInstallCommands = ''
+          install -m 444 -D ${appimageContents}/zaap.desktop $out/share/applications/ankama-launcher.desktop
+          sed -i 's/.*Exec.*/Exec=ankama-launcher/' $out/share/applications/ankama-launcher.desktop
+          install -m 444 -D ${appimageContents}/zaap.png $out/share/icons/hicolor/256x256/apps/zaap.png
+        '';
+      })
+    ];
   };
 }

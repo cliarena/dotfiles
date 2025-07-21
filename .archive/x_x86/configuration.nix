@@ -1,15 +1,21 @@
-{ inputs, lib, pkgs, ... }:
-let inherit (inputs) disko;
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (inputs) disko;
 in {
+  imports =
+    [
+      disko.nixosModules.disko
 
-  imports = [
-    disko.nixosModules.disko
-
-    (import ./disko.nix { }) # doesn't support btrfs swapfile
-    ../../modules/boot/intel.nix
-    ../../modules/hardware/intel.nix
-    ../../modules/netwoking/network.nix
-  ] ++ lib.fileset.toList ../../profiles;
+      (import ./disko.nix {}) # doesn't support btrfs swapfile
+      ../../modules/boot/intel.nix
+      ../../modules/hardware/intel.nix
+      ../../modules/netwoking/network.nix
+    ]
+    ++ lib.fileset.toList ../../profiles;
 
   profiles.host.enable = true;
   profiles.common.enable = true;

@@ -3,8 +3,7 @@
   inputs,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (inputs) disko black-hosts;
   # gpuTargetString = lib.strings.concatStringsSep ";" (if gpuTargets != [ ] then
   # # If gpuTargets is specified, it always takes priority.
@@ -70,24 +69,22 @@ let
   #   postBuild = "rm -rf $out/nix-support";
   # };
   sway_cfg = pkgs.writeText "sway_cfg" ''
-     set $mod Mod1
-     bindsym $mod+Return exec ${pkgs.kitty}/bin/kitty
-     bindsym $mod+Shift+q kill
+    set $mod Mod1
+    bindsym $mod+Return exec ${pkgs.kitty}/bin/kitty
+    bindsym $mod+Shift+q kill
   '';
-in
-{
+in {
   imports =
     [
       disko.nixosModules.disko
 
       black-hosts.nixosModule
 
-      (import ./disko.nix { }) # doesn't support btrfs swapfile
+      (import ./disko.nix {}) # doesn't support btrfs swapfile
 
       ../../modules/boot/amd.nix
       ../../modules/hardware/amd.nix
       ../../modules/netwoking/router.nix
-
     ]
     ++ lib.fileset.toList ../../profiles
     ++ lib.fileset.toList ../../spaces;
@@ -97,7 +94,7 @@ in
     settings = rec {
       initial_session = {
         command = "${pkgs.sway}/bin/sway -c ${sway_cfg}";
-        user = "svr"; 
+        user = "svr";
       };
       default_session = initial_session;
     };
@@ -113,9 +110,9 @@ in
 
   programs.steam.enable = true;
   _sshd.enable = true;
- # _pipewire.enable = true;
- # _wolf.enable = true;
- # _wolf_pulse_audio.enable = true;
+  # _pipewire.enable = true;
+  # _wolf.enable = true;
+  # _wolf_pulse_audio.enable = true;
 
   # _tokens_graph.enable = true;
   # systemd.tmpfiles.rules = [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];
@@ -174,5 +171,4 @@ in
     "/dev/dri/renderD128"
     "/dev/dri/renderD129"
   ];
-
 }

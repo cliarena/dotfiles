@@ -1,18 +1,19 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   module = "_pkgs_base";
   description = "pkgs needed by all systems";
   inherit (lib) mkEnableOption mkIf;
 in {
-
   # imports = [ inputs.impermanence.nixosModules.impermanence ];
 
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-
     environment.systemPackages = with pkgs; [
-
       man-pages
       man-pages-posix
 
@@ -34,7 +35,6 @@ in {
       nmap
       wget
       nushell
-
     ];
   };
 }

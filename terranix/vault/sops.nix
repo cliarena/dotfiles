@@ -1,5 +1,9 @@
-{ config, x, ... }:
-let inherit (x.time) minute hour day year;
+{
+  config,
+  x,
+  ...
+}: let
+  inherit (x.time) minute hour day year;
 in {
   resource.vault_mount.sops = {
     path = "sops";
@@ -10,7 +14,7 @@ in {
   };
 
   resource.vault_transit_secret_backend_key.sops = {
-    depends_on = [ "vault_mount.sops" ];
+    depends_on = ["vault_mount.sops"];
     backend = config.resource.vault_mount.sops.path;
     name = "main";
     deletion_allowed = true;
