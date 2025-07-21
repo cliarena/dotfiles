@@ -86,7 +86,7 @@ in {
               use_fancy_tab_bar = false,
               hide_tab_bar_if_only_one_tab = true,
 
-            --  default_prog = { "nu" },
+              default_prog = { "${pkgs.nushell}/bin/nu" },
 
               keys = {
               -- Create a new workspace with a random name and switch to it
