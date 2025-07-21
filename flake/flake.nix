@@ -65,40 +65,44 @@
     # };
   };
 
-  outputs =
-    inputs@{ self, flakelight, ... }:
-
-    let
-      forAllSystems = import ./helpers/forAllSystems.nix;
-
-      #      flakelight_extended = flakelight.lib.mkFlake.extend [
-      #        {
-      #          options.hydraJobs = inputs.nixpkgs.lib.mkOption {
-
-      #            type = flakelight.lib.types.nullable flakelight.lib.types.packageDef;
-      #            default = null;
-      #          };
-      #        }
-      #      ];
-    in
-
-    flakelight ./. ({ lib, types, outputs, ... }: {
+  outputs = inputs @ {
+    self,
+    flakelight,
+    ...
+  }: let
+    forAllSystems = import ./helpers/forAllSystems.nix;
+    #      flakelight_extended = flakelight.lib.mkFlake.extend [
+    #        {
+    #          options.hydraJobs = inputs.nixpkgs.lib.mkOption {
+    #            type = flakelight.lib.types.nullable flakelight.lib.types.packageDef;
+    #            default = null;
+    #          };
+    #        }
+    #      ];
+  in
+    flakelight ./. ({
+      lib,
+      types,
+      outputs,
+      ...
+    }: {
       inherit inputs;
-      systems = [ "x86_64-linux" ];
+      systems = ["x86_64-linux"];
+      formatter = pkgs: pkgs.alejandra;
 
       withOverlays = [
         (final: prev: {
           zig = inputs.zig-overlay.packages.${prev.system}.master;
           # zls = inputs.zls-overlay.packages.${prev.system}.default;
           zls = inputs.zls-overlay.packages.x86_64-linux.zls.overrideAttrs (old: {
-            nativeBuildInputs = [ inputs.zig-overlay.packages.${prev.system}.master ];
+            nativeBuildInputs = [inputs.zig-overlay.packages.${prev.system}.master];
           });
         })
       ];
 
       nixDir = ../.;
       nixDirAliases = {
-        nixosConfigurations = [ "hosts" ];
+        nixosConfigurations = ["hosts"];
         # nixosModules = [ "nixos_modules" ];
         # homeModules = [ "home_modules" ];
       };
@@ -137,13 +141,14 @@
         };
       };
 
-      apps = pkgs: import ../terranix { inherit inputs pkgs; };
+      apps = pkgs: import ../terranix {inherit inputs pkgs;};
 
-      package = pkgs: import ../images/main.nix { inherit lib pkgs inputs; };
-     # package = pkgs: pkgs.hello;
+      package = pkgs: import ../images/main.nix {inherit lib pkgs inputs;};
+      # package = pkgs: pkgs.hello;
       # perSystem = pkgs: { hydraJobs ={ x = { inherit (pkgs) cowsay;}; };};
-      perSystem = pkgs: { hydraJobs = { main = import ../images/main.nix { inherit lib pkgs inputs; }; }; };
-
+      perSystem = pkgs: {
+        hydraJobs = {main = import ../images/main.nix {inherit lib pkgs inputs;};};
+      };
 
       #      packages.x86_64-linux = {
       #      packages = {
@@ -166,7 +171,7 @@
       #
       #                  pulseaudioFull
       #                  noto-fonts
-      #                  kitty nano 
+      #                  kitty nano
       #                  psmisc
       #
       #                ];
@@ -183,7 +188,7 @@
       #              export XDG_SESSIONN_DESKTOP=sway
       #              export XDG_SESSION_TYPE=wayland
       #            '';
-      #          };    
+      #          };
       #          services.getty = {
       #            autologinUser = "retro";
       #            autologinOnce = true;
@@ -191,7 +196,7 @@
       #          environment.loginShellInit = ''
       #            [[ "$(tty)" == /dev/tty1 ]] && sway
       #          '';
-      #           
+      #
       #          users.users.retro = {
       #            uid = 1000;
       #            isNormalUser= true;
@@ -201,16 +206,13 @@
       #              "video"
       #              "sound"
       #              "input"
-      #              "uinput"              
-      #            ];             
+      #              "uinput"
+      #            ];
       #           };
       #          _pipewire.enable = true;
       #          _local.enable = true;
-      #              }    
+      #              }
       #            ] ++ lib.fileset.toList ../profiles;
-
-
-
 
       #        };
       #      };
@@ -225,5 +227,4 @@
       #     svr = nixosTest (import ./hosts/svr/checks.nix { inherit inputs; });
       #   });
     });
-
 }
