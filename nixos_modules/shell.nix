@@ -15,6 +15,9 @@ in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
+    programs.zoxide.enable = true;
+    services.atuin.enable = true;
+
     home-manager.users.${host.user} = {
       programs = {
         carapace = {
