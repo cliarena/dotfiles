@@ -60,7 +60,7 @@ in
             preStart = "${pkgs.coreutils}/bin/env";
             script = "${pkgs.river}/bin/river";
             serviceConfig = {
-              PassEnvironment = "XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
+              PassEnvironment = "PATH XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
               User = "root";
               Restart = "on-failure";
               #   TimeoutSec = 3;
