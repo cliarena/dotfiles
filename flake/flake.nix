@@ -110,7 +110,9 @@
       nixpkgs.config = {
         allowUnfree = true;
         allowBroken = true;
-        # permittedInsecurePackages = [ "freeimage-unstable-2021-11-01" ];
+        permittedInsecurePackages = [
+          "freeimage-3.18.0-unstable-2024-04-18" # needed by colmap
+        ];
       };
 
       devShell = pkgs: {
@@ -146,6 +148,8 @@
       package = pkgs: import ../images/main.nix {inherit lib pkgs inputs;};
       # package = pkgs: pkgs.hello;
       # perSystem = pkgs: { hydraJobs ={ x = { inherit (pkgs) cowsay;}; };};
+
+      # use perSystem is module option not available natively bu flakelight
       perSystem = pkgs: {
         hydraJobs = {main = import ../images/main.nix {inherit lib pkgs inputs;};};
       };
