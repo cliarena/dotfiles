@@ -19,6 +19,7 @@ in {
     services.atuin.enable = true;
 
     home-manager.users.${host.user} = {
+      home.shell.enableNushellIntegration = true;
       programs = {
         carapace = {
           enable = true;
