@@ -15,6 +15,9 @@ in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
+
+    environment.systemPackages = with pkgs; [atuin];
+   
     programs.zoxide.enable = true;
     services.atuin.enable = true;
 
