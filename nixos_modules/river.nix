@@ -68,8 +68,8 @@ in {
                 "${mode} R" = "spawn ${menu}";
                 "${mode} Return" = "spawn ${terminal}";
 
-                "${mode} Q" = "spawn ${pkgs.qutebrowser}/bin/qutebrowser --no-sandbox";
-                "${mode} B" = "spawn ${pkgs.brave}/bin/brave --no-sandbox";
+                "${mode} Q" = "spawn '${pkgs.qutebrowser}/bin/qutebrowser --no-sandbox'";
+                "${mode} B" = "spawn '${pkgs.brave}/bin/brave --no-sandbox'";
 
                 #         "${mode} D" = "spawn ankama-launcher";
               }
