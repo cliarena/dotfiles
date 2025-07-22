@@ -39,8 +39,31 @@ in
         ../modules/hardware/amd.nix
 
         {
-          services.resolved.enable = false;
           systemd.oomd.enable = false;
+
+          services.resolved.enable = false;
+
+            networking = {
+              hostName = host.user;
+              extraHosts = "127.0.0.1 local.cliarena.com";
+              useDHCP = false;
+              useNetworkd = true;
+              resolvconf.enable = pkgs.lib.mkForce false;
+              dhcpcd.extraConfig = "nohook resolv.conf";
+              networkmanager.dns = "none";
+              firewall = {
+                enable = false;
+                interfaces.wan = {
+                  allowedTCPPorts = host.tcp_ports;
+                  allowedUDPPorts = host.udp_ports;
+                };
+              };
+            };
+            systemd = {
+              network = {
+                enable = true;};};
+
+
 
           home-manager.users."${host.user}" = {
             home = {
