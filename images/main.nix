@@ -106,7 +106,7 @@ in
             initialPassword = "nixos";
             # shell = lib.mkForce pkgs.bashInteractive;
             shell = lib.mkForce pkgs.nushell;
-            extraGroups = ["wheel" "video" "sound" "input" "uinput" "root"];
+            extraGroups = ["wheel" "video" "sound" "input" "uinput"];
           };
 
           _home_gitter.enable = true;

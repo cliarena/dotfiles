@@ -32,7 +32,7 @@ in {
       brave
       chromium
 
-      kitty
+      # kitty
 
       #   bemenu
       #   moonlight-qt
