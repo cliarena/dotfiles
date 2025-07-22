@@ -60,13 +60,17 @@ in {
           map = {
             normal =
               {
-                "${mode} Q" = "close";
+                "${mode}+Shift Q" = "close";
                 "${mode}+Shift E" = "exit";
                 "${mode} F" = "toggle-fullscreen";
                 "${mode} F11" = "enter-mode passthrough";
 
                 "${mode} R" = "spawn ${menu}";
                 "${mode} Return" = "spawn ${terminal}";
+
+                "${mode} Q" = "spawn ${pkgs.qutebrowser}/bin/qutebrowser --no-sandbox";
+                "${mode} B" = "spawn ${pkgs.brave}/bin/brave --no-sandbox";
+
                 #         "${mode} D" = "spawn ankama-launcher";
               }
               // tag_map;
@@ -74,9 +78,9 @@ in {
           };
           set-repeat = "50 300";
           spawn = [
-            # "${pkgs.brave}/bin/brave"
+            #  "${pkgs.brave}/bin/brave"
             #  "${pkgs.qutebrowser}/bin/qutebrowser"
-            terminal
+            #  terminal
             "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution}'"
             "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
             "'${pkgs.coreutils}/bin/shuf -zen1 /srv/library/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.wbg}/bin/wbg'"
