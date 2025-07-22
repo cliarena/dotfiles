@@ -40,6 +40,7 @@ in
 
         {
           services.resolved.enable = false;
+          systemd.oomd.enable = false;
 
           home-manager.users."${host.user}" = {
             home = {
