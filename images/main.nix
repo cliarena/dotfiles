@@ -56,6 +56,7 @@ in
 
             environment = {
               DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/0/bus";
+              PATH = "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
             };
             preStart = "${pkgs.coreutils}/bin/env";
             script = "${pkgs.river}/bin/river";
@@ -79,8 +80,8 @@ in
             isSystemUser = lib.mkForce true;
             isNormalUser = lib.mkForce false;
             initialPassword = "nixos";
-            shell = lib.mkForce pkgs.bashInteractive;
-           # shell = lib.mkForce pkgs.nushell;
+           # shell = lib.mkForce pkgs.bashInteractive;
+            shell = lib.mkForce pkgs.nushell;
             extraGroups = ["wheel" "video" "sound" "input" "uinput" "root"];
           };
 
