@@ -31,6 +31,7 @@ in {
 
       brave
       chromium
+      qutebrowser
 
       # kitty
 
