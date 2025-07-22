@@ -4,7 +4,6 @@
   inputs,
   ...
 }: let
-  #     bindsym $mod+Return exec ${pkgs.kitty}/bin/kitty
   menu = "${pkgs.bemenu}/bin/bemenu-run";
   terminal = "${pkgs.wezterm}/bin/wezterm";
   mode = "Alt";
@@ -82,7 +81,7 @@ in
               DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/0/bus";
               PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
             };
-            preStart = "${pkgs.coreutils}/bin/env";
+          # preStart = "${pkgs.coreutils}/bin/env";
             script = "${pkgs.river}/bin/river";
             serviceConfig = {
               PassEnvironment = "XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
