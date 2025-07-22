@@ -104,8 +104,8 @@ in {
               read_only = true;
             };
             ## WOLF ##
-            wolf = {
-              path = "/srv/wolf";
+            volumes = {
+              path = "/srv/volumes";
               read_only = false;
             };
             tmp = {
