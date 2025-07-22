@@ -105,8 +105,8 @@ in {
   profiles.hosting.enable = true;
   # profiles.desk_streaming.enable = true;
 
-  spaces.x.enable = true;
-  spaces.hyodo.enable = true;
+ # spaces.x.enable = true;
+ # spaces.hyodo.enable = true;
 
   programs.steam.enable = true;
   _sshd.enable = true;
