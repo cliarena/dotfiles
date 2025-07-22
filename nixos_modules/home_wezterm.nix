@@ -88,6 +88,8 @@ in {
 
             --  default_prog = { "${pkgs.nushell}/bin/nu" },
 
+              set_environment_variables = { PATH = os.getenv 'PATH', },
+
               keys = {
               -- Create a new workspace with a random name and switch to it
                -- { key = 's', mods = 'CTRL|SHIFT', action = act.SplitHorizontal { domain = "CurrentPaneDomain"} },
