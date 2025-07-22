@@ -79,8 +79,8 @@ in
             isSystemUser = lib.mkForce true;
             isNormalUser = lib.mkForce false;
             initialPassword = "nixos";
-           # shell = lib.mkForce pkgs.bashInteractive;
-            shell = lib.mkForce pkgs.nushell;
+            shell = lib.mkForce pkgs.bashInteractive;
+           # shell = lib.mkForce pkgs.nushell;
             extraGroups = ["wheel" "video" "sound" "input" "uinput" "root"];
           };
 
