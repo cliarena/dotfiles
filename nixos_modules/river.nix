@@ -68,8 +68,9 @@ in {
                 "${mode} R" = "spawn ${menu}";
                 "${mode} Return" = "spawn ${terminal}";
 
+                # TODO: remove no-sandbox if could be run without root. no security at all
                 "${mode} Q" = "spawn '${pkgs.qutebrowser}/bin/qutebrowser --no-sandbox'";
-                "${mode} B" = "spawn '${pkgs.brave}/bin/brave --no-sandbox'";
+                "${mode} B" = "spawn '${pkgs.brave}/bin/brave --qt-flag no-sandbox'";
 
                 #         "${mode} D" = "spawn ankama-launcher";
               }
