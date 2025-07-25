@@ -99,7 +99,7 @@ in
             home = lib.mkForce "/root";
             createHome = true;
             uid = lib.mkForce 0;
-            linger = true;
+           # linger = true; # lingering disables home-manager services fromm ruunning on login
             isSystemUser = lib.mkForce true;
             isNormalUser = lib.mkForce false;
             initialPassword = "nixos";
