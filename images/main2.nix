@@ -24,20 +24,18 @@
     tcp_ports = with ports; [dns 8080];
     udp_ports = with ports; [dns];
   };
-compressCommand = "";
-compressionExtension = "";
+  compressCommand = "";
+  compressionExtension = "";
 in
   inputs.nixos-generators.nixosGenerate {
     system = "x86_64-linux";
     specialArgs = {
-     inherit inputs;
+      inherit inputs;
       inherit (inputs) nixpkgs home-manager;
       inherit host;
     };
 
-
     format = "docker";
-
 
     modules =
       [
@@ -61,82 +59,79 @@ in
 
           # _shell.enable = true;
           _git.enable = true;
-                    _river.enable = true;
+          _river.enable = true;
 
+          #  environment.variables = {
+          #    DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
+          #    #    WOLF_CFG_FILE = "/srv/wolf/cfg/config.toml";
+          #    #    WOLF_PRIVATE_KEY_FILE = "/srv/wolf/cfg/key.pem";
+          #    WOLF_PRIVATE_CERT_FILE = "/srv/wolf/cfg/cert.pem";
+          #    HOST_APPS_STATE_FOLDER = "/srv/wolf/state";
+          #      XDG_RUNTIME_DIR = "/run/user/1000";
+          #XXX = builtins.getEnv "SALAM";
+          #     XDG_SESSION_TYPE = "wayland";
+          #     WAYLAND_DISPLAY = "wayland-1";
+          #     XDG_RUNTIME_DIR = "/tmp";
+          #SWAYSOCK = "/tmp/sway.sock";
+          #  };
 
-        #  environment.variables = {
-        #    DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
-        #    #    WOLF_CFG_FILE = "/srv/wolf/cfg/config.toml";
-        #    #    WOLF_PRIVATE_KEY_FILE = "/srv/wolf/cfg/key.pem";
-            #    WOLF_PRIVATE_CERT_FILE = "/srv/wolf/cfg/cert.pem";
-            #    HOST_APPS_STATE_FOLDER = "/srv/wolf/state";
-       #      XDG_RUNTIME_DIR = "/run/user/1000";
-            #XXX = builtins.getEnv "SALAM";
-       #     XDG_SESSION_TYPE = "wayland";
-       #     WAYLAND_DISPLAY = "wayland-1";
-       #     XDG_RUNTIME_DIR = "/tmp";
-            #SWAYSOCK = "/tmp/sway.sock";
-       #  };
+          #  systemd.services."getty@tty1" = {
+          #     overrideStrategy = "asDropin";
+          #     serviceConfig = {
+          #       PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
+          #       ExecStart =[ "" "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${pkgs.shadow}/bin/login --autologin ${host.user} --noclear --keep-baud %I 115200,38400,9600 $TERM"];
+          #      };
+          #     wantedBy = ["graphical.target" "greetd.service"];
 
-       #  systemd.services."getty@tty1" = {
-       #     overrideStrategy = "asDropin";
-       #     serviceConfig = {
-       #       PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
-       #       ExecStart =[ "" "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${pkgs.shadow}/bin/login --autologin ${host.user} --noclear --keep-baud %I 115200,38400,9600 $TERM"];
-       #      };
-       #     wantedBy = ["graphical.target" "greetd.service"];
+          #   };
 
-       #   };
+          #  services.displayManager = {
+          #    enable = true;
 
+          #    environment = {
+          #           XDG_SESSION_TYPE = "wayland";
+          #         WAYLAND_DISPLAY = "wayland-1";
+          #          XDG_RUNTIME_DIR = "/tmp";
+          #       };
+          #    sddm = {
+          #      enable =true;
+          #      wayland.enable = true;
+          #      package = pkgs.kdePackages.sddm;
+          #    };
+          #  };
 
-  #  services.displayManager = {
-  #    enable = true;
-
-  #    environment = {
-  #           XDG_SESSION_TYPE = "wayland";
-  #         WAYLAND_DISPLAY = "wayland-1";
-  #          XDG_RUNTIME_DIR = "/tmp";
-  #       };
-  #    sddm = {
-  #      enable =true;
-  #      wayland.enable = true;
-  #      package = pkgs.kdePackages.sddm;
-  #    };
-  #  };
-
-       #  systemd.services."getty@tty1" = {
-       #     overrideStrategy = "asDropin";
-       #     serviceConfig = {
-       #     PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
-       #      ExecStart =[ "" "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${pkgs.shadow}/bin/login --autologin ${host.user} --noclear --keep-baud %I 115200,38400,9600 $TERM"];
-       #    };
-       #     wantedBy = ["graphical.target"];
+          #  systemd.services."getty@tty1" = {
+          #     overrideStrategy = "asDropin";
+          #     serviceConfig = {
+          #     PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
+          #      ExecStart =[ "" "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${pkgs.shadow}/bin/login --autologin ${host.user} --noclear --keep-baud %I 115200,38400,9600 $TERM"];
+          #    };
+          #     wantedBy = ["graphical.target"];
           #  after = ["desk.service"];
-       #    after = ["multi-user.target"];
+          #    after = ["multi-user.target"];
 
-       #   };
+          #   };
 
-      #   security.pam.services."getty@tty1" = {};
+          #   security.pam.services."getty@tty1" = {};
 
+          #  security.pam.services.desk = {};
 
-       #  security.pam.services.desk = {};
-
-         systemd.services.desk = {
+          systemd.services.desk = {
             description = "desktop runner";
             path = with pkgs; [river];
 
-           # environment = {
+            # environment = {
             #  DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/0/bus";
             #  PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-           # };
-           # preStart = "${pkgs.coreutils}/bin/env";
-           script = "${pkgs.river}/bin/river";
+            # };
+            # preStart = "${pkgs.coreutils}/bin/env";
+            script = "${pkgs.river}/bin/river";
             serviceConfig = {
               PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
               AmbientCapabilities = "CAP_CHOWN CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH CAP_FOWNER CAP_SETGIDD CAP_SETFCAP CAP_SETUID CAP_SYS_ADMIN";
               User = host.user;
-             # User= "root";
-             # Group= "root";
+              # User= "root";
+              # Group= "root";
               Restart = "on-failure";
               #   TimeoutSec = 3;
               # avoid error start request repeated too quickly since RestartSec defaults to 100ms
@@ -144,75 +139,63 @@ in
             };
             after = ["multi-user.target"];
             wantedBy = ["graphical.target"];
-       #    after = ["getty@tty1.service"];
-        };
+            #    after = ["getty@tty1.service"];
+          };
 
+          #   systemd.services.greetd = {
+          # enable = false;
+          #      description = "desktop runner";
+          # path = with pkgs; [river];
 
-
-
-
-
-
-
-
-
-
-
-      #   systemd.services.greetd = {
-            # enable = false;
-      #      description = "desktop runner";
-           # path = with pkgs; [river];
-
-           # environment = {
-            #  DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/0/bus";
-            #  PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-           # };
-           # preStart = "${pkgs.coreutils}/bin/env";
-           # scriptArgs = "YOOOOOOOOO=SALAAAAAM";
-           # preStart = "${pkgs.coreutils}/bin/ls /tmp /run/user/1000";
-      #    preStart = "${pkgs.coreutils}/bin/mkdir -p /tmp/sockets &&  ${pkgs.coreutils}/bin/ln -s $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY /tmp/sockets/wayland-1";
-           # preStart = "${pkgs.coreutils}/bin/ls /tmp /run/user/1000";
-      #      postStop = "${pkgs.coreutils}/bin/ls /tmp /tmp/sockets";
-      #      serviceConfig = {
-      #        PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
-         #     User = host.user;
-      #        Restart = "on-failure";
-              #   TimeoutSec = 3;
-              # avoid error start request repeated too quickly since RestartSec defaults to 100ms
-      #        RestartSec = 3;
-      #      };
+          # environment = {
+          #  DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/0/bus";
+          #  PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
+          # };
+          # preStart = "${pkgs.coreutils}/bin/env";
+          # scriptArgs = "YOOOOOOOOO=SALAAAAAM";
+          # preStart = "${pkgs.coreutils}/bin/ls /tmp /run/user/1000";
+          #    preStart = "${pkgs.coreutils}/bin/mkdir -p /tmp/sockets &&  ${pkgs.coreutils}/bin/ln -s $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY /tmp/sockets/wayland-1";
+          # preStart = "${pkgs.coreutils}/bin/ls /tmp /run/user/1000";
+          #      postStop = "${pkgs.coreutils}/bin/ls /tmp /tmp/sockets";
+          #      serviceConfig = {
+          #        PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
+          #     User = host.user;
+          #        Restart = "on-failure";
+          #   TimeoutSec = 3;
+          # avoid error start request repeated too quickly since RestartSec defaults to 100ms
+          #        RestartSec = 3;
+          #      };
           #  after = ["multi-user.target"];
           #  wantedBy = ["graphical.target" "greetd.service"];
           #  partOf = ["greetd.service"];
-      #    };
+          #    };
 
-      #    services.greetd = {
-      #      enable = true;
-            # vt = 4;
-      #      settings = rec {
-      #        initial_session = {
-                # command = "XDG_RUNTIME_DIR=/tmp XDG_SESSION_DESKTOP=sway SWAYSOCK=/tmp/sway.sock XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 ${pkgs.river}/bin/river";
-      #          command = "${pkgs.execline}/bin/exec ${pkgs.systemd}/bin/systemd-cat --identifier=greeeetd  ${pkgs.river}/bin/river";
-              #  command = ''${pkgs.execline}/bin/exec ${pkgs.systemd}/bin/systemd-cat --identifier=greeeetd ${pkgs.coreutils}/bin/env "$@"'';
-      #          user = host.user;
-      #        };
-      #        default_session = initial_session;
-      #      };
-      #    };
+          #    services.greetd = {
+          #      enable = true;
+          # vt = 4;
+          #      settings = rec {
+          #        initial_session = {
+          # command = "XDG_RUNTIME_DIR=/tmp XDG_SESSION_DESKTOP=sway SWAYSOCK=/tmp/sway.sock XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 ${pkgs.river}/bin/river";
+          #          command = "${pkgs.execline}/bin/exec ${pkgs.systemd}/bin/systemd-cat --identifier=greeeetd  ${pkgs.river}/bin/river";
+          #  command = ''${pkgs.execline}/bin/exec ${pkgs.systemd}/bin/systemd-cat --identifier=greeeetd ${pkgs.coreutils}/bin/env "$@"'';
+          #          user = host.user;
+          #        };
+          #        default_session = initial_session;
+          #      };
+          #    };
 
           #             services.getty = {
           #               autologinUser = host.user;
           #             };
-         #  environment.loginShellInit = ''
-         #    XDG_RUNTIME_DIR=/tmp XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1    ${pkgs.river}/bin/river
-         #  '';
+          #  environment.loginShellInit = ''
+          #    XDG_RUNTIME_DIR=/tmp XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1    ${pkgs.river}/bin/river
+          #  '';
 
-            # [[ "$(tty)" == /dev/tty1 ]] && XDG_RUNTIME_DIR=/tmp XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 ${pkgs.sway}/bin/sway
-
+          # [[ "$(tty)" == /dev/tty1 ]] && XDG_RUNTIME_DIR=/tmp XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 ${pkgs.sway}/bin/sway
 
           users.users.retro = {
             uid = 1000;
-          #  linger = true; #linger stops home manager services fromm starting on login
+            #  linger = true; #linger stops home manager services fromm starting on login
             isNormalUser = true;
             initialPassword = "nixos";
             extraGroups = [
