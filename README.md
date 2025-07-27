@@ -7,7 +7,7 @@
 
 # Testing docker image
 
- - `sudo podman rmi -f nixos; nix build; cp result/tarball/nixos-system-x86_64-linux.tar.xz ../img.tar.xz; unxz -f ../img.tar.xz; rm -rf result; sudo podman import ../img.tar nixos`
+ - `sudo podman rmi -f nixos; nix build; cp result/tarball/nixos-system-x86_64-linux.tar.xz ../img.tar.xz; unxz -f ../img.tar.xz; rm -rf result; sudo podman import ../img.tar nixos; rm ../img.tar`
 
 
 # Installation Guide
