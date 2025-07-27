@@ -8,6 +8,7 @@
 # Testing docker image
 
  - `sudo podman rmi -f nixos; nix build; cp result/tarball/nixos-system-x86_64-linux.tar.xz ../img.tar.xz; unxz -f ../img.tar.xz; rm -rf result; sudo podman import ../img.tar nixos; rm ../img.tar`
+ - `sudo podman run --namme=desk  -d --privileged --ipc=host -e XDG_RUNTIME_DIR=/run/user/1000 -v /run/user/1000:/run/user/1000:rw -e WAYLAND_DISPLAY=wayland-1 nixos /init`
 
 
 # Installation Guide
