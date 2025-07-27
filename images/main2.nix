@@ -117,7 +117,7 @@ in
           #  security.pam.services.desk = {};
 
           systemd.services.permission-fixer = {
-            script ''
+            script = ''
               #!${pkgs.stdenv.shell}
               set -euo pipefail
 
