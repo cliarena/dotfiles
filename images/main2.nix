@@ -2,8 +2,6 @@
   lib,
   pkgs,
   inputs,
-  nixpkgs,
-  config,
   ...
 }: let
   menu = "${pkgs.bemenu}/bin/bemenu-run";

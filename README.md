@@ -4,6 +4,12 @@
 - [ ] setup system & services monitoring
 - [ ] Optimize power consumption
 
+
+# Testing docker image
+
+ - `sudo podman rmi -f nixos; nix build; cp result/tarball/nixos-system-x86_64-linux.tar.xz ../img.tar.xz; unxz -f ../img.tar.xz; rm -rf result; sudo podman import ../img.tar nixos`
+
+
 # Installation Guide
 
 1. initial install using USB with nixos installer
