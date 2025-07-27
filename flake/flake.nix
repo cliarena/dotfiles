@@ -145,7 +145,7 @@
 
       apps = pkgs: import ../terranix {inherit inputs pkgs;};
 
-      package = pkgs: import ../images/main.nix {inherit lib pkgs inputs;};
+      package = pkgs: import ../images/main2.nix {inherit lib pkgs inputs;};
       # package = pkgs: pkgs.hello;
       # perSystem = pkgs: { hydraJobs ={ x = { inherit (pkgs) cowsay;}; };};
 

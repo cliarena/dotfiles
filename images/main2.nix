@@ -116,6 +116,21 @@ in
 
           #  security.pam.services.desk = {};
 
+          systemd.services.permission-fixer = {
+            script ''
+              #!${pkgs.stdenv.shell}
+              set -euo pipefail
+
+
+              chown ${host.user}:users /run/user/1000
+              chmod u=rwx /run/user/1000
+             '';
+
+            serviceConfig.Type = "oneshot";
+            wantedBy = ["multi-user.target"];
+          };
+
+
           systemd.services.desk = {
             description = "desktop runner";
             path = with pkgs; [river];
@@ -137,7 +152,7 @@ in
               # avoid error start request repeated too quickly since RestartSec defaults to 100ms
               RestartSec = 3;
             };
-            after = ["multi-user.target"];
+            after = ["multi-user.target" "permission-fixer.service" ];
             wantedBy = ["graphical.target"];
             #    after = ["getty@tty1.service"];
           };
