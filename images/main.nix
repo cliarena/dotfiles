@@ -114,13 +114,30 @@ in
             };
           };
 
+          systemd.services.permission-fixer = {
+            script = ''
+              #!${pkgs.stdenv.shell}
+              set -euo pipefail
+
+              # chown ${host.user}:users /run/user/1000
+              # chmod u=rwx /run/user/1000
+
+              chown ${host.user}:users /tmp/sockets
+              chmod u=rwx /tmp/sockets
+              chmod 0700 /tmp/sockets
+             '';
+
+            serviceConfig.Type = "oneshot";
+            wantedBy = ["multi-user.target"];
+          };
+
           systemd.services.desk = {
             description = "desktop runner";
             path = with pkgs; [river];
 
             # environment = {
-            #  DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/0/bus";
-            #  PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
+              DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
+              PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
             # };
             # preStart = "${pkgs.coreutils}/bin/env";
             script = "${pkgs.river}/bin/river";
@@ -145,6 +162,7 @@ in
             #  linger = true; #linger stops home manager services fromm starting on login
             isNormalUser = true;
             initialPassword = "nixos";
+            shell = lib.mkForce pkgs.nushell;
             extraGroups = [
               "wheel"
               "video"
