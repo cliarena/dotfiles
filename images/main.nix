@@ -135,10 +135,10 @@ in
             description = "desktop runner";
             path = with pkgs; [river];
 
-            # environment = {
+             environment = {
               DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
               PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-            # };
+             };
             # preStart = "${pkgs.coreutils}/bin/env";
             script = "${pkgs.river}/bin/river";
             serviceConfig = {
