@@ -29,7 +29,6 @@ in {
         ${pkgs.podman}/bin/podman rmi -f nixos                                     \
          && ${pkgs.wget}/bin/wget ${image_url}                                     \
          && ${pkgs.xz}/bin/unxz nixos-system-x86_64-linux.tar.xz                   \
-         && ${pkgs.coreutils}/bin/rm nixos-system-x86_64-linux.tar.xz              \
          && ${pkgs.podman}/bin/podman import nixos-system-x86_64-linux.tar nixos   \
          && ${pkgs.coreutils}/bin/rm nixos-system-x86_64-linux.tar
       '';
