@@ -59,6 +59,17 @@ in
           _git.enable = true;
           _river.enable = true;
 
+
+       #   home-manager.users.${host.user} = lib: {
+       #     home.activation = { x = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] "run ${pkgs.coreutils}/bin/env &&  ln -s /run/user/1000/$WAYLAND_DISPLAY  /tmp/sockets/$WAYLAND_DISPLAY"; };
+           # systemd.user.tmpfiles.rules = ["L /run/user/1000/${builtins.getEnv 'WAYLAND_DISPLAY'} - - - - /tmp/sockets/${builtins.getEnv 'WAYLAND_DISPLAY'}"];
+       #   };
+
+
+
+
+
+
           #  environment.variables = {
           #    DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
           #    #    WOLF_CFG_FILE = "/srv/wolf/cfg/config.toml";
@@ -112,22 +123,22 @@ in
 
           #   security.pam.services."getty@tty1" = {};
 
-          #  security.pam.services.desk = {};
 
-          systemd.services.permission-fixer = {
-            script = ''
-              #!${pkgs.stdenv.shell}
-              set -euo pipefail
+       #   systemd.services.permission-fixer = {
+       #     script = ''
+       #       #!${pkgs.stdenv.shell}
+       #       set -euo pipefail
 
 
-              chown ${host.user}:users /run/user/1000
-              chmod u=rwx /run/user/1000
-             '';
+       #       chown ${host.user}:users /run/user/1000
+       #       chmod u=rwx /run/user/1000
+       #      '';
 
-            serviceConfig.Type = "oneshot";
-            wantedBy = ["multi-user.target"];
-          };
+       #     serviceConfig.Type = "oneshot";
+       #     wantedBy = ["multi-user.target"];
+       #   };
 
+            security.pam.services.desk = { startSession = true;  };
 
           systemd.services.desk = {
             description = "desktop runner";
@@ -137,12 +148,13 @@ in
             #  DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/0/bus";
             #  PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
             # };
-            # preStart = "${pkgs.coreutils}/bin/env";
+            preStart = "${pkgs.coreutils}/bin/env && ${pkgs.coreutils}/bin/ls -la /tmp/sockets /run/user/1000 && ${pkgs.coreutils}/bin/ln -s /tmp/sockets/$WAYLAND_DISPLAY /run/user/1000/$WAYLAND_DISPLAY";
             script = "${pkgs.river}/bin/river";
             serviceConfig = {
               PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
               AmbientCapabilities = "CAP_CHOWN CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH CAP_FOWNER CAP_SETGIDD CAP_SETFCAP CAP_SETUID CAP_SYS_ADMIN";
               User = host.user;
+              PAMName = "desk";
               # User= "root";
               # Group= "root";
               Restart = "on-failure";
