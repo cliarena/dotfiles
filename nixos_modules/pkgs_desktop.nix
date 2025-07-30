@@ -18,7 +18,7 @@ in {
 
       ### Web ###
       w3m
-      mpv
+      #  mpv
       #   youtube-tui
 
       kdePackages.kcachegrind
@@ -30,7 +30,7 @@ in {
       manix # # CLI Searcher for Nix, HM documentation
 
       brave
-      chromium
+      # chromium
       qutebrowser
 
       # kitty
@@ -51,15 +51,15 @@ in {
       poppler # PDF rendering lib needed by yazi
       xclip # cli clipboard utility needed by yazi
       wl-clipboard # cli wayland clipboard utility needed by yazi
-      wlr-randr
-      wayland-utils
+      # wlr-randr
+      # wayland-utils
       #   s-tui
       #   sysbench
-      speedtest-cli
+      # speedtest-cli
       grim
 
-      pavucontrol
-      pulseaudio
+      # pavucontrol
+      # pulseaudio
       #   obs-studio
       # taskwarrior-tui
       # timewarrior
