@@ -79,7 +79,7 @@ in
           # Disable if this server is a dns server
           services.resolved.enable = false;
 
-          systemd.user.tmpfiles.rules = ["L /bin/bash - - - - ${pkgs.bash}/bin/bash"];
+          systemd.tmpfiles.rules = ["L /bin/bash - - - - ${pkgs.bash}/bin/bash"];
           networking = {
             hostName = host.user;
             extraHosts = "127.0.0.1 local.cliarena.com";
