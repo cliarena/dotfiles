@@ -114,37 +114,42 @@ in
             };
           };
 
-          systemd.services.permission-fixer = {
-            script = ''
-              #!${pkgs.stdenv.shell}
-              set -euo pipefail
+          #  systemd.services.permission-fixer = {
+          #    script = ''
+          #      #!${pkgs.stdenv.shell}
+          #      set -euo pipefail
 
-              # chown ${host.user}:users /run/user/1000
-              # chmod u=rwx /run/user/1000
+          #      # chown ${host.user}:users /run/user/1000
+          #      # chmod u=rwx /run/user/1000
 
-              chown ${host.user}:users /tmp/sockets
-              chmod u=rwx /tmp/sockets
-              chmod 0700 /tmp/sockets
-             '';
+          #      chown ${host.user}:users /tmp/sockets
+          #      chmod u=rwx /tmp/sockets
+          #      chmod 0700 /tmp/sockets
+          #     '';
 
-            serviceConfig.Type = "oneshot";
-            wantedBy = ["multi-user.target"];
-          };
+          #    serviceConfig.Type = "oneshot";
+          #    wantedBy = ["multi-user.target"];
+          #  };
+
+          security.pam.services.desk = {startSession = true;};
 
           systemd.services.desk = {
             description = "desktop runner";
             path = with pkgs; [river];
 
-             environment = {
+            environment = {
               DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
               PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-             };
+            };
             # preStart = "${pkgs.coreutils}/bin/env";
+
+            preStart = "${pkgs.coreutils}/bin/env && ${pkgs.coreutils}/bin/ls -la /tmp/sockets /run/user/1000 && ${pkgs.coreutils}/bin/ln -s /tmp/sockets/$WAYLAND_DISPLAY /run/user/1000/$WAYLAND_DISPLAY";
             script = "${pkgs.river}/bin/river";
             serviceConfig = {
               PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
               AmbientCapabilities = "CAP_CHOWN CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH CAP_FOWNER CAP_SETGIDD CAP_SETFCAP CAP_SETUID CAP_SYS_ADMIN";
               User = host.user;
+              PAMName = "desk";
               # User= "root";
               # Group= "root";
               Restart = "on-failure";

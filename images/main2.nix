@@ -59,16 +59,10 @@ in
           _git.enable = true;
           _river.enable = true;
 
-
-       #   home-manager.users.${host.user} = lib: {
-       #     home.activation = { x = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] "run ${pkgs.coreutils}/bin/env &&  ln -s /run/user/1000/$WAYLAND_DISPLAY  /tmp/sockets/$WAYLAND_DISPLAY"; };
-           # systemd.user.tmpfiles.rules = ["L /run/user/1000/${builtins.getEnv 'WAYLAND_DISPLAY'} - - - - /tmp/sockets/${builtins.getEnv 'WAYLAND_DISPLAY'}"];
-       #   };
-
-
-
-
-
+          #   home-manager.users.${host.user} = lib: {
+          #     home.activation = { x = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] "run ${pkgs.coreutils}/bin/env &&  ln -s /run/user/1000/$WAYLAND_DISPLAY  /tmp/sockets/$WAYLAND_DISPLAY"; };
+          # systemd.user.tmpfiles.rules = ["L /run/user/1000/${builtins.getEnv 'WAYLAND_DISPLAY'} - - - - /tmp/sockets/${builtins.getEnv 'WAYLAND_DISPLAY'}"];
+          #   };
 
           #  environment.variables = {
           #    DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
@@ -123,22 +117,20 @@ in
 
           #   security.pam.services."getty@tty1" = {};
 
+          #   systemd.services.permission-fixer = {
+          #     script = ''
+          #       #!${pkgs.stdenv.shell}
+          #       set -euo pipefail
 
-       #   systemd.services.permission-fixer = {
-       #     script = ''
-       #       #!${pkgs.stdenv.shell}
-       #       set -euo pipefail
+          #       chown ${host.user}:users /run/user/1000
+          #       chmod u=rwx /run/user/1000
+          #      '';
 
+          #     serviceConfig.Type = "oneshot";
+          #     wantedBy = ["multi-user.target"];
+          #   };
 
-       #       chown ${host.user}:users /run/user/1000
-       #       chmod u=rwx /run/user/1000
-       #      '';
-
-       #     serviceConfig.Type = "oneshot";
-       #     wantedBy = ["multi-user.target"];
-       #   };
-
-            security.pam.services.desk = { startSession = true;  };
+          security.pam.services.desk = {startSession = true;};
 
           systemd.services.desk = {
             description = "desktop runner";
@@ -162,7 +154,7 @@ in
               # avoid error start request repeated too quickly since RestartSec defaults to 100ms
               RestartSec = 3;
             };
-            after = ["multi-user.target" "permission-fixer.service" ];
+            after = ["multi-user.target" "permission-fixer.service"];
             wantedBy = ["graphical.target"];
             #    after = ["getty@tty1.service"];
           };
