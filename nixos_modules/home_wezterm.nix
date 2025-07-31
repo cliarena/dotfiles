@@ -10,13 +10,16 @@
   description = "wezterm config";
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager;
+  inherit (config.home) $
 in {
   imports = [home-manager.nixosModules.home-manager];
 
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    home-manager.users.${host.user} = {
+    home-manager.users.${host.user} = {config, ...}: let
+      inherit (config.home) homeDirectory;
+    in {
       programs.wezterm = {
         enable = true;
 
@@ -147,7 +150,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'notes',
                   spawn = {
-                    cwd = '~/notes',
+                    cwd = '${homeDirectory}/notes',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -159,7 +162,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'dotfiles',
                   spawn = {
-                    cwd = '~/dotfiles',
+                    cwd = '${homeDirectory}/dotfiles',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -171,7 +174,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'project_main',
                   spawn = {
-                    cwd = '~/project_main',
+                    cwd = '${homeDirectory}/project_main',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -183,7 +186,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'project_secondary',
                   spawn = {
-                    cwd = '/home/x/project_secondary',
+                    cwd = '${homeDirectory}/project_secondary',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
