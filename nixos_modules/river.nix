@@ -79,8 +79,10 @@ in {
               // tag_map;
             passthrough = {"${mode} F11" = "enter-mode normal";};
           };
+
           set-repeat = "50 300";
-          keyboard-layout = "us(colemak_dh_wide)";
+          keyboard-layout = "'us(colemak_dh_wide),ara'";
+
           spawn = [
             #  "${pkgs.brave}/bin/brave"
             #  "${pkgs.qutebrowser}/bin/qutebrowser"
