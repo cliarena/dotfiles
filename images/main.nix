@@ -34,10 +34,51 @@ in
     };
     modules =
       [
-        ../modules/boot/amd.nix
-        ../modules/hardware/amd.nix
+        #  ../modules/boot/amd.nix
+        #  ../modules/hardware/amd.nix
 
         {
+          boot = {
+            kernelPackages = pkgs.linuxPackages_latest;
+            kernelParams = ["transparent_hugepage=always"];
+            initrd = {
+              availableKernelModules = ["xhci_pci" "usbhid" "uas" "usb_storage"];
+            };
+            kernelModules = [
+              "uinput"
+              "kvm-amd" # support virtual machine acceleration
+              "intel_rapl_common" # needed by scaphandre prometheus exporter
+            ];
+          };
+
+          environment.variables = {
+            NIX_REMOTE = "daemon"; # needed for nix run .#apply.. for terranix
+          };
+          environment.systemPackages = with pkgs; [amdgpu_top];
+
+          nixpkgs.config.allowUnfree = true;
+          security.rtkit.enable = true;
+          hardware = {
+            uinput.enable = true;
+            steam-hardware.enable = true;
+            cpu.amd = {
+              updateMicrocode = true; # Maybe it fixed TTY scale issue
+              #  ryzen-smu.enable = true; # undervorling & overclocking
+            };
+            enableRedistributableFirmware = true; # to detect wireless interfaces
+            amdgpu = {
+              # initrd.enable = true;
+              opencl.enable = true;
+            };
+            graphics = {
+              enable = true;
+              enable32Bit = true;
+            };
+          };
+
+          # services.udev.extraRules = ''
+          #   KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+          # '';
           systemd.oomd.enable = false;
 
           #  services.resolved.enable = false;
