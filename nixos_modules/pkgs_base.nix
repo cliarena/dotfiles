@@ -13,6 +13,9 @@ in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
+
+    environment.defaultPackages = lib.mkForce [];
+
     environment.systemPackages = with pkgs; [
       man-pages
       man-pages-posix
