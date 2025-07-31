@@ -111,13 +111,13 @@ in {
                 split_nav('resize', 'UpArrow'),
                 split_nav('resize', 'RightArrow'),
                 -- Switch to the default workspace
-              {
-                key = 'd',
-                mods = 'CTRL|SHIFT',
-                action = act.SwitchToWorkspace {
-                  name = 'default',
-                }
-              },
+              -- {
+              --  key = 'd',
+              --  mods = 'CTRL|SHIFT',
+              --  action = act.SwitchToWorkspace {
+              --    name = 'default',
+              --  }
+              -- },
               -- Switch to a monitoring workspace, which will have `top` launched into it
             --  {
             --    key = 'F1',
@@ -147,7 +147,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'notes',
                   spawn = {
-                    cwd = '/home/x/notes',
+                    cwd = '~/notes',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -159,7 +159,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'dotfiles',
                   spawn = {
-                    cwd = '/home/x/dotfiles',
+                    cwd = '~/dotfiles',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -171,7 +171,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'project_main',
                   spawn = {
-                    cwd = '/home/x/project_main',
+                    cwd = '~/project_main',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
