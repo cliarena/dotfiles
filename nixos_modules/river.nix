@@ -49,7 +49,10 @@ in {
     #};
     #};
 
-    programs.river.enable = true;
+    programs.river = {
+      enable = true;
+      xwayland.enable = false;
+    };
     home-manager.users.${host.user} = {
       wayland.windowManager.river = {
         enable = true;
@@ -68,9 +71,8 @@ in {
                 "${mode} R" = "spawn ${menu}";
                 "${mode} Return" = "spawn ${terminal}";
 
-                # TODO: remove no-sandbox if could be run without root. no security at all
-                "${mode} Q" = "spawn '${pkgs.qutebrowser}/bin/qutebrowser --no-sandbox'";
-                "${mode} B" = "spawn '${pkgs.brave}/bin/brave --qt-flag no-sandbox'";
+                "${mode} Q" = "spawn ${pkgs.qutebrowser}/bin/qutebrowser";
+                "${mode} B" = "spawn ${pkgs.brave}/bin/brave";
 
                 #         "${mode} D" = "spawn ankama-launcher";
               }
@@ -82,7 +84,7 @@ in {
             #  "${pkgs.brave}/bin/brave"
             #  "${pkgs.qutebrowser}/bin/qutebrowser"
             #  terminal
-            "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution} --scale 1.2'" # change scale for zoom 
+            "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution} --scale 1.2'" # change scale for zoom
             "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
             "'${pkgs.coreutils}/bin/shuf -zen1 /srv/library/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.wbg}/bin/wbg'"
             #  "'${pkgs.coreutils}/bin/shuf -zen1 /srv/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.swww}/bin/swww img'"
