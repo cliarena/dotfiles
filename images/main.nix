@@ -120,7 +120,10 @@ in
           # Disable if this server is a dns server
           services.resolved.enable = false;
 
-          systemd.tmpfiles.rules = ["L /bin/bash - - - - ${pkgs.bash}/bin/bash"];
+          # neede by wolf fake-udev but unfortunatly doesn't add devices so kmonad won't work
+          # systemd.tmpfiles.rules = ["L /bin/bash - - - - ${pkgs.bash}/bin/bash"];
+
+
           networking = {
             hostName = host.user;
             extraHosts = "127.0.0.1 local.cliarena.com";
