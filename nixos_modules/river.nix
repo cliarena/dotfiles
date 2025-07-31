@@ -80,11 +80,12 @@ in {
             passthrough = {"${mode} F11" = "enter-mode normal";};
           };
           set-repeat = "50 300";
+          keyboard-layout = "us(colemak_dh_wide)";
           spawn = [
             #  "${pkgs.brave}/bin/brave"
             #  "${pkgs.qutebrowser}/bin/qutebrowser"
             #  terminal
-            "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution} --scale 1.2'" # change scale for zoom
+            "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution} --scale 1.3'" # change scale for zoom
             "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
             "'${pkgs.coreutils}/bin/shuf -zen1 /srv/library/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.wbg}/bin/wbg'"
             #  "'${pkgs.coreutils}/bin/shuf -zen1 /srv/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.swww}/bin/swww img'"
