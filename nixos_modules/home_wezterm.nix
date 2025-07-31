@@ -10,7 +10,6 @@
   description = "wezterm config";
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager;
-  inherit (config.home) $
 in {
   imports = [home-manager.nixosModules.home-manager];
 
