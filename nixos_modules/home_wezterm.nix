@@ -16,9 +16,7 @@ in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    home-manager.users.${host.user} = {config, ...}: let
-      inherit (config.home) homeDirectory;
-    in {
+    home-manager.users.${host.user} = {
       programs.wezterm = {
         enable = true;
 
@@ -149,7 +147,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'notes',
                   spawn = {
-                    cwd = '${homeDirectory}/notes',
+                    cwd = '/home/${host.user}/notes',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -161,7 +159,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'dotfiles',
                   spawn = {
-                    cwd = '${homeDirectory}/dotfiles',
+                    cwd = '/home/${host.user}/dotfiles',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -173,7 +171,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'project_main',
                   spawn = {
-                    cwd = '${homeDirectory}/project_main',
+                    cwd = '/home/${host.user}/project_main',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
@@ -185,7 +183,7 @@ in {
                 action = act.SwitchToWorkspace {
                   name = 'project_secondary',
                   spawn = {
-                    cwd = '${homeDirectory}/project_secondary',
+                    cwd = '/home/${host.user}/project_secondary',
                     args = { 'nvim' },
              --       domain = { DomainName = 'SSHMUX:DS' },
                   },
