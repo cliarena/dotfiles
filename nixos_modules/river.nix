@@ -69,7 +69,7 @@ in {
                 "${mode} F11" = "enter-mode passthrough";
 
                 "${mode} R" = "spawn ${menu}";
-                "${mode} Return" = "spawn '${pkgs.wezterm}/bin/wezterm --always-new-process'";
+                "${mode} Return" = "spawn '${pkgs.wezterm}/bin/wezterm start --always-new-process'";
 
                 "${mode} Q" = "spawn ${pkgs.qutebrowser}/bin/qutebrowser";
                 "${mode} B" = "spawn ${pkgs.brave}/bin/brave";
