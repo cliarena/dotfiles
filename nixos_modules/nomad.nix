@@ -18,7 +18,7 @@ in {
       enable = true;
       # needed by Podman driver maybe others too
       dropPrivileges = false;
-     # enableDocker = true;
+      enableDocker = false;
       extraPackages = [
         # needed for service mesh
         pkgs.cni-plugins
