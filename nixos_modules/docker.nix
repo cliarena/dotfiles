@@ -15,8 +15,8 @@ in {
         driver = "btrfs";
         graphroot = "/srv/var/lib/containers/storage";
         options.pull_options = {
-          enable_partial_images = true;
-          convert_images = true;
+          enable_partial_images = "true"; # must be string 
+          convert_images = "true"; # must be string
         };
       };
 
