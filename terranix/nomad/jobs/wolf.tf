@@ -102,15 +102,20 @@ job "wolf" {
         ]
 
         devices = [
-          {
-            host_path = "/dev/dri"
-          },
-          {
-            host_path = "/dev/uinput"
-          },
-          {
-            host_path = "/dev/uhid"
-          }
+          "/dev/dri",
+          "/dev/uinput",
+          "/dev/uhid",
+
+       # Docker config
+       #   {
+       #     host_path = "/dev/dri"
+       #   },
+       #   {
+       #     host_path = "/dev/uinput"
+       #   },
+       #   {
+       #     host_path = "/dev/uhid"
+       #   }
         ]
         image = "ghcr.io/games-on-whales/wolf:stable"
       }
