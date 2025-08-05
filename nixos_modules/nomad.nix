@@ -35,18 +35,19 @@ in {
           consul = {ui_url = "${CONSUL_ADDR}/ui";};
           vault = {ui_url = "${VAULT_ADDR}/ui";};
         };
-        plugin.docker = {
-          config = {
-            allow_privileged = true;
-            allow_caps = ["all"];
-            volumes = {
+       # plugin.docker = {
+       #   config = {
+       #     allow_privileged = true;
+       #     allow_caps = ["all"];
+       #     volumes = {
               # needed by nomad gitops operator
-              enabled = true;
-              selinuxlabel = "z";
-            };
-          };
-        };
+       #       enabled = true;
+       #       selinuxlabel = "z";
+       #     };
+       #   };
+       # };
         plugin.raw_exec = {config = {enabled = true;};};
+        plugin.nomad-driver-podman = {config = {};};
 
         # vault = {
         # enabled = true;
