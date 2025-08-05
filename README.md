@@ -23,7 +23,11 @@
     -- `sudo scp ../.sops/secrets/AGE_SECRET_KEY nixos@10.10.0.102:age.key`
     -- `nix-shell -p git`
     -- `git clone https://gitlab.com/cliarena_dotfiles/nixos`
-    -- add age.key to secrets folder
+    -- add age.key to secrets folder /srv/secrets
+    -- cd nixos/flake
+    -- change disk to target for installation in ../hosts/svr/disko.nix. it will work on boot even if its different
+    -- sudo nixos-install --flake .#svr
+    -- run memtest on boot if new pc or have system stutters to check if memory is faulty
 
 2. Disable Consul TLS encryption by commenting TLS block and rebuild
     - Because it needs agent certs from vault which needs to be configured using terranix
