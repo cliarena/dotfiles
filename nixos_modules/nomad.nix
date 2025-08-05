@@ -18,15 +18,15 @@ in {
       enable = true;
       # needed by Podman driver maybe others too
       dropPrivileges = false;
-      enableDocker = true;
+     # enableDocker = true;
       extraPackages = [
         # needed for service mesh
         pkgs.cni-plugins
-        # needed eved if consul is running as a service
+        # needed even if consul is running as a service
         pkgs.consul
       ];
 
-      # extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
+      extraSettingsPlugins = [ pkgs.nomad-driver-podman ];
       extraSettingsPaths = [config.sops.secrets."NOMAD_GOSSIP_ENCRYPTION_KEY.hcl".path];
       settings = {
         data_dir = "/srv/nomad/data";
