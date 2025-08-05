@@ -9,7 +9,7 @@ job "whoami" {
     count = 3
 
     task "whoami" {
-      driver = "docker"
+      driver = "podman"
       config {
         image = "containous/whoami"
       }

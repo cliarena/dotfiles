@@ -69,7 +69,8 @@ job "wolf" {
     }
 
     task "server" {
-      driver = "docker"
+      driver = "podman"
+     # driver = "docker"
 
       resources {
         cpu    = 2000
