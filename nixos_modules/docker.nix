@@ -14,10 +14,12 @@ in {
       containers.storage.settings.storage = {
         driver = "btrfs";
         graphroot = "/srv/var/lib/containers/storage";
-        options.pull_options = {
-          enable_partial_images = "true"; # must be string 
-          convert_images = "true"; # must be string
-        };
+
+       # btrfs driver doesn't support zstd partial pulling: smart pulling of only mmissing layers
+       # options.pull_options = {
+        #  enable_partial_images = "true"; # must be string 
+        #  convert_images = "true"; # must be string
+       # };
       };
 
       podman = {
