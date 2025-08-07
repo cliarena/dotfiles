@@ -19,7 +19,8 @@ in {
       wantedBy = ["timers.target"];
       timerConfig = {
         OnBootSec = "5m";
-        OnUnitActiveSec = "24h";
+        # OnUnitActiveSec = "24h";
+        OnCalendar = "daily";
         Unit = "hydra-image-importer.service";
       };
     };
