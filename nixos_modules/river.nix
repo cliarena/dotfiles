@@ -87,6 +87,7 @@ in {
             #  "${pkgs.brave}/bin/brave"
             #  "${pkgs.qutebrowser}/bin/qutebrowser"
             #  terminal
+            "'${pkgs.coreutils}/bin/rm -f /home/${host.user}/.config/BraveSoftware/Brave-Browser/Singleton*'" # fixs brave profile appears to be in use by another process
             "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution} --scale 1.3'" # change scale for zoom
             "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
             "'${pkgs.coreutils}/bin/shuf -zen1 /srv/library/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.wbg}/bin/wbg'"
