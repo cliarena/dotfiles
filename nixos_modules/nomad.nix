@@ -113,10 +113,10 @@ in {
               path = "/tmp";
               read_only = false;
             };
-            docker_socket = {
-              path = "/var/run/docker.sock";
-              read_only = false;
-            };
+           # docker_socket = {
+           #   path = "/var/run/docker.sock";
+           #   read_only = false;
+           # };
             shared_mem = {
               path = "/dev/shm";
               read_only = false;
