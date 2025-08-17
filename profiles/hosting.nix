@@ -44,5 +44,8 @@ in {
     _victoria_metrics.enable = true;
 
     _polaris.enable = true;
+
+
+    systemd.tmpfiles.rules = [ "d /tmp/sockets 0755 root users -" ]; # needed by nomad wolf job
   };
 }
