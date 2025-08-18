@@ -29,6 +29,7 @@ in {
           ${gc}  git@gitlab.com:cliarena_dotfiles/nixos ~/dotfiles
 
           ${gc}  git@gitlab.com:mallx/products ~/project_main
+          ${gc}  git@github.com:ziglang/zig ~/project_secondary
         '';
       };
     };
