@@ -30,11 +30,11 @@ in
         };
         zls = {
           enable = true;
-          # package = inputs.zls.packages.x86_64-linux.zls.overrideAttrs
-          #   (old: {
-          #     nativeBuildInputs =
-          #       [ inputs.zig_overlay.packages.x86_64-linux.master ];
-          #   });
+          package = inputs.zls.packages.x86_64-linux.zls.overrideAttrs
+            (old: {
+              nativeBuildInputs =
+                [ inputs.zig_overlay.packages.x86_64-linux.master ];
+            });
         };
       };
     };
