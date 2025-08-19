@@ -41,9 +41,9 @@ in {
       ### Design ###
       gimp-with-plugins
       #   darktable
-      ansel # darktable minus bloat
-      inkscape
-      blender-hip # use hip to get gpu acceleration
+      # ansel # darktable minus bloat
+      # inkscape
+      # blender-hip # use hip to get gpu acceleration
      # colmap
 
       ### Tools ###
