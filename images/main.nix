@@ -56,7 +56,16 @@ in
           };
           environment.systemPackages = with pkgs; [amdgpu_top];
 
-          nixpkgs.config.allowUnfree = true;
+          # nixpkgs.config.allowUnfree = true;
+        nixpkgs.config = {
+          allowUnfree = true;
+          allowBroken = true;
+          permittedInsecurePackages = [ #TODO: remove ASAP
+            "freeimage-3.18.0-unstable-2024-04-18" # needed by colmap
+             "libsoup-2.74.3"
+
+          ];
+        };
           security.rtkit.enable = true;
           hardware = {
             uinput.enable = true;
@@ -122,7 +131,6 @@ in
 
           # neede by wolf fake-udev but unfortunatly doesn't add devices so kmonad won't work
           # systemd.tmpfiles.rules = ["L /bin/bash - - - - ${pkgs.bash}/bin/bash"];
-
 
           networking = {
             hostName = host.user;
