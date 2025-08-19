@@ -167,7 +167,7 @@ in {
               },
               {
                 -- key = 'F10',
-                key = '1',
+                key = '!',
                 mods = 'CTRL|SHIFT',
                 action = act.SwitchToWorkspace {
                   name = 'project_main',
@@ -180,7 +180,7 @@ in {
               },
               {
                 -- key = 'F11',
-                key = '2',
+                key = '@',
                 mods = 'CTRL|SHIFT',
                 action = act.SwitchToWorkspace {
                   name = 'project_secondary',
