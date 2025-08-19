@@ -3,11 +3,13 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   module = "_lsp";
   description = "lsp";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
@@ -28,10 +30,10 @@ in {
         };
         zls = {
           enable = true;
-          # package = inputs.zls-overlay.packages.x86_64-linux.zls.overrideAttrs
+          # package = inputs.zls.packages.x86_64-linux.zls.overrideAttrs
           #   (old: {
           #     nativeBuildInputs =
-          #       [ inputs.zig-overlay.packages.x86_64-linux.master ];
+          #       [ inputs.zig_overlay.packages.x86_64-linux.master ];
           #   });
         };
       };
