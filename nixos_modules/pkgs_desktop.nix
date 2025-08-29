@@ -30,7 +30,7 @@ in {
       manix # # CLI Searcher for Nix, HM documentation
 
       brave
-      # chromium
+      ungoogled-chromium
       qutebrowser
 
       # kitty

@@ -5,7 +5,8 @@
   host,
   pkgs,
   ...
-}: let
+}:
+let
   module = "_river";
   description = "dynamic tiling Wayland compositor";
   inherit (lib) mkEnableOption mkIf;
@@ -21,18 +22,17 @@
   # terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
 
   tags = builtins.genList (x: x) 9;
-  tag_map_list =
-    builtins.map (tag: {
-      "${mode} ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
-      "${mode}+Shift ${toString (tag + 1)}" = "set-view-tags ${toString tag}";
-      "${mode}+Control ${toString (tag + 1)}" = "toggle-focused-tags ${toString tag}";
-      "${mode}+Shift+Control ${toString (tag + 1)}" = "toggle-view-tags ${toString tag}";
-    })
-    tags;
+  tag_map_list = builtins.map (tag: {
+    "${mode} ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
+    "${mode}+Shift ${toString (tag + 1)}" = "set-view-tags ${toString tag}";
+    "${mode}+Control ${toString (tag + 1)}" = "toggle-focused-tags ${toString tag}";
+    "${mode}+Shift+Control ${toString (tag + 1)}" = "toggle-view-tags ${toString tag}";
+  }) tags;
 
-  tag_map = builtins.foldl' (x: y: x // y) {} tag_map_list;
-in {
-  imports = [home-manager.nixosModules.home-manager];
+  tag_map = builtins.foldl' (x: y: x // y) { } tag_map_list;
+in
+{
+  imports = [ home-manager.nixosModules.home-manager ];
 
   options.${module}.enable = mkEnableOption description;
 
@@ -59,25 +59,31 @@ in {
         settings = {
           border-width = 1;
           default-layout = "rivertile";
-          declare-mode = ["locked" "normal" "passthrough"];
+          declare-mode = [
+            "locked"
+            "normal"
+            "passthrough"
+          ];
           map = {
-            normal =
-              {
-                "${mode}+Shift Q" = "close";
-                "${mode}+Shift E" = "exit";
-                "${mode} F" = "toggle-fullscreen";
-                "${mode} F11" = "enter-mode passthrough";
+            normal = {
+              "${mode}+Shift Q" = "close";
+              "${mode}+Shift E" = "exit";
+              "${mode} F" = "toggle-fullscreen";
+              "${mode} F11" = "enter-mode passthrough";
 
-                "${mode} R" = "spawn ${menu}";
-                "${mode} Return" = "spawn '${pkgs.wezterm}/bin/wezterm start --always-new-process'";
+              "${mode} R" = "spawn ${menu}";
+              "${mode} Return" = "spawn '${pkgs.wezterm}/bin/wezterm start --always-new-process'";
 
-                "${mode} Q" = "spawn ${pkgs.qutebrowser}/bin/qutebrowser";
-                "${mode} B" = "spawn ${pkgs.brave}/bin/brave";
+              "${mode} Q" = "spawn ${pkgs.qutebrowser}/bin/qutebrowser";
+              "${mode} B" = "spawn ${pkgs.brave}/bin/brave";
+              "${mode} C" = "'spawn ${pkgs.ungoogled-chromium}/bin/ --app=http://127.0.0.1:8080'";
 
-                #         "${mode} D" = "spawn ankama-launcher";
-              }
-              // tag_map;
-            passthrough = {"${mode} F11" = "enter-mode normal";};
+              #         "${mode} D" = "spawn ankama-launcher";
+            }
+            // tag_map;
+            passthrough = {
+              "${mode} F11" = "enter-mode normal";
+            };
           };
 
           set-repeat = "50 300";
