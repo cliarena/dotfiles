@@ -76,7 +76,8 @@ in
 
               "${mode} Q" = "spawn ${pkgs.qutebrowser}/bin/qutebrowser";
               "${mode} B" = "spawn ${pkgs.brave}/bin/brave";
-              "${mode} C" = "'spawn ${pkgs.ungoogled-chromium}/bin/ --app=http://127.0.0.1:8080'";
+              "${mode} C" =
+                "'spawn ${pkgs.ungoogled-chromium}/bin/chromium --incognito  --auto-open-devtools-for-tabs http://127.0.0.1:8080'";
 
               #         "${mode} D" = "spawn ankama-launcher";
             }
@@ -93,7 +94,7 @@ in
             #  "${pkgs.brave}/bin/brave"
             #  "${pkgs.qutebrowser}/bin/qutebrowser"
             #  terminal
-            "'${pkgs.coreutils}/bin/rm -f /home/${host.user}/.config/BraveSoftware/Brave-Browser/Singleton*'" # fixs brave profile appears to be in use by another process. due to changing of hostname inside docker containers
+            "'${pkgs.coreutils}/bin/rm -f /home/${host.user}/.config/BraveSoftware/Brave-Browser/Singleton* /home/${host.user}/.config/chromium/Singleton*'" # fixs brave profile appears to be in use by another process. due to changing of hostname inside docker containers
             "'${pkgs.wlr-randr}/bin/wlr-randr --output WL-1 --custom-mode ${resolution} --scale 1.3'" # change scale for zoom
             "'${pkgs.river}/bin/rivertile -view-padding 1 -outer-padding 3'"
             "'${pkgs.coreutils}/bin/shuf -zen1 /srv/library/wallpapers/* | ${pkgs.findutils}/bin/xargs -0 ${pkgs.wbg}/bin/wbg'"
