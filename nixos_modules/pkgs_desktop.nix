@@ -39,7 +39,7 @@ in {
       #   moonlight-qt
 
       ### Design ###
-      gimp-with-plugins
+      # gimp-with-plugins
       #   darktable
       # ansel # darktable minus bloat
       # inkscape
