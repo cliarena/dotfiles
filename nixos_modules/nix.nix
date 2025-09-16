@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   module = "_nix";
   description = "nix config";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
@@ -16,8 +18,16 @@ in {
       daemonCPUSchedPolicy = "idle"; # Deprioritizes nix builds for more predictable latencies
       channel.enable = false; # not needed using flakes
       # Constrain access to nix daemon
-      settings.allowed-users = ["@wheel" "hydra" "hydra-www"];
-      settings.trusted-users = ["@wheel" "hydra" "hydra-www"];
+      settings.allowed-users = [
+        "@wheel"
+        "hydra"
+        "hydra-www"
+      ];
+      settings.trusted-users = [
+        "@wheel"
+        "hydra"
+        "hydra-www"
+      ];
       settings.allowed-uris = [
         "github:"
         "https://github.com/"
@@ -41,6 +51,8 @@ in {
 
       # Garbage Collection
       # settings.auto-optimise-store = true; # slows ev build by alot
+      optimise.automatic = true;
+
       gc = {
         automatic = true;
         dates = "weekly";
