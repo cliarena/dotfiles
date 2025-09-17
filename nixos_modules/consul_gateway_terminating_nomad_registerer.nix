@@ -32,7 +32,7 @@ in {
 
   config = mkIf config.${module}.enable {
     systemd.services.consul_gateway_terminating_nomad_registerer = {
-      path = [pkgs.getent pkgs.envoy];
+      path = [pkgs.getent pkgs.envoy-bin];
       description = "register consul nomad terminating gateway";
       script = ''
         ${pkgs.consul}/bin/consul connect envoy -gateway terminating -register -service nomad-gateway  -admin-bind ${host.ip_addr}:19001 -address ${host.ip_addr}:4649 -ignore-envoy-compatibility
