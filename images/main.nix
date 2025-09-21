@@ -199,7 +199,7 @@ inputs.nixos-generators.nixosGenerate {
 
       systemd.services.desk = {
         description = "desktop runner";
-        path = with pkgs; [ river ];
+        path = with pkgs; [ river-classic ];
 
         environment = {
           DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
@@ -208,7 +208,7 @@ inputs.nixos-generators.nixosGenerate {
         # preStart = "${pkgs.coreutils}/bin/env";
 
         preStart = "${pkgs.coreutils}/bin/env && ${pkgs.coreutils}/bin/ls -la /tmp/sockets /run/user/1000 && ${pkgs.coreutils}/bin/ln -s /tmp/sockets/$WAYLAND_DISPLAY /run/user/1000/$WAYLAND_DISPLAY";
-        script = "${pkgs.river}/bin/river";
+        script = "${pkgs.river-classic}/bin/river";
         serviceConfig = {
           PassEnvironment = "SALAM XDG_RUNTIME_DIR WAYLAND_DISPLAY XDG_SESSION_TYPE PULSE_SERVER PULSE_SINK PULSE_SOURCE";
           AmbientCapabilities = "CAP_CHOWN CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH CAP_FOWNER CAP_SETGIDD CAP_SETFCAP CAP_SETUID CAP_SYS_ADMIN";
