@@ -277,8 +277,8 @@ inputs.nixos-generators.nixosGenerate {
       #      extraGroups = ["wheel" "video" "sound" "input" "uinput"];
       #    };
 
-      gc.automatic = lib.mkForce false; # only host should optimise
-      optimise.automatic = lib.mkForce false; # only host should optimise
+      nix.gc.automatic = lib.mkForce false; # only host should optimise
+      nix.optimise.automatic = lib.mkForce false; # only host should optimise
 
       _home_gitter.enable = true;
       profiles.common.enable = true;
