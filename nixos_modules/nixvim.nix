@@ -30,7 +30,7 @@ in {
     _spider.enable = true;
     _smart_splits.enable = true;
 
-    _auto_cmds.enable = true;
+    # _auto_cmds.enable = true;
     _auto_save.enable = true;
     _lastplace.enable = true;
 

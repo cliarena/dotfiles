@@ -30,45 +30,45 @@ in {
         };
       };
 
-      extraFiles = {
-        #  ((((comment) @injection.language) .
-        #  (string (string_content) @injection.content))
-        #  (#set! injection.combined))
-        "queries/zig/injections.scm" = {
-          enable = true;
-          text =
-            # scheme
-            ''
-              ;; extends
-              ((string) @injection.content
-                (#set! injection.include-children)
-                (#set! injection.language "lua"))
-
-              ((comment) @injection.language
-                . ; this is to make sure only adjacent comments are accounted for the injections
-                [
-                  (string
-                    (string_content) @injection.content)
-                    ((multiline_string) @injection.content)
-                ]
-                (#set! injection.include-children)
-                (#set! injection.language "html"))
-
-                ; (#gsub! @injection.language "//%s*([%w%p]+)%s*" "%1")
-                ; (#set! injection.combined))
-
-              (variable_declaration
-                ((identifier) @_path)
-                [
-                  ((string) @injection.content
-                    (#set! injection.language "lua"))
-                  ; ((multiline_string) @injection.content
-                  ;       (#set! injection.language "lua"))
-                ]
-                (#match? @_path "(^(configLua(Pre|Post)?|__raw))$"))
-            '';
-        };
-      };
+      # extraFiles = {
+      #   #  ((((comment) @injection.language) .
+      #   #  (string (string_content) @injection.content))
+      #   #  (#set! injection.combined))
+      #   "queries/zig/injections.scm" = {
+      #     enable = true;
+      #     text =
+      #       # scheme
+      #       ''
+      #         ;; extends
+      #         ((string) @injection.content
+      #           (#set! injection.include-children)
+      #           (#set! injection.language "lua"))
+      #
+      #         ((comment) @injection.language
+      #           . ; this is to make sure only adjacent comments are accounted for the injections
+      #           [
+      #             (string
+      #               (string_content) @injection.content)
+      #               ((multiline_string) @injection.content)
+      #           ]
+      #           (#set! injection.include-children)
+      #           (#set! injection.language "html"))
+      #
+      #           ; (#gsub! @injection.language "//%s*([%w%p]+)%s*" "%1")
+      #           ; (#set! injection.combined))
+      #
+      #         (variable_declaration
+      #           ((identifier) @_path)
+      #           [
+      #             ((string) @injection.content
+      #               (#set! injection.language "lua"))
+      #             ; ((multiline_string) @injection.content
+      #             ;       (#set! injection.language "lua"))
+      #           ]
+      #           (#match? @_path "(^(configLua(Pre|Post)?|__raw))$"))
+      #       '';
+      #   };
+      # };
     };
   };
 }
