@@ -20,15 +20,15 @@ in {
       timerConfig = {
         OnBootSec = "5m";
         # OnUnitActiveSec = "24h";
-        OnCalendar = "daily";
+        OnCalendar = "weekly";
         Unit = "hydra-image-importer.service";
       };
     };
 
     systemd.services."hydra-image-importer" = {
+        # ${pkgs.podman}/bin/podman rmi -f nixos  # no longer needed to free memory image is saved in disk
       script = ''
-        ${pkgs.podman}/bin/podman rmi -f nixos                                  \
-        && ${pkgs.wget}/bin/wget ${image_url}                                   \
+        ${pkgs.wget}/bin/wget ${image_url}                                      \
         && ${pkgs.xz}/bin/unxz nixos-system-x86_64-linux.tar.xz                 \
         && ${pkgs.podman}/bin/podman import nixos-system-x86_64-linux.tar nixos \
         && ${pkgs.coreutils}/bin/rm nixos-system-x86_64-linux.tar
