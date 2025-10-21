@@ -1,6 +1,7 @@
 {
   config,
   lib,
+pkgs,
   ...
 }: let
   module = "_treesitter";
@@ -28,6 +29,46 @@ in {
             };
           };
         };
+
+            grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          zig
+          html
+          css
+          sql
+
+          jq
+          json
+          json5
+          gnuplot
+
+          diff
+          git-config
+          git-rebase
+          gitattributes
+          gitcommit
+          gitignore
+
+          csv
+          tsv
+          toml
+          yaml
+          editorconfig
+
+          lua
+          luadoc
+          regex
+          robots
+          mermaid
+          hcl
+          dockerfile
+          # terraform
+
+          nu
+          bash
+          nix
+          pkgs.tree-sitter-grammars.tree-sitter-norg
+          pkgs.tree-sitter-grammars.tree-sitter-norg-meta
+    ];
       };
 
       # extraFiles = {
