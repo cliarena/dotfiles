@@ -1,10 +1,10 @@
 {
-  pkgs,
+  # pkgs,
   # disks ? ["/dev/sda"],
   ...
 }: let
    disk = "/dev/sda";
-  config_txt = pkgs.writeText "config.txt" ''
+  config_txt =pkgs: pkgs.writeText "config.txt" ''
     [pi4]
     kernel=u-boot-rpi4.bin
     enable_gic=1
@@ -35,7 +35,7 @@ in {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/firmware";
-                postMountHook = toString (pkgs.writeScript "postMountHook.sh" ''
+                postMountHook =pkgs: toString (pkgs.writeScript "postMountHook.sh" ''
                   (cd ${pkgs.raspberrypifw}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf *.dtb /mnt/firmware)
                   cp ${pkgs.ubootRaspberryPi4_64bit}/u-boot.bin /mnt/firmware/u-boot-rpi4.bin
                   cp ${config_txt} /mnt/firmware/config.txt
