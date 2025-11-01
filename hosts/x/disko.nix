@@ -16,7 +16,7 @@
     avoid_warnings=1
     dtoverlay=vc4-kms-v3d
   '';
-  boot_folder = toString "${pkgs.raspberrypifw}/share/raspberrypi/boot" ;
+  boot_folder = pkgs: toString "${pkgs.raspberrypifw}/share/raspberrypi/boot" ;
 in {
   disko.devices = {
     disk = {
