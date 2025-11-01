@@ -14,6 +14,9 @@
     # open the least amount possible
     tcp_ports = with ports; [dns 8080];
     udp_ports = with ports; [dns];
+    ssh_authorized_keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8IGiyQMdIau7bIL63er9C9O3o/6wxNX7x8CL0DC0Ot SVR"
+    ];
   };
   system = "aarch64-linux";
   nixpkgs = {
