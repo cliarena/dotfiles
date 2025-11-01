@@ -23,8 +23,12 @@ in {
   #  boot.loader.grub.enable= false;
   #  boot.loader.generic-extlinux-compatible.enable = true;
 
+    _nix.enable = true;
+    _users.enable = true;
+    _local.enable = true;
+
   profiles.host.enable = true;
-  profiles.common.enable = true;
+  # profiles.common.enable = true;
   # profiles.desktop.enable = true;
 
   #  _kmonad.enable = true;
