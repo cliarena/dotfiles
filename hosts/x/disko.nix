@@ -36,7 +36,8 @@ in {
                 format = "vfat";
                 mountpoint = "/firmware";
                 # postMountHook =pkgs: toString (pkgs.writeScript "postMountHook.sh" ''
-                postMountHook =pkgs:  pkgs.writeScript "postMountHook.sh" ''
+                # postMountHook =pkgs:  pkgs.writeScript "postMountHook.sh" ''
+                postMountHook =pkgs: ''
                   cd ${pkgs.raspberrypifw}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf *.dtb /mnt/firmware
                   cp ${pkgs.ubootRaspberryPi4_64bit}/u-boot.bin /mnt/firmware/u-boot-rpi4.bin
                   cp ${config_txt} /mnt/firmware/config.txt
