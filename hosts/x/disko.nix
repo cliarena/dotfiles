@@ -1,8 +1,9 @@
 {
-  disks ? ["/dev/sda"],
   pkgs,
+  # disks ? ["/dev/sda"],
   ...
 }: let
+   disk = "/dev/sda";
   config_txt = pkgs.writeText "config.txt" ''
     [pi4]
     kernel=u-boot-rpi4.bin
@@ -20,7 +21,8 @@ in {
     disk = {
       main = {
         type = "disk";
-        device = builtins.elemAt disks 0;
+        device =  disk;
+        # device = builtins.elemAt disks 0;
         content = {
           type = "gpt";
           partitions = {

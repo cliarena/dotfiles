@@ -10,7 +10,8 @@ in {
     [
       disko.nixosModules.disko
 
-      (import ./disko.nix {inherit pkgs;}) # doesn't support btrfs swapfile
+      # (import ./disko.nix {inherit pkgs;}) # doesn't support btrfs swapfile
+       ./disko.nix  # doesn't support btrfs swapfile
       ../../modules/boot/rpi.nix
       #    ../../modules/hardware/intel.nix
       ../../modules/netwoking/network.nix
