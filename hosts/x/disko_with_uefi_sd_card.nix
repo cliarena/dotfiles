@@ -1,21 +1,4 @@
-{
-  disks ? ["/dev/sda"],
-  pkgs,
-  ...
-}: let
-  config_txt = pkgs.writeText "config.txt" ''
-    [pi4]
-    kernel=u-boot-rpi4.bin
-    enable_gic=1
-    disable_overscan=1
-
-    [all]
-    arm_64bit=1
-    enable_uart=1
-    avoid_warnings=1
-    dtoverlay=vc4-kms-v3d
-  '';
-in {
+{disks ? ["/dev/sda"], ...}: {
   disko.devices = {
     disk = {
       main = {
@@ -24,45 +7,25 @@ in {
         content = {
           type = "gpt";
           partitions = {
-            firmware = {
-              # start = "2M";
-              size = "30M";
-              priority = 1;
-              type = "0700";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/firmware";
-                postMountHook = toString (pkgs.writeScript "postMountHook.sh" ''
-                  (cd ${pkgs.raspberrypifw}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf *.dtb /mnt/firmware)
-                  cp ${pkgs.ubootRaspberryPi4_64bit}/u-boot.bin /mnt/firmware/u-boot-rpi4.bin
-                  cp ${config_txt} /mnt/firmware/config.txt
-                '');
-                #  extraArgs = [ "-n boot" ];
-                #  device = "/dev/sda1";
-              };
-            };
-            boot = {
-              # start = "2M";
-              size = "1G";
-              # priority =1;
+            ESP = {
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
+                # label = "ESP";
                 mountpoint = "/boot";
-                #  extraArgs = [ "-n boot" ];
-                #  device = "/dev/sda1";
+                #  extraArgs = [ "-n ESP" ];
+                #  device = "/dev/disk/by-partlabel/ESP";
               };
             };
             nixos = {
-              # start = "512M";
-              #  end = "100%";
               size = "100%";
               content = {
                 type = "btrfs";
-                #    extraArgs = [ "--label nixos" ]; # Override existing partition
-                #    device = "/dev/sda2";
+                # label = "NIXOS";
+                # extraArgs = [ "-n NIXOS" ]; # Override existing partition
+                # device = "/dev/disk/by-partlabel/NIXOS";
                 subvolumes = {
                   # Mountpoints inferred from subvolume name
                   "/nix" = {

@@ -24,7 +24,7 @@ in {
 
   profiles.host.enable = true;
   profiles.common.enable = true;
-  profiles.desktop.enable = true;
+  # profiles.desktop.enable = true;
 
   #  _kmonad.enable = true;
   #  _sddm.enable = true;
