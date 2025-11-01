@@ -42,7 +42,7 @@ in {
                 #   cp ${config_txt} /mnt/firmware/config.txt
                 # '';
                 postMountHook = ''
-                  "cp ${config_txt} /mnt/firmware/config.txt"
+                  cp config_txt /mnt/firmware/config.txt
                 '';
                 #  extraArgs = [ "-n boot" ];
                 #  device = "/dev/sda1";
