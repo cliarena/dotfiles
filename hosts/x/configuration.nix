@@ -28,6 +28,8 @@ in {
     _local.enable = true;
 
   profiles.host.enable = true;
+    services.openssh.enable = true;
+
   # profiles.common.enable = true;
   # profiles.desktop.enable = true;
 
