@@ -16,6 +16,7 @@
     avoid_warnings=1
     dtoverlay=vc4-kms-v3d
   '';
+  boot_folder = toString "${pkgs.raspberrypifw}/share/raspberrypi/boot" ;
 in {
   disko.devices = {
     disk = {
@@ -41,8 +42,8 @@ in {
                 #   cp ${pkgs.ubootRaspberryPi4_64bit}/u-boot.bin /mnt/firmware/u-boot-rpi4.bin
                 #   cp ${config_txt} /mnt/firmware/config.txt
                 # '';
-                postMountHook = pkgs: toString ''
-                   (cd ${pkgs.raspberrypifw}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf *.dtb /mnt/firmware)
+                postMountHook = pkgs: ''
+                   (cd ${boot_folder} && cp bootcode.bin fixup*.dat start*.elf *.dtb /mnt/firmware)
                 '';
                 #  extraArgs = [ "-n boot" ];
                 #  device = "/dev/sda1";
