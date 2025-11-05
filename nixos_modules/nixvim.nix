@@ -39,7 +39,7 @@ in {
     _lint.enable = true;
     _conform.enable = true;
     _treesitter.enable = true;
-    _treesitter_textobjects.enable = true;
+    # _treesitter_textobjects.enable = true;
 
     _trouble.enable = true;
     _neotest.enable = true;
