@@ -26,6 +26,9 @@ in {
             dim = true;
             n_steps_ahead = 4;
           };
+          mappings = {
+            start_jumping = "f";
+          };
         };
         files = {};
         fuzzy = {};
