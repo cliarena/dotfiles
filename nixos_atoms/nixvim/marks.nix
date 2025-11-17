@@ -24,7 +24,7 @@ settings ={
     toggle = "m;";
   };
   refreshInterval = 150;
-}
+};
     };
   };
 }
