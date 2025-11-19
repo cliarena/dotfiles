@@ -22,6 +22,7 @@ in {
       #   youtube-tui
 
       kdePackages.kcachegrind
+      binutils # needed by kcachegrind to show code output assembly & control flow..
 
       jqp # # jq playground
       htmlq # # jq fo html
