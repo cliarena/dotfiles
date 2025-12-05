@@ -54,7 +54,6 @@ job "wolf" {
 
     }
 
-    
     task "pulse_cleaner" {
       lifecycle {
         hook = "prestart"
@@ -80,11 +79,11 @@ job "wolf" {
       env {
         XDG_RUNTIME_DIR            = "/tmp/sockets"
         HOST_APPS_STATE_FOLDER     = "/etc/wolf/state"
-        WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
+        # WOLF_DOCKER_FAKE_UDEV_PATH = "/etc/wolf"
         WOLF_DOCKER_SOCKET = "/var/run/podman/podman.sock"
         # Must remove pulse container if already running + increase timeout if needed
-        WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000 
-        
+        WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000
+
         # WOLF_LOG_LEVEL = "DEBUG"
       }
 
