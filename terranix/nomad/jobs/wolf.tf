@@ -93,6 +93,7 @@ job "wolf" {
 
         volumes = [
           "/srv/volumes/wolf:/etc/wolf",
+          "/srv/library/icons:/srv/library/icons",
           "/tmp/sockets:/tmp/sockets:rw",
         #  "/var/run/docker.sock:/var/run/docker.sock:rw",
           "/var/run/podman/podman.sock:/var/run/podman/podman.sock:rw",
