@@ -93,8 +93,8 @@ job "wolf" {
 
         volumes = [
           "/srv/volumes/wolf:/etc/wolf",
-          "/srv/library/icons:/srv/library/icons", // icons for moonlight apps
-          "/run/current-system/sw/bin:/run/current-system/sw/bin", // for using nixos installed pkgs as apps
+          "/srv/library/icons:/srv/library/icons", # icons for moonlight apps
+          "/run/current-system/sw/bin:/run/current-system/sw/bin", # icons for moonlight apps
           "/tmp/sockets:/tmp/sockets:rw",
         #  "/var/run/docker.sock:/var/run/docker.sock:rw",
           "/var/run/podman/podman.sock:/var/run/podman/podman.sock:rw",
