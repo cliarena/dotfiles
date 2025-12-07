@@ -92,10 +92,11 @@ job "wolf" {
         ports      = ["http", "https", "control", "rtsp", "audio_0", "audio_1", "audio_2", "audio_3", "video_0", "video_1", "video_2", "video_3", ]
 
         volumes = [
+          "/tmp/sockets:/tmp/sockets:rw",
           "/srv/volumes/wolf:/etc/wolf",
           "/srv/library/icons:/srv/library/icons", # icons for moonlight apps
-          "/run/current-system/sw/bin:/run/current-system/sw/bin", # icons for moonlight apps
-          "/tmp/sockets:/tmp/sockets:rw",
+          "/nix/store:/nix/store:ro", # to run nixos pkgs
+          "/run/current-system/sw/bin:/run/current-system/sw/bin:ro", # to run nixos pkgs
         #  "/var/run/docker.sock:/var/run/docker.sock:rw",
           "/var/run/podman/podman.sock:/var/run/podman/podman.sock:rw",
           "/dev/:/dev/:rw",
