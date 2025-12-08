@@ -83,7 +83,6 @@ job "wolf" {
         WOLF_DOCKER_SOCKET = "/var/run/podman/podman.sock"
         # Must remove pulse container if already running + increase timeout if needed
         WOLF_PULSE_CONTAINER_TIMEOUT_MS = 5000
-        WOLF_STOP_CONTAINER_ON_EXIT = true
         # WOLF_LOG_LEVEL = "DEBUG"
       }
 
