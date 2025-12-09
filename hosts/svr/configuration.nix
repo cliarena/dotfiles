@@ -68,11 +68,11 @@
   #   # Fix `setuptools` not being found
   #   postBuild = "rm -rf $out/nix-support";
   # };
-  sway_cfg = pkgs.writeText "sway_cfg" ''
-    set $mod Mod1
-    bindsym $mod+Return exec ${pkgs.kitty}/bin/kitty
-    bindsym $mod+Shift+q kill
-  '';
+  # sway_cfg = pkgs.writeText "sway_cfg" ''
+  #   set $mod Mod1
+  #   bindsym $mod+Return exec ${pkgs.kitty}/bin/kitty
+  #   bindsym $mod+Shift+q kill
+  # '';
 in {
   imports =
     [
@@ -89,16 +89,16 @@ in {
     ++ lib.fileset.toList ../../profiles
     ++ lib.fileset.toList ../../spaces;
 
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.sway}/bin/sway -c ${sway_cfg}";
-        user = "svr";
-      };
-      default_session = initial_session;
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = rec {
+  #     initial_session = {
+  #       command = "${pkgs.sway}/bin/sway -c ${sway_cfg}";
+  #       user = "svr";
+  #     };
+  #     default_session = initial_session;
+  #   };
+  # };
 
   profiles.host.enable = true;
   profiles.common.enable = true;
@@ -117,58 +117,58 @@ in {
   # _tokens_graph.enable = true;
   # systemd.tmpfiles.rules = [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];
 
-  environment.systemPackages = with pkgs; [
-    ### Virtualization ###
-    virtiofsd # needed by microvm jobs to use virtiofs shares
-
-    # (opensplat.overrideAttrs (finalAttrs: previousAttrs: {
-    #   # env.PYTORCH_ROCM_ARCH =
-    #   # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
-    #   # stdenv = pkgs.llvmPackages.stdenv;
-    #
-    #   buildInputs = previousAttrs.buildInputs ++ [ rocm_toolkit ];
-    #   nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [ rocm_toolkit ];
-    #   # ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
-    #   # [ python311Packages.torchWithRocm ];
-    #
-    #   preConfigure = ''
-    #     export ROCM_PATH=${rocm_toolkit}
-    #     export ROCM_HOME=${rocm_toolkit}
-    #     export ROCM_SOURCE_DIR=${rocm_toolkit}
-    #     export PYTORCH_ROCM_ARCH="${gpuTargetString}"
-    #     export CMAKE_CXX_FLAGS="-I${rocm_toolkit}/include -I${rocm_toolkit}/include/rocblas"
-    #     export LD_LIBRARY_PATH="${rocm_toolkit}/include/hip/"
-    #     export CMAKE_PREFIX_PATH="${pkgs.libtorch-bin}"
-    #   '';
-    #   # dontUseCmakeConfigure = true;
-    #
-    #   cmakeFlags = previousAttrs.cmakeFlags ++ [
-    #     (lib.cmakeFeature "GPU_RUNTIME" "HIP")
-    #     # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
-    #     # (lib.cmakeFeature "HIP_PATH" "${rocmEnv}")
-    #     (lib.cmakeFeature "HIP_ROOT_DIR" "${rocm_toolkit}")
-    #     (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
-    #     # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
-    #     # (lib.cmakeFeature "CMAKE_MODULE_PATH" "${rocmEnv}/lib/cmake/hip")
-    #     # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocm_toolkit}/lib/cmake")
-    #     # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${pkgs.libtorch-bin}")
-    #     # (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
-    #     # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
-    #     # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/bin")
-    #     # TODO: auto-detect
-    #     # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "${gpuTargetString}")
-    #     # (lib.cmakeFeature "ROCM_PATH" "${rocm_toolkit}")
-    #     # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx1032;gfx90c:xnack-")
-    #     # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx000;gfx1032;gfx90c")
-    #     # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942")
-    #
-    #   ];
-    # }))
-  ];
-  nix.settings.extra-sandbox-paths = [
-    "/dev/kfd"
-    "/sys/devices/virtual/kfd"
-    "/dev/dri/renderD128"
-    "/dev/dri/renderD129"
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   ### Virtualization ###
+  #   virtiofsd # needed by microvm jobs to use virtiofs shares
+  #
+  #   # (opensplat.overrideAttrs (finalAttrs: previousAttrs: {
+  #   #   # env.PYTORCH_ROCM_ARCH =
+  #   #   # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942";
+  #   #   # stdenv = pkgs.llvmPackages.stdenv;
+  #   #
+  #   #   buildInputs = previousAttrs.buildInputs ++ [ rocm_toolkit ];
+  #   #   nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [ rocm_toolkit ];
+  #   #   # ++ (with pkgs.rocmPackages; [ rocblas hipblas clr ]);
+  #   #   # [ python311Packages.torchWithRocm ];
+  #   #
+  #   #   preConfigure = ''
+  #   #     export ROCM_PATH=${rocm_toolkit}
+  #   #     export ROCM_HOME=${rocm_toolkit}
+  #   #     export ROCM_SOURCE_DIR=${rocm_toolkit}
+  #   #     export PYTORCH_ROCM_ARCH="${gpuTargetString}"
+  #   #     export CMAKE_CXX_FLAGS="-I${rocm_toolkit}/include -I${rocm_toolkit}/include/rocblas"
+  #   #     export LD_LIBRARY_PATH="${rocm_toolkit}/include/hip/"
+  #   #     export CMAKE_PREFIX_PATH="${pkgs.libtorch-bin}"
+  #   #   '';
+  #   #   # dontUseCmakeConfigure = true;
+  #   #
+  #   #   cmakeFlags = previousAttrs.cmakeFlags ++ [
+  #   #     (lib.cmakeFeature "GPU_RUNTIME" "HIP")
+  #   #     # (lib.cmakeFeature "HIP_DIR" "/opt/rocm")
+  #   #     # (lib.cmakeFeature "HIP_PATH" "${rocmEnv}")
+  #   #     (lib.cmakeFeature "HIP_ROOT_DIR" "${rocm_toolkit}")
+  #   #     (lib.cmakeFeature "OPENSPLAT_BUILD_SIMPLE_TRAINER" "ON")
+  #   #     # (lib.cmakeFeature "CMAKE_MODULE_PATH" "/opt/rocm/lib/cmake/hip")
+  #   #     # (lib.cmakeFeature "CMAKE_MODULE_PATH" "${rocmEnv}/lib/cmake/hip")
+  #   #     # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${rocm_toolkit}/lib/cmake")
+  #   #     # (lib.cmakeFeature "CMAKE_PREFIX_PATH" "${pkgs.libtorch-bin}")
+  #   #     # (lib.cmakeFeature "CMAKE_HIP_COMPILER_ROCM_ROOT" "${rocmEnv}")
+  #   #     # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/lib/cmake/hip")
+  #   #     # (lib.cmakeFeature "CMAKE_HIP_COMPILER" "${rocmEnv}/bin")
+  #   #     # TODO: auto-detect
+  #   #     # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "${gpuTargetString}")
+  #   #     # (lib.cmakeFeature "ROCM_PATH" "${rocm_toolkit}")
+  #   #     # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx1032;gfx90c:xnack-")
+  #   #     # (lib.cmakeFeature "CMAKE_HIP_ARCHITECTURES" "gfx000;gfx1032;gfx90c")
+  #   #     # "gfx900;gfx906;gfx908;gfx90a;gfx1030;gfx1100;gfx1101;gfx940;gfx941;gfx942")
+  #   #
+  #   #   ];
+  #   # }))
+  # ];
+  # nix.settings.extra-sandbox-paths = [
+  #   "/dev/kfd"
+  #   "/sys/devices/virtual/kfd"
+  #   "/dev/dri/renderD128"
+  #   "/dev/dri/renderD129"
+  # ];
 }
