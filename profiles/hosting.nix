@@ -16,7 +16,7 @@ in {
 
     _hydra.enable = true;
     _hydra_image_importer.enable = true;
-    _auditd.enable = true;
+    # _auditd.enable = true;
     _impermanence.enable = true;
 
     _acme.enable = true;
@@ -44,7 +44,6 @@ in {
     _victoria_metrics.enable = true;
 
     _polaris.enable = true;
-
 
     systemd.tmpfiles.rules = [ "d /tmp/sockets 0755 root users -" ]; # needed by nomad wolf job
   };
