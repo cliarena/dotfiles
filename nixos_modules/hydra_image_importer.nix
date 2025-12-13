@@ -27,8 +27,9 @@ in {
 
     systemd.services."hydra-image-importer" = {
         # ${pkgs.podman}/bin/podman rmi -f nixos  # no longer needed to free memory image is saved in disk
+        # ${pkgs.podman}/bin/podman rmi -f nixos                                  \ # removes dead nixos containers which doesn't let moonlight start it
       script = ''
-        ${pkgs.podman}/bin/podman rmi -f nixos                                  \ # removes dead nixos containers which doesn't let moonlight start it
+        ${pkgs.podman}/bin/podman rmi -f nixos                                  \
         && ${pkgs.wget}/bin/wget ${image_url}                                      \
         && ${pkgs.xz}/bin/unxz nixos-system-x86_64-linux.tar.xz                 \
         && ${pkgs.podman}/bin/podman import nixos-system-x86_64-linux.tar nixos \
