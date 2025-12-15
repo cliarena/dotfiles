@@ -24,6 +24,7 @@ in {
       kdePackages.kcachegrind
       binutils # needed by kcachegrind to show code output assembly & control flow..
 
+      qrrs # QR code cli printer
       jqp # # jq playground
       htmlq # # jq fo html
       httpie
