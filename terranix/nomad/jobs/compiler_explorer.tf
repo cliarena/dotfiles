@@ -19,7 +19,7 @@ job "compiler_explorer" {
         ports      = ["http"]
         image = "madduci/docker-compiler-explorer:latest"
         volumes = [
-          "/nix/store:/nix/store:ro", # to run nixos pkgs
+          "/nix/store:/nix/store", # to run nixos pkgs
           "/run/current-system/sw/bin/zig:/usr/bin/zig", # to access zig pkg
         ]
       }
