@@ -22,7 +22,7 @@ require("compiler-explorer").setup({
     highlight = true, -- highlight the matching line(s) in the other buffer.
     jump = false, -- move the cursor in the other buffer to the first matching line.
   },
-  open_qflist = false, --  Open qflist after compilation if there are diagnostics.
+  open_qflist = true, --  Open qflist after compilation if there are diagnostics.
   split = "vsplit", -- How to split the window after the second compile (split/vsplit).
   compiler_flags = "", -- Default flags passed to the compiler.
   job_timeout_ms = 25000, -- Timeout for libuv job in milliseconds.
