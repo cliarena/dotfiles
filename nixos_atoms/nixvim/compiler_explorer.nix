@@ -4,8 +4,8 @@
   pkgs,
   ...
 }: let
-  module = "_venn";
-  description = "draw ASCII diagrams";
+  module = "_compiler_explorer";
+  description = "Assembly explorer";
   inherit (lib) mkEnableOption mkIf;
 in {
   options.${module}.enable = mkEnableOption description;
