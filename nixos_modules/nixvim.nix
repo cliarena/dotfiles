@@ -38,6 +38,7 @@ in {
     _lsp.enable = true;
     _lint.enable = true;
     _conform.enable = true;
+    _compiler_explorer.enable = true;
     _treesitter.enable = true;
     # _treesitter_textobjects.enable = true;
 
