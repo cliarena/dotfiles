@@ -19,6 +19,7 @@ job "compiler_exlorer" {
         ports      = ["http"]
         image = "madduci/docker-compiler-explorer:latest"
         volumes = [
+          "/nix/store:/nix/store:ro", # to run nixos pkgs
           "/run/current-system/sw/bin:/run/current-system/sw/bin:ro", # to run nixos pkgs
         ]
       }
