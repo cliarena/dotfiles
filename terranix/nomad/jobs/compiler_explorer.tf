@@ -20,8 +20,17 @@ job "compiler_explorer" {
         image = "madduci/docker-compiler-explorer:latest"
         volumes = [
           "/nix/store:/nix/store", # to run nixos pkgs
-          "/run/current-system/sw/bin/zig:/usr/bin/zig", # to access zig pkg
+          # "/run/current-system/sw/bin/zig:/usr/bin/zig", # to access zig pkg
         ]
+mount {
+    type = "bind"
+    target = "/usr/bin/zig"
+    source = "/run/current-system/sw/bin/zig"
+    readonly = false
+    bind_options {
+      propagation = "rshared"
+    }
+  }
       }
     }
   }
