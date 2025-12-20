@@ -1,4 +1,4 @@
-job "compiler_exlorer" {
+job "compiler_explorer" {
 
   datacenters = [
     "dc1"
