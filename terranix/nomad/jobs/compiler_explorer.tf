@@ -20,7 +20,7 @@ job "compiler_explorer" {
         image = "madduci/docker-compiler-explorer:latest"
         volumes = [
           "/nix/store:/nix/store", # to run nixos pkgs
-          "/run/current-system/sw/bin/:/tmp/bin/", # to access zig pkg
+          "/run/current-system/sw/bin/:/usr/local/bin/", # to access zig pkg
         ]
       }
     }
