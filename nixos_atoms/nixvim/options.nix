@@ -43,7 +43,6 @@ in {
         # conceallevel = 0; # so that `` is visible in markdown files
         conceallevel = 1; # Conceal neorg links
         fileencoding = "utf-8"; # the encoding written to a file
-        nofoldenable = true; # disable folding
         foldmethod = "manual"; # folding set to "expr" for treesitter based folding
         foldexpr = "nvim_treesitter#foldexpr()"; # set to "nvim_treesitter#foldexpr()" for treesitter based folding
         hidden =
