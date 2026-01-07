@@ -30,7 +30,7 @@ in {
      catppuccin = {
        enable = true;
        flavor = "mocha";
-       chromium.enable = true;
+       # chromium.enable = true;
        qutebrowser.enable = true;
      };
     };
