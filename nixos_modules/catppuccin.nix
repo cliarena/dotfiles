@@ -19,6 +19,8 @@ in {
 
       # Don't use modules with IFD by default
       tty.enable = false;
+      chromium.enable = true;
+      qutebrowser.enable = true;
     };
   };
 }
