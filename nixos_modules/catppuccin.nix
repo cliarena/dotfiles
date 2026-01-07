@@ -13,7 +13,7 @@ in {
   imports = [
     # inputs.catppuccin.nixosModules.catppuccin
     # inputs.catppuccin.homeModules.catppuccin
-    # home-manager.nixosModules.home-manager
+    home-manager.nixosModules.home-manager
   ];
 
   options.${module}.enable = mkEnableOption description;
