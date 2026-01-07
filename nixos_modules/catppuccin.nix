@@ -24,8 +24,8 @@ in {
     home-manager.users.${host.user} = {
     catppuccin = {
       flavor = "mocha";
-      chromium.enable = true;
-      qutebrowser.enable = true;
+      # chromium.enable = true;
+      # qutebrowser.enable = true;
     };
     };
   };
