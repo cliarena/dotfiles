@@ -31,7 +31,7 @@ in {
        enable = true;
        flavor = "mocha";
        # chromium.enable = true;
-       qutebrowser.enable = true;
+       # qutebrowser.enable = true;
      };
     };
   };
