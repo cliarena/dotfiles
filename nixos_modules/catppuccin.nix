@@ -11,7 +11,7 @@
   inherit (inputs) home-manager catppuccin;
 in {
   imports = [
-    catppuccin.nixosModules.catppuccin
+    # catppuccin.nixosModules.catppuccin
    catppuccin.homeModules.catppuccin
     home-manager.nixosModules.home-manager
   ];
@@ -19,13 +19,13 @@ in {
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-
-      # Don't use modules with IFD by default
-      tty.enable = false;
-    };
+    # catppuccin = {
+    #   enable = true;
+    #   flavor = "mocha";
+    #
+    #   # Don't use modules with IFD by default
+    #   tty.enable = false;
+    # };
     home-manager.users.${host.user} = {
      catppuccin = {
        enable = true;
