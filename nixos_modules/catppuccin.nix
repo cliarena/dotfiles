@@ -26,13 +26,13 @@ in {
     #   # Don't use modules with IFD by default
     #   tty.enable = false;
     # };
-    # home-manager.users.${host.user} = {
+    home-manager.users.${host.user} = {
     # catppuccin = {
     #   enable = true;
     #   flavor = "mocha";
     #   # chromium.enable = true;
     #   # qutebrowser.enable = true;
     # };
-    # };
+    };
   };
 }
