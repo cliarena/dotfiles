@@ -15,7 +15,6 @@ in {
     _users.enable = true;
     _local.enable = true;
 
-    _catppuccin.enable = true;
     _nixvim.enable = true;
 
     _pkgs_base.enable = true;
