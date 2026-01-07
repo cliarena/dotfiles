@@ -28,7 +28,7 @@ in {
     home-manager.users.${host.user} = {
       imports = [catppuccin.homeModules.catppuccin];
      catppuccin = {
-       # enable = true;
+       enable = false;
        flavor = "mocha";
        # chromium.enable = true;
        qutebrowser.enable = true;
