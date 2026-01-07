@@ -15,7 +15,7 @@ in {
       plugins.hmts.enable = true; # highlight home-manager strings
       plugins.treesitter = {
         enable = true;
-        folding = true;
+        folding.enable = false;
         settings = {
           highlight.enable = true;
           indent.enable = true;
