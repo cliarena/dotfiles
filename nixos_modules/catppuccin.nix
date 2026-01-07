@@ -8,8 +8,9 @@
   module = "_catppuccin";
   description = "catppuccin theme";
   inherit (lib) mkEnableOption mkIf;
+  inherit (inputs) home-manager;
 in {
-  imports = [inputs.catppuccin.nixosModules.catppuccin inputs.catppuccin.homeModules.catppuccin inputs.home-manager.nixosModules.home-manager];
+  imports = [inputs.catppuccin.nixosModules.catppuccin inputs.catppuccin.homeModules.catppuccin home-manager.nixosModules.home-manager];
 
   options.${module}.enable = mkEnableOption description;
 
