@@ -11,7 +11,7 @@
   inherit (inputs) home-manager catppuccin;
 in {
   imports = [
-    # catppuccin.nixosModules.catppuccin
+    catppuccin.nixosModules.catppuccin
     home-manager.nixosModules.home-manager
   ];
 
