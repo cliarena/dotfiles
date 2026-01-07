@@ -9,7 +9,7 @@
   description = "catppuccin theme";
   inherit (lib) mkEnableOption mkIf;
 in {
-  imports = [inputs.catppuccin.nixosModules.catppuccin inputs.catppuccin.homeModules.catppuccin];
+  imports = [inputs.catppuccin.nixosModules.catppuccin inputs.catppuccin.homeModules.catppuccin inputs.home-manager.nixosModules.home-manager];
 
   options.${module}.enable = mkEnableOption description;
 
@@ -24,8 +24,8 @@ in {
     home-manager.users.${host.user} = {
     catppuccin = {
       flavor = "mocha";
-      # chromium.enable = true;
-      # qutebrowser.enable = true;
+      chromium.enable = true;
+      qutebrowser.enable = true;
     };
     };
   };
