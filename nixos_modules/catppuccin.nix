@@ -12,7 +12,6 @@
 in {
   imports = [
     # catppuccin.nixosModules.catppuccin
-   catppuccin.homeModules.catppuccin
     home-manager.nixosModules.home-manager
   ];
 
@@ -27,6 +26,7 @@ in {
     #   tty.enable = false;
     # };
     home-manager.users.${host.user} = {
+      imports = [catppuccin.homeModules.catppuccin];
      catppuccin = {
        enable = true;
        flavor = "mocha";
