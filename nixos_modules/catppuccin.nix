@@ -27,12 +27,12 @@ in {
     # };
     home-manager.users.${host.user} = {
       imports = [catppuccin.homeModules.catppuccin];
-     catppuccin = {
-       enable = true;
-       flavor = "mocha";
-       # chromium.enable = true;
-       # qutebrowser.enable = true;
-     };
+     # catppuccin = {
+     #   enable = true;
+     #   flavor = "mocha";
+     #   # chromium.enable = true;
+     #   # qutebrowser.enable = true;
+     # };
     };
   };
 }
