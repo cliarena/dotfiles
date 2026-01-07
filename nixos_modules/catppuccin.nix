@@ -12,7 +12,7 @@
 in {
   imports = [
     # inputs.catppuccin.nixosModules.catppuccin
-    inputs.catppuccin.homeModules.catppuccin
+    # inputs.catppuccin.homeModules.catppuccin
     home-manager.nixosModules.home-manager
   ];
 
