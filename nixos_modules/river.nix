@@ -77,7 +77,7 @@ in
               "${mode} Q" = "spawn ${pkgs.qutebrowser}/bin/qutebrowser";
               "${mode} B" = "spawn ${pkgs.brave}/bin/brave";
               "${mode} C" =
-                "spawn '${pkgs.ungoogled-chromium}/bin/chromium --incognito  --auto-open-devtools-for-tabs http://127.0.0.1:8080'";
+                "spawn '${pkgs.ungoogled-chromium}/bin/chromium --incognito --enable-experimental-web-platform-features --auto-open-devtools-for-tabs http://127.0.0.1:8080'";
 
               #         "${mode} D" = "spawn ankama-launcher";
             }
