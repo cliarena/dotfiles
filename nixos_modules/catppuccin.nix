@@ -13,7 +13,7 @@ in {
   imports = [
     # inputs.catppuccin.nixosModules.catppuccin
     # inputs.catppuccin.homeModules.catppuccin
-    home-manager.nixosModules.home-manager
+    # home-manager.nixosModules.home-manager
   ];
 
   options.${module}.enable = mkEnableOption description;
@@ -26,13 +26,13 @@ in {
     #   # Don't use modules with IFD by default
     #   tty.enable = false;
     # };
-    home-manager.users.${host.user} = {
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      # chromium.enable = true;
-      # qutebrowser.enable = true;
-    };
-    };
+    # home-manager.users.${host.user} = {
+    # catppuccin = {
+    #   enable = true;
+    #   flavor = "mocha";
+    #   # chromium.enable = true;
+    #   # qutebrowser.enable = true;
+    # };
+    # };
   };
 }
