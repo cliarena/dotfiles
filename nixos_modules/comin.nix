@@ -3,19 +3,21 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   module = "_comin";
   description = "GitOps For NixOS Machines";
   inherit (lib) mkEnableOption mkIf;
-in {
-  imports = [inputs.comin.nixosModules.comin];
+in
+{
+  imports = [ inputs.comin.nixosModules.comin ];
 
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     services.comin = {
       enable = true;
-      flakeSubdirectory = "flake";
+      # flakeSubdirectory = "flake";
       remotes = [
         {
           name = "origin";
