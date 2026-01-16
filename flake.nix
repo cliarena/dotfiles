@@ -107,7 +107,7 @@
           })
         ];
 
-        nixDir = ../.;
+        nixDir = ./.;
         nixDirAliases = {
           nixosConfigurations = [ "hosts" ];
           # nixosModules = [ "nixos_modules" ];
@@ -117,9 +117,10 @@
         nixpkgs.config = {
           allowUnfree = true;
           allowBroken = true;
-          permittedInsecurePackages = [ #TODO: remove ASAP
+          permittedInsecurePackages = [
+            # TODO: remove ASAP
             "freeimage-3.18.0-unstable-2024-04-18" # needed by colmap
-             "libsoup-2.74.3"
+            "libsoup-2.74.3"
 
           ];
         };

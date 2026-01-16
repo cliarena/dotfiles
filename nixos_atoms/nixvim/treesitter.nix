@@ -1,13 +1,15 @@
 {
   config,
   lib,
-pkgs,
+  pkgs,
   ...
-}: let
+}:
+let
   module = "_treesitter";
   description = "treesitter config";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
@@ -30,7 +32,7 @@ in {
           };
         };
 
-            grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           zig
           html
           css
@@ -57,7 +59,7 @@ in {
           lua
           luadoc
           regex
-          robots
+          # robots
           mermaid
           hcl
           dockerfile
@@ -68,7 +70,7 @@ in {
           nix
           pkgs.tree-sitter-grammars.tree-sitter-norg
           pkgs.tree-sitter-grammars.tree-sitter-norg-meta
-    ];
+        ];
       };
 
       # extraFiles = {
