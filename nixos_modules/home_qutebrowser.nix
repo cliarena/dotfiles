@@ -30,6 +30,7 @@ in
           rsci = "https://sci-hub.st/match/{}";
           rarx = "https://arxiv.org/search/?query={}&searchtype=all&source=header";
           rana = "https://annas-archive.li/search?index=journals&q={}";
+          rdoi = "https://annas-archive.li/scidb/{}";
 
           yt = "https://www.youtube.com/results?search_query={}";
 
