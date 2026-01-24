@@ -66,9 +66,12 @@ in
           ];
           map = {
             normal = {
+              "${mode} F" = "spawn '${pkgs.warpd}/bin/warpd --hint'";
+              "${mode} M" = "spawn '${pkgs.warpd}/bin/warpd --normal'";
+
               "${mode}+Shift Q" = "close";
               "${mode}+Shift E" = "exit";
-              "${mode} F" = "toggle-fullscreen";
+              # "${mode} F" = "toggle-fullscreen";
               "${mode} F11" = "enter-mode passthrough";
 
               "${mode} R" = "spawn ${menu}";
