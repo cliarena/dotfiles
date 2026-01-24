@@ -28,6 +28,8 @@ in
         content = {
           pdfjs = true;
           autoplay = false;
+          prefers_reduced_motion = true;
+
         };
         searchEngines = {
           rsci = "https://sci-hub.st/match/{}";
