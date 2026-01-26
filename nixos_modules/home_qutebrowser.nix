@@ -56,6 +56,8 @@ in
         quickmarks = {
           focumon = "https://www.focumon.com/";
 
+          imh = "https://muhaffidh.app/";
+
           zig_ref = "https://ziglang.org/documentation/master/";
           zig_std = "https://ziglang.org/documentation/master/std/";
         };
