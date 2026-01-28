@@ -153,7 +153,7 @@
           };
         };
 
-        apps = pkgs: import ../terranix { inherit inputs pkgs; };
+        apps = pkgs: import ./terranix { inherit inputs pkgs; };
 
         # package = pkgs: import ../images/main2.nix {inherit lib pkgs inputs;};
         # package = pkgs: pkgs.hello;
@@ -162,7 +162,7 @@
         # use perSystem is module option not available natively bu flakelight
         perSystem = pkgs: {
           hydraJobs = {
-            main = import ../images/main.nix { inherit lib pkgs inputs; };
+            main = import ./images/main.nix { inherit lib pkgs inputs; };
           };
         };
 
