@@ -25,11 +25,13 @@ in
         # TIP: Customize hinting per website
         # with config.pattern("https://frame.work/*"):
         # c.hints.selectors["all"].append("label[data-test-id=profile-icon]")
-        content = {
-          pdfjs = true;
-          autoplay = false;
-          prefers_reduced_motion = true;
+        settings = {
+          content = {
+            pdfjs = true;
+            autoplay = false;
+            prefers_reduced_motion = true;
 
+          };
         };
         searchEngines = {
           rsci = "https://sci-hub.st/match/{}";
