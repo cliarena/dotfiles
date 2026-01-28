@@ -12,6 +12,17 @@ let
   inherit (lib) mkEnableOption mkIf;
   inherit (inputs) home-manager;
 
+  warpd_wl =
+    (pkgs.warpd.overrideAttrs {
+      src = pkgs.fetchFromGitHub {
+        owner = "rvaiya";
+        repo = "warpd";
+        rev = "01650eabf70846deed057a77ada3c0bbb6d97d6e";
+        sha256 = "sha256-61+kJvOi4oog0+tGucc1rWemdx2vp15wlluJE+1PzTs=";
+      };
+    }).override
+      { withX = false; };
+
   mode = "Alt";
   # resolution = "4096x2160";
   resolution = "3840x2160";
@@ -66,8 +77,10 @@ in
           ];
           map = {
             normal = {
-              "${mode} F" = "spawn '${pkgs.warpd}/bin/warpd --hint'";
-              "${mode} M" = "spawn '${pkgs.warpd}/bin/warpd --normal'";
+              # "${mode} F" = "spawn '${pkgs.warpd}/bin/warpd --hint'";
+              # "${mode} M" = "spawn '${pkgs.warpd}/bin/warpd --normal'";
+              "${mode} F" = "spawn '${warpd_wl}/bin/warpd --hint'";
+              "${mode} M" = "spawn '${warpd_wl}/bin/warpd --normal'";
 
               "${mode}+Shift Q" = "close";
               "${mode}+Shift E" = "exit";
