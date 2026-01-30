@@ -55,14 +55,16 @@ in
           nt = "https://nixpk.gs/pr-tracker.html?pr={}"; # Nixpkgs PR Tracker
         };
 
-        # quickmarks = {
-        #   focumon = "https://www.focumon.com/";
-        #
-        #   imh = "https://muhaffidh.app/";
-        #
-        #   zig_ref = "https://ziglang.org/documentation/master/";
-        #   zig_std = "https://ziglang.org/documentation/master/std/";
-        # };
+        quickmarks = {
+          focumon = "https://www.focumon.com/";
+          imh = "https://muhaffidh.app/";
+
+          # Landscapes Viewers
+ldbs = "https://dbdb.io/browse";
+
+          zigref = "https://ziglang.org/documentation/master/";
+          zigstd = "https://ziglang.org/documentation/master/std/";
+        };
 
       };
     };
