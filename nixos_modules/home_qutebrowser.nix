@@ -59,8 +59,11 @@ in
           focumon = "https://www.focumon.com/";
           imh = "https://muhaffidh.app/";
 
+          # Books
+          balgo = "https://en.algorithmica.org/hpc/"; # Algorithm And Data_structure Book
+
           # Landscapes Viewers
-ldbs = "https://dbdb.io/browse";
+          ldbs = "https://dbdb.io/browse";
 
           zigref = "https://ziglang.org/documentation/master/";
           zigstd = "https://ziglang.org/documentation/master/std/";
