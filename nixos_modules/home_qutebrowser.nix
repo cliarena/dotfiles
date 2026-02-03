@@ -60,7 +60,7 @@ in
           imh = "https://muhaffidh.app/";
 
           # Books
-          balgo = "https://en.algorithmica.org/hpc/"; # Algorithm And Data_structure Book
+          balgo = "https://en.algorithmica.org/hpc/"; # Simd, Algorithm And Data_structure Book
 
           # Landscapes Viewers
           ldbs = "https://dbdb.io/browse";
