@@ -61,6 +61,7 @@ in
 
           # Books
           balgo = "https://en.algorithmica.org/hpc/"; # Simd, Algorithm And Data_structure Book
+          bods = "https://opendatastructures.org/ods-cpp/Contents.html";
 
           # Landscapes Viewers
           ldbs = "https://dbdb.io/browse";
