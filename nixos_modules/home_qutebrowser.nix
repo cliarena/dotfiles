@@ -60,7 +60,8 @@ in
           imh = "https://muhaffidh.app/";
 
           # Books
-          balgo = "https://en.algorithmica.org/hpc/"; # Simd, Algorithm And Data_structure Book
+          ## Simd, Algorithm And Data_structure Book
+          balgo = "https://en.algorithmica.org/hpc/";
           bods = "https://opendatastructures.org/ods-cpp/Contents.html";
 
           # Landscapes Viewers
