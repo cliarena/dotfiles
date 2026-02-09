@@ -55,21 +55,21 @@ in
           nt = "https://nixpk.gs/pr-tracker.html?pr={}"; # Nixpkgs PR Tracker
         };
 
-        quickmarks = {
-          focumon = "https://www.focumon.com/";
-          imh = "https://muhaffidh.app/";
+     #   quickmarks = {
+     #     focumon = "https://www.focumon.com/";
+     #     imh = "https://muhaffidh.app/";
 
-          # Books
-          ## Simd, Algorithm And Data_structure Book
-          balgo = "https://en.algorithmica.org/hpc/";
-          bods = "https://opendatastructures.org/ods-cpp/Contents.html";
+     #     # Books
+     #     ## Simd, Algorithm And Data_structure Book
+     #     balgo = "https://en.algorithmica.org/hpc/";
+     #     bods = "https://opendatastructures.org/ods-cpp/Contents.html";
 
-          # Landscapes Viewers
-          ldbs = "https://dbdb.io/browse";
+      #    # Landscapes Viewers
+      #    ldbs = "https://dbdb.io/browse";
 
-          zigref = "https://ziglang.org/documentation/master/";
-          zigstd = "https://ziglang.org/documentation/master/std/";
-        };
+      #    zigref = "https://ziglang.org/documentation/master/";
+      #    zigstd = "https://ziglang.org/documentation/master/std/";
+      #  };
 
       };
     };
