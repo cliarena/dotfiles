@@ -146,7 +146,7 @@ in
               "${mode}+Shift+Control 8" = "toggle-view-tags 10000000";
               "${mode}+Shift+Control 9" = "toggle-view-tags 100000000";
               "${mode}+Shift+Control 0" = "toggle-view-tags 111111111";
-            }
+            };
             # // tag_map;
             passthrough = {
               "${mode} F11" = "enter-mode normal";
