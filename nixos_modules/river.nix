@@ -34,7 +34,6 @@ let
 
   tags = builtins.genList (x: x) 9;
   tag_map_list = builtins.map (tag: {
-    "${mode} ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
     "${mode}+Shift ${toString (tag + 1)}" = "set-view-tags ${toString tag}";
     "${mode}+Control ${toString (tag + 1)}" = "toggle-focused-tags ${toString tag}";
     "${mode}+Shift+Control ${toString (tag + 1)}" = "toggle-view-tags ${toString tag}";
@@ -82,9 +81,14 @@ in
               "${mode} F" = "spawn '${warpd_wl}/bin/warpd --hint'";
               "${mode} M" = "spawn '${warpd_wl}/bin/warpd --normal'";
 
+              # Layouts
+              "${mode}+Control+Shift C" =
+                "spawn '${pkgs.river-classic}/bin/riverctl keyboard-layout `us(colemak_dh_wide)`'";
+              "${mode}+Control+Shift A" = "spawn '${pkgs.river-classic}/bin/riverctl keyboard-layout ara'";
+
               "${mode}+Shift Q" = "close";
               "${mode}+Shift E" = "exit";
-              # "${mode} F" = "toggle-fullscreen";
+              "${mode}+Shift F" = "toggle-fullscreen";
               "${mode} F11" = "enter-mode passthrough";
 
               "${mode} R" = "spawn ${menu}";
@@ -96,6 +100,9 @@ in
                 "spawn '${pkgs.ungoogled-chromium}/bin/chromium --incognito --enable-experimental-web-platform-features --auto-open-devtools-for-tabs http://127.0.0.1:8080'";
 
               #         "${mode} D" = "spawn ankama-launcher";
+
+              # Tags
+              # "${mode} ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
             }
             // tag_map;
             passthrough = {
