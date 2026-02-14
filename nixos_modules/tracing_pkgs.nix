@@ -27,7 +27,7 @@ in
       pkgs.strace
 
       # we want to use trace from bcc
-      (lib.lowPrio config.boot.perf)
+      (lib.lowPrio config.boot.kernelPackages.perf)
     ];
   };
 }
