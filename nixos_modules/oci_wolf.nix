@@ -62,6 +62,13 @@ in
         "/dev/:/dev/:rw"
         "/run/udev:/run/udev:rw"
       ];
+      devices = [
+
+        "/dev/dri:/dev/dri"
+        "/dev/uinput:/dev/uinput"
+        "/dev/uhid:/dev/uhid"
+
+      ];
     };
   };
 }
