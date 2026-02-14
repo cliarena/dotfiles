@@ -113,7 +113,7 @@ in
   _sshd.enable = true;
   # _pipewire.enable = true;
   # _wolf.enable = true;
-  _oci_wolf.enable = true;
+  _oci_wolfx.enable = true;
 
   # _tokens_graph.enable = true;
   # systemd.tmpfiles.rules = [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];
