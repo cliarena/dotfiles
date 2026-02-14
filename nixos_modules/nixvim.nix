@@ -4,14 +4,14 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   module = "_nixvim";
   description = "neovim the nix way";
   inherit (lib) mkEnableOption mkIf fileset;
-in {
-  imports =
-    [inputs.nixvim.nixosModules.nixvim]
-    ++ fileset.toList ../nixos_atoms/nixvim;
+in
+{
+  imports = [ inputs.nixvim.nixosModules.nixvim ] ++ fileset.toList ../nixos_atoms/nixvim;
 
   options.${module}.enable = mkEnableOption description;
 
@@ -52,5 +52,7 @@ in {
     _hardtime.enable = false;
 
     _venn.enable = true;
+
+    _easyread.enable = true;
   };
 }
