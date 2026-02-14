@@ -27,12 +27,12 @@ in
         "0.0.0.0::47989/tcp"
         "0.0.0.0::47999/udp"
         "0.0.0.0::48010/tcp"
-        # video port for each user
+        # Video port for each user
         "0.0.0.0::48100/udp"
         "0.0.0.0::48101/udp"
         "0.0.0.0::48102/udp"
         "0.0.0.0::48103/udp"
-        # audio port for each user
+        # Audio port for each user
         "0.0.0.0::48200/udp"
         "0.0.0.0::48201/udp"
         "0.0.0.0::48202/udp"
