@@ -127,15 +127,15 @@
 
         devShell = pkgs: {
           packages = with pkgs; [
-            vault
-            consul
-            nomad
-            terraform
+            # vault
+            # consul
+            # nomad
+            # terraform
             sops
-            dig
-            openssl
-            libuuid
-            wander
+            # dig
+            # openssl
+            # libuuid
+            # wander
 
             # for nix
             nixfmt-rfc-style
