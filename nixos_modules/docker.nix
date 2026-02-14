@@ -13,6 +13,7 @@ in
 
   config = mkIf config.${module}.enable {
     virtualisation = {
+      oci-containers.backend = "podman";
       containers = {
         enable = true;
         storage.settings.storage = {
