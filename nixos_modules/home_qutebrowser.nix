@@ -53,6 +53,7 @@ in
           no = "https://search.nixos.org/options?channel=unstable&query={}";
           np = "https://search.nixos.org/packages?channel=unstable&query={}";
           nh = "https://home-manager-options.extranix.com/?query={}&release=master";
+          nn = "https://nix-community.github.io/nixvim/search/?query={}";
           nt = "https://nixpk.gs/pr-tracker.html?pr={}"; # Nixpkgs PR Tracker
         };
 
