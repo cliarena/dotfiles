@@ -2,24 +2,29 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   module = "_docker";
   description = "containarization tool";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     virtualisation = {
-      containers.storage.settings.storage = {
-        driver = "btrfs";
-        graphroot = "/srv/var/lib/containers/storage";
+      containers = {
+        enable = true;
+        storage.settings.storage = {
+          driver = "btrfs";
+          graphroot = "/srv/var/lib/containers/storage";
 
-       # btrfs driver doesn't support zstd partial pulling: smart pulling of only mmissing layers
-       # options.pull_options = {
-        #  enable_partial_images = "true"; # must be string 
-        #  convert_images = "true"; # must be string
-       # };
+          # btrfs driver doesn't support zstd partial pulling: smart pulling of only mmissing layers
+          # options.pull_options = {
+          #  enable_partial_images = "true"; # must be string
+          #  convert_images = "true"; # must be string
+          # };
+        };
       };
 
       podman = {
