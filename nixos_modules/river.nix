@@ -104,7 +104,7 @@ in
           };
 
           set-repeat = "50 300";
-          keyboard-layout = "'us(colemak_dh_wide),ara'";
+          keyboard-layout = "-options 'grp:alt_space_toggle' 'us(colemak_dh_wide),ara'";
 
           spawn = [
             #  "${pkgs.brave}/bin/brave"
