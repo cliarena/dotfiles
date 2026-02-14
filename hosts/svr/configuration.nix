@@ -3,7 +3,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (inputs) disko black-hosts;
   # gpuTargetString = lib.strings.concatStringsSep ";" (if gpuTargets != [ ] then
   # # If gpuTargets is specified, it always takes priority.
@@ -73,21 +74,21 @@
   #   bindsym $mod+Return exec ${pkgs.kitty}/bin/kitty
   #   bindsym $mod+Shift+q kill
   # '';
-in {
-  imports =
-    [
-      disko.nixosModules.disko
+in
+{
+  imports = [
+    disko.nixosModules.disko
 
-      black-hosts.nixosModule
+    black-hosts.nixosModule
 
-      (import ./disko.nix {}) # doesn't support btrfs swapfile
+    (import ./disko.nix { }) # doesn't support btrfs swapfile
 
-      ../../modules/boot/amd.nix
-      ../../modules/hardware/amd.nix
-      ../../modules/netwoking/router.nix
-    ]
-    ++ lib.fileset.toList ../../profiles
-    ++ lib.fileset.toList ../../spaces;
+    ../../modules/boot/amd.nix
+    ../../modules/hardware/amd.nix
+    ../../modules/netwoking/router.nix
+  ]
+  ++ lib.fileset.toList ../../profiles
+  ++ lib.fileset.toList ../../spaces;
 
   # services.greetd = {
   #   enable = true;
@@ -105,14 +106,14 @@ in {
   profiles.hosting.enable = true;
   # profiles.desk_streaming.enable = true;
 
- # spaces.x.enable = true;
- # spaces.hyodo.enable = true;
+  # spaces.x.enable = true;
+  # spaces.hyodo.enable = true;
 
   programs.steam.enable = true;
   _sshd.enable = true;
   # _pipewire.enable = true;
   # _wolf.enable = true;
-  # _wolf_pulse_audio.enable = true;
+  _oci_wolf.enable = true;
 
   # _tokens_graph.enable = true;
   # systemd.tmpfiles.rules = [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];

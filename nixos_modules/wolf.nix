@@ -4,16 +4,18 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   module = "_wolf";
   description = "stream desktops containers";
   inherit (lib) mkEnableOption mkIf;
   wolf_bin = "${inputs.wolf.packages.x86_64-linux.default}/bin/wolf";
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    environment.systemPackages = [inputs.wolf.packages.x86_64-linux.default];
+    environment.systemPackages = [ inputs.wolf.packages.x86_64-linux.default ];
 
     systemd.services.wolf = {
       # enable = false;
@@ -44,7 +46,7 @@ in {
         # avoid error start request repeated too quickly since RestartSec defaults to 100ms
         RestartSec = 3;
       };
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
     };
   };
 }
