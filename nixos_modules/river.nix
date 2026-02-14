@@ -32,14 +32,14 @@ let
   terminal = "${pkgs.wezterm}/bin/wezterm";
   # terminal = "'${pkgs.kitty}/bin/kitty -e ${pkgs.nushell}/bin/nu'";
 
-  tags = builtins.genList (x: x) 9;
-  tag_map_list = builtins.map (tag: {
-    "${mode}+Shift ${toString (tag + 1)}" = "set-view-tags ${toString tag}";
-    "${mode}+Control ${toString (tag + 1)}" = "toggle-focused-tags ${toString tag}";
-    "${mode}+Shift+Control ${toString (tag + 1)}" = "toggle-view-tags ${toString tag}";
-  }) tags;
-
-  tag_map = builtins.foldl' (x: y: x // y) { } tag_map_list;
+  # tags = builtins.genList (x: x) 9;
+  # tag_map_list = builtins.map (tag: {
+  #   "${mode}+Shift ${toString (tag + 1)}" = "set-view-tags ${toString tag}";
+  #   "${mode}+Control ${toString (tag + 1)}" = "toggle-focused-tags ${toString tag}";
+  #   "${mode}+Shift+Control ${toString (tag + 1)}" = "toggle-view-tags ${toString tag}";
+  # }) tags;
+  #
+  # tag_map = builtins.foldl' (x: y: x // y) { } tag_map_list;
 in
 {
   imports = [ home-manager.nixosModules.home-manager ];
@@ -102,9 +102,52 @@ in
               #         "${mode} D" = "spawn ankama-launcher";
 
               # Tags
-              # "${mode} ${toString (tag + 1)}" = "set-focused-tags ${toString tag}";
+              # not bit shifting operators https://github.com/NixOS/nix/pull/13001
+              "${mode}  1" = "set-focused-tags 1";
+              "${mode}  2" = "set-focused-tags 10";
+              "${mode}  3" = "set-focused-tags 100";
+              "${mode}  4" = "set-focused-tags 1000";
+              "${mode}  5" = "set-focused-tags 10000";
+              "${mode}  6" = "set-focused-tags 100000";
+              "${mode}  7" = "set-focused-tags 1000000";
+              "${mode}  8" = "set-focused-tags 10000000";
+              "${mode}  9" = "set-focused-tags 100000000";
+              "${mode}  0" = "set-focused-tags 111111111";
+
+              "${mode}+Shift 1" = "set-view-tags 1";
+              "${mode}+Shift 2" = "set-view-tags 10";
+              "${mode}+Shift 3" = "set-view-tags 100";
+              "${mode}+Shift 4" = "set-view-tags 1000";
+              "${mode}+Shift 5" = "set-view-tags 10000";
+              "${mode}+Shift 6" = "set-view-tags 100000";
+              "${mode}+Shift 7" = "set-view-tags 1000000";
+              "${mode}+Shift 8" = "set-view-tags 10000000";
+              "${mode}+Shift 9" = "set-view-tags 100000000";
+              "${mode}+Shift 0" = "set-view-tags 111111111";
+
+              "${mode}+Control 1" = "toggle-focused-tags 1";
+              "${mode}+Control 2" = "toggle-focused-tags 10";
+              "${mode}+Control 3" = "toggle-focused-tags 100";
+              "${mode}+Control 4" = "toggle-focused-tags 1000";
+              "${mode}+Control 5" = "toggle-focused-tags 10000";
+              "${mode}+Control 6" = "toggle-focused-tags 100000";
+              "${mode}+Control 7" = "toggle-focused-tags 1000000";
+              "${mode}+Control 8" = "toggle-focused-tags 10000000";
+              "${mode}+Control 9" = "toggle-focused-tags 100000000";
+              "${mode}+Control 0" = "toggle-focused-tags 111111111";
+
+              "${mode}+Shift+Control 1" = "toggle-view-tags 1";
+              "${mode}+Shift+Control 2" = "toggle-view-tags 10";
+              "${mode}+Shift+Control 3" = "toggle-view-tags 100";
+              "${mode}+Shift+Control 4" = "toggle-view-tags 1000";
+              "${mode}+Shift+Control 5" = "toggle-view-tags 10000";
+              "${mode}+Shift+Control 6" = "toggle-view-tags 100000";
+              "${mode}+Shift+Control 7" = "toggle-view-tags 1000000";
+              "${mode}+Shift+Control 8" = "toggle-view-tags 10000000";
+              "${mode}+Shift+Control 9" = "toggle-view-tags 100000000";
+              "${mode}+Shift+Control 0" = "toggle-view-tags 111111111";
             }
-            // tag_map;
+            # // tag_map;
             passthrough = {
               "${mode} F11" = "enter-mode normal";
             };
