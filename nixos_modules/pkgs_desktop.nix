@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   module = "_pkgs_desktop";
   description = "pkgs needed by desktop";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
@@ -41,12 +43,12 @@ in {
       #   moonlight-qt
 
       ### Design ###
-      # gimp-with-plugins
       #   darktable
-      # ansel # darktable minus bloat
-      # inkscape
-      # blender-hip # use hip to get gpu acceleration
-     # colmap
+      inkscape-with-extensions
+      gimp-with-plugins
+      ansel # darktable minus bloat
+      blender # use hip to get gpu acceleration
+      # colmap
 
       ### Tools ###
       file # shows types of files needed by yazi
