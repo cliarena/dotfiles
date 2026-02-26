@@ -65,6 +65,7 @@ in
         #     ## Simd, Algorithm And Data_structure Book
         #     balgo = "https://en.algorithmica.org/hpc/";
         #     bods = "https://opendatastructures.org/ods-cpp/Contents.html";
+        #     bdbs = "https://cs186berkeley.net/notes/"; // Database Systems Notes
 
         #    # Landscapes Viewers
         #    ldbs = "https://dbdb.io/browse";
