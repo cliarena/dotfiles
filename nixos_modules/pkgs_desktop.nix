@@ -46,7 +46,7 @@ in
       #   darktable
       inkscape-with-extensions
       gimp-with-plugins
-      aoinsel # darktable minus bloat
+      ansel # darktable minus bloat
       blender # use hip to get gpu acceleration
 
       # Guassian Splatting
