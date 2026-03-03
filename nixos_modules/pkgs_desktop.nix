@@ -50,8 +50,8 @@ in
       blender # use hip to get gpu acceleration
 
       # Guassian Splatting
-      openmvg
-      openmvs
+      # openmvg
+      # openmvs
       # colmap
 
       ### Tools ###
