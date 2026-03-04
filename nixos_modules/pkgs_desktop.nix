@@ -56,8 +56,6 @@ in
       (openmvs.overrideAttrs (
         finalAttrs: prevAttrs: {
 
-          version = "";
-
           src = fetchFromGitHub {
             owner = "cdcseacave";
             repo = "openmvs";
@@ -75,15 +73,15 @@ in
             (lib.cmakeFeature "Python3_EXECUTABLE" (lib.getExe python3Packages.python))
           ];
 
-          # checkPhase = ''
-          #   runHook preCheck
-          #   ${lib.optionalString (stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch64) ''
-          #     export KMP_AFFINITY=disabled
-          #     export OMP_PROC_BIND=false
-          #   ''}
-          #   ctest --output-on-failure
-          #   runHook postCheck
-          # '';
+          checkPhase = ''
+            runHook preCheck
+            ${lib.optionalString (stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch64) ''
+              export KMP_AFFINITY=disabled
+              export OMP_PROC_BIND=false
+            ''}
+            ctest --output-on-failure
+            runHook postCheck
+          '';
         }
       ))
 
