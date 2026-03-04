@@ -63,10 +63,30 @@ in
             hash = "sha256-0tL2tqHYBQMGL9k+NqTUxieWuDP3YB6X9DcXYnlGWWg=";
             fetchSubmodules = true;
           };
-          buildInputs = prevAttrs.buildInputs ++ [
+
+          buildInputs = with pkgs; [
+            (boost188.overrideAttrs (old: {
+              buildInputs = old.buildInputs ++ [ zstd ];
+            }))
+            ceres-solver
+            cgal
+            eigen
+            glfw
+            gmp
             libjxl
+            libjpeg
+            libpng
+            libtiff
+            mpfr
             nanoflann
+            opencv
+            openmp
+            vcg
           ];
+          # buildInputs = (lib.lists.remove  prevAttrs.buildInputs ++ [
+          #   libjxl
+          #   nanoflann
+          # ];
           nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ python3Packages.python ];
 
           cmakeFlags = prevAttrs.cmakeFlags ++ [
