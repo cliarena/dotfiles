@@ -56,12 +56,12 @@ in
       (openmvs.overrideAttrs (
         finalAttrs: prevAttrs: {
 
-          version = "2.4.0";
+          version = "";
 
           src = fetchFromGitHub {
             owner = "cdcseacave";
             repo = "openmvs";
-            rev = "v${version}";
+            rev = "v2.4.0";
             hash = "sha256-0tL2tqHYBQMGL9k+NqTUxieWuDP3YB6X9DcXYnlGWWg=";
             fetchSubmodules = true;
           };
