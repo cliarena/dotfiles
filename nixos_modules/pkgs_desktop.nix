@@ -80,7 +80,7 @@ in
             mpfr
             nanoflann
             opencv
-            openmp
+            llvmPackages.openmp
             vcg
           ];
           # buildInputs = (lib.lists.remove  prevAttrs.buildInputs ++ [
