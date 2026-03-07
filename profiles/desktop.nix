@@ -2,16 +2,20 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   module = "desktop";
   description = "desktop profile";
   inherit (lib) mkEnableOption mkIf fileset;
-in {
+in
+{
   imports = fileset.toList ../nixos_modules;
 
   options.profiles.${module}.enable = mkEnableOption description;
 
   config = mkIf config.profiles.${module}.enable {
+    _amd_hw.enable = true;
+
     fonts.enable = true;
     _pipewire.enable = true;
     _pkgs_desktop.enable = true;

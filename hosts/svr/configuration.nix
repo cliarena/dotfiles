@@ -83,7 +83,7 @@ in
 
     (import ./disko.nix { }) # doesn't support btrfs swapfile
 
-    ../../modules/boot/amd.nix
+    # ../../modules/boot/amd.nix
     ../../modules/hardware/amd.nix
     ../../modules/netwoking/router.nix
   ]
@@ -100,6 +100,8 @@ in
   #     default_session = initial_session;
   #   };
   # };
+
+  _amd_hw.enable = true;
 
   profiles.host.enable = true;
   profiles.common.enable = true;
