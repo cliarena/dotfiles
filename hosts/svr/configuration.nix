@@ -83,8 +83,8 @@ in
 
     (import ./disko.nix { }) # doesn't support btrfs swapfile
 
-    # ../../modules/boot/amd.nix
-    ../../modules/hardware/amd.nix
+    ../../modules/boot/amd.nix
+    # ../../modules/hardware/amd.nix
     ../../modules/netwoking/router.nix
   ]
   ++ lib.fileset.toList ../../profiles
