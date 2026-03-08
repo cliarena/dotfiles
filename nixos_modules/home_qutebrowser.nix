@@ -46,6 +46,7 @@ in
 
           gwiki = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
 
+          wavx = "https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#text={}";
           wciu = "https://caniuse.com/?search={}";
           wmdn = "https://developer.mozilla.org/en-US/search?q={}";
 
