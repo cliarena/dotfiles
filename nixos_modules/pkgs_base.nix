@@ -4,20 +4,23 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   module = "_pkgs_base";
   description = "pkgs needed by all systems";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   # imports = [ inputs.impermanence.nixosModules.impermanence ];
 
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
 
-    environment.defaultPackages = lib.mkForce [];
+    environment.defaultPackages = lib.mkForce [ ];
 
     environment.systemPackages = with pkgs; [
+      cowsay
       man-pages
       man-pages-posix
       inputs.zig_overlay.packages.x86_64-linux.master # needed by compiler_exlorer image
