@@ -4,8 +4,8 @@
   ...
 }:
 let
-  module = "_docker";
-  description = "containarization tool";
+  module = "_oci";
+  description = "OCI";
   inherit (lib) mkEnableOption mkIf;
 in
 {

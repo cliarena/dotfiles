@@ -25,7 +25,7 @@ in
     _impermanence.enable = true;
 
     _acme.enable = true;
-    _docker.enable = true;
+    _oci.enable = true;
 
     # _nats_system.enable = true;
 
