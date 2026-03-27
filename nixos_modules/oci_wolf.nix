@@ -51,7 +51,7 @@ in
         # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
         # XDG_RUNTIME_DIR = "/tmp/sockets";
         # WOLF_PULSE_IMAGE = "";
-        # WOLF_PULSE_CONTAINER_TIMEOUT_MS = "5000";
+        WOLF_PULSE_CONTAINER_TIMEOUT_MS = "10000";
         # XDG_RUNTIME_DIR = "/run/user/1000";
       };
 
