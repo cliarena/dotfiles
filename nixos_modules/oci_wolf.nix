@@ -51,7 +51,7 @@ in
       volumes = [
         # "/run/user/1000:/run/user/1000:rw"
         "/tmp/sockets:/tmp/sockets:rw"
-        "/run/pulse:/tmp/sockets/pulse:rw"
+        # "/run/pulse:/tmp/sockets/pulse:rw"
         "/srv/volumes/wolf/:/etc/wolf"
 
         "/srv/library/icons:/srv/library/icons" # icons for moonlight apps
