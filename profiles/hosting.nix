@@ -14,6 +14,9 @@ in
   options.profiles.${module}.enable = mkEnableOption description;
 
   config = mkIf config.profiles.${module}.enable {
+
+    _oci_compiler_explorer.enable = true;
+
     _sops_hosting.enable = true;
 
     _hydra.enable = true;
