@@ -2,13 +2,15 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf fileset;
-in {
+in
+{
   # imports = nixos_modules_list;
   imports = fileset.toList ../nixos_modules;
 
-  options.profiles.common.enable = mkEnableOption "conding profile";
+  options.profiles.common.enable = mkEnableOption "common profile";
 
   config = mkIf config.profiles.common.enable {
     _nix.enable = true;
