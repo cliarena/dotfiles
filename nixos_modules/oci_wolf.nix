@@ -61,7 +61,6 @@ in
         "/nix/store:/nix/store:ro" # to run nixos pkgs
         "/run/current-system/sw/bin:/run/current-system/sw/bin:ro" # to run nixos pkgs
 
-        "/var/run/docker.sock:/var/run/docker.sock:rw"
         "/var/run/podman/podman.sock:/var/run/docker.sock:rw"
         "/dev/:/dev/:rw"
         "/run/udev:/run/udev:rw"
