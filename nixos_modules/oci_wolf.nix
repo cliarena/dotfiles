@@ -37,6 +37,8 @@ in
       ];
 
       environment = {
+        WOLF_LOG_LEVEL = "DEBUG";
+
         # WOLF_DOCKER_SOCKET = "/var/run/podman/podman.sock";
         # HOST_APPS_STAT_FOLDER = "/etc/wolf";
         # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
@@ -70,13 +72,13 @@ in
 
       ];
     };
-    systemd.services.podman-wolf.serviceConfig = {
-      # User = "root";
-      Group = "pulse-access";
-      Restart = "on-failure";
-      TimeoutSec = 3;
-      # avoid error start request repeated too quickly since RestartSec defaults to 100ms
-      RestartSec = 3;
-    };
+   # systemd.services.podman-wolf.serviceConfig = {
+   #   # User = "root";
+   #   Group = "pulse-access";
+   #   Restart = "on-failure";
+   #   TimeoutSec = 3;
+   #   # avoid error start request repeated too quickly since RestartSec defaults to 100ms
+   #   RestartSec = 3;
+   # };
   };
 }
