@@ -24,24 +24,24 @@ in
       privileged = true;
       image = "ghcr.io/games-on-whales/wolf:stable";
 
-      ports = [
-        "0.0.0.0::47984/tcp"
-        "0.0.0.0::47989/tcp"
-        "0.0.0.0::47999/udp"
-        "0.0.0.0::48010/tcp"
-
-        # Video port for each user
-        "0.0.0.0::48100/udp"
-        "0.0.0.0::48101/udp"
-        "0.0.0.0::48102/udp"
-        "0.0.0.0::48103/udp"
-
-        # Audio port for each user
-        "0.0.0.0::48200/udp"
-        "0.0.0.0::48201/udp"
-        "0.0.0.0::48202/udp"
-        "0.0.0.0::48203/udp"
-      ];
+      # ports = [
+      #   "0.0.0.0::47984/tcp"
+      #   "0.0.0.0::47989/tcp"
+      #   "0.0.0.0::47999/udp"
+      #   "0.0.0.0::48010/tcp"
+      #
+      #   # Video port for each user
+      #   "0.0.0.0::48100/udp"
+      #   "0.0.0.0::48101/udp"
+      #   "0.0.0.0::48102/udp"
+      #   "0.0.0.0::48103/udp"
+      #
+      #   # Audio port for each user
+      #   "0.0.0.0::48200/udp"
+      #   "0.0.0.0::48201/udp"
+      #   "0.0.0.0::48202/udp"
+      #   "0.0.0.0::48203/udp"
+      # ];
 
       environment = {
         # WOLF_DOCKER_SOCKET = "/var/run/podman/podman.sock";
@@ -49,6 +49,7 @@ in
         # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
         # WOLF_PRIVATE_KEY_FILE = "/etc/wolf/cfg/";
         # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
+        XDG_RUNTIME_DIR = "/tmp/sockets";
         WOLF_PULSE_CONTAINER_TIMEOUT_MS = "5000";
       };
 
@@ -60,7 +61,6 @@ in
         "/nix/store:/nix/store:ro" # to run nixos pkgs
         "/run/current-system/sw/bin:/run/current-system/sw/bin:ro" # to run nixos pkgs
 
-        "/run/user/1000/:/tmp/sockets:rw"
         "/var/run/docker.sock:/var/run/docker.sock:rw"
         "/var/run/podman/podman.sock:/var/run/docker.sock:rw"
         "/dev/:/dev/:rw"
