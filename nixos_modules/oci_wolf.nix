@@ -49,13 +49,15 @@ in
         # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
         # WOLF_PRIVATE_KEY_FILE = "/etc/wolf/cfg/";
         # WOLF_CFG_FILE = "/etc/wolf/cfg/config.toml";
-        XDG_RUNTIME_DIR = "/tmp/sockets";
-        WOLF_PULSE_IMAGE = "";
-        WOLF_PULSE_CONTAINER_TIMEOUT_MS = "5000";
+        # XDG_RUNTIME_DIR = "/tmp/sockets";
+        # WOLF_PULSE_IMAGE = "";
+        # WOLF_PULSE_CONTAINER_TIMEOUT_MS = "5000";
+        XDG_RUNTIME_DIR = "/run/user/1000";
       };
 
       volumes = [
-        "/tmp/sockets:/tmp/sockets:rw"
+        "/run/user/1000:/run/user/1000:rw"
+        # "/tmp/sockets:/tmp/sockets:rw"
         "/srv/volumes/wolf/:/etc/wolf"
 
         "/srv/library/icons:/srv/library/icons" # icons for moonlight apps
