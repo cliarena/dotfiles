@@ -117,6 +117,7 @@ in
   # _wolf.enable = true;
   _oci_wolf.enable = true;
 
+  environment.systemPackages = with pkgs; [ cowsay ];
   # _tokens_graph.enable = true;
   # systemd.tmpfiles.rules = [ "L+    /opt/rocm   -    -    -     -    ${rocm_toolkit}" ];
 
