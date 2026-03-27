@@ -15,6 +15,7 @@ in
 
   config = mkIf config.profiles.${module}.enable {
 
+    _oci.enable = true;
     _oci_compiler_explorer.enable = true;
 
     _sops_hosting.enable = true;
@@ -25,7 +26,6 @@ in
     _impermanence.enable = true;
 
     _acme.enable = true;
-    _oci.enable = true;
 
     # _nats_system.enable = true;
 
