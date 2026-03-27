@@ -13,7 +13,7 @@ in
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    environment.systemPackages = with pkgs; [ amdgpu_top ];
+    # environment.systemPackages = with pkgs; [ amdgpu_top ];
     security.rtkit.enable = true;
     hardware = {
       uinput.enable = true;
