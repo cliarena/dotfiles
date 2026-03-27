@@ -13,7 +13,6 @@ in
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    environment.systemPackages = with pkgs; [ cowsay ];
     services.pulseaudio = {
       # Needed by wolf to get audio
       enable = true;
