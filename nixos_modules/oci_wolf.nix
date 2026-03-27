@@ -22,6 +22,7 @@ in
     virtualisation.oci-containers.containers.wolf = {
       privileged = true;
       image = "ghcr.io/games-on-whales/wolf:stable";
+      postStop = "${pkgs.podman}/bin/podman rm -f WolfPulseAudio";
 
       ports = [
         "47984:47984/tcp"
@@ -37,7 +38,7 @@ in
       ];
 
       environment = {
-        WOLF_LOG_LEVEL = "DEBUG";
+        # WOLF_LOG_LEVEL = "DEBUG";
 
         # WOLF_DOCKER_SOCKET = "/var/run/podman/podman.sock";
         # HOST_APPS_STAT_FOLDER = "/etc/wolf";
@@ -72,13 +73,13 @@ in
 
       ];
     };
-   # systemd.services.podman-wolf.serviceConfig = {
-   #   # User = "root";
-   #   Group = "pulse-access";
-   #   Restart = "on-failure";
-   #   TimeoutSec = 3;
-   #   # avoid error start request repeated too quickly since RestartSec defaults to 100ms
-   #   RestartSec = 3;
-   # };
+    # systemd.services.podman-wolf.serviceConfig = {
+    #   # User = "root";
+    #   Group = "pulse-access";
+    #   Restart = "on-failure";
+    #   TimeoutSec = 3;
+    #   # avoid error start request repeated too quickly since RestartSec defaults to 100ms
+    #   RestartSec = 3;
+    # };
   };
 }
