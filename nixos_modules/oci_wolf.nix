@@ -22,7 +22,6 @@ in
     virtualisation.oci-containers.containers.wolf = {
       privileged = true;
       image = "ghcr.io/games-on-whales/wolf:stable";
-      postStop = "${pkgs.podman}/bin/podman rm -f WolfPulseAudio";
 
       ports = [
         "47984:47984/tcp"
@@ -73,6 +72,8 @@ in
 
       ];
     };
+    systemd.services.podman-wolf.preStart = "${pkgs.podman}/bin/podman rm -f WolfPulseAudio";
+   
     # systemd.services.podman-wolf.serviceConfig = {
     #   # User = "root";
     #   Group = "pulse-access";
