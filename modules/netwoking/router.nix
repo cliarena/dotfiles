@@ -2,9 +2,9 @@
   pkgs,
   host,
   ...
-}: let
-  inherit
-    (host)
+}:
+let
+  inherit (host)
     user
     wan_mac
     lan_mac
@@ -17,7 +17,8 @@
     dns_server
     is_dns_server
     ;
-in {
+in
+{
   # Rename network interface to wan
   services.udev.extraRules = ''
     SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="c8:4d:44:23:95:db", NAME="wan0"
@@ -38,43 +39,43 @@ in {
   #    }
   #  '';
   #};
-  services.hostapd = {
-    enable = true;
-    radios = {
-      # Simple 2.4GHz AP
-      wlan0 = {
-        band = "2g"; # 5g radio
-        #countryCode = "JP";
-        wifi6 = {
-          enable = true;
-          operatingChannelWidth = "20or40";
-          multiUserBeamformer = true;
-        };
-        # channel = 48;
-        channel = 13;
-        networks.wlan0 = {
-          ssid = "AVX_test";
-          authentication = {
-            mode = "wpa2-sha256";
-            wpaPassword = "ilounane123";
-          };
-        };
-      };
-      # wlan0 = {
-      # band = "5g"; # 5g radio
-      # # countryCode = "US";
-      # wifi6.enable = true;
-      # channel = 40;
-      # networks.wlan0 = {
-      # ssid = "AVX_test2";
-      # authentication = {
-      # mode = "wpa2-sha256";
-      # wpaPassword = "ilounane123";
-      # };
-      # };
-      # };
-    };
-  };
+  # services.hostapd = {
+  #   enable = true;
+  #   radios = {
+  #     # Simple 2.4GHz AP
+  #     wlan0 = {
+  #       band = "2g"; # 5g radio
+  #       #countryCode = "JP";
+  #       wifi6 = {
+  #         enable = true;
+  #         operatingChannelWidth = "20or40";
+  #         multiUserBeamformer = true;
+  #       };
+  #       # channel = 48;
+  #       channel = 13;
+  #       networks.wlan0 = {
+  #         ssid = "AVX_test";
+  #         authentication = {
+  #           mode = "wpa2-sha256";
+  #           wpaPassword = "ilounane123";
+  #         };
+  #       };
+  #     };
+  #     # wlan0 = {
+  #     # band = "5g"; # 5g radio
+  #     # # countryCode = "US";
+  #     # wifi6.enable = true;
+  #     # channel = 40;
+  #     # networks.wlan0 = {
+  #     # ssid = "AVX_test2";
+  #     # authentication = {
+  #     # mode = "wpa2-sha256";
+  #     # wpaPassword = "ilounane123";
+  #     # };
+  #     # };
+  #     # };
+  #   };
+  # };
 
   networking = {
     hostName = user;
@@ -242,9 +243,9 @@ in {
         "22-mv-qub0" = {
           enable = false;
           name = "mv-qub0";
-          address = ["10.10.2.100/24"];
-          gateway = ["10.10.2.1"];
-          dns = ["10.10.2.1"];
+          address = [ "10.10.2.100/24" ];
+          gateway = [ "10.10.2.1" ];
+          dns = [ "10.10.2.1" ];
           # dns = dns_server;
           # if you want dhcp uncomment this and comment address,gateway and dns
           # DHCP = "ipv4";
