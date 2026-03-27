@@ -24,24 +24,24 @@ in
       privileged = true;
       image = "ghcr.io/games-on-whales/wolf:stable";
 
-      # ports = [
-      #   "0.0.0.0::47984/tcp"
-      #   "0.0.0.0::47989/tcp"
-      #   "0.0.0.0::47999/udp"
-      #   "0.0.0.0::48010/tcp"
-      #
-      #   # Video port for each user
-      #   "0.0.0.0::48100/udp"
-      #   "0.0.0.0::48101/udp"
-      #   "0.0.0.0::48102/udp"
-      #   "0.0.0.0::48103/udp"
-      #
-      #   # Audio port for each user
-      #   "0.0.0.0::48200/udp"
-      #   "0.0.0.0::48201/udp"
-      #   "0.0.0.0::48202/udp"
-      #   "0.0.0.0::48203/udp"
-      # ];
+      ports = [
+        "0.0.0.0::47984/tcp"
+        "0.0.0.0::47989/tcp"
+        "0.0.0.0::47999/udp"
+        "0.0.0.0::48010/tcp"
+
+        # Video port for each user
+        "0.0.0.0::48100/udp"
+        "0.0.0.0::48101/udp"
+        "0.0.0.0::48102/udp"
+        "0.0.0.0::48103/udp"
+
+        # Audio port for each user
+        "0.0.0.0::48200/udp"
+        "0.0.0.0::48201/udp"
+        "0.0.0.0::48202/udp"
+        "0.0.0.0::48203/udp"
+      ];
 
       environment = {
         # WOLF_DOCKER_SOCKET = "/var/run/podman/podman.sock";
