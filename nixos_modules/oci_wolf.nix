@@ -23,18 +23,20 @@ in
       privileged = true;
       image = "ghcr.io/games-on-whales/wolf:stable";
 
-      ports = [
-        "47984:47984/tcp"
-        "47989:47989/tcp"
-        "47999:47999/udp"
-        "48010:48010/tcp"
+      extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
 
-        # Video port for each user
-        "48100-48103:48100-48103/udp"
-
-        # Audio port for each user
-        "48200-48203:48200-48203/udp"
-      ];
+      # ports = [
+      #   "47984:47984/tcp"
+      #   "47989:47989/tcp"
+      #   "47999:47999/udp"
+      #   "48010:48010/tcp"
+      #
+      #   # Video port for each user
+      #   "48100-48103:48100-48103/udp"
+      #
+      #   # Audio port for each user
+      #   "48200-48203:48200-48203/udp"
+      # ];
 
       environment = {
         # WOLF_LOG_LEVEL = "DEBUG";
@@ -73,7 +75,7 @@ in
       ];
     };
     systemd.services.podman-wolf.preStart = "${pkgs.podman}/bin/podman rm -f WolfPulseAudio";
-   
+
     # systemd.services.podman-wolf.serviceConfig = {
     #   # User = "root";
     #   Group = "pulse-access";
