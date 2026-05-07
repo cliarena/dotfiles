@@ -10,7 +10,7 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  imports = [ inputs.comin.nixosModules.comin ];
+  # imports = [ inputs.comin.nixosModules.comin ];
 
   options.${module}.enable = mkEnableOption description;
 
