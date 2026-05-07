@@ -15,6 +15,8 @@ in
 
   config = mkIf config.profiles.${module}.enable {
 
+    _audiobookshelf.enable = true;
+
     _oci.enable = true;
     _oci_compiler_explorer.enable = true;
 

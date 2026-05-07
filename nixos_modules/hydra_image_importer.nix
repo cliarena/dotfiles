@@ -4,19 +4,21 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   module = "_hydra_image_importer";
   description = "imports images from hydra";
   inherit (lib) mkEnableOption mkIf;
 
   image_name = "main";
   image_url = "http://10.10.0.10:9999/job/nixos/main/x86_64-linux.${image_name}/latest/download/nixos-system-x86_64-linux.tar.xz";
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     systemd.timers."hydra-image-importer" = {
-      wantedBy = ["timers.target"];
+      wantedBy = [ "timers.target" ];
       timerConfig = {
         OnBootSec = "5m";
         # OnUnitActiveSec = "24h";
@@ -26,8 +28,8 @@ in {
     };
 
     systemd.services."hydra-image-importer" = {
-        # ${pkgs.podman}/bin/podman rmi -f nixos  # no longer needed to free memory image is saved in disk
-        # ${pkgs.podman}/bin/podman rmi -f nixos                                  \ # removes dead nixos containers which doesn't let moonlight start it
+      # ${pkgs.podman}/bin/podman rmi -f nixos  # no longer needed to free memory image is saved in disk
+      # ${pkgs.podman}/bin/podman rmi -f nixos                                  \ # removes dead nixos containers which doesn't let moonlight start it
       script = ''
         ${pkgs.podman}/bin/podman rmi -f nixos                                  \
         && ${pkgs.wget}/bin/wget ${image_url}                                      \

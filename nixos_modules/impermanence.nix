@@ -3,12 +3,14 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   module = "_impermanence";
   description = "persistence for ephemeral systems";
   inherit (lib) mkEnableOption mkIf;
-in {
-  imports = [inputs.impermanence.nixosModules.impermanence];
+in
+{
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
 
   options.${module}.enable = mkEnableOption description;
 
@@ -18,6 +20,7 @@ in {
       hideMounts = true;
       directories = [
         "/var/lib/systemd/coredump"
+        "/var/lib/audiobookshelf"
         {
           directory = "/var/lib/hydra";
           user = "hydra";
