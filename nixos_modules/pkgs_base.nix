@@ -33,7 +33,7 @@ in
       # ripgrep-all # # Better rg #BUG: there is a bug in source code
 
       ### Tools ###
-      atool # Archive commands. has aunpack -eD *.zip. unzips each on his folder with the same name as zip archive
+      atool # aunpack: Better unzip & more Archive commands. aunpack -eD *.zip. unzips each on his folder with the same name as zip archive
       wezterm
       git
       bat
