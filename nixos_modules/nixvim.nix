@@ -21,7 +21,7 @@ in
     _options.enable = true;
     _nvim_direnv.enable = true;
 
-    _wezterm.enable = true; # needs update
+    # _wezterm.enable = true; # needs update
 
     _keymaps.enable = true;
     _better_escape.enable = true;

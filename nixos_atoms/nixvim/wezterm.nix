@@ -12,8 +12,8 @@ in
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "wezterm.nvim" ];
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "wezterm.nvim" ];
 
     programs.nixvim.plugins.wezterm = {
       enable = true;
