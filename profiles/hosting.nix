@@ -43,7 +43,7 @@ in
     # _nomad.enable = true;
     # _nomoperator.enable = true;
 
-    # _powerdns.enable = true;
+    _powerdns.enable = true;
     # _cloudflare_dyndns.enable = true;
 
     _bench.enable = true;
