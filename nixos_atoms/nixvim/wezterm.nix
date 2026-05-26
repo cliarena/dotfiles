@@ -13,6 +13,7 @@ in
 
   config = mkIf config.${module}.enable {
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "wezterm.nvim" ];
+    nixpkgs.config.allowUnfree = true;
 
     programs.nixvim.plugins.wezterm = {
       enable = true;
