@@ -12,7 +12,7 @@ in
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    nixpkgs.config.allowUnfreePredicate =
+    nixpks.config.allowUnfreePredicate =
       pkg:
       builtins.elem (lib.getName pkg) [
         "wezterm.nvim"
