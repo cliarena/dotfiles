@@ -2,11 +2,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   module = "_acme";
   description = "automatic certificate management environment";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
@@ -22,17 +24,15 @@ in {
         "cliarena.com" = {
           # group = "vault";
           # change this or add to it, if reached letsencrypt Rate limit
-          extraDomainNames = ["*.cliarena.com"];
-          credentialsFile =
-            config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
+          extraDomainNames = [ "*.cliarena.com" ];
+          credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
           # reloadServices = [ "vault.service" ];
         };
         "vault.cliarena.com" = {
           group = "vault";
           # change this or add to it, if reached letsencrypt Rate limit
-          credentialsFile =
-            config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
-          reloadServices = ["vault.service"];
+          credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
+          reloadServices = [ "vault.service" ];
         };
       };
     };

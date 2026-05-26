@@ -27,7 +27,7 @@ in
     # _auditd.enable = true;
     _impermanence.enable = true;
 
-    _acme.enable = true;
+    # _acme.enable = true;
 
     # _nats_system.enable = true;
 
@@ -43,12 +43,12 @@ in
     # _nomad.enable = true;
     # _nomoperator.enable = true;
 
-    _powerdns.enable = true;
-    _cloudflare_dyndns.enable = true;
+    # _powerdns.enable = true;
+    # _cloudflare_dyndns.enable = true;
 
     _bench.enable = true;
     _tracing_pkgs.enable = true;
-    _victoria_metrics.enable = true;
+    # _victoria_metrics.enable = true;
 
     _polaris.enable = true;
 
