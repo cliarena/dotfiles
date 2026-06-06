@@ -94,19 +94,18 @@
         systems = [ "x86_64-linux" ];
         formatter = pkgs: pkgs.alejandra;
 
-        withOverlays = [
-          (final: prev: rec {
-            # zig = inputs.zig_overlay.packages.${prev.system}.master;
-            zig = inputs.zig_overlay.packages.${prev.system}.default;
-            zls = inputs.zls.packages.${prev.system}.zls.overrideAttrs (old: {
-              nativeBuildInputs = [ zig ];
-            });
-            # zls = inputs.zls-overlay.packages.${prev.system}.default;
-            # zls = inputs.zls.packages.x86_64-linux.zls.overrideAttrs (old: {
-            #   nativeBuildInputs = [inputs.zig-overlay.packages.${prev.system}.master];
-            # });
-          })
-        ];
+        # withOverlays = [
+        #   (final: prev: rec {
+        #     zig = inputs.zig_overlay.packages.${prev.system}.master;
+        #     zls = inputs.zls.packages.${prev.system}.zls.overrideAttrs (old: {
+        #       nativeBuildInputs = [ zig ];
+        #     });
+        #     # zls = inputs.zls-overlay.packages.${prev.system}.default;
+        #     # zls = inputs.zls.packages.x86_64-linux.zls.overrideAttrs (old: {
+        #     #   nativeBuildInputs = [inputs.zig-overlay.packages.${prev.system}.master];
+        #     # });
+        #   })
+        # ];
 
         nixDir = ./.;
         nixDirAliases = {
