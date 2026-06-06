@@ -96,7 +96,8 @@
 
         withOverlays = [
           (final: prev: rec {
-            zig = inputs.zig_overlay.packages.${prev.system}.master;
+            # zig = inputs.zig_overlay.packages.${prev.system}.master;
+            zig = inputs.zig_overlay.packages.${prev.system}.default;
             zls = inputs.zls.packages.${prev.system}.zls.overrideAttrs (old: {
               nativeBuildInputs = [ zig ];
             });
