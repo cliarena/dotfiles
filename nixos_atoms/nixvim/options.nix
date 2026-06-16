@@ -2,16 +2,18 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   module = "_options";
   description = "options";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
     programs.nixvim = {
-      diagnostics.virtual_text = false;
+      diagnostic.settings.virtual_text = false;
 
       colorschemes.catppuccin.enable = true;
 
@@ -45,32 +47,27 @@ in {
         fileencoding = "utf-8"; # the encoding written to a file
         foldmethod = "manual"; # folding set to "expr" for treesitter based folding
         foldexpr = "nvim_treesitter#foldexpr()"; # set to "nvim_treesitter#foldexpr()" for treesitter based folding
-        hidden =
-          true; # required to keep multiple buffers and open multiple buffers
+        hidden = true; # required to keep multiple buffers and open multiple buffers
         hlsearch = false; # keep highlighting matches of the previous search
         ignorecase = true; # ignore case in search patterns
         pumheight = 10; # pop up menu height
-        showmode =
-          false; # we don't need to see things like -- INSERT -- anymore
+        showmode = false; # we don't need to see things like -- INSERT -- anymore
         showtabline = 0; # always show tabs
         smartcase = true; # smart case
         smartindent = true; # make indenting smarter again
-        splitbelow =
-          true; # force all horizontal splits to go below current window
-        splitright =
-          true; # force all vertical splits to go to the right of current window
+        splitbelow = true; # force all horizontal splits to go below current window
+        splitright = true; # force all vertical splits to go to the right of current window
         swapfile = false; # creates a swapfile
-        termguicolors =
-          true; # set term gui colors (most terminals support this)
-        timeoutlen =
-          500; # time to wait for a mapped sequence to complete (in milliseconds)
+        termguicolors = true; # set term gui colors (most terminals support this)
+        timeoutlen = 500; # time to wait for a mapped sequence to complete (in milliseconds)
         title = true; # set the title of window to the value of the titlestring
         titlestring = "%<%F%=%l/%L - nvim"; # what the title of the window will be set to
-        undodir = {__raw = "vim.fn.stdpath('cache') .. '/undo'";};
+        undodir = {
+          __raw = "vim.fn.stdpath('cache') .. '/undo'";
+        };
         undofile = true; # enable persistent undo
         updatetime = 300; # faster completion
-        writebackup =
-          false; # if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
+        writebackup = false; # if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
         expandtab = true; # convert tabs to spaces
         shiftwidth = 2; # the number of spaces inserted for each indentation
         tabstop = 2; # insert 2 spaces for a tab
