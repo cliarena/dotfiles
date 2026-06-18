@@ -43,6 +43,7 @@ in
       #   moonlight-qt
 
       ### Design ###
+      audacity
       darktable
       inkscape-with-extensions
       gimp-with-plugins
