@@ -20,7 +20,7 @@ in
     systemd.timers."hydra-image-importer" = {
       wantedBy = [ "timers.target" ];
       timerConfig = {
-        OnBootSec = "5m";
+        # OnBootSec = "5m";
         # OnUnitActiveSec = "24h";
         OnCalendar = "weekly";
         Unit = "hydra-image-importer.service";
