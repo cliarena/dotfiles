@@ -40,6 +40,8 @@ in
       jq # # CLI JSON processor
       dig # Networking tools
       bottom
+      lm_sensors # HW temps
+      s-tui # Stress Temp monitor
       unzip
       nmap
       wget
