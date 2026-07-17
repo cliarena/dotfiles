@@ -18,6 +18,7 @@ in
     _audiobookshelf.enable = true;
 
     _oci.enable = true;
+    _oci_huly.enable = true;
     _oci_compiler_explorer.enable = true;
 
     _sops_hosting.enable = true;
