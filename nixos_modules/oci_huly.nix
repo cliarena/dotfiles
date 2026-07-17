@@ -16,6 +16,7 @@ in
 
     services.cockroachdb = {
       enable = true;
+      insecure = true;
       extraArgs = [
         "--accept-sql-without-tls"
       ];
