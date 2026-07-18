@@ -35,6 +35,7 @@ in
       enable = true;
       package = pkgs.garage_2;
       settings = {
+        replication_factor = 1;
         rpc_bind_addr = "[::]:3901";
 
         # TODO: Move rpc_secret_file w/ sops
