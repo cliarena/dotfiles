@@ -16,6 +16,7 @@ in
     environment.systemPackages = with pkgs; [
       ### Benchmark
       furmark
+      glmark2
 
       ### Git ###
       #   gh
