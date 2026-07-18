@@ -24,9 +24,9 @@ in
     services.garage = {
       enable = true;
       package = pkgs.garage_2;
-      settings = ''
-        rpc_bind_addr = "[::]:3901"
-      '';
+      settings = {
+        rpc_bind_addr = "[::]:3901";
+      };
     };
     services.elasticsearch = {
       enable = true;
