@@ -153,6 +153,7 @@ in
           TRANSACTOR_URL = "ws://transactor:3333;ws://${host_addr}/_transactor";
           MODEL_ENABLED = "*";
           ACCOUNTS_URL = "http://account:3000";
+          ACCOUNTS_DB_URL = cr_db_url;
           STATS_URL = "http://stats:4900";
           QUEUE_CONFIG = "redpanda:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
