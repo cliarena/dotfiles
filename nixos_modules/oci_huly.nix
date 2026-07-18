@@ -93,7 +93,7 @@ in
         image = "hardcoreeng/transactor:${huly_ver}";
         environment = {
           SECRET = secret;
-          SERVER_PORT = 3333;
+          SERVER_PORT = "3333";
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
@@ -110,7 +110,7 @@ in
         image = "hardcoreeng/collaborator:${huly_ver}";
         environment = {
           SECRET = secret;
-          COLLABORATOR_PORT = 3078;
+          COLLABORATOR_PORT = "3078";
           ACCOUNTS_URL = "http://account:3000";
           STATS_URL = "http://stats:4900";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
@@ -121,14 +121,14 @@ in
         image = "hardcoreeng/accounts:${huly_ver}";
         environment = {
           SERVER_SECRET = secret;
-          SERVER_PORT = 3000;
+          SERVER_PORT = "3000";
           DB_URL = cr_db_url;
           TRANSACTOR_URL = "ws://transactor:3333;ws://${host_addr}/_transactor";
           FRONT_URL = "http://${host_addr}";
           STATS_URL = "http://${host_addr}/_stats";
           MODEL_ENABLED = "*";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
-          ACCOUNT_PORT = 3000;
+          ACCOUNT_PORT = "3000";
           QUEUE_CONFIG = "redpanda:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
@@ -151,7 +151,7 @@ in
       front = {
         image = "hardcoreeng/front:${huly_ver}";
         environment = {
-          SERVER_PORT = 8080;
+          SERVER_PORT = "8080";
           SERVER_SECRET = secret;
           LOVE_ENDPOINT = "http://${host_addr}/_love";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
@@ -191,7 +191,7 @@ in
       stats = {
         image = "hardcoreeng/stats:${huly_ver}";
         environment = {
-          PORT = 4900;
+          PORT = "4900";
           SERVER_SECRET = secret;
         };
       };
