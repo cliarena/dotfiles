@@ -21,7 +21,7 @@ in
         "--accept-sql-without-tls"
       ];
     };
-    services.minio.enable = true;
+    services.garage.enable = true;
     services.elasticsearch = {
       enable = true;
       plugins = [ pkgs.elasticsearchPlugins.ingest-attachment ];
