@@ -14,6 +14,9 @@ in
 
   config = mkIf config.${module}.enable {
     environment.systemPackages = with pkgs; [
+      ### Benchmark
+      furmark
+
       ### Git ###
       #   gh
       #   commitizen
