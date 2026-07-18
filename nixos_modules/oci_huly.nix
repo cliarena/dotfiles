@@ -21,7 +21,10 @@ in
         "--accept-sql-without-tls"
       ];
     };
-    services.garage.enable = true;
+    services.garage = {
+      enable = true;
+      package = pkgs.garage_2;
+    };
     services.elasticsearch = {
       enable = true;
       plugins = [ pkgs.elasticsearchPlugins.ingest-attachment ];
