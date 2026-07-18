@@ -154,6 +154,7 @@ in
           MODEL_ENABLED = "*";
           ACCOUNTS_URL = "http://account:3000";
           ACCOUNTS_DB_URL = cr_db_url;
+          FULLTEXT_URL = "http://fulltext:4700";
           STATS_URL = "http://stats:4900";
           QUEUE_CONFIG = "redpanda:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
