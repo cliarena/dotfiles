@@ -59,9 +59,9 @@ in
         #TODO: Remove privileged
         privileged = true;
         image = "docker.redpanda.com/redpandadata/redpanda:v24.3.6";
-        capabilities = {
-          SYS_NICE = true;
-        };
+        # capabilities = {
+        #   SYS_NICE = true;
+        # };
         cmd = [
           "redpanda"
           "start"
