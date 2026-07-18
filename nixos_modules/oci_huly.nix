@@ -36,6 +36,10 @@ in
       package = pkgs.garage_2;
       settings = {
         rpc_bind_addr = "[::]:3901";
+
+        # TODO: Move rpc_secret_file w/ sops
+        rpc_secret = "4425f5c26c5e11581d3223904324dcb5b5d5dfb14e5e7f35e38c595424f5f1e6";
+
         s3_api = {
           s3_region = "garage";
         };
