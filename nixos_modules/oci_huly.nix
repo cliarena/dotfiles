@@ -76,7 +76,7 @@ in
         ];
 
         volumes = [
-          "/var/lib/redpanda/data:/var/lib/redpanda/data:rw"
+          "/srv/volumes/redpanda/data:/var/lib/redpanda/data:rw"
           # "/nix/store:/nix/store:ro" # to run nixos pkgs
           # "/run/current-system/sw/bin:/usr/local/bin:ro" # to access zig pkg
           # "/run/current-system/sw/bin:/run/current-system/sw/bin:ro" # to run nixos pkgs
