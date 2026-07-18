@@ -51,6 +51,9 @@ in
       redpanda = {
         # privileged = true;
         image = "docker.redpanda.com/redpandadata/redpanda:v24.3.6";
+        capabilities = {
+          SYS_NICE = true;
+        };
         cmd = [
           "redpanda"
           "start"
