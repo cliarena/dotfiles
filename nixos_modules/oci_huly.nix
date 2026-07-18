@@ -36,7 +36,9 @@ in
       package = pkgs.garage_2;
       settings = {
         rpc_bind_addr = "[::]:3901";
-        s3_api = { };
+        s3_api = {
+          s3_region = "garage";
+        };
       };
     };
     services.elasticsearch = {
