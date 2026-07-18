@@ -15,6 +15,7 @@ in
   config = mkIf config.${module}.enable {
     # environment.systemPackages = with pkgs; [ amdgpu_top ];
     security.rtkit.enable = true;
+    services.auto-cpufreq.enable = true;
     hardware = {
       uinput.enable = true;
       steam-hardware.enable = true;
