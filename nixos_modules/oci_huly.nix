@@ -24,6 +24,9 @@ in
     services.garage = {
       enable = true;
       package = pkgs.garage_2;
+      settings = ''
+        rpc_bind_addr = "[::]:3901"
+      '';
     };
     services.elasticsearch = {
       enable = true;
@@ -62,8 +65,9 @@ in
         ];
 
         volumes = [
-          "/nix/store:/nix/store:ro" # to run nixos pkgs
-          "/run/current-system/sw/bin:/usr/local/bin:ro" # to access zig pkg
+          "/var/lib/redpanda/data:/var/lib/redpanda/data:rw"
+          # "/nix/store:/nix/store:ro" # to run nixos pkgs
+          # "/run/current-system/sw/bin:/usr/local/bin:ro" # to access zig pkg
           # "/run/current-system/sw/bin:/run/current-system/sw/bin:ro" # to run nixos pkgs
         ];
       };
