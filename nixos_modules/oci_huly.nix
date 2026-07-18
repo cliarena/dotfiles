@@ -101,7 +101,7 @@ in
           ACCOUNTS_URL = "http://account:3000";
           FULLTEXT_URL = "http://fulltext:4700";
           STATS_URL = "http://stats:4900";
-          LAST_NAME_FIRST = true;
+          LAST_NAME_FIRST = "true";
           QUEUE_CONFIG = "redpanda:9092";
         };
       };
@@ -167,7 +167,7 @@ in
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
           TITLE = description;
           DEFAULT_LANGUAGE = "en";
-          LAST_NAME_FIRST = true;
+          LAST_NAME_FIRST = "true";
           DESKTOP_UPDATES_CHANNEL = huly_ver;
           DISABLED_FEATURES = "auto-translate,mailboxes";
         };
