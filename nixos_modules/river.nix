@@ -146,7 +146,7 @@ in
 
     programs.river-classic = {
       enable = true;
-      xwayland.enable = true;
+      xwayland.enable = false;
     };
     home-manager.users.${host.user} = {
       wayland.windowManager.river = {
