@@ -131,8 +131,8 @@ in
         environment = {
           SECRET = secret;
           COLLABORATOR_PORT = "3078";
-          ACCOUNTS_URL = "http://account:3000";
-          STATS_URL = "http://stats:4900";
+          ACCOUNTS_URL = "http://${host_addr}:3000";
+          STATS_URL = "http://${host_addr}:4900";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
       };
