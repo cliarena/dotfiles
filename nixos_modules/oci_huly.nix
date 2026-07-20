@@ -26,7 +26,7 @@ in
 
     # lib.mkForce pkgs.writeShellScript "cockroachdb-single-node"
     systemd.services.cockroachdb.serviceConfig.ExecStart =
-      lib.mkForce "${pkgs.cockroachdb}/bin/cockroach start-single-node --accept-sql-without-tls --insecure";
+      lib.mkForce "${pkgs.cockroachdb}/bin/cockroach start-single-node --accept-sql-without-tls";
     services.cockroachdb = {
       enable = true;
       insecure = true;
