@@ -20,7 +20,7 @@ let
   # cr_db_url = "postgres://${cr_username}:${cr_secret}@cockroach:26257/${cr_db}";
   cr_db_url = "postgres://${cr_username}:${cr_secret}@${host_addr}:5432/${cr_db}";
 
-  s3_addr = "http://${host_addr}:${ports.s3}?accessKey=admin&secretKey=admin";
+  s3_addr = "http://${host_addr}:${ports.s3_rpc}?accessKey=admin&secretKey=admin";
   ports = {
     front = "7070";
     account = "3000";
