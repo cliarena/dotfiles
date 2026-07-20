@@ -24,13 +24,16 @@ in
 
   config = mkIf config.${module}.enable {
 
+    systemd.services.cockroachdb.serviceConfig.ExecStart =
+      pkgs.writeShellScript "cockroachdb-single-node" "${pkgs.cockroachdb/bin/cockroach} start-single-node --accept-sql-without-tls";
     services.cockroachdb = {
       enable = true;
-      insecure = true;
-      extraArgs = [
-        "--accept-sql-without-tls"
-      ];
+      # insecure = true;
+      # extraArgs = [
+      #   "--accept-sql-without-tls"
+      # ];
     };
+
     services.garage = {
       enable = true;
       package = pkgs.garage_2;
