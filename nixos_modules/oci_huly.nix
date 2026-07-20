@@ -173,7 +173,7 @@ in
 
       huly-front = {
         image = "hardcoreeng/front:${huly_ver}";
-        hostname = "huly_front";
+        user = "huly_front:users";
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SERVER_PORT = "7070";
