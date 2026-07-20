@@ -93,14 +93,14 @@ in
           # "/run/current-system/sw/bin:/run/current-system/sw/bin:ro" # to run nixos pkgs
         ];
       };
-      reckoni = {
+      huly-reckoni = {
         image = "hardcoreeng/rekoni-service:${huly_ver}";
         environment = {
           SECRET = secret;
         };
       };
 
-      transactor = {
+      huly-transactor = {
         image = "hardcoreeng/transactor:${huly_ver}";
         environment = {
           SECRET = secret;
@@ -117,7 +117,7 @@ in
         };
       };
 
-      collaborator = {
+      huly-collaborator = {
         image = "hardcoreeng/collaborator:${huly_ver}";
         environment = {
           SECRET = secret;
@@ -128,8 +128,8 @@ in
         };
       };
 
-      accounts = {
-        image = "hardcoreeng/accounts:${huly_ver}";
+      huly-account = {
+        image = "hardcoreeng/account:${huly_ver}";
         environment = {
           SERVER_SECRET = secret;
           SERVER_PORT = "3000";
@@ -145,7 +145,7 @@ in
         };
       };
 
-      workspace = {
+      huly-workspace = {
         image = "hardcoreeng/workspace:${huly_ver}";
         environment = {
           SERVER_SECRET = secret;
@@ -161,7 +161,7 @@ in
         };
       };
 
-      front = {
+      huly-front = {
         image = "hardcoreeng/front:${huly_ver}";
         environment = {
           SERVER_PORT = "8080";
@@ -186,7 +186,7 @@ in
         };
       };
 
-      fulltext = {
+      huly-fulltext = {
         image = "hardcoreeng/fulltext:${huly_ver}";
         environment = {
           SERVER_SECRET = secret;
@@ -201,7 +201,7 @@ in
         };
       };
 
-      stats = {
+      huly-stats = {
         image = "hardcoreeng/stats:${huly_ver}";
         environment = {
           PORT = "4900";
@@ -209,7 +209,7 @@ in
         };
       };
 
-      hulykvs = {
+      huly-kvs = {
         image = "hardcoreeng/hulykvs:${huly_ver}";
         environment = {
           HULY_DB_CONNECTION = cr_db_url;
