@@ -23,6 +23,13 @@ let
   ports = {
     front = "7070";
     account = "3000";
+    collaborator = "3078";
+    transactor = "3333";
+    elasticsearch = "9200";
+    fulltext = "4700";
+    stats = "4900";
+    rekoni = "4004";
+    queue = "9092";
   };
 in
 {
@@ -61,7 +68,7 @@ in
       plugins = [ pkgs.elasticsearchPlugins.ingest-attachment ];
       extraConf = ''
         http.cors.enabled: true
-        http.cors.allow-origin: "http://${host_addr}:8082"
+        http.cors.allow-origin: "http://${host_addr}:${ports.queue}"
       '';
     };
     services.apache-kafka = {
@@ -72,7 +79,7 @@ in
       formatLogDirs = true;
       settings = {
         listeners = [
-          "PLAINTEXT://:9092"
+          "PLAINTEXT://:${ports.queue}"
           "CONTROLLER://:9093"
         ];
         # Adapt depending on your security constraints
@@ -155,17 +162,17 @@ in
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SECRET = secret;
-          SERVER_PORT = "3333";
+          SERVER_PORT = ports.transactor;
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
           # FRONT_URL = "http://${host_addr}:8087";
           FRONT_URL = "http://${host_addr}:${ports.front}";
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
-          FULLTEXT_URL = "http://${host_addr}:4700";
-          STATS_URL = "http://${host_addr}:4900";
+          FULLTEXT_URL = "http://${host_addr}:${ports.fulltext}";
+          STATS_URL = "http://${host_addr}:${ports.stats}";
           LAST_NAME_FIRST = "true";
-          QUEUE_CONFIG = "${host_addr}:9092";
+          QUEUE_CONFIG = "${host_addr}:${ports.queue}";
         };
       };
 
@@ -174,9 +181,9 @@ in
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SECRET = secret;
-          COLLABORATOR_PORT = "3078";
+          COLLABORATOR_PORT = ports.collaborator;
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
-          STATS_URL = "http://${host_addr}:4900";
+          STATS_URL = "http://${host_addr}:${ports.stats}";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
       };
@@ -189,12 +196,12 @@ in
           SERVER_PORT = "${ports.account}";
           ACCOUNT_PORT = "${ports.account}";
           DB_URL = cr_db_url;
-          TRANSACTOR_URL = "ws://transactor:3333;ws://${host_addr}/_transactor";
+          TRANSACTOR_URL = "ws://${host_addr}:${ports.transactor};ws://${host_addr}/_transactor";
           FRONT_URL = "http://${host_addr}:${ports.front}";
-          STATS_URL = "http://${host_addr}/_stats";
+          STATS_URL = "http://${host_addr}:${ports.stats}";
           MODEL_ENABLED = "*";
-          ACCOUNTS_URL = "http://${host_addr}/_accounts";
-          QUEUE_CONFIG = "${host_addr}:9092";
+          ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
+          QUEUE_CONFIG = "${host_addr}:${ports.queue}";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
       };
@@ -205,13 +212,13 @@ in
         environment = {
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
-          TRANSACTOR_URL = "ws://transactor:3333;ws://${host_addr}/_transactor";
+          TRANSACTOR_URL = "ws://${host_addr}:${ports.transactor};ws://${host_addr}/_transactor";
           MODEL_ENABLED = "*";
-          ACCOUNTS_URL = "http://${host_addr}:3000";
+          ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           ACCOUNTS_DB_URL = cr_db_url;
-          FULLTEXT_URL = "http://${host_addr}:4700";
-          STATS_URL = "http://${host_addr}:4900";
-          QUEUE_CONFIG = "${host_addr}:9092";
+          FULLTEXT_URL = "http://${host_addr}:${ports.fulltext}";
+          STATS_URL = "http://${host_addr}:${ports.stats}";
+          QUEUE_CONFIG = "${host_addr}:${ports.queue}";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
       };
@@ -224,15 +231,15 @@ in
           SERVER_SECRET = secret;
           LOVE_ENDPOINT = "http://${host_addr}/_love";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
-          ACCOUNTS_URL_INTERNAL = "http://${host_addr}:3000";
-          REKONI_URL = "http://${host_addr}/_rekoni";
+          ACCOUNTS_URL_INTERNAL = "http://${host_addr}:${ports.account}";
+          REKONI_URL = "http://${host_addr}:${ports.rekoni}";
           CALENDAR_URL = "http://${host_addr}/_calendar";
           GMAIL_URL = "http://${host_addr}/_gmail";
           TELEGRAM_URL = "http://${host_addr}/_telegram";
-          STATS_URL = "http://${host_addr}/_stats";
+          STATS_URL = "http://${host_addr}:${ports.stats}";
           UPLOAD_URL = "/files";
-          ELASTIC_URL = "http://${host_addr}:9200";
-          COLLABORATOR_URL = "ws://${host_addr}/_collaborator";
+          ELASTIC_URL = "http://${host_addr}:${ports.elasticsearch}";
+          COLLABORATOR_URL = "ws://${host_addr}:${ports.collaborator}";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
           TITLE = description;
           DEFAULT_LANGUAGE = "en";
@@ -248,12 +255,12 @@ in
         environment = {
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
-          FULLTEXT_DB_URL = "http://${host_addr}:9200";
+          FULLTEXT_DB_URL = "http://${host_addr}:${ports.elasticsearch}";
           ELASTIC_INDEX_NAME = "huly_storage_index";
-          REKONI_URL = "http://${host_addr}:4004";
-          ACCOUNTS_URL = "http://${host_addr}:3000";
-          STATS_URL = "http://${host_addr}:4900";
-          QUEUE_CONFIG = "${host_addr}:9092";
+          REKONI_URL = "http://${host_addr}:${ports.rekoni}";
+          ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
+          STATS_URL = "http://${host_addr}:${ports.stats}";
+          QUEUE_CONFIG = "${host_addr}:${ports.queue}";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
       };
@@ -262,7 +269,7 @@ in
         image = "hardcoreeng/stats:${huly_ver}";
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
-          PORT = "4900";
+          PORT = ports.stats;
           SERVER_SECRET = secret;
         };
       };
@@ -274,9 +281,9 @@ in
           HULY_DB_CONNECTION = cr_db_url;
           HULY_TOKEN_SECRET = secret;
         };
-        ports = [
-          "8094:8094/tcp"
-        ];
+        # ports = [
+        #   "8094:8094/tcp"
+        # ];
       };
 
     };
