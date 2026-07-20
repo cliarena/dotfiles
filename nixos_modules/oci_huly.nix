@@ -175,7 +175,7 @@ in
         image = "hardcoreeng/front:${huly_ver}";
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
-          SERVER_PORT = "8080";
+          SERVER_PORT = "7070";
           SERVER_SECRET = secret;
           LOVE_ENDPOINT = "http://${host_addr}/_love";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
