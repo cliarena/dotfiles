@@ -21,8 +21,8 @@ let
   cr_db_url = "postgres://${cr_username}:${cr_secret}@${host_addr}:5432/${cr_db}";
 
   ports = {
-    front = 7070;
-    account = 3000;
+    front = "7070";
+    account = "3000";
   };
 in
 {
@@ -187,13 +187,13 @@ in
         environment = {
           SERVER_SECRET = secret;
           SERVER_PORT = "${ports.account}";
+          ACCOUNT_PORT = "${ports.account}";
           DB_URL = cr_db_url;
           TRANSACTOR_URL = "ws://transactor:3333;ws://${host_addr}/_transactor";
           FRONT_URL = "http://${host_addr}:${ports.front}";
           STATS_URL = "http://${host_addr}/_stats";
           MODEL_ENABLED = "*";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
-          ACCOUNT_PORT = "3000";
           QUEUE_CONFIG = "${host_addr}:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
