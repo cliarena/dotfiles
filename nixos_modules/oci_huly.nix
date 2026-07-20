@@ -110,7 +110,7 @@ in
       #     "redpanda"
       #     "start"
       #     "--kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092"
-      #     "--advertise-kafka-addr internal://redpanda:9092,external://localhost:19092"
+      #     "--advertise-kafka-addr internal://${host_addr}:9092,external://localhost:19092"
       #     "--pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082"
       #     "--advertise-pandaproxy-addr internal://redpanda:8082,external://localhost:18082"
       #     "--schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081"
@@ -159,7 +159,7 @@ in
           FULLTEXT_URL = "http://${host_addr}:4700";
           STATS_URL = "http://${host_addr}:4900";
           LAST_NAME_FIRST = "true";
-          QUEUE_CONFIG = "redpanda:9092";
+          QUEUE_CONFIG = "${host_addr}:9092";
         };
       };
 
@@ -188,7 +188,7 @@ in
           MODEL_ENABLED = "*";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
           ACCOUNT_PORT = "3000";
-          QUEUE_CONFIG = "redpanda:9092";
+          QUEUE_CONFIG = "${host_addr}:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
       };
@@ -205,7 +205,7 @@ in
           ACCOUNTS_DB_URL = cr_db_url;
           FULLTEXT_URL = "http://${host_addr}:4700";
           STATS_URL = "http://${host_addr}:4900";
-          QUEUE_CONFIG = "redpanda:9092";
+          QUEUE_CONFIG = "${host_addr}:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
       };
@@ -247,7 +247,7 @@ in
           REKONI_URL = "http://${host_addr}:4004";
           ACCOUNTS_URL = "http://${host_addr}:3000";
           STATS_URL = "http://${host_addr}:4900";
-          QUEUE_CONFIG = "redpanda:9092";
+          QUEUE_CONFIG = "${host_addr}:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
       };
