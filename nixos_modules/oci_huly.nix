@@ -63,6 +63,7 @@ in
         #TODO: Remove privileged
         privileged = true;
         image = "docker.redpanda.com/redpandadata/redpanda:v24.3.6";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         # capabilities = {
         #   SYS_NICE = true;
         # };
@@ -99,6 +100,7 @@ in
       };
       huly-reckoni = {
         image = "hardcoreeng/rekoni-service:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SECRET = secret;
         };
@@ -106,6 +108,7 @@ in
 
       huly-transactor = {
         image = "hardcoreeng/transactor:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SECRET = secret;
           SERVER_PORT = "3333";
@@ -123,6 +126,7 @@ in
 
       huly-collaborator = {
         image = "hardcoreeng/collaborator:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SECRET = secret;
           COLLABORATOR_PORT = "3078";
@@ -134,6 +138,7 @@ in
 
       huly-account = {
         image = "hardcoreeng/account:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SERVER_SECRET = secret;
           SERVER_PORT = "3000";
@@ -151,6 +156,7 @@ in
 
       huly-workspace = {
         image = "hardcoreeng/workspace:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
@@ -167,6 +173,7 @@ in
 
       huly-front = {
         image = "hardcoreeng/front:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SERVER_PORT = "8080";
           SERVER_SECRET = secret;
@@ -192,6 +199,7 @@ in
 
       huly-fulltext = {
         image = "hardcoreeng/fulltext:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
@@ -207,6 +215,7 @@ in
 
       huly-stats = {
         image = "hardcoreeng/stats:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           PORT = "4900";
           SERVER_SECRET = secret;
@@ -215,6 +224,7 @@ in
 
       huly-kvs = {
         image = "hardcoreeng/hulykvs:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           HULY_DB_CONNECTION = cr_db_url;
           HULY_TOKEN_SECRET = secret;
