@@ -59,46 +59,84 @@ in
         http.cors.allow-origin: "http://localhost:8082"
       '';
     };
-    virtualisation.oci-containers.containers = {
-      redpanda = {
-        #TODO: Remove privileged
-        privileged = true;
-        image = "docker.redpanda.com/redpandadata/redpanda:v24.3.6";
-        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
-        # capabilities = {
-        #   SYS_NICE = true;
-        # };
-        cmd = [
-          "redpanda"
-          "start"
-          "--kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092"
-          "--advertise-kafka-addr internal://redpanda:9092,external://localhost:19092"
-          "--pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082"
-          "--advertise-pandaproxy-addr internal://redpanda:8082,external://localhost:18082"
-          "--schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081"
-          "--rpc-addr redpanda:33145"
-          "--advertise-rpc-addr redpanda:33145"
-          "--mode dev-container"
-          "--smp 1"
-          "--default-log-level=info"
+    services.apache-kafka = {
+      enable = true;
+      # Replace with a randomly generated uuid. You can get one by running:
+      # kafka-storage.sh random-uuid
+      clusterId = "xxxxxxxxxxxxxxxxxxxxxx";
+      formatLogDirs = true;
+      settings = {
+        listeners = [
+          "PLAINTEXT://:9092"
+          "CONTROLLER://:9093"
         ];
-        environment = {
-          REDPANDA_SUPERUSER_USERNAME = "test";
-          REDPANDA_SUPERUSER_PASSWORD = "test";
-        };
+        # Adapt depending on your security constraints
+        "listener.security.protocol.map" = [
+          "PLAINTEXT:PLAINTEXT"
+          "CONTROLLER:PLAINTEXT"
+        ];
+        "controller.quorum.voters" = [
+          "1@127.0.0.1:9093"
+        ];
+        "controller.listener.names" = [ "CONTROLLER" ];
 
-        ports = [
-          # TODO: ADD Ports
-          # "10000:10000/tcp"
+        "node.id" = 1;
+        "process.roles" = [
+          "broker"
+          "controller"
         ];
 
-        volumes = [
-          "/srv/volumes/redpanda/data:/var/lib/redpanda/data:rw"
-          # "/nix/store:/nix/store:ro" # to run nixos pkgs
-          # "/run/current-system/sw/bin:/usr/local/bin:ro" # to access zig pkg
-          # "/run/current-system/sw/bin:/run/current-system/sw/bin:ro" # to run nixos pkgs
-        ];
+        # I prefer to use this directory, because /tmp may be erased
+        "log.dirs" = [ "/srv/volumes/kafka" ];
+        "offsets.topic.replication.factor" = 1;
+        "transaction.state.log.replication.factor" = 1;
+        "transaction.state.log.min.isr" = 1;
       };
+    };
+
+    # Set this so that systemd automatically create /var/lib/apache-kafka
+    # with the right permissions
+    systemd.services.apache-kafka.unitConfig.StateDirectory = "apache-kafka";
+    virtualisation.oci-containers.containers = {
+      # redpanda = {
+      #   #TODO: Remove privileged
+      #   privileged = true;
+      #   image = "docker.redpanda.com/redpandadata/redpanda:v24.3.6";
+      #   extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
+      #   # capabilities = {
+      #   #   SYS_NICE = true;
+      #   # };
+      #   cmd = [
+      #     "redpanda"
+      #     "start"
+      #     "--kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092"
+      #     "--advertise-kafka-addr internal://redpanda:9092,external://localhost:19092"
+      #     "--pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082"
+      #     "--advertise-pandaproxy-addr internal://redpanda:8082,external://localhost:18082"
+      #     "--schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081"
+      #     "--rpc-addr redpanda:33145"
+      #     "--advertise-rpc-addr redpanda:33145"
+      #     "--mode dev-container"
+      #     "--smp 1"
+      #     "--default-log-level=info"
+      #   ];
+      #   environment = {
+      #     REDPANDA_SUPERUSER_USERNAME = "test";
+      #     REDPANDA_SUPERUSER_PASSWORD = "test";
+      #   };
+      #
+      #   ports = [
+      #     # TODO: ADD Ports
+      #     # "10000:10000/tcp"
+      #   ];
+      #
+      #   volumes = [
+      #     "/srv/volumes/redpanda/data:/var/lib/redpanda/data:rw"
+      #     # "/nix/store:/nix/store:ro" # to run nixos pkgs
+      #     # "/run/current-system/sw/bin:/usr/local/bin:ro" # to access zig pkg
+      #     # "/run/current-system/sw/bin:/run/current-system/sw/bin:ro" # to run nixos pkgs
+      #   ];
+      # };
       huly-reckoni = {
         image = "hardcoreeng/rekoni-service:${huly_ver}";
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
