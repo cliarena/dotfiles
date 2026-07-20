@@ -25,7 +25,10 @@ in
           # group = "vault";
           # change this or add to it, if reached letsencrypt Rate limit
           extraDomainNames = [ "*.cliarena.com" ];
-          credentialsFile = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
+          credentialFiles = {
+            "VAULT_SECRET_FILE" = config.sops.secrets.ACME_VAULT_CERT_CREDENTIALS.path;
+            # "RFC2136_TSIG_SECRET_FILE" = "/run/secrets/tsig-secret-example.org";
+          };
           # reloadServices = [ "vault.service" ];
         };
         "vault.cliarena.com" = {
