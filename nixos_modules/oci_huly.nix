@@ -149,7 +149,7 @@ in
       #     # "/run/current-system/sw/bin:/run/current-system/sw/bin:ro" # to run nixos pkgs
       #   ];
       # };
-      huly-reckoni = {
+      huly-rekoni = {
         image = "hardcoreeng/rekoni-service:${huly_ver}";
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
