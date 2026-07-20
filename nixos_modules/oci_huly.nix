@@ -12,13 +12,13 @@ let
   huly_ver = "v0.7.426";
   host_addr = "0.0.0.0";
 
-  secret = "test";
+  secret = "huly";
 
-  cr_username = "test";
-  cr_secret = "test";
-  cr_db = "test";
+  cr_username = "huly";
+  cr_secret = "huly";
+  cr_db = "huly";
   # cr_db_url = "postgres://${cr_username}:${cr_secret}@cockroach:26257/${cr_db}";
-  cr_db_url = "postgres://${cr_username}:${cr_secret}@${host_addr}:26257/${cr_db}";
+  cr_db_url = "postgres://${cr_username}:${cr_secret}@${host_addr}:5432/${cr_db}";
 in
 {
   options.${module}.enable = mkEnableOption description;
