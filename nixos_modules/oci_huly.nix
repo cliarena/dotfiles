@@ -20,9 +20,11 @@ let
   # cr_db_url = "postgres://${cr_username}:${cr_secret}@cockroach:26257/${cr_db}";
   cr_db_url = "postgres://${cr_username}:${cr_secret}@${host_addr}:5432/${cr_db}";
 
+  s3_addr = "http://${host_addr}:${ports.s3}?accessKey=admin&secretKey=admin";
   ports = {
     front = "7070";
     account = "3000";
+    s3 = "3901";
     collaborator = "3078";
     transactor = "3333";
     elasticsearch = "9200";
@@ -53,7 +55,7 @@ in
       package = pkgs.garage_2;
       settings = {
         replication_factor = 1;
-        rpc_bind_addr = "[::]:3901";
+        rpc_bind_addr = "[::]:${ports.s3}";
 
         # TODO: Move rpc_secret_file w/ sops
         rpc_secret = "4425f5c26c5e11581d3223904324dcb5b5d5dfb14e5e7f35e38c595424f5f1e6";
@@ -165,7 +167,7 @@ in
           SERVER_PORT = ports.transactor;
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
-          STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
+          STORAGE_CONFIG = s3_addr;
           # FRONT_URL = "http://${host_addr}:8087";
           FRONT_URL = "http://${host_addr}:${ports.front}";
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
@@ -184,7 +186,7 @@ in
           COLLABORATOR_PORT = ports.collaborator;
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           STATS_URL = "http://${host_addr}:${ports.stats}";
-          STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
+          STORAGE_CONFIG = s3_addr;
         };
       };
 
@@ -202,7 +204,7 @@ in
           MODEL_ENABLED = "*";
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           QUEUE_CONFIG = "${host_addr}:${ports.queue}";
-          STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
+          STORAGE_CONFIG = s3_addr;
         };
       };
 
@@ -219,7 +221,7 @@ in
           FULLTEXT_URL = "http://${host_addr}:${ports.fulltext}";
           STATS_URL = "http://${host_addr}:${ports.stats}";
           QUEUE_CONFIG = "${host_addr}:${ports.queue}";
-          STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
+          STORAGE_CONFIG = s3_addr;
         };
       };
 
@@ -240,7 +242,7 @@ in
           UPLOAD_URL = "/files";
           ELASTIC_URL = "http://${host_addr}:${ports.elasticsearch}";
           COLLABORATOR_URL = "ws://${host_addr}:${ports.collaborator}";
-          STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
+          STORAGE_CONFIG = s3_addr;
           TITLE = description;
           DEFAULT_LANGUAGE = "en";
           LAST_NAME_FIRST = "true";
@@ -261,7 +263,7 @@ in
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           STATS_URL = "http://${host_addr}:${ports.stats}";
           QUEUE_CONFIG = "${host_addr}:${ports.queue}";
-          STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
+          STORAGE_CONFIG = s3_addr;
         };
       };
 
