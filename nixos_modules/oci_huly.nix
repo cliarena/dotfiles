@@ -28,7 +28,7 @@ in
       pkgs.writeShellScript "cockroachdb-single-node" "${pkgs.cockroachdb/bin/cockroach} start-single-node --accept-sql-without-tls";
     services.cockroachdb = {
       enable = true;
-      # insecure = true;
+      insecure = true;
       # extraArgs = [
       #   "--accept-sql-without-tls"
       # ];
