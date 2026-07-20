@@ -17,7 +17,8 @@ let
   cr_username = "test";
   cr_secret = "test";
   cr_db = "test";
-  cr_db_url = "postgres://${cr_username}:${cr_secret}@cockroach:26257/${cr_db}";
+  # cr_db_url = "postgres://${cr_username}:${cr_secret}@cockroach:26257/${cr_db}";
+  cr_db_url = "postgres://${cr_username}:${cr_secret}@${host_addr}:26257/${cr_db}";
 in
 {
   options.${module}.enable = mkEnableOption description;
