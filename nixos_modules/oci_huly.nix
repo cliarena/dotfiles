@@ -56,7 +56,7 @@ in
       plugins = [ pkgs.elasticsearchPlugins.ingest-attachment ];
       extraConf = ''
         http.cors.enabled: true
-        http.cors.allow-origin: "http://localhost:8082"
+        http.cors.allow-origin: "http://${host_addr}:8082"
       '';
     };
     services.apache-kafka = {
@@ -154,10 +154,10 @@ in
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
-          FRONT_URL = "http://localhost:8087";
-          ACCOUNTS_URL = "http://account:3000";
-          FULLTEXT_URL = "http://fulltext:4700";
-          STATS_URL = "http://stats:4900";
+          FRONT_URL = "http://${host_addr}:8087";
+          ACCOUNTS_URL = "http://${host_addr}:3000";
+          FULLTEXT_URL = "http://${host_addr}:4700";
+          STATS_URL = "http://${host_addr}:4900";
           LAST_NAME_FIRST = "true";
           QUEUE_CONFIG = "redpanda:9092";
         };
@@ -201,10 +201,10 @@ in
           DB_URL = cr_db_url;
           TRANSACTOR_URL = "ws://transactor:3333;ws://${host_addr}/_transactor";
           MODEL_ENABLED = "*";
-          ACCOUNTS_URL = "http://account:3000";
+          ACCOUNTS_URL = "http://${host_addr}:3000";
           ACCOUNTS_DB_URL = cr_db_url;
-          FULLTEXT_URL = "http://fulltext:4700";
-          STATS_URL = "http://stats:4900";
+          FULLTEXT_URL = "http://${host_addr}:4700";
+          STATS_URL = "http://${host_addr}:4900";
           QUEUE_CONFIG = "redpanda:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
@@ -218,14 +218,14 @@ in
           SERVER_SECRET = secret;
           LOVE_ENDPOINT = "http://${host_addr}/_love";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
-          ACCOUNTS_URL_INTERNAL = "http://account:3000";
+          ACCOUNTS_URL_INTERNAL = "http://${host_addr}:3000";
           REKONI_URL = "http://${host_addr}/_rekoni";
           CALENDAR_URL = "http://${host_addr}/_calendar";
           GMAIL_URL = "http://${host_addr}/_gmail";
           TELEGRAM_URL = "http://${host_addr}/_telegram";
           STATS_URL = "http://${host_addr}/_stats";
           UPLOAD_URL = "/files";
-          ELASTIC_URL = "http://elastic:9200";
+          ELASTIC_URL = "http://${host_addr}:9200";
           COLLABORATOR_URL = "ws://${host_addr}/_collaborator";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
           TITLE = description;
@@ -242,11 +242,11 @@ in
         environment = {
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
-          FULLTEXT_DB_URL = "http://elastic:9200";
+          FULLTEXT_DB_URL = "http://${host_addr}:9200";
           ELASTIC_INDEX_NAME = "huly_storage_index";
-          REKONI_URL = "http://rekoni:4004";
-          ACCOUNTS_URL = "http://account:3000";
-          STATS_URL = "http://stats:4900";
+          REKONI_URL = "http://${host_addr}:4004";
+          ACCOUNTS_URL = "http://${host_addr}:3000";
+          STATS_URL = "http://${host_addr}:4900";
           QUEUE_CONFIG = "redpanda:9092";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
