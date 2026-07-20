@@ -19,6 +19,11 @@ let
   cr_db = "huly";
   # cr_db_url = "postgres://${cr_username}:${cr_secret}@cockroach:26257/${cr_db}";
   cr_db_url = "postgres://${cr_username}:${cr_secret}@${host_addr}:5432/${cr_db}";
+
+  ports = {
+    front = 7070;
+    account = 3000;
+  };
 in
 {
   options.${module}.enable = mkEnableOption description;
@@ -154,8 +159,9 @@ in
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
-          FRONT_URL = "http://${host_addr}:8087";
-          ACCOUNTS_URL = "http://${host_addr}:3000";
+          # FRONT_URL = "http://${host_addr}:8087";
+          FRONT_URL = "http://${host_addr}:${ports.front}";
+          ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           FULLTEXT_URL = "http://${host_addr}:4700";
           STATS_URL = "http://${host_addr}:4900";
           LAST_NAME_FIRST = "true";
@@ -169,7 +175,7 @@ in
         environment = {
           SECRET = secret;
           COLLABORATOR_PORT = "3078";
-          ACCOUNTS_URL = "http://${host_addr}:3000";
+          ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           STATS_URL = "http://${host_addr}:4900";
           STORAGE_CONFIG = "minio|minio?accessKey=minioadmin&secretKey=minioadmin";
         };
@@ -180,10 +186,10 @@ in
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
           SERVER_SECRET = secret;
-          SERVER_PORT = "3000";
+          SERVER_PORT = "${ports.account}";
           DB_URL = cr_db_url;
           TRANSACTOR_URL = "ws://transactor:3333;ws://${host_addr}/_transactor";
-          FRONT_URL = "http://${host_addr}";
+          FRONT_URL = "http://${host_addr}:${ports.front}";
           STATS_URL = "http://${host_addr}/_stats";
           MODEL_ENABLED = "*";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
@@ -214,7 +220,7 @@ in
         image = "hardcoreeng/front:${huly_ver}";
         extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
         environment = {
-          SERVER_PORT = "7070";
+          SERVER_PORT = "${ports.front}";
           SERVER_SECRET = secret;
           LOVE_ENDPOINT = "http://${host_addr}/_love";
           ACCOUNTS_URL = "http://${host_addr}/_accounts";
