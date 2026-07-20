@@ -24,7 +24,10 @@ let
   ports = {
     front = "7070";
     account = "3000";
-    s3 = "3901";
+    s3_api_admin = "3903";
+    s3_api = "3900";
+    s3_rpc = "3901";
+    s3_web = "3902";
     collaborator = "3078";
     transactor = "3333";
     elasticsearch = "9200";
@@ -53,15 +56,33 @@ in
     services.garage = {
       enable = true;
       package = pkgs.garage_2;
+
       settings = {
+        metadata_dir = "/srv/volumes/garage/meta";
+        data_dir = "/srv/volumes/garage/meta";
+
+        db_engine = "sqlite";
         replication_factor = 1;
-        rpc_bind_addr = "[::]:${ports.s3}";
+        rpc_bind_addr = "[::]:${ports.s3_rpc}";
+        rpc_public_addr = "${host_addr}:${ports.s3}";
 
         # TODO: Move rpc_secret_file w/ sops
         rpc_secret = "4425f5c26c5e11581d3223904324dcb5b5d5dfb14e5e7f35e38c595424f5f1e6";
 
         s3_api = {
           s3_region = "garage";
+          api_bind_addr = "[::]:${ports.s3_api}";
+          root_domain = ".s3.garage.localhost";
+        };
+        s3_web = {
+          bind_addr = "[::]:${ports.s3_web}";
+          root_domain = ".web.garage.localhost";
+          index = "index.html";
+
+        };
+        admin = {
+          api_bind_addr = "[::]:${ports.s3_api_admin}";
+
         };
       };
     };
