@@ -20,8 +20,8 @@ in
     sops = {
       defaultSopsFile = ../secrets/default.yaml;
       age.keyFile = "/srv/secrets/SOPS_AGE_KEY";
-      age.sshKeyPaths = pkgs.lib.mkForce [ ]; # Must set to empty list for age heyfile to work
-      gnupg.sshKeyPaths = pkgs.lib.mkForce [ ]; # Must set to empty list for age heyfile to work
+      age.sshKeyPaths = pkgs.lib.mkForce [ ]; # Must set to empty list for age keyfile to work
+      gnupg.sshKeyPaths = pkgs.lib.mkForce [ ]; # Must set to empty list for age keyfile to work
 
       secrets = {
         ACME_VAULT_CERT_CREDENTIALS = { };
