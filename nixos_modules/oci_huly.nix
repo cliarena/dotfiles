@@ -28,13 +28,13 @@ in
     # lib.mkForce pkgs.writeShellScript "cockroachdb-single-node"
     systemd.services.cockroachdb.serviceConfig.ExecStart =
       lib.mkForce "${pkgs.cockroachdb}/bin/cockroach start-single-node --accept-sql-without-tls --insecure";
-    services.cockroachdb = {
-      enable = true;
-      insecure = true;
-      # extraArgs = [
-      #   "--accept-sql-without-tls"
-      # ];
-    };
+    # services.cockroachdb = {
+    #   enable = true;
+    #   insecure = true;
+    #   # extraArgs = [
+    #   #   "--accept-sql-without-tls"
+    #   # ];
+    # };
 
     services.garage = {
       enable = true;
@@ -63,7 +63,7 @@ in
       enable = true;
       # Replace with a randomly generated uuid. You can get one by running:
       # kafka-storage.sh random-uuid
-      clusterId = "xxxxxxxxxxxxxxxxxxxxxx";
+      clusterId = "69aqkRY2QuS560imxA0e0A";
       formatLogDirs = true;
       settings = {
         listeners = [
