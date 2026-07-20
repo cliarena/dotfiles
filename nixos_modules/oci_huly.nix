@@ -64,7 +64,7 @@ in
         db_engine = "sqlite";
         replication_factor = 1;
         rpc_bind_addr = "[::]:${ports.s3_rpc}";
-        rpc_public_addr = "${host_addr}:${ports.s3}";
+        rpc_public_addr = "${host_addr}:${ports.s3_rpc}";
 
         # TODO: Move rpc_secret_file w/ sops
         rpc_secret = "4425f5c26c5e11581d3223904324dcb5b5d5dfb14e5e7f35e38c595424f5f1e6";
