@@ -28,7 +28,7 @@ in
     # _auditd.enable = true;
     _impermanence.enable = true;
 
-    # _acme.enable = true;
+    _acme.enable = true;
 
     # _nats_system.enable = true;
 
