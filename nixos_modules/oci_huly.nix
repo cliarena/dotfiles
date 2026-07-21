@@ -63,6 +63,8 @@ in
     #   # ];
     # };
 
+    services.postgresql.enable = true;
+
     systemd.services.garage.serviceConfig.ExecStart =
       lib.mkForce "${config.services.garage.package}/bin/garage server --single-node --default-bucket";
     services.garage = {
