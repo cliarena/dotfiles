@@ -57,11 +57,11 @@ in
       enable = true;
       package = pkgs.garage_2;
 
+      # TODO: Move GARAGE_DEFAULT_ACCESS_KEY_file w/ sops GK"openssl rand -hex 16"
+      # TODO: Move GARAGE_DEFAULT_SECRET_KEY_file w/ sops "openssl rand -hex 32"
       extraEnvironment = {
         GARAGE_DEFAULT_BUCKET = "base";
-        # TODO: Move GARAGE_DEFAULT_ACCESS_KEY_file w/ sops GK"openssl rand -hex 16"
         GARAGE_DEFAULT_ACCESS_KEY = "GK4ac3b725eeac92db228f6cbcc12fbb7a";
-        # TODO: Move GARAGE_DEFAULT_ACCESS_KEY_file w/ sops "openssl rand -hex 32"
         GARAGE_DEFAULT_SECRET_KEY = "fd40d1b017fbbd35778f48c0cba46a7f05a82a74ffa577aa4c4ae97e70574032";
       };
       settings = {
