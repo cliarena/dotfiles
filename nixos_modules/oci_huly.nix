@@ -285,7 +285,7 @@ in
           TELEGRAM_URL = "http://${host_addr}/_telegram";
           STATS_URL = "http://${host_addr}:${ports.stats}";
           UPLOAD_URL = "/files";
-          ELASTIC_URL = "http://${host_addr}:${ports.elasticsearch}";
+          ELASTIC_URL = "http://0.0.0.0:${ports.elasticsearch}";
           COLLABORATOR_URL = "ws://${host_addr}:${ports.collaborator}";
           STORAGE_CONFIG = s3_addr;
           TITLE = description;
@@ -302,7 +302,7 @@ in
         environment = {
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
-          FULLTEXT_DB_URL = "http://${host_addr}:${ports.elasticsearch}";
+          FULLTEXT_DB_URL = "http://0.0.0.0:${ports.elasticsearch}";
           ELASTIC_INDEX_NAME = "huly_storage_index";
           REKONI_URL = "http://${host_addr}:${ports.rekoni}";
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
