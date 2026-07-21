@@ -20,7 +20,7 @@ in
     home-manager.useUserPackages = true;
     home-manager.users.${host.user} = {
       home = {
-        stateVersion = "23.11";
+        stateVersion = "26.11";
         username = host.user;
         homeDirectory = "/home/${host.user}";
       };

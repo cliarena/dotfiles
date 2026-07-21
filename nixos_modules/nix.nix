@@ -13,7 +13,7 @@ in
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    system.stateVersion = "23.11";
+    system.stateVersion = "26.11";
     nix = {
       daemonCPUSchedPolicy = "idle"; # Deprioritizes nix builds for more predictable latencies
       channel.enable = false; # not needed using flakes
