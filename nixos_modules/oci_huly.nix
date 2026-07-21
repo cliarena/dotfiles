@@ -57,6 +57,13 @@ in
       enable = true;
       package = pkgs.garage_2;
 
+      extraEnvironment = {
+        GARAGE_DEFAULT_BUCKET = "base";
+        # TODO: Move GARAGE_DEFAULT_ACCESS_KEY_file w/ sops GK"openssl rand -hex 16"
+        GARAGE_DEFAULT_ACCESS_KEY = "GK4ac3b725eeac92db228f6cbcc12fbb7a";
+        # TODO: Move GARAGE_DEFAULT_ACCESS_KEY_file w/ sops "openssl rand -hex 32"
+        GARAGE_DEFAULT_SECRET_KEY = "fd40d1b017fbbd35778f48c0cba46a7f05a82a74ffa577aa4c4ae97e70574032";
+      };
       settings = {
         metadata_dir = "/srv/volumes/garage/meta";
         data_dir = "/srv/volumes/garage/meta";
@@ -66,7 +73,7 @@ in
         rpc_bind_addr = "[::]:${ports.s3_rpc}";
         rpc_public_addr = "${host_addr}:${ports.s3_rpc}";
 
-        # TODO: Move rpc_secret_file w/ sops
+        # TODO: Move rpc_secret_file w/ sops "openssl rand -hex 32"
         rpc_secret = "4425f5c26c5e11581d3223904324dcb5b5d5dfb14e5e7f35e38c595424f5f1e6";
 
         s3_api = {
@@ -82,6 +89,10 @@ in
         };
         admin = {
           api_bind_addr = "[::]:${ports.s3_api_admin}";
+          # TODO: Move admin_token_file w/ sops "openssl rand -base64 32"
+          admin_token = "AepLEqj05hE9vpJnCa1OcxKS99sli7JzuOSjo95LX7A=";
+          # TODO: Move metrics_token_file w/ sops "openssl rand -base64 32"
+          metrics_token = "RI8gxHo5aLMTsrWdL74uU3tq1wfkLzJSy4DA8tV4gSc=";
 
         };
       };

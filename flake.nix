@@ -133,7 +133,7 @@
             # terraform
             sops
             # dig
-            # openssl
+            openssl
             # libuuid
             # wander
 
