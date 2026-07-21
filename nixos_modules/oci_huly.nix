@@ -245,7 +245,7 @@ in
           FRONT_URL = "http://${host_addr}:${ports.front}";
           STATS_URL = "http://${host_addr}:${ports.stats}";
           MODEL_ENABLED = "*";
-          ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
+          ACCOUNTS_URL = "http://${host_addr}:${ports.front}";
           QUEUE_CONFIG = "${host_addr}:${ports.queue}";
           STORAGE_CONFIG = s3_addr;
         };
