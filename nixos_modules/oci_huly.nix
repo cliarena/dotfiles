@@ -10,7 +10,8 @@ let
   inherit (lib) mkEnableOption mkIf;
 
   huly_ver = "v0.7.426";
-  host_addr = "0.0.0.0";
+  # host_addr = "0.0.0.0";
+  host_addr = "10.10.2.1";
 
   secret = "huly";
 
