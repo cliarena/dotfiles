@@ -19,7 +19,7 @@ let
   cr_secret = "huly";
   cr_db = "huly";
   # cr_db_url = "postgres://${cr_username}:${cr_secret}@cockroach:26257/${cr_db}";
-  cr_db_url = "postgres://${cr_username}:${cr_secret}@$0.0.0.0:5432/${cr_db}";
+  cr_db_url = "postgres://${cr_username}:${cr_secret}@0.0.0.0:5432/${cr_db}";
 
   s3_addr = "s3|http://${host_addr}:${ports.s3_rpc}?accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}";
   ports = {
