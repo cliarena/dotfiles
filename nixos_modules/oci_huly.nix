@@ -65,8 +65,8 @@ in
         GARAGE_DEFAULT_SECRET_KEY = "fd40d1b017fbbd35778f48c0cba46a7f05a82a74ffa577aa4c4ae97e70574032";
       };
       settings = {
-        metadata_dir = "/srv/volumes/garage/meta";
-        data_dir = "/srv/volumes/garage/meta";
+        # metadata_dir = "/srv/volumes/garage/meta";
+        # data_dir = "/srv/volumes/garage/data";
 
         db_engine = "sqlite";
         replication_factor = 1;
