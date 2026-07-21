@@ -20,7 +20,7 @@ let
   # cr_db_url = "postgres://${cr_username}:${cr_secret}@cockroach:26257/${cr_db}";
   cr_db_url = "postgres://${cr_username}:${cr_secret}@${host_addr}:5432/${cr_db}";
 
-  s3_addr = "http://${host_addr}:${ports.s3_rpc}?accessKey=admin&secretKey=admin";
+  s3_addr = "http://${host_addr}:${ports.s3_rpc}?accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}";
   ports = {
     front = "7070";
     account = "3000";
@@ -35,6 +35,15 @@ let
     stats = "4900";
     rekoni = "4004";
     queue = "9092";
+  };
+
+  garage = {
+
+    default_access_key = "GK4ac3b725eeac92db228f6cbcc12fbb7a";
+    default_secret_key = "fd40d1b017fbbd35778f48c0cba46a7f05a82a74ffa577aa4c4ae97e70574032";
+    rpc_secret = "4425f5c26c5e11581d3223904324dcb5b5d5dfb14e5e7f35e38c595424f5f1e6";
+    admin_token = "AepLEqj05hE9vpJnCa1OcxKS99sli7JzuOSjo95LX7A=";
+    metrics_token = "RI8gxHo5aLMTsrWdL74uU3tq1wfkLzJSy4DA8tV4gSc=";
   };
 in
 {
@@ -63,8 +72,8 @@ in
       # TODO: Move GARAGE_DEFAULT_SECRET_KEY_file w/ sops "openssl rand -hex 32"
       extraEnvironment = {
         GARAGE_DEFAULT_BUCKET = "base";
-        GARAGE_DEFAULT_ACCESS_KEY = "GK4ac3b725eeac92db228f6cbcc12fbb7a";
-        GARAGE_DEFAULT_SECRET_KEY = "fd40d1b017fbbd35778f48c0cba46a7f05a82a74ffa577aa4c4ae97e70574032";
+        GARAGE_DEFAULT_ACCESS_KEY = garage.default_access_key;
+        GARAGE_DEFAULT_SECRET_KEY = garage.default_secret_key;
       };
       settings = {
         # metadata_dir = "/srv/volumes/garage/meta";
@@ -76,7 +85,7 @@ in
         rpc_public_addr = "${host_addr}:${ports.s3_rpc}";
 
         # TODO: Move rpc_secret_file w/ sops "openssl rand -hex 32"
-        rpc_secret = "4425f5c26c5e11581d3223904324dcb5b5d5dfb14e5e7f35e38c595424f5f1e6";
+        rpc_secret = garage.rpc_secret;
 
         s3_api = {
           s3_region = "garage";
@@ -92,9 +101,9 @@ in
         admin = {
           api_bind_addr = "[::]:${ports.s3_api_admin}";
           # TODO: Move admin_token_file w/ sops "openssl rand -base64 32"
-          admin_token = "AepLEqj05hE9vpJnCa1OcxKS99sli7JzuOSjo95LX7A=";
+          admin_token = garage.admin_token;
           # TODO: Move metrics_token_file w/ sops "openssl rand -base64 32"
-          metrics_token = "RI8gxHo5aLMTsrWdL74uU3tq1wfkLzJSy4DA8tV4gSc=";
+          metrics_token = garage.metrics_token;
 
         };
       };
