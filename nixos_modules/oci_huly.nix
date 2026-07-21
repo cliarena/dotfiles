@@ -53,6 +53,8 @@ in
     #   # ];
     # };
 
+    systemd.services.garage.serviceConfig.ExecStart =
+      lib.mkForce "${config.services.garage.package}/bin/garage server --single-node --default-bucket";
     services.garage = {
       enable = true;
       package = pkgs.garage_2;
