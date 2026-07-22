@@ -24,6 +24,7 @@ let
   s3_addr = "s3|http://${host_addr}:${ports.s3_rpc}?accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}";
   ports = {
     front = "7070";
+    pulse = "8099";
     account = "3000";
     s3_api_admin = "3903";
     s3_api = "3900";
@@ -175,6 +176,7 @@ in
           STORAGE_CONFIG = s3_addr;
           # FRONT_URL = "http://${host_addr}:8087";
           FRONT_URL = "http://${host_addr}:${ports.front}";
+          PULSE_URL = "http://${host_addr}:${ports.pulse}";
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           FULLTEXT_URL = "http://${host_addr}:${ports.fulltext}";
           STATS_URL = "http://${host_addr}:${ports.stats}";
@@ -247,6 +249,7 @@ in
           STATS_URL = "http://${host_addr}:${ports.stats}";
           UPLOAD_URL = "/files";
           ELASTIC_URL = "http://0.0.0.0:${ports.elasticsearch}";
+          PULSE_URL = "http://${host_addr}:${ports.pulse}";
           COLLABORATOR_URL = "ws://${host_addr}:${ports.collaborator}";
           STORAGE_CONFIG = s3_addr;
           TITLE = description;
@@ -289,9 +292,22 @@ in
           HULY_DB_CONNECTION = cr_db_url;
           HULY_TOKEN_SECRET = secret;
         };
-        # ports = [
-        #   "8094:8094/tcp"
-        # ];
+      };
+
+      huly-pulse = {
+        image = "hardcoreeng/hulypulse:${huly_ver}";
+        extraOptions = [ "--network=host" ]; # Native Performance. Better Than port mapping `ports`
+        environment = {
+          HULY_BIND_PORT = ports.pulse;
+          HULY_LOG = "info";
+          HULY_TOKEN_SECRET = secret;
+          HULY_HEARTBEAT_TIMEOUT = "60";
+          HULY_BACKEND = "memory";
+          # For Redis backend instead of in-memory (optional, e.g. multi-node setups):
+          # - HULY_BACKEND=redis
+          # - HULY_REDIS_MODE=direct
+          # - HULY_REDIS_URLS=redis://redis:6379
+        };
       };
 
     };
