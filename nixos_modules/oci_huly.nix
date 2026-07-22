@@ -242,7 +242,7 @@ in
           SERVER_PORT = "${ports.account}";
           ACCOUNT_PORT = "${ports.account}";
           DB_URL = cr_db_url;
-          TRANSACTOR_URL = "ws://${host_addr}:${ports.transactor};ws://${host_addr}/_transactor";
+          TRANSACTOR_URL = "ws://${host_addr}:${ports.transactor}";
           FRONT_URL = "http://${host_addr}:${ports.front}";
           STATS_URL = "http://${host_addr}:${ports.stats}";
           MODEL_ENABLED = "*";
@@ -258,7 +258,7 @@ in
         environment = {
           SERVER_SECRET = secret;
           DB_URL = cr_db_url;
-          TRANSACTOR_URL = "ws://${host_addr}:${ports.transactor};ws://${host_addr}/_transactor";
+          TRANSACTOR_URL = "ws://${host_addr}:${ports.transactor}";
           MODEL_ENABLED = "*";
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           ACCOUNTS_DB_URL = cr_db_url;
