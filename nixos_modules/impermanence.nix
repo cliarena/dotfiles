@@ -21,6 +21,7 @@ in
       directories = [
         "/var/lib/systemd/coredump"
         "/var/lib/audiobookshelf"
+        "/var/lib/garage"
         {
           directory = "/var/lib/hydra";
           user = "hydra";
@@ -30,6 +31,11 @@ in
           directory = "/var/lib/postgresql";
           user = "postgres";
           group = "postgres";
+        }
+        {
+          directory = "/var/lib/elasticsearch";
+          user = "elasticsearch";
+          group = "elasticsearch";
         }
       ];
     };
