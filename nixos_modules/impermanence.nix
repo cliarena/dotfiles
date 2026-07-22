@@ -22,7 +22,12 @@ in
         "/var/lib/systemd/coredump"
         "/var/lib/audiobookshelf"
         # "/var/lib/garage/meta"
-        "/var/lib/private/garage"
+        # "/var/lib/private/garage"
+
+        {
+          directory = "/var/lib/private/garage";
+          mode = "0700";
+        }
         {
           directory = "/var/lib/hydra";
           user = "hydra";
