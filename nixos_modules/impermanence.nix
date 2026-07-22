@@ -24,10 +24,10 @@ in
         # "/var/lib/garage/meta"
         # "/var/lib/private/garage"
 
-        {
-          directory = "/var/lib/private/garage";
-          mode = "0700";
-        }
+        # {
+        #   directory = "/var/lib/private/garage";
+        #   mode = "0700";
+        # }
         {
           directory = "/var/lib/hydra";
           user = "hydra";
