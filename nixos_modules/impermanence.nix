@@ -21,7 +21,8 @@ in
       directories = [
         "/var/lib/systemd/coredump"
         "/var/lib/audiobookshelf"
-        "/var/lib/garage"
+        "/var/lib/garage/meta"
+        "/var/lib/garage/data"
         {
           directory = "/var/lib/hydra";
           user = "hydra";
