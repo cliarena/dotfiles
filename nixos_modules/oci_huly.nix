@@ -249,7 +249,7 @@ in
           STATS_URL = "http://${host_addr}:${ports.stats}";
           UPLOAD_URL = "/files";
           ELASTIC_URL = "http://0.0.0.0:${ports.elasticsearch}";
-          PULSE_URL = "http://${host_addr}:${ports.pulse}";
+          PULSE_URL = "http://${host_addr}:${ports.pulse}/ws";
           COLLABORATOR_URL = "ws://${host_addr}:${ports.collaborator}";
           STORAGE_CONFIG = s3_addr;
           TITLE = description;
