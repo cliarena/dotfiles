@@ -238,7 +238,7 @@ in
         environment = {
           SERVER_PORT = "${ports.front}";
           SERVER_SECRET = secret;
-          LOVE_ENDPOINT = "http://${host_addr}/_love";
+          # LOVE_ENDPOINT = "http://${host_addr}/_love";
           # ACCOUNTS_URL = "http://${host_addr}/_accounts";
           ACCOUNTS_URL = "http://${host_addr}:${ports.account}";
           ACCOUNTS_URL_INTERNAL = "http://${host_addr}:${ports.account}";
