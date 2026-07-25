@@ -80,8 +80,19 @@ in
         GARAGE_DEFAULT_SECRET_KEY = garage.default_secret_key;
       };
       settings = {
-        # metadata_dir = "/srv/volumes/garage/meta";
-        # data_dir = "/srv/volumes/garage/data";
+
+        metadata_dir = [
+          {
+            path = "/srv/volumes/garage/meta";
+            capacity = "100G";
+          }
+        ];
+        data_dir = [
+          {
+            path = "/srv/volumes/garage/data";
+            capacity = "400G";
+          }
+        ];
 
         db_engine = "sqlite";
         replication_factor = 1;
