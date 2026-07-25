@@ -22,7 +22,8 @@ let
   cr_db_url = "postgres://${cr_username}:${cr_secret}@0.0.0.0:5432/${cr_db}";
 
   # s3_addr = "s3|http://${host_addr}:${ports.s3_api}?accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}&rootBucket=huly&useSSL=false";
-  s3_addr = "s3|http://${host_addr}:${ports.s3_api}?accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}&region=garage";
+  #INFO: garage needes region to be garage otherwise its error marlformed header
+  s3_addr = "s3|http://${host_addr}:${ports.s3_api}?region=garage&accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}";
   ports = {
     front = "7070";
     pulse = "8099";
