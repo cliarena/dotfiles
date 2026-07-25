@@ -81,12 +81,7 @@ in
       };
       settings = {
 
-        metadata_dir = [
-          {
-            path = "/srv/volumes/garage/meta";
-            capacity = "100G";
-          }
-        ];
+        metadata_dir = "/srv/volumes/garage/meta";
         data_dir = [
           {
             path = "/srv/volumes/garage/data";
