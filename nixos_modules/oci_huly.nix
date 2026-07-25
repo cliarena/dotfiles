@@ -23,7 +23,7 @@ let
 
   # s3_addr = "s3|http://${host_addr}:${ports.s3_api}?accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}&rootBucket=huly&useSSL=false";
   #INFO: garage needes region to be garage otherwise its error marlformed header
-  s3_addr = "s3|http://${host_addr}:${ports.s3_api}?region=garage&accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}";
+  s3_addr = "s3|http://${host_addr}:${ports.s3_api}?region=garage&rootBucket=huly&accessKey=${garage.default_access_key}&secretKey=${garage.default_secret_key}";
   ports = {
     front = "7070";
     pulse = "8099";
