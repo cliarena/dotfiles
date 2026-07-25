@@ -85,7 +85,7 @@ in
         data_dir = [
           {
             path = "/srv/volumes/garage/data";
-            capacity = "400G";
+            capacity = "512G";
           }
         ];
 
