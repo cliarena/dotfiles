@@ -81,6 +81,7 @@ in
       };
       settings = {
 
+        # HACK: U will need to "sudo chmod 0777 -R /srv/volumes/garage" so garage can have access
         metadata_dir = "/srv/volumes/garage/meta";
         data_dir = [
           {
