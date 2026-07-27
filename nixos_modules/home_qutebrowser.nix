@@ -32,7 +32,12 @@ in
             prefers_reduced_motion = true;
 
           };
+          qt.args = [
+
+            "disable-features=AcceleratedVideoDecodeLinuxGL" # TODO: Remove when LinuxGL is stable
+          ];
         };
+
         searchEngines = {
           rsci = "https://sci-hub.st/match/{}";
           rarx = "https://arxiv.org/search/?query={}&searchtype=all&source=header";
