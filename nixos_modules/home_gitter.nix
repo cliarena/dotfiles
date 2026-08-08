@@ -30,11 +30,17 @@ in
           Install.WantedBy = [ "default.target" ];
 
           Service.ExecStart = pkgs.writeShellScript "gitter" ''
-            ${gc}  git@gitlab.com:persona_code/notes ~/notes
-            ${gc}  git@gitlab.com:cliarena_dotfiles/nixos ~/dotfiles
+            ${gc}  git@gitlab.com:persona_code/notes           ~/notes
+            ${gc}  git@gitlab.com:cliarena_dotfiles/nixos      ~/dotfiles
 
-            ${gc}  git@gitlab.com:mallx/products ~/project_main
-            ${gc}  git@github.com:ziglang/zig ~/project_secondary
+            ${gc}  git@gitlab.com:mallx/products               ~/project_main
+            ${gc}  git@github.com:ziglang/zig                  ~/lang_zig
+            ${gc}  git@github.com:typesense/typesense          ~/se_typesense
+            ${gc}  git@github.com:meilisearch/meilisearch      ~/se_meilisearch
+            ${gc}  git@github.com:sqlite/sqlite                ~/db_sqlite
+
+            # ZIG
+            ${gc}  git@github.com:bradcypert/lowkeydb          ~/db_lowkeydb
           '';
         };
       };
