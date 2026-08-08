@@ -121,6 +121,7 @@
             # TODO: remove ASAP
             "freeimage-3.18.0-unstable-2024-04-18" # needed by colmap
             "libsoup-2.74.3"
+            "elasticsearch-7.17.27"
 
           ];
         };
