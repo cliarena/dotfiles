@@ -45,6 +45,7 @@ in
           rdoi = "https://annas-archive.li/scidb/{}";
 
           yt = "https://www.youtube.com/results?search_query={}";
+          pt = "https://www.pinterest.com/search/pins/?q={}&rs=typed";
 
           dict = "https://www.thesaurus.com/browse/{}";
           abbr = "https://www.abbreviations.com/abbreviation/{}";
