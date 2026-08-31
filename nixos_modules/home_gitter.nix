@@ -35,12 +35,19 @@ in
 
             ${gc}  git@gitlab.com:mallx/products               ~/project_main
             ${gc}  https://codeberg.org/ziglang/zig.git        ~/lang_zig
+
+            # Search Engine
             ${gc}  git@github.com:typesense/typesense          ~/se_typesense
             ${gc}  git@github.com:meilisearch/meilisearch      ~/se_meilisearch
-            ${gc}  git@github.com:sqlite/sqlite                ~/db_sqlite
 
-            # ZIG
-            ${gc}  git@github.com:bradcypert/lowkeydb          ~/db_lowkeydb
+            # DB
+            ${gc}  git@github.com:sqlite/sqlite                ~/db_sqlite
+            ${gc}  git@github.com:bradcypert/lowkeydb          ~/db_zig_lowkeydb
+            ${gc}  git@github.com:tigerbeetle/tigerbeetle      ~/db_zig_tigerbeetle
+            ## DB_WAL
+            ${gc}  git@github.com:Atlantropaz/redo             ~/db_zig_wal
+            ${gc}  git@github.com:jeremytregunna/wal           ~/db_zig_wal_strict
+
           '';
         };
       };
