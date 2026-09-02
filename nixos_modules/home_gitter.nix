@@ -40,6 +40,9 @@ in
             ${gc}  git@github.com:typesense/typesense          ~/se_typesense
             ${gc}  git@github.com:meilisearch/meilisearch      ~/se_meilisearch
 
+            # Codec
+            ${gc}  git@github.com:muhammad-fiaz/zstd.zig       ~/codec_zig_zstd
+
             # DB
             ${gc}  git@github.com:sqlite/sqlite                ~/db_sqlite
             ${gc}  git@github.com:bradcypert/lowkeydb          ~/db_zig_lowkeydb
