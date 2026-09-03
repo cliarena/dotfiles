@@ -41,6 +41,7 @@ in
             ${gc}  git@github.com:meilisearch/meilisearch      ~/se_meilisearch
 
             # Codec
+            ${gc}  git@github.com:facebook/zstd                ~/codec_c_zstd
             ${gc}  git@github.com:muhammad-fiaz/zstd.zig       ~/codec_zig_zstd
 
             # DB
