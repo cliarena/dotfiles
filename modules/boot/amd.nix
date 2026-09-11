@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   boot = {
     # blacklistedKernelModules = [
     #   "k10temp" # conflicts with zenpower
@@ -12,9 +13,17 @@
       # config.boot.kernelPackages.zenergy # add zenergy
     ];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = ["video=1920x1080" "transparent_hugepage=always"];
+    kernelParams = [
+      "video=1920x1080"
+      "transparent_hugepage=always"
+    ];
     initrd = {
-      availableKernelModules = ["xhci_pci" "usbhid" "uas" "usb_storage"];
+      availableKernelModules = [
+        "xhci_pci"
+        "usbhid"
+        "uas"
+        "usb_storage"
+      ];
     };
     kernelModules = [
       "uinput"
@@ -31,6 +40,7 @@
       # "zenergy" # provide cpu power usage
     ];
     kernel.sysctl = {
+      "kernel.randomize_va_space" = 0; # Security risk. but needed to reduce code benchmarking noise/deviations
       "vm.swappiness" = 10;
       # set the kernel parameters necessary to let us forward packets
       ## TODO: only needed for router need to refactor to not add it to other hosts
@@ -40,8 +50,10 @@
 
     loader = {
       timeout = 1;
-      efi = {canTouchEfiVariables = true;};
-      systemd-boot = { 
+      efi = {
+        canTouchEfiVariables = true;
+      };
+      systemd-boot = {
         enable = true;
         memtest86.enable = true;
       };
