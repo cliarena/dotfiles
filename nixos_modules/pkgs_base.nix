@@ -46,6 +46,10 @@ in
       nmap
       wget
       nushell
+
+      ### Emulation Station
+      p7zip
+      mame-tools
     ];
   };
 }
