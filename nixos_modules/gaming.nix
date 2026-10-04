@@ -3,18 +3,26 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   module = "_gaming";
   description = "gaming config";
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    programs.steam.enable = true;
+    programs.steam = {
+      enable = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+    };
     hardware.steam-hardware.enable = true;
     programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
+      steam-run
       wineWowPackages.waylandFull # needed to run any emulated game
       lutris # game launcher
       protonplus # Wine and Proton-based compatibility tools manager
