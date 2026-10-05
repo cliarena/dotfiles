@@ -2,6 +2,7 @@
   lib,
   pkgs,
   inputs,
+  config,
   ...
 }:
 let
@@ -28,9 +29,10 @@ let
     udp_ports = with ports; [ dns ];
   };
 in
-inputs.nixos-generators.nixosGenerate {
-  system = "x86_64-linux";
-  format = "docker";
+# inputs.nixos-generators.nixosGenerate {
+# system = "x86_64-linux";
+# format = "docker";
+config.system.build.tarball {
   specialArgs = {
     inherit inputs;
     inherit (inputs) nixpkgs home-manager;
