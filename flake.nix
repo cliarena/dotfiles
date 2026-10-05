@@ -162,16 +162,17 @@
         # perSystem = pkgs: { hydraJobs ={ x = { inherit (pkgs) cowsay;}; };};
 
         # use perSystem is module option not available natively bu flakelight
-        perSystem = pkgs: {
+        # perSystem = pkgs: {
+        perSystem = {
           hydraJobs = {
-            main_2 = inputs.self.nixosConfigurations.svr.config.system.build.images.iso;
-            main = import ./images/main.nix {
-              inherit
-                lib
-                pkgs
-                inputs
-                ;
-            };
+            main = inputs.self.nixosConfigurations.svr.config.system.build.images.iso;
+            # main = import ./images/main.nix {
+            #   inherit
+            #     lib
+            #     pkgs
+            #     inputs
+            #     ;
+            # };
           };
         };
 
