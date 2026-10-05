@@ -31,7 +31,7 @@ in
 # inputs.nixos-generators.nixosGenerate {
 # system = "x86_64-linux";
 # format = "docker";
-inputs.self.nixosConfigurations.svr.config.system.build.images.tarball {
+inputs.self.nixosConfigurations.svr.config.system.build.images.iso {
   specialArgs = {
     inherit inputs;
     inherit (inputs) nixpkgs home-manager;
