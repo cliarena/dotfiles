@@ -69,7 +69,6 @@
     inputs@{
       self,
       flakelight,
-      modulesPath,
       ...
     }:
     let
@@ -168,7 +167,6 @@
             main = import ./images/main.nix {
               inherit
                 lib
-                modulesPath
                 pkgs
                 inputs
                 ;

@@ -2,7 +2,6 @@
   lib,
   pkgs,
   inputs,
-  modulesPath,
   ...
 }:
 let
@@ -39,7 +38,8 @@ inputs.self.nixosConfigurations.svr.config.system.build.images.iso {
     inherit host;
   };
   imports = [
-    "${toString modulesPath}/virtualisation/docker-image.nix"
+    # "${toString modulesPath}/virtualisation/docker-image.nix"
+    "${inputs.nixpkgs}/nixos/modules/virtualisation/docker-image.nix"
   ];
 
   # boot.loader.grub.enable = lib.mkForce false;
