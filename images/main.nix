@@ -2,6 +2,7 @@
   lib,
   pkgs,
   inputs,
+  modulesPath,
   ...
 }:
 let
@@ -37,6 +38,13 @@ inputs.self.nixosConfigurations.svr.config.system.build.images.iso {
     inherit (inputs) nixpkgs home-manager;
     inherit host;
   };
+  imports = [
+    "${toString modulesPath}/virtualisation/docker-image.nix"
+  ];
+
+  # boot.loader.grub.enable = lib.mkForce false;
+  # boot.loader.systemd-boot.enable = lib.mkForce false;
+
   modules = [
     #  ../modules/boot/amd.nix
     #  ../modules/hardware/amd.nix
