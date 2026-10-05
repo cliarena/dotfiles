@@ -69,6 +69,7 @@
     inputs@{
       self,
       flakelight,
+      modulesPath,
       ...
     }:
     let
@@ -164,7 +165,14 @@
         # use perSystem is module option not available natively bu flakelight
         perSystem = pkgs: {
           hydraJobs = {
-            main = import ./images/main.nix { inherit lib pkgs inputs; };
+            main = import ./images/main.nix {
+              inherit
+                lib
+                modulesPath
+                pkgs
+                inputs
+                ;
+            };
           };
         };
 
