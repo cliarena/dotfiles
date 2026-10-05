@@ -164,6 +164,7 @@
         # use perSystem is module option not available natively bu flakelight
         perSystem = pkgs: {
           hydraJobs = {
+            main_2 = inputs.self.nixosConfigurations.svr.config.system.build.images.iso;
             main = import ./images/main.nix {
               inherit
                 lib

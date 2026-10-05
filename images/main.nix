@@ -28,10 +28,9 @@ let
     udp_ports = with ports; [ dns ];
   };
 in
-# inputs.nixos-generators.nixosGenerate {
-# system = "x86_64-linux";
-# format = "docker";
-inputs.self.nixosConfigurations.svr.config.system.build.images.oci {
+inputs.nixos-generators.nixosGenerate {
+  system = "x86_64-linux";
+  format = "docker";
   specialArgs = {
     inherit inputs;
     inherit (inputs) nixpkgs home-manager;
