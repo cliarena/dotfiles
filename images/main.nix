@@ -2,6 +2,7 @@
   lib,
   pkgs,
   inputs,
+  self,
   config,
   ...
 }:
@@ -32,7 +33,7 @@ in
 # inputs.nixos-generators.nixosGenerate {
 # system = "x86_64-linux";
 # format = "docker";
-config.system.build.tarball {
+self.nixosConfigurations.svr.config.system.build.tarball {
   specialArgs = {
     inherit inputs;
     inherit (inputs) nixpkgs home-manager;

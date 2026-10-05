@@ -164,14 +164,7 @@
         # use perSystem is module option not available natively bu flakelight
         perSystem = pkgs: {
           hydraJobs = {
-            main = import ./images/main.nix {
-              inherit
-                lib
-                config
-                pkgs
-                inputs
-                ;
-            };
+            main = import ./images/main.nix { inherit lib pkgs inputs; };
           };
         };
 
