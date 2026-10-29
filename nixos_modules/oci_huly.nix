@@ -55,7 +55,7 @@ in
 
   config = mkIf config.${module}.enable {
 
-pkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "elasticsearch" ];
 
     # lib.mkForce pkgs.writeShellScript "cockroachdb-single-node"
     # systemd.services.cockroachdb.serviceConfig.ExecStart =
