@@ -56,6 +56,7 @@ in
   config = mkIf config.${module}.enable {
 
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "elasticsearch" ];
+nixpkgs.config.permittedInsecurePackages = ["elasticsearch-7.17.27"];
 
     # lib.mkForce pkgs.writeShellScript "cockroachdb-single-node"
     # systemd.services.cockroachdb.serviceConfig.ExecStart =
