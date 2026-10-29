@@ -13,6 +13,9 @@ in
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
+
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "steam" ];
+
     programs.steam = {
       enable = true;
       extraCompatPackages = with pkgs; [
