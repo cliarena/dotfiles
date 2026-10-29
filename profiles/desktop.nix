@@ -17,7 +17,7 @@ in
     _amd_hw.enable = true;
 
     fonts.enable = true;
-    _pipewire.enable = true;
+    # _pipewire.enable = true;
     _pkgs_desktop.enable = true;
     _chromium.enable = true;
 
@@ -36,6 +36,6 @@ in
     #  _eww.enable = true;
     _river.enable = true;
 
-    _gaming.enable = true;
+    # _gaming.enable = true;
   };
 }

@@ -1,16 +1,17 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   inherit (inputs.nixpkgs.lib) nixosSystem;
   host = rec {
     user = "svr";
     ip_addr = "10.10.0.10";
-    wan_ips = ["${ip_addr}/24"];
-    wan_gateway = ["10.10.0.1"];
+    wan_ips = [ "${ip_addr}/24" ];
+    wan_gateway = [ "10.10.0.1" ];
     wan_mac = "1c:83:41:32:6a:3c";
     lan_mac = "c8:4d:44:23:95:db";
     lan_ip_addr = "10.10.2.1";
-    lan_ips = ["${lan_ip_addr}/24"];
+    lan_ips = [ "${lan_ip_addr}/24" ];
     wlan_ip_addr = "10.10.5.1";
-    wlan_ips = ["${wlan_ip_addr}/24"];
+    wlan_ips = [ "${wlan_ip_addr}/24" ];
     is_dns_server = true;
     dns_server = wan_gateway;
     dns_extra_hosts = "127.0.0.1 local.cliarena.com";
@@ -36,7 +37,7 @@
       kasm
       kasm_wizard
     ];
-    udp_ports = with ports; [dns];
+    udp_ports = with ports; [ dns ];
     ssh_authorized_keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE8IGiyQMdIau7bIL63er9C9O3o/6wxNX7x8CL0DC0Ot SVR"
     ];
@@ -49,9 +50,17 @@
       # permittedInsecurePackages = [ "freeimage-unstable-2021-11-01" ];
     };
   };
-in {
+in
+nixosSystem {
   inherit system;
-  specialArgs = {inherit inputs nixpkgs host system;};
+  specialArgs = {
+    inherit
+      inputs
+      nixpkgs
+      host
+      system
+      ;
+  };
   modules = [
     ./configuration.nix
     # ../../nixos_modules/sunburst.nix

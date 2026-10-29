@@ -17,15 +17,15 @@ in
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
-    systemd.timers."hydra-image-importer" = {
-      wantedBy = [ "timers.target" ];
-      timerConfig = {
-        # OnBootSec = "5m";
-        # OnUnitActiveSec = "24h";
-        OnCalendar = "weekly";
-        Unit = "hydra-image-importer.service";
-      };
-    };
+    # systemd.timers."hydra-image-importer" = {
+    #   wantedBy = [ "timers.target" ];
+    #   timerConfig = {
+    #     # OnBootSec = "5m";
+    #     # OnUnitActiveSec = "24h";
+    #     OnCalendar = "weekly";
+    #     Unit = "hydra-image-importer.service";
+    #   };
+    # };
 
     systemd.services."hydra-image-importer" = {
       # ${pkgs.podman}/bin/podman rmi -f nixos  # no longer needed to free memory image is saved in disk

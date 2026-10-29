@@ -55,60 +55,60 @@ in
       blender # use hip to get gpu acceleration
 
       # Guassian Splatting
-      openmvg
+      # openmvg
       # openmvs
       # colmap
-      (openmvs.overrideAttrs (
-        finalAttrs: prevAttrs: {
-
-          src = fetchFromGitHub {
-            owner = "cdcseacave";
-            repo = "openmvs";
-            rev = "v2.4.0";
-            hash = "sha256-0tL2tqHYBQMGL9k+NqTUxieWuDP3YB6X9DcXYnlGWWg=";
-            fetchSubmodules = true;
-          };
-
-          buildInputs = with pkgs; [
-            (boost188.overrideAttrs (old: {
-              buildInputs = old.buildInputs ++ [ zstd ];
-            }))
-            ceres-solver
-            cgal
-            eigen
-            glfw
-            gmp
-            libjxl
-            libjpeg
-            libpng
-            libtiff
-            mpfr
-            nanoflann
-            opencv
-            llvmPackages.openmp
-            vcg
-          ];
-          # buildInputs = (lib.lists.remove  prevAttrs.buildInputs ++ [
-          #   libjxl
-          #   nanoflann
-          # ];
-          nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ python3Packages.python ];
-
-          cmakeFlags = prevAttrs.cmakeFlags ++ [
-            (lib.cmakeFeature "Python3_EXECUTABLE" (lib.getExe python3Packages.python))
-          ];
-
-          checkPhase = ''
-            runHook preCheck
-            ${lib.optionalString (stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch64) ''
-              export KMP_AFFINITY=disabled
-              export OMP_PROC_BIND=false
-            ''}
-            ctest --output-on-failure
-            runHook postCheck
-          '';
-        }
-      ))
+      # (openmvs.overrideAttrs (
+      #   finalAttrs: prevAttrs: {
+      #
+      #     src = fetchFromGitHub {
+      #       owner = "cdcseacave";
+      #       repo = "openmvs";
+      #       rev = "v2.4.0";
+      #       hash = "sha256-0tL2tqHYBQMGL9k+NqTUxieWuDP3YB6X9DcXYnlGWWg=";
+      #       fetchSubmodules = true;
+      #     };
+      #
+      #     buildInputs = with pkgs; [
+      #       (boost188.overrideAttrs (old: {
+      #         buildInputs = old.buildInputs ++ [ zstd ];
+      #       }))
+      #       ceres-solver
+      #       cgal
+      #       eigen
+      #       glfw
+      #       gmp
+      #       libjxl
+      #       libjpeg
+      #       libpng
+      #       libtiff
+      #       mpfr
+      #       nanoflann
+      #       opencv
+      #       llvmPackages.openmp
+      #       vcg
+      #     ];
+      #     # buildInputs = (lib.lists.remove  prevAttrs.buildInputs ++ [
+      #     #   libjxl
+      #     #   nanoflann
+      #     # ];
+      #     nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ python3Packages.python ];
+      #
+      #     cmakeFlags = prevAttrs.cmakeFlags ++ [
+      #       (lib.cmakeFeature "Python3_EXECUTABLE" (lib.getExe python3Packages.python))
+      #     ];
+      #
+      #     checkPhase = ''
+      #       runHook preCheck
+      #       ${lib.optionalString (stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch64) ''
+      #         export KMP_AFFINITY=disabled
+      #         export OMP_PROC_BIND=false
+      #       ''}
+      #       ctest --output-on-failure
+      #       runHook postCheck
+      #     '';
+      #   }
+      # ))
 
       ### Tools ###
       file # shows types of files needed by yazi
