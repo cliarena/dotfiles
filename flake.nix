@@ -75,7 +75,7 @@
       };
 
           hydraJobs = {
-             main = self.nixosConfigurations.img_desk.config.system.build.images.docker;
+            x86_64-linux.main = self.nixosConfigurations.img_desk.config.system.build.images.docker;
 };
       devShells = forAllSystems (
         system:
