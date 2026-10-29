@@ -52,7 +52,8 @@ in
       inkscape-with-extensions
       gimp-with-plugins
       ansel # darktable minus bloat
-      blender # use hip to get gpu acceleration
+      # blender # use hip to get gpu acceleration
+      pkgsRocm.blender
 
       # Guassian Splatting
       # openmvg

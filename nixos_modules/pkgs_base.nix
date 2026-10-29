@@ -20,7 +20,7 @@ in
     environment.defaultPackages = lib.mkForce [ ];
 
     environment.systemPackages = with pkgs; [
-      cowsay
+      # cowsay
       man-pages
       man-pages-posix
       inputs.zig_overlay.packages.x86_64-linux.master # needed by compiler_exlorer image
