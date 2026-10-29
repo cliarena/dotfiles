@@ -55,6 +55,8 @@ in
 
   config = mkIf config.${module}.enable {
 
+pkgs.config.allowUnfree = true;
+
     # lib.mkForce pkgs.writeShellScript "cockroachdb-single-node"
     # systemd.services.cockroachdb.serviceConfig.ExecStart =
     # lib.mkForce "${pkgs.cockroachdb}/bin/cockroach start-single-node --accept-sql-without-tls --insecure";
