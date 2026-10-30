@@ -50,7 +50,7 @@ in
       audacity
       darktable
       inkscape-with-extensions
-      gimp-with-plugins
+      # gimp-with-plugins
       ansel # darktable minus bloat
       # blender # use hip to get gpu acceleration
       pkgsRocm.blender
