@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  module = "_pipewire";
+  module = "_audio_pipewire";
   description = "audio & video server";
   inherit (lib) mkEnableOption mkIf;
 in {

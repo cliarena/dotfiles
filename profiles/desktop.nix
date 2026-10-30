@@ -17,7 +17,10 @@ in
     _amd_hw.enable = true;
 
     fonts.enable = true;
-    # _pipewire.enable = true;
+
+    # _audio_pipewire.enable = true;
+    _audio_pulseaudio.enable = true;
+
     _pkgs_desktop.enable = true;
     _chromium.enable = true;
 

@@ -189,8 +189,9 @@ image.modules.docker = ./docker.nix;
         shell = pkgs.lib.mkForce pkgs.nushell;
         extraGroups = [
           "wheel"
-          "video"
+          "audio"
           "sound"
+          "video"
           "input"
           "uinput"
         ];
