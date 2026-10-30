@@ -71,7 +71,7 @@
 
       nixosConfigurations = {
         svr = import ./hosts/svr { inherit inputs; };
-        img_desk = import ./hosts/img_desk_2.nix { inherit inputs; };
+        img_desk = import ./hosts/img_desk.nix { inherit inputs; };
       };
 
           hydraJobs = {
