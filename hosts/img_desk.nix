@@ -1,6 +1,4 @@
 {
-  lib,
-  pkgs,
   inputs,
   ...
 }:
@@ -23,6 +21,11 @@ let
     ];
     udp_ports = with ports; [ dns ];
   };
+  system = "x86_64-linux";
+  pkgs = import inputs.nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
 in
 inputs.nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
@@ -41,8 +44,10 @@ inputs.nixpkgs.lib.nixosSystem {
   # boot.loader.systemd-boot.enable = lib.mkForce false;
 
   modules = [
-
-    {
+{
+image.modules.docker = ./docker.nix;
+}
+{
       boot = {
         kernelPackages = pkgs.linuxPackages_latest;
         kernelParams = [ "transparent_hugepage=always" ];
@@ -153,7 +158,7 @@ inputs.nixpkgs.lib.nixosSystem {
 
         environment = {
           DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
-          PATH = lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
+          PATH = pkgs.lib.mkForce "/run/wrappers/bin:/root/.nix-profile/bin:/nix/profile/bin:/root/.local/state/nix/profile/bin:/etc/profiles/per-user//bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
         };
         # preStart = "${pkgs.coreutils}/bin/env";
 
@@ -181,7 +186,7 @@ inputs.nixpkgs.lib.nixosSystem {
         #  linger = true; #linger stops home manager services fromm starting on login
         isNormalUser = true;
         initialPassword = "nixos";
-        shell = lib.mkForce pkgs.nushell;
+        shell = pkgs.lib.mkForce pkgs.nushell;
         extraGroups = [
           "wheel"
           "video"
@@ -191,13 +196,13 @@ inputs.nixpkgs.lib.nixosSystem {
         ];
       };
 
-      nix.gc.automatic = lib.mkForce false; # only host should optimise
-      nix.optimise.automatic = lib.mkForce false; # only host should optimise
+      nix.gc.automatic = pkgs.lib.mkForce false; # only host should optimise
+      nix.optimise.automatic = pkgs.lib.mkForce false; # only host should optimise
 
       _home_gitter.enable = true;
       profiles.common.enable = true;
       profiles.desktop.enable = true;
     }
   ]
-  ++ lib.fileset.toList ../profiles;
+  ++ pkgs.lib.fileset.toList ../profiles;
 }

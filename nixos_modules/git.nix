@@ -18,12 +18,10 @@ in {
     home-manager.users.${host.user} = {config, ...}: {
       programs.git = {
         enable = true;
-        userName = "CLI Arena";
-        userEmail = "git@cliarena.com";
-        signing.signByDefault = true;
-        # the private key of public key added to git instance to sign commits
-        signing.key = config.sops.secrets.GL_SSH_KEY.path;
-        extraConfig = {
+        settings = {
+          user.name = "CLI Arena";
+          user.email = "git@cliarena.com";
+
           init.defaultBranch = "main";
           gpg.format = "ssh";
           url = {
@@ -34,6 +32,9 @@ in {
             "git@github.com" = {insteadOf = "gh";};
           };
         };
+        signing.signByDefault = true;
+        # the private key of public key added to git instance to sign commits
+        signing.key = config.sops.secrets.GL_SSH_KEY.path;
       };
     };
   };

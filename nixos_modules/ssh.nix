@@ -61,7 +61,7 @@ in {
           };
         };
         # This to avoid fingerprints verification prompt on git clone
-        userKnownHostsFile = "${homeDirectory}/.ssh/known_hosts ${gitlab_pub_key_file}  ${github_pub_key_file}";
+       settings.gitlab.UserKnownHostsFile = "${homeDirectory}/.ssh/known_hosts ${gitlab_pub_key_file}  ${github_pub_key_file}";
       };
     };
   };
