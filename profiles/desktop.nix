@@ -19,7 +19,7 @@ in
     fonts.enable = true;
 
     # _audio_pipewire.enable = true;
-    # _audio_pulseaudio.enable = true; // only needed if app needs to access audio device. ie audacity v3
+    _audio_pulseaudio.enable = true; # needed for audacity
 
     _pkgs_desktop.enable = true;
     _chromium.enable = true;
