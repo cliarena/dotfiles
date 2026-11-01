@@ -33,5 +33,16 @@ in
       mangohud # Performance overlay
       linuxConsoleTools # testing joysticks & controllers
     ];
+
+# Lutris Esync compatibility
+systemd.settings.Manager = {
+    DefaultLimitNOFILE = 524288;
+  };
+  security.pam.loginLimits = [{
+    domain = "yourusername";
+    type = "hard";
+    item = "nofile";
+    value = "524288";
+  }];
   };
 }

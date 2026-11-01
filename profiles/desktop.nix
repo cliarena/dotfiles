@@ -39,6 +39,6 @@ in
     #  _eww.enable = true;
     _river.enable = true;
 
-    # _gaming.enable = true;
+    _gaming.enable = true;
   };
 }
