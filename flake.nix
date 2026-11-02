@@ -21,9 +21,6 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
-
     devenv.url = "github:cachix/devenv";
 
     comin.url = "github:nlewo/comin";
