@@ -27,7 +27,7 @@ in
     environment.systemPackages = with pkgs; [
       steam-run
       wineWow64Packages.waylandFull # needed to run any emulated game
-      lutris # game launcher
+      lutris-unwrapped # game launcher
       protonplus # Wine and Proton-based compatibility tools manager
       cartridges # GTK4 game launcher
       mangohud # Performance overlay
