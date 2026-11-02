@@ -2,14 +2,19 @@
   config,
   lib,
   pkgs,
+inputs,
+host,
   ...
 }:
 let
   module = "_gaming";
   description = "gaming config";
   inherit (lib) mkEnableOption mkIf;
+  inherit (inputs) home-manager;
 in
 {
+  imports = [home-manager.nixosModules.home-manager];
+
   options.${module}.enable = mkEnableOption description;
 
   config = mkIf config.${module}.enable {
@@ -27,7 +32,7 @@ in
     environment.systemPackages = with pkgs; [
       steam-run
       wineWow64Packages.waylandFull # needed to run any emulated game
-      lutris-unwrapped # game launcher
+      # lutris-unwrapped # game launcher
       protonplus # Wine and Proton-based compatibility tools manager
       cartridges # GTK4 game launcher
       mangohud # Performance overlay
@@ -39,10 +44,21 @@ systemd.settings.Manager = {
     DefaultLimitNOFILE = 524288;
   };
   security.pam.loginLimits = [{
-    domain = "yourusername";
+    domain = host.user;
     type = "hard";
     item = "nofile";
     value = "524288";
   }];
+
+    home-manager.users.${host.user} = {
+      programs.lutris = {
+        enable = true;
+        package = pkgs.lutris-unwrapped;
+        defaultWinePackage = pkgs.proton-ge-bin;
+        winePackages = with pkgs; [ wineWow64Packages.full ];
+        protonPackages = with pkgs; [ proton-ge-bin ];
+        extraPackages = with pkgs; [ mangohud winetricks gamescope gamemode umu-launcher ];
+  };
+  };
   };
 }
